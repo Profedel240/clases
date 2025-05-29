@@ -10,7 +10,7 @@ todas mis clases del 240
 
 Aquí se listarán las infografías y apuntes relacionados con esta materia.
 
-1.  [Historia de la Matriz Energetica Argentina](clase1.html)
+1.  [Historia de la Matriz Energetica Argentina]clase1.html
 2.  [Título de la Clase 2 aquí](https://link-de-tu-infografia-2-aqui.github.io/apunte_2.html)
 3.  [Título de la Clase 3 aquí](https://link-de-tu-infografia-3-aqui.github.io/apunte_3.html)
 4.  [Título de la Clase 4 aquí](https://link-de-tu-infografia-4-aqui.github.io/apunte_4.html)
