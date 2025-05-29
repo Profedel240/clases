@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Constitución de Cooperativas en Argentina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* Light grey background */
+            color: #343a40; /* Dark grey text */
+        }
+        .header-bg {
+            background-color: #2c3e50; /* Dark blue-grey */
+            color: #ecf0f1; /* Light grey text */
+        }
+        .section-bg {
+            background-color: #ffffff; /* White background for sections */
+            border-left: 5px solid #3498db; /* Blue accent border */
+        }
+        .accordion-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #e9ecef; /* Lighter grey on hover */
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .accordion-content.active {
+            max-height: 1000px; /* Adjust as needed for content */
+            transition: max-height 0.7s ease-in;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #34495e; /* Slightly lighter dark blue */
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0.5rem;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            color: #ecf0f1;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-radius: 0.5rem;
+        }
+        .dropdown-menu a:hover {
+            background-color: #2c3e50;
+        }
+        .table-header {
+            background-color: #3498db; /* Blue for table headers */
+            color: white;
+        }
+        .table-row-odd {
+            background-color: #f2f2f2; /* Light grey for odd rows */
+        }
+        .table-row-even {
+            background-color: #ffffff; /* White for even rows */
+        }
+        .arrow-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-header.active .arrow-icon {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <header class="header-bg py-6 shadow-lg">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold mb-4 md:mb-0">Infografía: Proceso Constitutivo de Cooperativas en Argentina</h1>
+            <nav class="relative dropdown">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out flex items-center">
+                    Menú de Navegación
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="#introduccion">1. Introducción</a>
+                    <a href="#principios">2. Principios Cooperativos</a>
+                    <a href="#etapas">3. Etapas Generales</a>
+                    <a href="#asamblea">4. La Asamblea Constitutiva</a>
+                    <a href="#acta">5. El Acta Constitutiva</a>
+                    <a href="#estatuto">6. El Estatuto Social</a>
+                    <a href="#organos">7. Órganos Sociales Iniciales</a>
+                    <a href="#capital">8. Requisitos de Capital Social</a>
+                    <a href="#obligaciones">9. Obligaciones Posteriores</a>
+                    <a href="#desafios">10. Desafíos y Consideraciones</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="introduccion" class="section-bg rounded-xl shadow-lg p-8 mb-10">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                1. Introducción: El Cooperativismo como Modelo de Organización Socioeconómica
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                En el contexto actual, donde la innovación y la capacidad de adaptación son cruciales, comprender las diversas formas de organización económica y social resulta fundamental para el ingeniero moderno. Más allá de las estructuras empresariales tradicionales, el modelo cooperativo emerge como una alternativa robusta, basada en principios de solidaridad, ayuda mutua y gestión democrática. En Argentina, las cooperativas no solo tienen un sólido respaldo legal, sino que representan un actor significativo en la economía, abarcando desde la producción y el trabajo hasta la provisión de servicios esenciales.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Este apunte tiene como propósito analizar en detalle el proceso de constitución de una cooperativa en nuestro país, focalizándonos en dos instancias de vital importancia: la Asamblea Constitutiva y la elaboración del Acta Constitutiva. Abordaremos este proceso desde una perspectiva que integra los aspectos legales con la visión práctica necesaria para quienes, desde la ingeniería, podrían liderar o formar parte de este tipo de iniciativas. El marco normativo principal es la **Ley N° 20.337 de Cooperativas (LC)** y el organismo clave es el **Instituto Nacional de Asociativismo y Economía Social (INAES)**.
+            </p>
+        </section>
+
+        <section id="principios" class="section-bg rounded-xl shadow-lg p-8 mb-10">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.007 12.007 0 002.944 12c0 2.895 1.192 5.55 3.109 7.465M12 20.944c2.895 0 5.55-1.192 7.465-3.109"></path></svg>
+                2. Principios Cooperativos y su Relevancia en la Estructura Legal
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-6">
+                Antes de sumergirnos en el proceso constitutivo, es imprescindible comprender los principios que definen y diferencian a las cooperativas. Estos principios, ratificados por la ACI e incorporados a nuestra legislación, no son meras declaraciones, sino que deben permear la estructura, el estatuto y la operatoria diaria de la entidad.
+            </p>
+            <div class="overflow-x-auto rounded-lg shadow-md">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="table-header">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider rounded-tl-lg">Principio Cooperativo (ACI)</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider rounded-tr-lg">Descripción y Relevancia en LC 20.337</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="table-row-odd">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Adhesión Voluntaria y Abierta</td>
+                            <td class="px-6 py-4 text-sm text-gray-700">Ingreso y egreso libre, sin discriminación. La LC no limita el número de asociados ni el capital social (Art. 2°).</td>
+                        </tr>
+                        <tr class="table-row-even">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Control Democrático de los Miembros</td>
+                            <td class="px-6 py-4 text-sm text-gray-700">"Un asociado, un voto" es la regla general (Art. 2°). Los miembros participan activamente en la toma de decisiones, especialmente en las Asambleas.</td>
+                        </tr>
+                        <tr class="table-row-odd">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Participación Económica de los Miembros</td>
+                            <td class="px-6 py-4 text-sm text-gray-700">Contribución equitativa al capital, control democrático. Interés limitado al capital, distribución de excedentes en proporción a las operaciones (retorno) (Art. 2°, 42°).</td>
+                        </tr>
+                        <tr class="table-row-even">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Autonomía e Independencia</td>
+                            <td class="px-6 py-4 text-sm text-gray-700">Organizaciones de autoayuda controladas por sus miembros, independientes de gobiernos u otras organizaciones (inferido de la definición y neutralidad política).</td>
+                        </tr>
+                        <tr class="table-row-odd">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Educación, Entrenamiento e Información</td>
+                            <td class="px-6 py-4 text-sm text-gray-700">Obligación de destinar el 5% del excedente anual a este fin (Art. 42° inc. 3°). Crucial para la formación de asociados y dirigentes.</td>
+                        </tr>
+                        <tr class="table-row-even">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Cooperación entre Cooperativas</td>
+                            <td class="px-6 py-4 text-sm text-gray-700">Fomento del trabajo conjunto entre cooperativas a distintos niveles (Art. 2°, Capítulo IX LC).</td>
+                        </tr>
+                        <tr class="table-row-odd">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 rounded-bl-lg">Compromiso con la Comunidad</td>
+                            <td class="px-6 py-4 text-sm text-gray-700 rounded-br-lg">Si bien no tiene disposiciones expresas en la LC, se desprende del sentido general de la ley y la naturaleza social de la cooperativa.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-gray-600 text-sm mt-4">*Tabla 1: Principios Cooperativos y su correlato en la Ley N° 20.337*</p>
+            <p class="text-gray-700 leading-relaxed mt-6">
+                Estos principios son la base filosófica y operativa. Desde la ingeniería, su aplicación implica diseñar estructuras de gestión participativas, sistemas de información transparentes y modelos económicos que prioricen el beneficio colectivo y la sostenibilidad social, además de la económica.
+            </p>
+        </section>
+
+        <section id="etapas" class="section-bg rounded-xl shadow-lg p-8 mb-10">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m0 0l-7 7m7-7v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                3. Etapas Generales para la Constitución de una Cooperativa
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-6">
+                La constitución de una cooperativa es un proceso formal que culmina con la obtención de la personería jurídica y la matrícula otorgada por el INAES. A continuación, se presenta un listado de las etapas generales del proceso constitutivo:
+            </p>
+            <ul class="list-decimal list-inside space-y-3 text-gray-700">
+                <li>
+                    <span class="font-semibold">Conformación del Grupo Pre-cooperativo:</span> Mínimo de diez asociados fundadores (seis para cooperativas de trabajo, con excepciones).
+                </li>
+                <li>
+                    <span class="font-semibold">Capacitación Inicial:</span> Asistencia obligatoria a cursos de información y capacitación reconocidos por INAES/OLC.
+                </li>
+                <li>
+                    <span class="font-semibold">Estudio de Factibilidad (Recomendado):</span> Análisis de la viabilidad técnica, económica y social del proyecto.
+                </li>
+                <li>
+                    <span class="font-semibold">Elaboración del Proyecto de Estatuto Social:</span> Redacción de las normas internas de la cooperativa.
+                </li>
+                <li>
+                    <span class="font-semibold">Comunicación Previa de la Asamblea Constitutiva:</span> Notificación a INAES/OLC con al menos 15 días de anticipación.
+                </li>
+                <li>
+                    <span class="font-semibold">Realización de la Asamblea Constitutiva:</span> Acto fundacional donde se constituye la cooperativa, se aprueba el estatuto y se eligen autoridades.
+                </li>
+                <li>
+                    <span class="font-semibold">Redacción y Firma del Acta Constitutiva:</span> Documentación formal de lo actuado y decidido en la asamblea.
+                </li>
+                <li>
+                    <span class="font-semibold">Presentación de Documentación ante INAES/OLC:</span> Entrega de Acta, Estatuto, nóminas, comprobante de capital, etc., dentro de los 30 días post-asamblea.
+                </li>
+                <li>
+                    <span class="font-semibold">Evaluación y Protocolización del Estatuto:</span> Revisión y aprobación del estatuto por parte del INAES.
+                </li>
+                <li>
+                    <span class="font-semibold">Otorgamiento de Matrícula y Personería Jurídica:</span> INAES otorga la matrícula nacional y autorización para funcionar, y se tramita la provincial.
+                </li>
+                <li>
+                    <span class="font-semibold">Inscripciones Posteriores:</span> Obtención del CUIT en AFIP e inscripciones en otros organismos (provinciales, municipales).
+                </li>
+            </ul>
+            <p class="text-gray-600 text-sm mt-4">*(Nota: Este listado presenta las etapas generales. Los procesos pueden variar ligeramente según el tipo de cooperativa y las resoluciones vigentes del INAES.)*</p>
+        </section>
+
+        <section id="asamblea" class="section-bg rounded-xl shadow-lg p-8 mb-10">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H2v-2a3 3 0 015.356-1.857M17 20v-9a2 2 0 00-2-2H9a2 2 0 00-2 2v9m-2 0h10a2 2 0 002-2v-9a2 2 0 00-2-2H7a2 2 0 00-2 2v9a2 2 0 002 2zm0 0a2 2 0 100-4 2 2 0 000 4zm0 0l-2.5-2.5"></path></svg>
+                4. La Asamblea Constitutiva: El Corazón del Acto Fundacional
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                La Asamblea Constitutiva es, sin duda, el momento más trascendental en la vida de una cooperativa. Es el acto jurídico mediante el cual los fundadores manifiestan su voluntad de crear la entidad y definen sus bases iniciales. Desde la perspectiva de la gestión, es el primer ejercicio de la democracia cooperativa.
+            </p>
+
+            <div class="mb-6">
+                <div class="accordion-header bg-blue-100 p-4 rounded-lg flex justify-between items-center font-semibold text-blue-800">
+                    Propósito y Objetivos
+                    <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
+                <div class="accordion-content p-4 bg-gray-50 rounded-b-lg">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Formalizar la voluntad de constituir la cooperativa bajo la Ley 20.337.</li>
+                        <li>Aprobar el Estatuto Social que regirá el funcionamiento interno.</li>
+                        <li>Designar a los primeros miembros del Consejo de Administración y del Órgano de Fiscalización (Síndico/s).</li>
+                        <li>Establecer el capital social inicial mediante la suscripción e integración de cuotas sociales por parte de los fundadores.</li>
+                        <li>Autorizar a determinadas personas a realizar los trámites de matriculación.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <div class="accordion-header bg-blue-100 p-4 rounded-lg flex justify-between items-center font-semibold text-blue-800">
+                    Participantes y Quórum
+                    <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
+                <div class="accordion-content p-4 bg-gray-50 rounded-b-lg">
+                    <p class="text-gray-700">Los participantes son los **asociados fundadores**. Para la Asamblea Constitutiva, el quórum válido se logra con la **presencia de la totalidad de los asociados fundadores**.</p>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <div class="accordion-header bg-blue-100 p-4 rounded-lg flex justify-between items-center font-semibold text-blue-800">
+                    Desarrollo Típico de la Asamblea
+                    <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
+                <div class="accordion-content p-4 bg-gray-50 rounded-b-lg">
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li>**Apertura:** Designación de un Presidente y un Secretario de Asamblea.</li>
+                        <li>**Verificación de Presencia:** Constatación de la identidad y presencia de todos los asociados fundadores.</li>
+                        <li>**Manifestación de Voluntad:** Declaración expresa de la intención de constituir la cooperativa.</li>
+                        <li>**Informe de los Iniciadores:** Presentación del proyecto y sus objetivos.</li>
+                        <li>**Consideración y Aprobación del Estatuto:** Lectura, discusión y aprobación del proyecto de Estatuto Social.</li>
+                        <li>**Suscripción e Integración de Cuotas Sociales:** Formalización del compromiso de aporte de capital y determinación del monto inicial.</li>
+                        <li>**Elección de Autoridades:** Designación de los miembros del primer Consejo de Administración y del Síndico.</li>
+                        <li>**Designación de Encargados del Trámite:** Nombramiento de las personas autorizadas a gestionar la matriculación.</li>
+                        <li>**Designación de firmantes del Acta:** Elección de dos asociados para firmar el Acta.</li>
+                        <li>**Cierre de la Asamblea:** Se labra el Acta Constitutiva.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="acta" class="section-bg rounded-xl shadow-lg p-8 mb-10">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                5. El Acta Constitutiva: La Partida de Nacimiento Legal
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                El Acta Constitutiva es el documento que da fe de la realización de la Asamblea Constitutiva y registra formalmente todas las decisiones adoptadas en ella. Es el pilar documental del proceso de matriculación y la prueba legal de la existencia de la cooperativa "en formación". Su significado legal radica en que es la "partida de nacimiento" de la cooperativa.
+            </p>
+
+            <div class="mb-6">
+                <div class="accordion-header bg-blue-100 p-4 rounded-lg flex justify-between items-center font-semibold text-blue-800">
+                    Contenido Obligatorio
+                    <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
+                <div class="accordion-content p-4 bg-gray-50 rounded-b-lg">
+                    <div class="overflow-x-auto rounded-lg shadow-md">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="table-header">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider rounded-tl-lg">Elemento</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider rounded-tr-lg">Descripción Requerida</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr class="table-row-odd">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Identificación Asamblea</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Lugar, fecha y hora inicio/fin.</td>
+                                </tr>
+                                <tr class="table-row-even">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Asociados Fundadores</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Datos completos (Nombre, DNI, domicilio, etc.) y firma de CADA UNO.</td>
+                                </tr>
+                                <tr class="table-row-odd">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Voluntad Constitutiva</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Declaración expresa de formar la cooperativa (tipo y Ley 20.337).</td>
+                                </tr>
+                                <tr class="table-row-even">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Aprobación Estatuto</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Referencia al Estatuto aprobado y constancia de su aprobación.</td>
+                                </tr>
+                                <tr class="table-row-odd">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Autoridades Iniciales</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Nombres, DNI, cargos y mandato de miembros del Consejo y Síndico electos.</td>
+                                </tr>
+                                <tr class="table-row-even">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Capital Social Inicial</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Valor cuota social, capital suscripto total, capital integrado inicial.</td>
+                                </tr>
+                                <tr class="table-row-odd">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Autorización para Trámites</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700">Nombres de las personas facultadas para gestionar la matriculación.</td>
+                                </tr>
+                                <tr class="table-row-even">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 rounded-bl-lg">Firmas</td>
+                                    <td class="px-6 py-4 text-sm text-gray-700 rounded-br-lg">Presidente, Secretario de Asamblea y dos asociados designados. (Más requisitos para INAES).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4">*Tabla 2: Contenido Esencial del Acta Constitutiva*</p>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <div class="accordion-header bg-blue-100 p-4 rounded-lg flex justify-between items-center font-semibold text-blue-800">
+                    Formato y Formalidades
+                    <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
+                <div class="accordion-content p-4 bg-gray-50 rounded-b-lg">
+                    <p class="text-gray-700 leading-relaxed">
+                        Aunque históricamente se labraba en libros rubricados, las normativas actuales permiten la presentación en hojas separadas con requisitos de formato específicos (ej. márgenes, tipo de papel). Es crucial la prolijidad, evitar enmiendas no salvadas y que el contenido refleje exactamente lo decidido en la asamblea. La certificación de firmas (ante OLC, Juez de Paz, Escribano, etc.) es un requisito clave para la presentación formal ante el INAES, aunque el trámite de emergencia puede permitir presentar sin certificación inicialmente, debiendo completarse luego.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="estatuto" class="section-bg rounded-xl shadow-lg p-8 mb-10">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"></path></svg>
+                6. El Estatuto Social: La Ley Interna de la Cooperativa
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Paralelamente al Acta Constitutiva, el Estatuto Social es el otro documento fundamental. Es el conjunto de normas que, una vez aprobado y matriculado, regirá la vida interna de la cooperativa. Su correcta elaboración es vital para el funcionamiento armónico y legal de la entidad.
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li>**Denominación y Domicilio:** Nombre oficial ("Cooperativa... Limitada") y sede legal.</li>
+                <li>**Objeto Social:** Descripción detallada de las actividades y servicios a brindar.</li>
+                <li>**Capital Social:** Régimen de las cuotas, su valor, suscripción e integración.</li>
+                <li>**Asociados:** Condiciones de ingreso, retiro y exclusión; derechos y obligaciones.</li>
+                <li>**Órganos Sociales:** Normas de funcionamiento de la Asamblea (gobierno), Consejo de Administración (administración) y Sindicatura (fiscalización).</li>
+                <li>**Resultados Económicos:** Reglas para la distribución de excedentes (retorno) y la imputación de pérdidas, incluyendo la constitución de reservas.</li>
+                <li>**Disolución y Liquidación:** Procedimiento en caso de cese de actividades, asegurando la irrepartibilidad de las reservas.</li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed mt-4">
+                El Estatuto debe ser coherente con la Ley 20.337 y los principios cooperativos. Existen estatutos modelos del INAES que facilitan su redacción, pero es posible adaptarlos a las necesidades específicas de la cooperativa, siempre respetando el marco legal.
+            </p>
+        </section>
+
+        <section id="organos" class="section-bg rounded-xl shadow-lg p-8 mb-10">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 1.657-1.594 3-3.5 3S5 12.657 5 11s1.594-3 3.5-3 3.5 1.343 3.5 3zM19 11c0 1.657-1.594 3-3.5 3S12 12.657 12 11s1.594-3 3.5-3 3.5 1.343 3.5 3z"></path></svg>
+                7. Los Órganos Sociales Iniciales: Poniendo la Cooperativa en Marcha
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Las personas electas en la Asamblea Constitutiva para integrar el primer Consejo de Administración y la Sindicatura asumen la responsabilidad de dar los primeros pasos operativos y formales de la cooperativa.
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li>
+                    <span class="font-semibold">Consejo de Administración:</span> Es el órgano ejecutivo y de representación legal. Sus miembros (Presidente, Secretario, Tesorero, Vocales) son responsables de la gestión diaria, la administración de recursos y la ejecución de las decisiones de la Asamblea. La primera reunión del Consejo (Acta N° 1 del Consejo) formaliza la distribución interna de cargos.
+                </li>
+                <li>
+                    <span class="font-semibold">Sindicatura:</span> Es el órgano de fiscalización interna y privada. El Síndico (o Comisión Fiscalizadora) controla el cumplimiento de la ley, el estatuto y las resoluciones, así como la correcta administración y contabilidad.
+                </li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed mt-4">
+                La elección de personas idóneas, comprometidas y con capacidades complementarias en estos roles iniciales es un factor crítico de éxito para la nueva cooperativa.
+            </p>
+        </section>
+
+        <section id="capital" class="section-bg rounded-xl shadow-lg p-8 mb-10">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 110-4 2 2 0 010 4z"></path></svg>
+                8. Requisitos de Capital Social Inicial
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                La suscripción e integración del capital social es una decisión fundamental de la Asamblea Constitutiva. Si bien la LC no establece un capital mínimo general (salvo para tipos específicos de cooperativas), el estatuto debe definir el valor de la cuota social y la forma de pago.
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li>**Valor de la Cuota Social:** Expresado en moneda argentina, es el valor nominal de cada parte alícuota del capital.</li>
+                <li>**Suscripción:** El compromiso formal de cada asociado fundador de aportar una determinada cantidad de cuotas sociales.</li>
+                <li>**Integración Inicial:** El monto que efectivamente se aporta al momento de la constitución. La LC exige un mínimo del **cinco por ciento (5%)** del capital suscripto al momento de la constitución, debiendo completarse la integración en un plazo máximo de cinco años.</li>
+                <li>**Depósito Bancario:** Es requisito para el trámite de matriculación presentar la boleta de depósito de al menos el 5% del capital suscripto en un banco oficial o cooperativo a nombre de la cooperativa "en formación".</li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed mt-4">
+                El monto del capital inicial a suscribir por asociado a menudo se referencia al valor del Salario Mínimo, Vital y Móvil (SMVM) vigente, aunque esto no es una obligación legal estricta sino una práctica común.
+            </p>
+        </section>
+
+        <section id="obligaciones" class="section-bg rounded-xl shadow-lg p-8 mb-10">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                9. Obligaciones Posteriores a la Constitución
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Una vez obtenida la matrícula del INAES, la cooperativa adquiere plena personería jurídica, pero también numerosas obligaciones:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li>**Inscripción en AFIP y Obtención de CUIT:** Indispensable para operar fiscalmente. Los asociados de cooperativas de trabajo deben inscribirse en el Monotributo.</li>
+                <li>**Rúbrica de Libros Obligatorios:** Adquirir y rubricar legalmente libros contables (Diario, Inventario y Balances, IVA) y societarios (Actas de Consejo, Actas de Asambleas, Registro de Asociados, Informe de Sindicatura, Informe de Auditoría, Asistencia a Asambleas).</li>
+                <li>**Auditoría Externa:** Contar permanentemente con un servicio de auditoría a cargo de un Contador Público matriculado.</li>
+                <li>**Asamblea General Ordinaria Anual:** Realizarla dentro de los cuatro meses posteriores al cierre del ejercicio económico para aprobar estados contables, gestión y renovar autoridades.</li>
+                <li>**Presentación de Documentación al INAES:** Presentar anualmente Memoria, Balance, Informes de Sindicatura y Auditoría, y Acta de la Asamblea Ordinaria.</li>
+                <li>**Cumplimiento Fiscal:** Cumplir con impuestos (IVA, Ingresos Brutos según jurisdicción, fondo cooperativo) y presentar declaraciones juradas (Impuesto a las Ganancias, aunque exentas, deben presentar DDJJ).</li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed mt-4">
+                El cumplimiento de estas obligaciones es esencial para mantener la regularidad legal de la cooperativa.
+            </p>
+        </section>
+
+        <section id="desafios" class="section-bg rounded-xl shadow-lg p-8 mb-10">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                10. Desafíos y Consideraciones Finales
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Constituir y gestionar una cooperativa implica desafíos, muchos de los cuales se inician en la etapa fundacional. La burocracia del trámite de matriculación, la definición precisa del objeto social, la capitalización inicial y el mantenimiento del compromiso de los asociados son aspectos a gestionar activamente.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Desde la perspectiva de la ingeniería y la gestión, el éxito de una cooperativa radica no solo en cumplir los requisitos formales, sino en construir una organización sólida, eficiente y verdaderamente democrática. Esto implica aplicar herramientas de gestión de proyectos, análisis de viabilidad, diseño de procesos y sistemas de información que soporten los principios cooperativos y permitan una operación transparente y participativa.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                El marco legal argentino, si bien ofrece una ley específica, presenta áreas de mejora, particularmente en el tratamiento impositivo y la interpretación legal que a veces equipara a las cooperativas con empresas de capital. Sin embargo, la figura cooperativa ofrece un potencial enorme para proyectos de base tecnológica, servicios profesionales o iniciativas productivas donde el capital humano y la colaboración son los principales activos.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="header-bg py-6 text-center text-sm">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2025 UTN-FRBA. Todos los derechos reservados.</p>
+            <p class="mt-2">
+                **Bibliografía y Fuentes Consultadas:**
+                <ul class="list-none p-0 mt-1">
+                    <li>Ley N° 20.337 de Cooperativas.</li>
+                    <li>Resoluciones y normativas del Instituto Nacional de Asociativismo y Economía Social (INAES).</li>
+                    <li>Materiales de capacitación y difusión del INAES y Órganos Locales Competentes.</li>
+                    <li>Documentos de trabajo internos sobre procesos asociativos.</li>
+                </ul>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                header.classList.toggle('active');
+                if (content.classList.contains('active')) {
+                    content.classList.remove('active');
+                    content.style.maxHeight = 0;
+                } else {
+                    content.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Adjust accordion content height on window resize
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.accordion-content.active').forEach(content => {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            });
+        });
+    </script>
+</body>
+</html>
