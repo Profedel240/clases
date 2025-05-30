@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Tablas de Particiones - La Organización del Disco</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y contenedor */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+            color: #343a40; /* Gris oscuro para texto principal */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        /* Estilos de encabezados */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50; /* Azul oscuro profesional */
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a2c4e; /* Azul más oscuro para el título principal */
+        }
+        h2 {
+            font-size: 2.5rem; /* Aumentado para mayor prominencia */
+            font-weight: 700;
+            border-bottom: 4px solid #3498db; /* Borde más grueso para resaltar */
+            padding: 1rem 0.5rem; /* Aumentado padding vertical */
+            margin-top: 3rem; /* Más espacio superior */
+            margin-bottom: 1.8rem; /* Más espacio inferior */
+            background-color: #e0e7ed; /* Color de fondo para resaltar el título */
+            border-radius: 0.75rem 0.75rem 0 0; /* Bordes redondeados solo arriba */
+            display: flex; /* Para alinear el ícono y el texto */
+            align-items: center;
+        }
+        h2 .section-icon { /* Nuevo estilo para el ícono dentro del h2 */
+            margin-right: 0.75rem;
+            width: 2rem; /* Tamaño un poco más grande */
+            height: 2rem;
+            fill: #1a2c4e; /* Color oscuro para el ícono del título */
+        }
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2980b9; /* Azul medio */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #34495e; /* Azul grisáceo */
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        /* Estilo de lista sin asteriscos, usando íconos SVG */
+        ul {
+            list-style: none; /* Elimina la viñeta por defecto */
+            padding-left: 0; /* Elimina el padding por defecto */
+            margin-bottom: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 2rem; /* Espacio para el ícono SVG */
+            margin-bottom: 0.75rem;
+        }
+        ul li .list-icon {
+            position: absolute;
+            left: 0;
+            top: 0.6rem; /* Ajusta la posición vertical del ícono */
+            width: 0.75rem; /* Tamaño más pequeño para viñeta */
+            height: 0.75rem;
+            fill: #3498db; /* Color del ícono de viñeta */
+        }
+        ol {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .box-info {
+            background-color: #e8f4f8; /* Azul muy claro */
+            border-left: 5px solid #5dade2; /* Azul para el borde */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: #2e86c1; /* Texto azul para el cuadro */
+        }
+        .box-info strong {
+            color: #1a5276;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #3498db; /* Color de los íconos generales (ej. en box-info) */
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid-item {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e7eb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .grid-item h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para tablas */
+        .table-container {
+            margin: 2rem 0;
+            overflow-x: auto; /* Permite scroll en tablas pequeñas en móviles */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #c8d8e0; /* Borde suave para tablas */
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #d1e2ed; /* Azul claro para encabezados de tabla */
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f7fb; /* Franjas claras para legibilidad */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Tablas de Particiones: La Organización Lógica del Disco</h1>
+        <p class="text-center text-lg italic text-gray-600 mb-6">El mapa que guía a tu sistema operativo</p>
+
+        <p>Antes de que un disco duro pueda almacenar archivos o un sistema operativo pueda instalarse, necesita ser dividido lógicamente. Esta división se realiza mediante las <strong>Tablas de Particiones</strong>, estructuras de datos cruciales que definen cómo se organiza el espacio de almacenamiento en un disco. Son el "mapa" que le indica al firmware (BIOS/UEFI) y al sistema operativo dónde comienzan y terminan las diferentes secciones del disco, y qué tipo de datos contienen. Comprender su funcionamiento es esencial para cualquier ingeniero que trabaje con sistemas, almacenamiento o recuperación de datos.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Relevancia para la Ingeniería:</strong> La correcta gestión de las tablas de particiones es fundamental para la instalación de sistemas operativos, configuraciones de multiboot, recuperación de datos, y optimización del rendimiento del almacenamiento. Un error en la tabla de particiones puede hacer que un disco sea inaccesible o que el sistema no arranque.
+        </div>
+
+        <h2 id="seccion-1-rol-funciones">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            1. Rol, Funciones y Responsabilidades de una Tabla de Particiones
+        </h2>
+        <p>Una <strong>Tabla de Particiones</strong> es una estructura de datos que reside en un sector específico del disco duro (generalmente el primer sector, o en una ubicación especial en GPT) y que describe la organización lógica de las particiones en ese disco.</p>
+
+        <h3>1.1. Rol Principal: Organización del Espacio y Preparación para el SO</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Mapa Lógico del Disco:</strong> Define la disposición de las particiones (secciones lógicas) dentro de un dispositivo de almacenamiento físico. Cada entrada en la tabla describe una partición con su tipo, tamaño y ubicación inicial/final.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Pre-requisito para Sistemas de Archivos:</strong> La tabla de particiones es la capa inferior al sistema de archivos. Un sistema de archivos opera dentro de una partición; la tabla de particiones le indica al SO dónde encontrar esa partición.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Habilitador del Multi-arranque (Dual-Boot/Multi-Boot):</strong> Permite que un solo disco físico contenga múltiples sistemas operativos, cada uno residiendo en su propia partición, facilitando la coexistencia y selección en el arranque.</li>
+        </ul>
+
+        <h3>1.2. Funciones Clave</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Definición de Ubicaciones:</strong> Registra los sectores de inicio y fin de cada partición, permitiendo al SO y al firmware calcular el tamaño y la posición exacta de cada volumen.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Identificación de Tipo de Partición:</strong> Almacena un identificador (como un Byte de Tipo para MBR o un GUID para GPT) que indica el propósito o el sistema de archivos esperado para esa partición (ej., partición de datos, partición de sistema EFI, partición de recuperación, etc.).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Arrancabilidad:</strong> Contiene información crítica sobre cuál partición es "activa" o de arranque (en MBR) o dónde se encuentra la partición del sistema EFI (en GPT/UEFI) que contiene los cargadores de arranque.</li>
+        </ul>
+
+        <h3>1.3. Responsabilidades Clave</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Consistencia y Coherencia:</strong> Es responsabilidad de las herramientas de particionado y del propio sistema operativo mantener la integridad de la tabla de particiones. Una tabla corrupta puede hacer que el disco sea ilegible o que los sistemas operativos no arranquen.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Aislamiento:</strong> Asegura que una partición no sobrescriba accidentalmente los datos de otra, manteniendo las divisiones lógicas del disco separadas y protegidas.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Interfaz para el Firmware:</strong> Actúa como una interfaz estandarizada para que el firmware del sistema (BIOS/UEFI) pueda encontrar el código de arranque inicial necesario para iniciar el proceso de carga del sistema operativo.</li>
+        </ul>
+
+        <h2 id="seccion-2-relacion-disco-so">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            2. Relación con el Disco Rígido y los Sistemas Operativos
+        </h2>
+        <p>Las tablas de particiones son el primer nivel de organización lógica en un disco rígido y son interpretadas tanto por el firmware de la computadora como por el sistema operativo.</p>
+
+        <h3>2.1. Interacción con el Disco Rígido (HDD/SSD)</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Representación Física:</strong> La tabla de particiones reside en un área específica al principio del disco (sector 0 para MBR, o varios sectores para GPT), antes de cualquier dato de usuario. Es lo primero que lee el firmware al iniciar.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Acceso a Bloques/Sectores:</strong> El sistema de archivos, operando dentro de una partición, traduce las solicitudes de acceso a archivos en lecturas/escrituras de bloques o sectores. La tabla de particiones le dice al sistema de archivos en qué rango de sectores físicos se encuentra su partición asignada.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Tamaño y Capacidad:</strong> La tabla de particiones define cuánto espacio se asigna a cada volumen lógico. Esto es crucial, ya que si un disco es de 4TB y se usa MBR, solo se podrán usar 2TB directamente a través de las particiones primarias.</li>
+        </ul>
+
+        <h3>2.2. Interacción con los Sistemas Operativos y Firmware (BIOS/UEFI)</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>El Proceso de Arranque:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>BIOS:</strong> Al encender el equipo, el BIOS busca un disco arrancable. Si el disco usa MBR, lee el Sector 0 (Master Boot Record). El MBR contiene una pequeña porción de código (el Master Boot Code) y la Tabla de Particiones. El código del MBR busca la partición "activa" (marcada en la tabla), carga el Boot Sector de esa partición y le cede el control para iniciar el SO.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>UEFI:</strong> Con UEFI y discos GPT, el proceso es más complejo. El firmware UEFI busca una partición especial llamada Partición del Sistema EFI (ESP), que generalmente es una partición FAT32. Dentro de la ESP, el UEFI encuentra los cargadores de arranque (bootloaders) para los sistemas operativos instalados (ej., bootmgfw.efi para Windows, grubx64.efi para Linux). El UEFI puede tener múltiples entradas de arranque y seleccionarlas directamente.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión del Almacenamiento por el SO:</strong> Una vez que el SO arranca, utiliza la tabla de particiones para identificar todas las particiones disponibles en los discos. Permite a los usuarios y administradores crear, eliminar, redimensionar y formatear estas particiones a través de herramientas como el Administrador de Discos de Windows o GParted en Linux.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Escenarios Críticos:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Instalaciones Dual-Boot:</strong> La tabla de particiones es fundamental. En sistemas BIOS/MBR, un segundo SO podría requerir una partición extendida. En UEFI/GPT, cada SO puede tener su propio cargador de arranque en la ESP, simplificando la gestión.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Recuperación de Sistemas:</strong> Si la tabla de particiones se corrompe, el disco puede volverse inaccesible o el sistema no arrancar. Las herramientas de recuperación se basan en reconstruir o reparar esta tabla para restaurar el acceso a los datos.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Discos Externos:</strong> La elección del esquema de particionado y del sistema de archivos en discos externos (USB, HDDs externos) es crucial para la compatibilidad entre diferentes sistemas operativos (Windows, macOS, Linux, Android).</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2 id="seccion-3-tipos-tablas">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            3. Tipos de Tablas de Particiones: MBR vs. GPT
+        </h2>
+        <p>Existen dos esquemas principales de tablas de particiones, cada uno con sus propias características y limitaciones, y asociados a diferentes tecnologías de firmware (BIOS y UEFI).</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>MBR (Master Boot Record)</th>
+                        <th>GPT (GUID Partition Table)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Origen</strong></td>
+                        <td>Introducido con IBM PC en 1983.</td>
+                        <td>Parte de la especificación UEFI, desarrollado por Intel a finales de los 90.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ubicación</strong></td>
+                        <td>Primer sector del disco (sector 0).</td>
+                        <td>Múltiples ubicaciones (cabecera GPT al inicio, tabla de particiones primaria, copia de respaldo al final del disco).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Firmware Asociado</strong></td>
+                        <td>BIOS (Basic Input/Output System) heredado.</td>
+                        <td>UEFI (Unified Extensible Firmware Interface).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tamaño Máximo de Disco</strong></td>
+                        <td>2.2 TB (Terabytes).</td>
+                        <td>9.4 ZB (Zettabytes) - virtualmente ilimitado para uso práctico.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Número Máximo de Particiones Primarias</strong></td>
+                        <td>4 particiones primarias.</td>
+                        <td>128 particiones primarias (por defecto en Windows, puede ser más en otros SO).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Particiones Extendidas/Lógicas</strong></td>
+                        <td>Sí, para superar el límite de 4 primarias (una primaria se convierte en extendida para contener lógicas).</td>
+                        <td>No necesita, todas las particiones son "primarias".</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Identificación de Particiones</strong></td>
+                        <td>Tipo de partición (código de 1 byte).</td>
+                        <td>GUID (Globally Unique Identifier) de 128 bits para cada partición y tipo de partición.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Robustez / Recuperación</strong></td>
+                        <td>Un único MBR; si se corrompe, el disco puede volverse inaccesible.</td>
+                        <td>Checksums CRC32 para detectar corrupción, copia de respaldo de la tabla al final del disco. Más robusto.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Seguridad</strong></td>
+                        <td>No tiene características de seguridad inherentes.</td>
+                        <td>Soporte para Secure Boot (a través de UEFI), que verifica la autenticidad del cargador de arranque.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 id="seccion-3-1-estructura-mbr">3.1. Estructura y Componentes Clave del MBR (Master Boot Record)</h3>
+        <p>El MBR reside en el **Sector 0 (LBA 0)** del disco y tiene un tamaño de 512 bytes. Su estructura es la siguiente:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Master Boot Code (Código de Arranque Maestro):</strong> Ocupa los primeros 446 bytes. Contiene las instrucciones que el BIOS ejecuta para buscar la partición activa y cargar su sector de arranque.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Partition Table (Tabla de Particiones Primarias):</strong> Ocupa los siguientes 64 bytes. Aquí se almacenan las 4 entradas de 16 bytes que describen las particiones primarias. Cada entrada especifica:
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Bootable flag (indicador de partición activa/arrancable).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>CHS (Cylinder-Head-Sector) de inicio y fin (obsoleto para LBA).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Tipo de partición (ej., NTFS, FAT32, Linux).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>LBA (Logical Block Addressing) de inicio y longitud en sectores.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Boot Signature (Firma de Arranque):</strong> Los últimos 2 bytes (0xAA55). Un valor mágico que el BIOS busca para confirmar que el MBR es válido.</li>
+        </ul>
+        <p class="text-center italic text-gray-600">
+                    </p>
+
+        <h3>3.2. Estructura y Componentes Clave del GPT (GUID Partition Table)</h3>
+        <p>GPT es más complejo y robusto, ocupando varios sectores al inicio y al final del disco para redundancia:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Protective MBR (LBA 0):</strong> Un MBR "falso" al inicio del disco. Su propósito es la compatibilidad con herramientas antiguas que solo reconocen MBR, evitando que confundan el disco GPT con uno no inicializado y lo sobrescriban accidentalmente.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Primary GPT Header (LBA 1):</strong> Contiene el GUID único del disco, el tamaño de la tabla de particiones, la ubicación de la tabla de entradas de partición principal y de su copia de seguridad. Incluye un checksum CRC32 para verificar su integridad.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Primary Partition Entry Array (LBA 2 en adelante):</strong> Es la tabla real de particiones, donde cada entrada (128 bytes por defecto) describe una partición. Por defecto, puede contener 128 entradas. Cada entrada incluye:
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Partition Type GUID: Un GUID que identifica el tipo de partición (ej., Partición del Sistema EFI, Partición Básica de Datos).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Unique Partition GUID: Un GUID único para esa partición específica.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Start/End LBA: Sectores de inicio y fin de la partición.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Partition Name: Un nombre de partición legible por humanos (ej., "Windows", "Data").</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Attributes: Flags como "oculto" o "solo lectura".</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>User Data Area:</strong> El espacio real donde se almacenan los datos de los usuarios.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Backup Partition Entry Array y Backup GPT Header:</strong> Copias exactas de la tabla de particiones y el encabezado GPT, ubicadas al final del disco. Esto es crucial para la recuperación ante fallos o corrupción de la tabla primaria.</li>
+        </ul>
+        <p class="text-center italic text-gray-600">
+                    </p>
+
+        <h2 id="seccion-4-multiboot-grub">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            4. Multiboot y GRUB
+        </h2>
+        <p>Las tablas de particiones son fundamentales para la configuración de sistemas con **Multiboot**, donde múltiples sistemas operativos residen en el mismo disco o en discos diferentes de una misma máquina. El cargador de arranque juega un papel crucial en este escenario.</p>
+
+        <h3>4.1. Multiboot</h3>
+        <p>El multiboot es la capacidad de tener dos o más sistemas operativos instalados en una misma computadora y poder elegir cuál de ellos iniciar al encender el equipo. Esto es común en entornos de desarrollo, pruebas o para usuarios que necesitan la funcionalidad de diferentes sistemas operativos (ej. Windows para juegos y software específico, Linux para desarrollo).</p>
+
+        <h3>4.2. GRUB (Grand Unified Bootloader)</h3>
+        <p>GRUB es el cargador de arranque más popular en sistemas Linux y es compatible con una amplia variedad de sistemas operativos. Su función principal es permitir al usuario seleccionar qué sistema operativo arrancar.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Ubicación:</strong> GRUB se instala típicamente en el MBR del disco (en sistemas BIOS) o en la EFI System Partition (ESP) en sistemas UEFI.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Configuración:</strong> GRUB lee su archivo de configuración (<code>grub.cfg</code>) para presentar un menú de opciones de arranque. Este archivo contiene la información sobre las particiones donde residen los diferentes sistemas operativos.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Interacción con Tablas de Particiones:</strong> GRUB utiliza la tabla de particiones (MBR o GPT) para identificar la ubicación de los kernels de los sistemas operativos y sus archivos de arranque. Cuando el usuario selecciona una opción, GRUB carga el kernel del SO elegido y le transfiere el control.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Funcionamiento con MBR/BIOS:</strong> En sistemas BIOS/MBR, GRUB instala su primera etapa (GRUB Stage 1) en el Master Boot Record (MBR) del disco. Esta primera etapa es muy pequeña y solo tiene la capacidad de cargar la segunda etapa de GRUB, que reside en un área específica del disco (conocida como "GRUB Legacy" o "GRUB2 core.img"). La segunda etapa de GRUB es más compleja y puede leer sistemas de archivos, lo que le permite encontrar el archivo de configuración de GRUB (grub.cfg) y el kernel del sistema operativo seleccionado. GRUB puede "encadenar" el arranque (*chainload*) a otros gestores de arranque (ej., el gestor de arranque de Windows) si se selecciona esa opción en el menú.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Funcionamiento con GPT/UEFI:</strong> En sistemas UEFI/GPT, GRUB instala sus archivos en la Partición del Sistema EFI (ESP). El firmware UEFI está configurado para ejecutar el archivo EFI de GRUB (ej., grubx64.efi) directamente desde la ESP. GRUB toma el control, lee su configuración y presenta el menú de arranque. Esta configuración es más limpia y menos propensa a problemas que la de MBR, ya que no depende de la ubicación física en el MBR.</li>
+        </ul>
+
+        <h2 id="seccion-5-particiones-especiales">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            5. Particiones Especiales y Operaciones Comunes
+        </h2>
+        <p>Además de las particiones de datos principales, existen particiones con roles específicos y operaciones habituales que todo ingeniero debe conocer.</p>
+
+        <h3>5.1. Particiones Especiales Comunes</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Partición de Recuperación de Windows (Windows Recovery Environment - WinRE):</strong> Una partición pequeña (generalmente NTFS) que contiene las herramientas para la recuperación del sistema operativo Windows, como la restauración de fábrica, la reparación de inicio o la solución de problemas avanzados.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Partición del Sistema EFI (ESP - EFI System Partition):</strong> En sistemas UEFI/GPT, es una partición **FAT32** crucial. Contiene los cargadores de arranque (bootloaders) para todos los sistemas operativos instalados, archivos de firmware y utilidades. Es esencial para el arranque de sistemas UEFI.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Partición Reservada de Microsoft (MSR - Microsoft Reserved Partition):</strong> Una partición pequeña (GPT) sin sistema de archivos, utilizada por Windows para operaciones internas o para convertir discos básicos en dinámicos. No contiene datos de usuario.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Partición Extendida (MBR):</strong> En discos MBR, si se necesitan más de 4 particiones primarias, una de las particiones primarias se designa como "extendida". Dentro de esta partición extendida, se pueden crear múltiples "particiones lógicas". Esto permite superar el límite de 4, pero añade una capa de complejidad.</li>
+        </ul>
+
+        <h3>5.2. Operaciones Comunes de Gestión de Particiones</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Crear Partición:</strong> Asignar un espacio libre del disco para formar una nueva partición, asignándole un tamaño y un tipo.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Eliminar Partición:</strong> Liberar el espacio ocupado por una partición, borrando todos sus datos.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Redimensionar Partición:</strong> Aumentar o disminuir el tamaño de una partición, a menudo a expensas del espacio libre contiguo o de otra partición.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Formatear Partición:</strong> Aplicar un sistema de archivos (ej. NTFS, ext4) a una partición existente, lo que borra todos los datos y prepara la partición para almacenar archivos.</li>
+        </ul>
+
+        <h3>5.3. Herramientas de Gestión de Particiones</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Windows:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Administrador de Discos (Disk Management):</strong> Interfaz gráfica integrada para operaciones básicas de particionamiento.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>DiskPart (línea de comandos):</strong> Herramienta potente para gestión avanzada, scripting y recuperación de particiones.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Linux:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>GParted (GUI):</strong> Herramienta gráfica muy popular y versátil para gestionar particiones.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>fdisk / gdisk (CLI):</strong> Utilidades de línea de comandos para MBR (fdisk) y GPT (gdisk), ideales para scripting y entornos de recuperación.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Cross-platform:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>EaseUS Partition Master, MiniTool Partition Wizard:</strong> Herramientas de terceros con interfaces gráficas y funciones avanzadas para ambos sistemas (Windows, a menudo con soporte para Linux).</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2 id="seccion-6-conclusion">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            6. Conclusión: El Andamiaje del Almacenamiento
+        </h2>
+        <p>Las tablas de particiones son un componente esencial y a menudo subestimado en la arquitectura de cualquier sistema informático. Son el primer nivel de organización lógica que permite a un disco rígido ser utilizado de manera eficiente por el firmware y el sistema operativo. La transición de MBR a GPT ha sido crucial para adaptarse a los discos de gran capacidad y a las nuevas funcionalidades de arranque que ofrece UEFI.</p>
+        <p>Para los ingenieros, comprender la relación entre las tablas de particiones, el firmware (BIOS/UEFI) y los cargadores de arranque (como GRUB) es indispensable para la instalación, configuración y mantenimiento de sistemas, especialmente en escenarios de multiboot. Un conocimiento sólido en esta área es clave para diagnosticar problemas de arranque, recuperar datos y diseñar soluciones de almacenamiento robustas.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Puntos Clave del Apunte:</strong>
+            <ul>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Las <a href="#seccion-1-rol-funciones">Tablas de Particiones</a> organizan el espacio del disco y guían el arranque.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Son el nexo entre el <a href="#seccion-2-relacion-disco-so">disco rígido y el sistema operativo</a>.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Los <a href="#seccion-3-tipos-tablas">tipos principales son MBR y GPT</a>, con diferencias clave en capacidad y robustez.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>La <a href="#seccion-3-1-estructura-mbr">estructura de MBR y GPT</a> define cómo se organiza la información de particionado.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Son esenciales para <a href="#seccion-4-multiboot-grub">Multiboot y el funcionamiento de cargadores como GRUB</a>.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Existen <a href="#seccion-5-particiones-especiales">particiones especiales</a> y <a href="#seccion-5-particiones-especiales">herramientas</a> para su gestión.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
