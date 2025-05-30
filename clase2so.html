@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: BIOS vs. UEFI - La Evolución del Firmware de Arranque</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y contenedor */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+            color: #343a40; /* Gris oscuro para texto principal */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        /* Estilos de encabezados */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50; /* Azul oscuro profesional */
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a2c4e; /* Azul más oscuro para el título principal */
+        }
+        h2 {
+            font-size: 2.5rem; /* Aumentado para mayor prominencia */
+            font-weight: 700;
+            border-bottom: 4px solid #3498db; /* Borde más grueso para resaltar */
+            padding: 1rem 0.5rem; /* Aumentado padding vertical */
+            margin-top: 3rem; /* Más espacio superior */
+            margin-bottom: 1.8rem; /* Más espacio inferior */
+            background-color: #e0e7ed; /* Color de fondo para resaltar el título */
+            border-radius: 0.75rem 0.75rem 0 0; /* Bordes redondeados solo arriba */
+            display: flex; /* Para alinear el ícono y el texto */
+            align-items: center;
+        }
+        h2 .section-icon { /* Nuevo estilo para el ícono dentro del h2 */
+            margin-right: 0.75rem;
+            width: 2rem; /* Tamaño un poco más grande */
+            height: 2rem;
+            fill: #1a2c4e; /* Color oscuro para el ícono del título */
+        }
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2980b9; /* Azul medio */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #34495e; /* Azul grisáceo */
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        /* Estilo de lista sin asteriscos, usando íconos SVG */
+        ul {
+            list-style: none; /* Elimina la viñeta por defecto */
+            padding-left: 0; /* Elimina el padding por defecto */
+            margin-bottom: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 2rem; /* Espacio para el ícono SVG */
+            margin-bottom: 0.75rem;
+        }
+        ul li .list-icon {
+            position: absolute;
+            left: 0;
+            top: 0.6rem; /* Ajusta la posición vertical del ícono */
+            width: 0.75rem; /* Tamaño más pequeño para viñeta */
+            height: 0.75rem;
+            fill: #3498db; /* Color del ícono de viñeta */
+        }
+        ol {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .box-info {
+            background-color: #e8f4f8; /* Azul muy claro */
+            border-left: 5px solid #5dade2; /* Azul para el borde */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: #2e86c1; /* Texto azul para el cuadro */
+        }
+        .box-info strong {
+            color: #1a5276;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #3498db; /* Color de los íconos generales (ej. en box-info) */
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid-item {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e7eb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .grid-item h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para tablas */
+        .table-container {
+            margin: 2rem 0;
+            overflow-x: auto; /* Permite scroll en tablas pequeñas en móviles */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #c8d8e0; /* Borde suave para tablas */
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #d1e2ed; /* Azul claro para encabezados de tabla */
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f7fb; /* Franjas claras para legibilidad */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💻 BIOS vs. UEFI: La Evolución del Firmware de Arranque</h1>
+        <p class="text-center text-lg italic text-gray-600 mb-6">Comprendiendo los cimientos del inicio de su computadora</p>
+
+        <p>En el corazón de cada computadora, ya sea un potente servidor, una estación de trabajo de ingeniería o una laptop de uso diario, reside un componente fundamental: el firmware de arranque. Este software de bajo nivel es el primer programa que se ejecuta cuando enciende el equipo, encargado de inicializar el hardware y preparar el terreno para que el sistema operativo pueda cargar. Históricamente, este rol lo ha ocupado el <strong>BIOS (Basic Input/Output System)</strong>. Sin embargo, con el avance tecnológico y las crecientes demandas de los sistemas modernos, surgió su sucesor, el <strong>UEFI (Unified Extensible Firmware Interface)</strong>. Comprender las diferencias, funciones y responsabilidades de ambos es crucial para cualquier ingeniero que trabaje con sistemas informáticos.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Relevancia para la Ingeniería:</strong> Para los ingenieros, el firmware de arranque no es solo un detalle técnico; es el cimiento sobre el cual se construye la estabilidad, seguridad y rendimiento de un sistema. Un conocimiento profundo de BIOS y UEFI es vital para el diseño de hardware, la optimización de sistemas operativos, la implementación de soluciones de seguridad y la resolución de problemas complejos a nivel de sistema.
+        </div>
+
+        <h2 id="seccion-contexto-historico">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            1. Contexto Histórico: Del Legado a la Innovación
+        </h2>
+        <p>La evolución del firmware de arranque ha sido impulsada por la necesidad de adaptarse a hardware cada vez más complejo y a sistemas operativos más sofisticados. El BIOS, nacido en la era de los primeros PC, se mantuvo como el estándar durante décadas, pero sus limitaciones se hicieron evidentes con el tiempo.</p>
+
+        <h3>1.1. El Reinado del BIOS (Década de 1980 - Principios de 2010)</h3>
+        <p>El <strong>BIOS (Basic Input/Output System)</strong> fue introducido por IBM en 1981 con su primera computadora personal. Su diseño se basaba en la arquitectura de 16 bits de los procesadores Intel 8088 y 8086, y operaba en el "modo real" de estos procesadores. Esto impuso limitaciones fundamentales:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Limitación de Memoria:</strong> Solo podía acceder a 1 MB de memoria RAM durante el arranque.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Limitación de Almacenamiento:</strong> Solo podía arrancar desde discos duros con un tamaño máximo de 2.2 TB debido al uso del esquema de particionamiento MBR (Master Boot Record).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Interfaz de Usuario:</strong> Generalmente una interfaz de texto simple (CLI) basada en el teclado.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Velocidad de Arranque:</strong> El proceso de inicialización era secuencial y relativamente lento.</li>
+        </ul>
+        <p>A pesar de estas limitaciones, el BIOS fue un pilar fundamental que permitió la estandarización del hardware y el crecimiento de la industria del PC.</p>
+
+        <h3>1.2. El Surgimiento de UEFI (Mediados de 2000 - Actualidad)</h3>
+        <p>La necesidad de superar las limitaciones del BIOS llevó al desarrollo de <strong>UEFI (Unified Extensible Firmware Interface)</strong>. Inicialmente desarrollado por Intel como EFI (Extensible Firmware Interface) para sus sistemas Itanium a finales de los 90, fue adoptado y estandarizado por el UEFI Forum (un consorcio de empresas tecnológicas) a partir de 2005. UEFI representa una evolución significativa, diseñada para la era de los sistemas de 64 bits y los discos de gran capacidad.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Soporte para 64 bits:</strong> Permite el acceso a toda la RAM disponible durante el arranque.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></circle><strong>Soporte para Discos Grandes:</strong> Utiliza el esquema de particionamiento GPT (GUID Partition Table), eliminando la limitación de 2.2 TB.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Interfaz de Usuario:</strong> Generalmente una interfaz gráfica (GUI) con soporte para mouse.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Funcionalidades Avanzadas:</strong> Incluye características como Secure Boot, arranque de red, y un entorno pre-boot más robusto.</li>
+        </ul>
+
+        <h2 id="seccion-firmware">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            2. ¿Qué es un Firmware?
+        </h2>
+        <p>El <strong>firmware</strong> es un tipo de software que se encuentra incrustado directamente en un dispositivo de hardware. Actúa como un puente de bajo nivel entre el hardware y el software de alto nivel (como el sistema operativo). Su función principal es proporcionar las instrucciones básicas que un dispositivo necesita para operar y comunicarse con otros componentes.</p>
+
+        <h3>2.1. Características del Firmware</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Permanente:</strong> Generalmente se almacena en memoria no volátil (ROM, EPROM, Flash Memory), lo que significa que conserva sus datos incluso cuando el dispositivo se apaga.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Software de Bajo Nivel:</strong> Opera muy cerca del hardware, controlando directamente sus funciones básicas.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Actualizable:</strong> Aunque es "permanente", la mayoría de los firmware modernos pueden ser actualizados (flasheados) para corregir errores, añadir nuevas funcionalidades o mejorar el rendimiento.</li>
+        </ul>
+
+        <h3>2.2. BIOS y UEFI como Firmware</h3>
+        <p>Tanto el BIOS como el UEFI son ejemplos de firmware. Residen en un chip de memoria flash en la placa base (motherboard) de la computadora. Cuando enciende el equipo, el procesador ejecuta las instrucciones de este firmware antes de que cualquier parte del sistema operativo se cargue. Su rol es esencial para la inicialización del hardware y el proceso de arranque.</p>
+
+        <h2 id="seccion-bios">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            3. BIOS (Basic Input/Output System)
+        </h2>
+        <p>El BIOS es el firmware tradicional y más antiguo. Su diseño se remonta a los primeros días de las computadoras personales y está profundamente ligado a la arquitectura x86 original.</p>
+
+        <h3>3.1. Funciones y Responsabilidades del BIOS</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>POST (Power-On Self-Test):</strong> Es la primera tarea del BIOS. Realiza una serie de pruebas de diagnóstico para verificar que los componentes esenciales del hardware (CPU, RAM, tarjeta de video, teclado) funcionen correctamente al encender la computadora.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></circle><strong>Inicialización del Hardware:</strong> Configura los componentes básicos del sistema, como los controladores de disco, puertos USB y otros periféricos, para que el sistema operativo pueda acceder a ellos.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></circle><strong>Carga del Bootloader:</strong> Una vez que el hardware ha sido inicializado y verificado, el BIOS busca un dispositivo de arranque (disco duro, USB, CD/DVD) según un orden predefinido. Lee el Master Boot Record (MBR) del dispositivo de arranque y transfiere el control al bootloader (cargador de arranque) del sistema operativo.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></circle><strong>Servicios de E/S (Input/Output):</strong> Proporciona un conjunto de rutinas de bajo nivel que el sistema operativo puede usar para interactuar con el hardware (ej. leer del teclado, escribir en pantalla) antes de que sus propios controladores se carguen.</li>
+        </ul>
+
+        <h3>3.2. Cómo Trabaja el BIOS</h3>
+        <p>El BIOS se ejecuta en un modo de 16 bits (modo real) del procesador, lo que significa que solo puede direccionar hasta 1 MB de memoria. Cuando la computadora arranca, el procesador apunta a una dirección de memoria específica en el chip BIOS. A partir de ahí, el BIOS ejecuta el POST, inicializa el hardware y, finalmente, busca el sector de arranque en el disco duro (el MBR) para iniciar el sistema operativo.</p>
+
+        <h3>3.3. Tipo de Alimentación (CMOS)</h3>
+        <p>La configuración del BIOS (fecha y hora, orden de arranque, etc.) se almacena en una pequeña memoria RAM especial llamada **CMOS (Complementary Metal-Oxide-Semiconductor)**. Esta memoria requiere una alimentación constante para retener los datos, incluso cuando la computadora está apagada. Para ello, la placa base incorpora una pequeña **pila de botón (generalmente una CR2032)** que proporciona la energía necesaria a la CMOS. Si esta pila se agota, la configuración del BIOS se pierde y la fecha/hora se reinician.</p>
+
+        <h3>3.4. Ventajas y Desventajas del BIOS</h3>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>Ventajas</h4>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Simplicidad y Madurez:</strong> Es un sistema probado y muy estable debido a su larga trayectoria.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Compatibilidad Universal:</strong> Compatible con casi todos los sistemas operativos y hardware antiguos.</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h4>Desventajas</h4>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Limitación de 16 bits:</strong> Solo puede operar en modo real, limitando el acceso a la memoria (1 MB).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Limitación de Discos (MBR):</strong> No puede arrancar desde discos de más de 2.2 TB.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Arranque Lento:</strong> Proceso de inicialización secuencial que puede ralentizar el inicio del sistema.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Falta de Seguridad:</strong> No incluye características de seguridad avanzadas como Secure Boot.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Interfaz Obsoleta:</strong> Generalmente una interfaz de texto sin soporte para mouse.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 id="seccion-uefi">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            4. UEFI (Unified Extensible Firmware Interface)
+        </h2>
+        <p>UEFI es el sucesor moderno del BIOS, diseñado para superar sus limitaciones y aprovechar las capacidades de los sistemas informáticos actuales. Es un firmware más robusto y flexible.</p>
+
+        <h3>4.1. Funciones y Responsabilidades del UEFI</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>POST Mejorado:</strong> Realiza un POST más rápido y eficiente, aprovechando las capacidades de los procesadores de 64 bits.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></circle><strong>Gestión de Arranque Avanzada:</strong> Utiliza la tabla de particiones GPT y la EFI System Partition (ESP) para gestionar el arranque. Puede cargar directamente ejecutables EFI (.efi) en lugar de depender de un MBR.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></circle><strong>Secure Boot (Arranque Seguro):</strong> Una característica de seguridad clave que verifica la autenticidad de los cargadores de arranque y los controladores antes de que se ejecuten. Esto ayuda a prevenir que malware o rootkits se carguen durante el inicio del sistema.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></circle><strong>Soporte de Red:</strong> Puede tener capacidades de red integradas, permitiendo el arranque desde la red (PXE) o incluso la descarga de actualizaciones de firmware directamente desde Internet.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></circle><strong>Interfaz Gráfica (GUI):</strong> Ofrece una interfaz de usuario más moderna, con soporte para mouse, gráficos y a veces incluso opciones multilingües.</li>
+        </ul>
+
+        <h3>4.2. Cómo Trabaja el UEFI</h3>
+        <p>UEFI opera en un modo de 32 o 64 bits, lo que le permite acceder a toda la memoria del sistema desde el principio. En lugar de un MBR, UEFI utiliza una **EFI System Partition (ESP)**, una pequeña partición en el disco formateada en FAT32 que contiene los cargadores de arranque y otros archivos necesarios para iniciar el sistema operativo. UEFI puede cargar directamente estos archivos .efi, lo que resulta en un proceso de arranque más rápido y eficiente. Además, la capacidad de ejecutar controladores de hardware de 64 bits permite una inicialización más rápida y un mejor soporte para hardware moderno.</p>
+
+        <h3>4.3. Tipo de Alimentación</h3>
+        <p>Al igual que el BIOS, la configuración de UEFI se almacena en una memoria flash (EEPROM o NOR Flash) que se alimenta con una pequeña **pila de botón (CMOS battery)** para mantener los datos en caso de pérdida de energía. Sin embargo, debido a la mayor complejidad y funcionalidades de UEFI, la gestión de energía a nivel de firmware es más sofisticada, integrándose mejor con las capacidades de gestión de energía del chipset y el sistema operativo.</p>
+
+        <h3>4.4. Ventajas y Desventajas del UEFI</h3>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>Ventajas</h4>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Arranque Más Rápido:</strong> Gracias al uso de GPT y la carga directa de ejecutables EFI.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Soporte para Discos Grandes:</strong> Sin limitación de 2.2 TB gracias a GPT.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Mayor Seguridad:</strong> Con características como Secure Boot, que previene la carga de software no autorizado.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Interfaz Gráfica:</strong> Facilita la configuración del sistema.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Funcionalidades Extendidas:</strong> Soporte de red, diagnósticos avanzados, etc.</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h4>Desventajas</h4>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Mayor Complejidad:</strong> Puede ser más difícil de configurar para usuarios no expertos.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Problemas de Compatibilidad (iniciales):</strong> En sus inicios, hubo problemas con sistemas operativos y hardware más antiguos que no eran compatibles con UEFI.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 id="seccion-post">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            5. POST (Power-On Self-Test)
+        </h2>
+        <p>El <strong>POST (Power-On Self-Test)</strong> es una secuencia de diagnóstico crítico que se ejecuta automáticamente cada vez que se enciende una computadora. Es la primera fase del proceso de arranque y su propósito es verificar que los componentes de hardware esenciales del sistema funcionen correctamente antes de intentar cargar el sistema operativo. Tanto BIOS como UEFI realizan un POST, aunque la implementación y la velocidad pueden variar.</p>
+
+        <h3>5.1. Funciones del POST</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Verificación de Componentes Críticos:</strong> Comprueba la CPU, la memoria RAM, la tarjeta de video, el teclado, la unidad de disco y otros periféricos esenciales.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Inicialización Básica:</strong> Configura los controladores de bajo nivel para que el hardware pueda comunicarse.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Detección de Errores:</strong> Si se detecta un problema grave que impide el arranque normal, el POST lo indicará.</li>
+        </ul>
+
+        <h3>5.2. Cómo Trabaja el POST</h3>
+        <p>Cuando se presiona el botón de encendido, el procesador recibe energía y se dirige a la dirección de memoria donde reside el firmware (BIOS o UEFI). El firmware comienza a ejecutar el POST. Si todo funciona correctamente, el proceso continúa con la carga del sistema operativo. Si se detecta un error, el POST se detiene y emite una señal de error.</p>
+
+        <h3>5.3. Indicadores de Errores del POST</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Códigos de Pitidos (Beep Codes):</strong> En sistemas BIOS más antiguos, los errores del POST se comunican a través de una secuencia de pitidos audibles. Cada secuencia (ej. un pitido largo, dos cortos) corresponde a un tipo específico de problema (ej. RAM defectuosa, tarjeta de video no detectada).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Códigos en Pantalla:</strong> En sistemas más modernos (incluyendo UEFI), los errores pueden mostrarse como códigos numéricos o mensajes de texto en la pantalla.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Luces LED de Diagnóstico:</strong> Muchas placas base modernas incluyen pequeñas luces LED que se encienden en secuencias específicas o se quedan fijas en un color para indicar la etapa del POST o el componente que falla.</li>
+        </ul>
+
+        <h2 id="seccion-compatibilidad">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            6. Compatibilidad: MBR vs. GPT
+        </h2>
+        <p>La forma en que el firmware interactúa con los discos de almacenamiento para el arranque está intrínsecamente ligada al esquema de particionamiento del disco. Los dos esquemas principales son MBR y GPT.</p>
+
+        <h3>6.1. MBR (Master Boot Record)</h3>
+        <p>El <strong>MBR</strong> es el esquema de particionamiento tradicional, utilizado por el BIOS. Se encuentra en el primer sector del disco duro y contiene:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>El código del cargador de arranque (bootloader).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>La tabla de particiones, que puede definir hasta 4 particiones primarias o 3 primarias y una extendida.</li>
+        </ul>
+        <p>Su principal limitación es que solo puede direccionar hasta 2.2 TB de espacio en disco y no soporta más de 4 particiones primarias.</p>
+
+        <h3>6.2. GPT (GUID Partition Table)</h3>
+        <p>El <strong>GPT</strong> es el esquema de particionamiento moderno, diseñado para funcionar con UEFI. Supera las limitaciones del MBR:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Soporta discos de hasta 9.4 ZB (zettabytes), eliminando la limitación de tamaño.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Permite un número prácticamente ilimitado de particiones (hasta 128 por defecto en Windows).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Incluye sumas de verificación (checksums) para detectar corrupción de datos y tiene una copia de seguridad de la tabla de particiones al final del disco, lo que lo hace más robusto.</li>
+        </ul>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>MBR</th>
+                        <th>GPT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Firmware Compatible</strong></td>
+                        <td>BIOS (legado)</td>
+                        <td>UEFI (nativo), algunos UEFI pueden emular BIOS para MBR (CSM)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tamaño Máximo de Disco</strong></td>
+                        <td>2.2 TB</td>
+                        <td>9.4 ZB (Zettabytes)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Número Máximo de Particiones</strong></td>
+                        <td>4 particiones primarias (o 3 primarias + 1 extendida)</td>
+                        <td>128 particiones primarias (por defecto en Windows)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ubicación del Bootloader</strong></td>
+                        <td>Primer sector del disco (Master Boot Record)</td>
+                        <td>EFI System Partition (ESP)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Redundancia/Protección</strong></td>
+                        <td>No tiene redundancia (un solo MBR)</td>
+                        <td>Copias de seguridad de la tabla de particiones, sumas de verificación</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="seccion-opciones-configuracion">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            7. Opciones de Configuración del Firmware
+        </h2>
+        <p>Tanto BIOS como UEFI ofrecen un menú de configuración al que se puede acceder durante el arranque del sistema (generalmente presionando una tecla específica como F2, F10, Del, o Esc). Estas opciones permiten al usuario o al técnico personalizar el comportamiento del hardware y el proceso de arranque.</p>
+
+        <h3>7.1. Opciones Comunes en BIOS</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Orden de Arranque (Boot Order):</strong> Permite seleccionar la secuencia de dispositivos desde los cuales la computadora intentará arrancar (ej. USB, CD/DVD, Disco Duro).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Fecha y Hora del Sistema:</strong> Ajuste del reloj interno.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Configuración de Discos:</strong> Detección y configuración de unidades SATA/IDE.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Contraseña de BIOS:</strong> Establecer una contraseña para acceder a la configuración del BIOS o para arrancar el sistema.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Configuración de Periféricos:</strong> Habilitar/deshabilitar puertos USB, audio integrado, etc.</li>
+        </ul>
+
+        <h3>7.2. Opciones Comunes en UEFI (y algunas avanzadas)</h3>
+        <p>UEFI hereda muchas de las opciones del BIOS, pero las presenta en una interfaz más amigable y añade funcionalidades avanzadas:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Interfaz Gráfica:</strong> Menús más intuitivos con soporte para mouse.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Modo de Arranque:</strong> Opción para cambiar entre modo UEFI nativo y modo de compatibilidad con BIOS (CSM - Compatibility Support Module) para arrancar sistemas operativos antiguos o desde discos MBR.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Secure Boot:</strong> Habilitar o deshabilitar esta característica de seguridad.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Overclocking:</strong> Opciones avanzadas para ajustar frecuencias de CPU, RAM y voltajes (en placas base de gama alta).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Actualización de Firmware:</strong> A menudo, permite actualizar el firmware directamente desde una unidad USB o incluso a través de la red.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Diagnósticos Integrados:</strong> Herramientas de diagnóstico más avanzadas que las del BIOS.</li>
+        </ul>
+
+        <h2 id="seccion-errores">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            8. Posibles Errores en el Uso y Cómo Identificarlos
+        </h2>
+        <p>Los problemas relacionados con el firmware de arranque pueden manifestarse de diversas maneras, desde que la computadora no encienda hasta errores al cargar el sistema operativo. Identificarlos correctamente es el primer paso para la solución.</p>
+
+        <h3>8.1. Errores Comunes del BIOS</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Pitidos al Arrancar:</strong> Como se mencionó en el POST, una secuencia de pitidos indica un problema de hardware específico (ej. RAM, tarjeta de video). Es crucial consultar el manual de la placa base para interpretar estos códigos.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>"CMOS Checksum Error":</strong> Indica que la batería de la CMOS está agotada o que la configuración se ha corrompido. La solución es reemplazar la batería y reconfigurar el BIOS.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>"Boot Device Not Found":</strong> El BIOS no encuentra un dispositivo de arranque válido. Puede deberse a un disco duro desconectado, dañado, o un orden de arranque incorrecto.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Mensajes de Error de MBR:</strong> Errores como "Invalid Partition Table" o "Operating System Not Found" sugieren problemas con el Master Boot Record o la tabla de particiones.</li>
+        </ul>
+
+        <h3>8.2. Errores Comunes del UEFI</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Problemas con Secure Boot:</strong> Si se intenta arrancar un sistema operativo no compatible con Secure Boot o un cargador de arranque no firmado, UEFI puede impedir el inicio o mostrar un error. La solución suele ser deshabilitar Secure Boot en la configuración de UEFI.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Problemas con la EFI System Partition (ESP):</strong> Si la ESP está dañada o se elimina accidentalmente, el sistema no podrá arrancar. Esto requiere herramientas de recuperación para reconstruir la partición.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Conflictos de Modo (UEFI vs. CSM):</strong> Si se intenta instalar un sistema operativo en modo BIOS legado en un disco GPT, o viceversa, pueden surgir errores de arranque. Es crucial que el modo de arranque en UEFI (UEFI nativo o CSM) coincida con el esquema de particionamiento del disco y el tipo de instalación del SO.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Actualizaciones de Firmware Fallidas:</strong> Una actualización de UEFI interrumpida o corrupta puede "brickear" la placa base, dejándola inutilizable. Esto suele requerir un reemplazo de la placa o un flasheo de firmware avanzado.</li>
+        </ul>
+
+        <h2 id="seccion-conclusion">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            9. Conclusión: El Futuro del Arranque
+        </h2>
+        <p>El paso del BIOS al UEFI representa una evolución natural y necesaria en la arquitectura de las computadoras. Mientras que el BIOS fue un pilar fundamental durante décadas, sus limitaciones inherentes a la era de los 16 bits y los discos pequeños lo hicieron obsoleto para los sistemas modernos. UEFI, con su capacidad de 64 bits, soporte para GPT, características de seguridad como Secure Boot y una interfaz más amigable, ha tomado el relevo como el estándar de la industria.</p>
+        <p>Para los ingenieros, comprender ambos sistemas es esencial. El conocimiento del BIOS proporciona una base histórica y una comprensión de los principios fundamentales del arranque. El dominio de UEFI es indispensable para trabajar con hardware y software contemporáneo, diseñar sistemas seguros y eficientes, y solucionar los desafíos que presenta la computación moderna. La correcta configuración y gestión del firmware de arranque son cruciales para el rendimiento, la seguridad y la fiabilidad de cualquier sistema informático.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Puntos Clave del Apunte:</strong>
+            <ul>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><a href="#seccion-contexto-historico">El BIOS</a> es el firmware legado (16 bits, MBR, 2.2 TB límite), mientras que <a href="#seccion-uefi">UEFI</a> es el estándar moderno (64 bits, GPT, sin límite de tamaño, Secure Boot).</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>El <a href="#seccion-firmware">firmware</a> es software incrustado en hardware para su control básico.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>El <a href="#seccion-post">POST</a> es la prueba de diagnóstico inicial del hardware al encender.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>La <a href="#seccion-compatibilidad">compatibilidad MBR/GPT</a> es clave: BIOS usa MBR, UEFI usa GPT.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Las <a href="#seccion-opciones-configuracion">opciones de configuración</a> del firmware son esenciales para personalizar el sistema.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Identificar <a href="#seccion-errores">posibles errores</a> a través de pitidos, mensajes o LEDs es crucial para el diagnóstico.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

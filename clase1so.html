@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Sistemas Operativos - El Corazón de la Computadora</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y contenedor */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+            color: #343a40; /* Gris oscuro para texto principal */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        /* Estilos de encabezados */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50; /* Azul oscuro profesional */
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a2c4e; /* Azul más oscuro para el título principal */
+        }
+        h2 {
+            font-size: 2.5rem; /* Aumentado para mayor prominencia */
+            font-weight: 700;
+            border-bottom: 4px solid #3498db; /* Borde más grueso para resaltar */
+            padding: 1rem 0.5rem; /* Aumentado padding vertical */
+            margin-top: 3rem; /* Más espacio superior */
+            margin-bottom: 1.8rem; /* Más espacio inferior */
+            background-color: #e0e7ed; /* Color de fondo para resaltar el título */
+            border-radius: 0.75rem 0.75rem 0 0; /* Bordes redondeados solo arriba */
+            display: flex; /* Para alinear el ícono y el texto */
+            align-items: center;
+        }
+        h2 .section-icon { /* Nuevo estilo para el ícono dentro del h2 */
+            margin-right: 0.75rem;
+            width: 2rem; /* Tamaño un poco más grande */
+            height: 2rem;
+            fill: #1a2c4e; /* Color oscuro para el ícono del título */
+        }
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2980b9; /* Azul medio */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #34495e; /* Azul grisáceo */
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        /* Estilo de lista sin asteriscos, usando íconos SVG */
+        ul {
+            list-style: none; /* Elimina la viñeta por defecto */
+            padding-left: 0; /* Elimina el padding por defecto */
+            margin-bottom: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 2rem; /* Espacio para el ícono SVG */
+            margin-bottom: 0.75rem;
+        }
+        ul li .list-icon {
+            position: absolute;
+            left: 0;
+            top: 0.6rem; /* Ajusta la posición vertical del ícono */
+            width: 0.75rem; /* Tamaño más pequeño para viñeta */
+            height: 0.75rem;
+            fill: #3498db; /* Color del ícono de viñeta */
+        }
+        ol {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .box-info {
+            background-color: #e8f4f8; /* Azul muy claro */
+            border-left: 5px solid #5dade2; /* Azul para el borde */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: #2e86c1; /* Texto azul para el cuadro */
+        }
+        .box-info strong {
+            color: #1a5276;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #3498db; /* Color de los íconos generales (ej. en box-info) */
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid-item {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e7eb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .grid-item h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para tablas */
+        .table-container {
+            margin: 2rem 0;
+            overflow-x: auto; /* Permite scroll en tablas pequeñas en móviles */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #c8d8e0; /* Borde suave para tablas */
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #d1e2ed; /* Azul claro para encabezados de tabla */
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f7fb; /* Franjas claras para legibilidad */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖥️ Sistemas Operativos: El Corazón de la Computadora</h1>
+        <p class="text-center text-lg italic text-gray-600 mb-6">Un puente esencial entre el hardware y el usuario</p>
+
+        <p>El sistema operativo (SO) es, sin duda, el software más importante de cualquier computadora. Es el programa que se ejecuta primero al encender el equipo y el que gestiona todos los recursos de hardware y software. Sin un sistema operativo, una computadora sería poco más que un conjunto de componentes electrónicos sin capacidad de interacción. Actúa como un intermediario, facilitando la comunicación entre el usuario, las aplicaciones y el hardware subyacente. Esta infografía explora en detalle el rol, las funciones y las responsabilidades de los sistemas operativos, sus tipos, su relación con otros componentes clave y el concepto fundamental del kernel.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Relevancia para la Ingeniería:</strong> Para los ingenieros, comprender los sistemas operativos es crucial. Desde el diseño de hardware que interactúa con el SO, hasta el desarrollo de software optimizado, la administración de redes o la ciberseguridad, el conocimiento profundo de cómo funciona un SO es indispensable. Permite diseñar sistemas más eficientes, robustos y seguros, y solucionar problemas complejos a nivel de infraestructura tecnológica.
+        </div>
+
+        <h2 id="seccion-1-que-es-so">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            1. ¿Qué es un Sistema Operativo? (Rol, Funciones, Responsabilidades)
+        </h2>
+        <p>Un <strong>Sistema Operativo (SO)</strong> es un software de sistema que gestiona los recursos de hardware y software de una computadora. Proporciona servicios comunes para programas de aplicación y gestiona el hardware subyacente. Es la capa fundamental que permite a los usuarios interactuar con la máquina y ejecutar aplicaciones.</p>
+
+        <h3>1.1. Rol Principal del Sistema Operativo</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Mediador:</strong> Actúa como intermediario entre el hardware de la computadora y los programas de aplicación (y el usuario).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Administrador de Recursos:</strong> Gestiona y asigna los recursos del sistema de manera eficiente (CPU, memoria, almacenamiento, dispositivos de E/S).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Plataforma:</strong> Proporciona una plataforma estable y consistente para que las aplicaciones se ejecuten.</li>
+        </ul>
+
+        <h3>1.2. Funciones Clave del Sistema Operativo</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Procesos:</strong> Controla la ejecución de programas, asigna tiempo de CPU, gestiona la creación y terminación de procesos, y maneja la sincronización y comunicación entre ellos.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Memoria:</strong> Asigna y desasigna espacio en la memoria RAM a los programas, gestiona la memoria virtual y el intercambio (swapping) de datos entre RAM y disco.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Almacenamiento:</strong> Organiza y gestiona los archivos y directorios en los dispositivos de almacenamiento (discos duros, SSDs), controla el acceso a los datos y la asignación de espacio.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Dispositivos de E/S:</strong> Controla y coordina el funcionamiento de todos los periféricos conectados (impresoras, teclados, ratones, cámaras, etc.) a través de controladores (drivers).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Interfaz de Usuario:</strong> Proporciona la forma en que el usuario interactúa con la computadora (CLI - Command Line Interface o GUI - Graphical User Interface).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Seguridad:</strong> Implementa mecanismos para proteger los recursos del sistema y los datos del usuario de accesos no autorizados, malware y fallas.</li>
+        </ul>
+
+        <h2 id="seccion-2-relacion-hardware-aplicaciones">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            2. Relación con Hardware y Aplicaciones
+        </h2>
+        <p>El sistema operativo es el orquestador que permite que el hardware y las aplicaciones trabajen en armonía. Sin él, las aplicaciones no podrían acceder a los recursos del hardware de manera eficiente y segura.</p>
+
+        <h3>2.1. Interacción con el Hardware</h3>
+        <p>El SO se comunica directamente con el hardware a través de los **drivers (controladores)**. Cuando una aplicación necesita realizar una operación de hardware (ej. guardar un archivo en el disco, imprimir un documento), no lo hace directamente. En su lugar, envía una solicitud al sistema operativo, que a su vez utiliza el driver adecuado para interactuar con el dispositivo de hardware. Esto proporciona una capa de abstracción, protegiendo el hardware de accesos indebidos y simplificando el desarrollo de aplicaciones.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Abstracción:</strong> El SO oculta la complejidad del hardware a las aplicaciones y al usuario.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Multiplexación:</strong> Permite que múltiples aplicaciones compartan los mismos recursos de hardware sin conflictos.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Protección:</strong> Evita que una aplicación maliciosa o defectuosa acceda directamente al hardware y cause inestabilidad en el sistema.</li>
+        </ul>
+
+        <h3>2.2. Interacción con las Aplicaciones</h3>
+        <p>Las aplicaciones de software (procesadores de texto, navegadores web, juegos, etc.) se ejecutan sobre el sistema operativo. El SO les proporciona un entorno de ejecución, asigna los recursos que necesitan y les permite acceder a los servicios del sistema a través de las **APIs (Application Programming Interfaces)**. Las APIs son conjuntos de funciones y protocolos que permiten a las aplicaciones interactuar con el SO de manera estandarizada.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Entorno de Ejecución:</strong> El SO carga la aplicación en memoria y le asigna tiempo de CPU.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Acceso a Servicios:</strong> Las aplicaciones utilizan las APIs del SO para realizar tareas como abrir archivos, mostrar ventanas, conectarse a la red, etc.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Aislamiento:</strong> El SO aísla las aplicaciones entre sí para que una falla en una no afecte a las demás o al sistema en general.</li>
+        </ul>
+
+        <h2 id="seccion-3-tipos-so">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            3. Tipos de Sistemas Operativos
+        </h2>
+        <p>Los sistemas operativos se pueden clasificar según diversas características, como el número de tareas que pueden ejecutar simultáneamente, el número de usuarios que pueden interactuar con ellos o su arquitectura de diseño.</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de SO</th>
+                        <th>Descripción</th>
+                        <th>Ventajas</th>
+                        <th>Desventajas</th>
+                        <th>Ejemplos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Monotarea</strong></td>
+                        <td>Permite ejecutar una sola tarea (proceso) a la vez.</td>
+                        <td>Simplicidad, bajo consumo de recursos.</td>
+                        <td>Ineficiencia para tareas complejas, no multitarea.</td>
+                        <td>MS-DOS, sistemas embebidos simples.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multitarea</strong></td>
+                        <td>Permite ejecutar múltiples tareas (procesos) aparentemente al mismo tiempo, alternando rápidamente entre ellas (concurrencia).</td>
+                        <td>Mayor eficiencia y productividad, capacidad de ejecutar varias aplicaciones simultáneamente.</td>
+                        <td>Mayor complejidad de gestión, requiere más recursos.</td>
+                        <td>Windows, macOS, Linux, Android, iOS.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monousuario</strong></td>
+                        <td>Diseñado para ser utilizado por un solo usuario a la vez.</td>
+                        <td>Diseño más simple, optimizado para un solo entorno.</td>
+                        <td>No apto para entornos compartidos o servidores.</td>
+                        <td>Primeras versiones de Windows, MS-DOS.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multiusuario</strong></td>
+                        <td>Permite que múltiples usuarios accedan y utilicen el sistema simultáneamente, cada uno con sus propios recursos y procesos.</td>
+                        <td>Ideal para servidores y entornos de trabajo colaborativo, compartición de recursos.</td>
+                        <td>Mayor complejidad en seguridad y gestión de usuarios.</td>
+                        <td>Linux, Unix, Windows Server, macOS Server.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Distribuido</strong></td>
+                        <td>Gestiona un conjunto de computadoras interconectadas para que funcionen como un único sistema coherente.</td>
+                        <td>Alta disponibilidad, escalabilidad, tolerancia a fallos, compartición de recursos.</td>
+                        <td>Complejidad en el diseño y la gestión, problemas de sincronización.</td>
+                        <td>Google Chrome OS (en parte), sistemas de clústeres.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>En Tiempo Real (RTOS)</strong></td>
+                        <td>Diseñado para procesar datos y eventos con restricciones de tiempo muy estrictas, garantizando una respuesta dentro de un plazo determinado.</td>
+                        <td>Alta fiabilidad, predictibilidad, crucial para sistemas críticos.</td>
+                        <td>Menos flexibilidad, más difícil de desarrollar y depurar.</td>
+                        <td>VxWorks, FreeRTOS, QNX (sistemas de control industrial, automoción, aeroespacial).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="seccion-4-x86-x64">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            4. Arquitecturas x86 y x64
+        </h2>
+        <p>Los términos x86 y x64 se refieren a las arquitecturas de conjunto de instrucciones de los procesadores, que a su vez determinan cómo el sistema operativo y el software interactúan con la CPU.</p>
+
+        <h3>4.1. x86 (32 bits)</h3>
+        <p>La arquitectura <strong>x86</strong> (originalmente de Intel, pero adoptada por otros como AMD) se refiere a procesadores de 32 bits. Su nombre proviene de los primeros procesadores de Intel (8086, 80286, 80386, etc.).</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Capacidad de Memoria:</strong> Un procesador de 32 bits solo puede direccionar hasta $2^{32}$ bytes de memoria RAM, lo que equivale a aproximadamente 4 GB. Esto significa que un sistema operativo de 32 bits no puede utilizar más de 4 GB de RAM, incluso si hay más instalada.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Compatibilidad:</strong> Es compatible con software antiguo de 16 bits y 32 bits.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Uso Actual:</strong> Aunque todavía se utiliza en sistemas embebidos o muy antiguos, ha sido ampliamente superado por x64 en computadoras personales y servidores.</li>
+        </ul>
+
+        <h3>4.2. x64 (64 bits)</h3>
+        <p>La arquitectura <strong>x64</strong> (también conocida como AMD64 por su desarrollo inicial por AMD, o Intel 64 por Intel) se refiere a procesadores de 64 bits. Es la arquitectura dominante en las computadoras modernas.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Capacidad de Memoria:</strong> Un procesador de 64 bits puede direccionar hasta $2^{64}$ bytes de memoria RAM. En la práctica, esto significa que puede acceder a una cantidad de RAM virtualmente ilimitada (hasta 16 Exabytes), superando con creces la limitación de 4 GB de x86.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Rendimiento:</strong> Permite procesar más datos por ciclo de reloj, lo que resulta en un mejor rendimiento general, especialmente en aplicaciones que manejan grandes conjuntos de datos o requieren mucha memoria.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Compatibilidad:</strong> Los procesadores x64 son retrocompatibles con software de 32 bits, pero un sistema operativo de 64 bits es necesario para aprovechar plenamente las capacidades de 64 bits del hardware.</li>
+        </ul>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Importancia para el SO:</strong> Un sistema operativo debe ser compilado para una arquitectura específica. Un SO de 32 bits (x86) puede ejecutarse en un procesador de 64 bits, pero no aprovechará sus capacidades completas de memoria. Un SO de 64 bits (x64) solo puede ejecutarse en un procesador de 64 bits.
+        </div>
+
+        <h2 id="seccion-5-interfaces-usuario">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            5. Tipos de Interfaz de Usuario: CLI (Command Line Interface) vs. GUI (Graphical User Interface)
+        </h2>
+        <p>La interfaz de usuario es la forma en que los usuarios interactúan con el sistema operativo y las aplicaciones. Existen dos paradigmas principales: la interfaz de línea de comandos y la interfaz gráfica de usuario.</p>
+
+        <h3>5.1. CLI (Command Line Interface) - Interfaz de Línea de Comandos</h3>
+        <p>La CLI es una interfaz basada en texto donde el usuario escribe comandos para interactuar con el sistema operativo. Requiere que el usuario conozca los comandos y su sintaxis.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Descripción:</strong> Interacción mediante comandos de texto escritos en un intérprete de comandos (terminal, consola).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Ventajas:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Mayor control y flexibilidad sobre el sistema.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Menor consumo de recursos (RAM, CPU).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Ideal para automatización de tareas (scripts).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Acceso remoto eficiente (SSH).</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Desventajas:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Curva de aprendizaje empinada para usuarios nuevos.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Menos intuitiva para tareas visuales.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Ejemplos:</strong> MS-DOS, terminales de Linux/Unix, PowerShell en Windows.</li>
+        </ul>
+
+        <h3>5.2. GUI (Graphical User Interface) - Interfaz Gráfica de Usuario</h3>
+        <p>La GUI es una interfaz visual que utiliza elementos gráficos como ventanas, iconos, menús y botones para facilitar la interacción del usuario con el sistema.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Descripción:</strong> Interacción visual mediante elementos gráficos, manipulados con ratón o pantalla táctil.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Ventajas:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Fácil de aprender y usar para la mayoría de los usuarios.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Intuitiva y visualmente atractiva.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Ideal para tareas de productividad y multimedia.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Desventajas:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Mayor consumo de recursos (RAM, CPU, GPU).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Menos granularidad de control para tareas avanzadas.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Menos eficiente para la automatización.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Ejemplos:</strong> Windows, macOS, Ubuntu (con GNOME/KDE), Android, iOS.</li>
+        </ul>
+
+        <h2 id="seccion-6-relacion-memorias">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            6. Relación con las Memorias
+        </h2>
+        <p>La gestión de la memoria es una de las funciones más críticas del sistema operativo, ya que impacta directamente en el rendimiento y la estabilidad del sistema.</p>
+
+        <h3>6.1. Gestión de la Memoria RAM</h3>
+        <p>El SO es responsable de:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Asignación y Desasignación:</strong> Asigna bloques de memoria a los procesos y los libera cuando ya no son necesarios.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Protección de Memoria:</strong> Asegura que un proceso no pueda acceder o modificar la memoria asignada a otro proceso o al propio sistema operativo, evitando conflictos y fallos del sistema.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Fragmentación:</strong> Intenta minimizar la fragmentación de la memoria (espacios pequeños de memoria no utilizados) para optimizar su uso.</li>
+        </ul>
+
+        <h3>6.2. Memoria Virtual y Paginación</h3>
+        <p>Para superar las limitaciones físicas de la RAM y permitir que se ejecuten más programas de los que la memoria física puede contener, el SO utiliza la <strong>memoria virtual</strong>. Esto implica:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Paginación:</strong> Divide tanto la memoria física como los programas en bloques de tamaño fijo llamados "páginas".</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Swapping (Intercambio):</strong> Cuando la RAM se llena, el SO mueve páginas de memoria menos utilizadas al disco duro (en un archivo de paginación o swap), liberando espacio en la RAM para procesos activos. Cuando esas páginas se necesitan de nuevo, se vuelven a cargar en la RAM.</li>
+        </ul>
+        <p>Este proceso es transparente para las aplicaciones y el usuario, creando la ilusión de una memoria mucho más grande de lo que realmente existe físicamente.</p>
+
+        <h2 id="seccion-7-relacion-drivers">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            7. Relación con los Drivers
+        </h2>
+        <p>Los <strong>drivers (controladores de dispositivo)</strong> son programas de software que permiten al sistema operativo interactuar con un componente de hardware específico. Son esenciales porque el SO no "sabe" directamente cómo comunicarse con cada tipo de hardware que existe; necesita un traductor.</p>
+
+        <h3>7.1. Funciones de los Drivers</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Traducción:</strong> Traducen las instrucciones genéricas del sistema operativo a comandos específicos que el hardware puede entender.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Dispositivo:</strong> Controlan el funcionamiento del hardware, gestionan sus recursos y manejan las interrupciones.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Comunicación:</strong> Facilitan el flujo de datos entre el hardware y el sistema operativo (y, por extensión, las aplicaciones).</li>
+        </ul>
+
+        <h3>7.2. Importancia y Problemas Comunes</h3>
+        <p>Sin el driver correcto, un dispositivo de hardware simplemente no funcionará o lo hará de manera inestable. Los problemas con los drivers son una causa común de fallos del sistema, pantallas azules (BSOD) o mal funcionamiento de periféricos. Los fabricantes de hardware son los encargados de desarrollar y proporcionar los drivers para sus dispositivos.</p>
+
+        <h2 id="seccion-8-kernel">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            8. El Kernel: El Corazón del Sistema Operativo
+        </h2>
+        <p>El <strong>kernel</strong> es el componente central y más fundamental de un sistema operativo. Es la parte del SO que reside permanentemente en la memoria principal y tiene control total sobre todo el sistema. Es el primer programa que se carga después del firmware de arranque y el último en salir antes de apagar la computadora.</p>
+
+        <h3>8.1. Funciones Principales del Kernel</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Procesos:</strong> Crea, programa y termina procesos, y gestiona la comunicación entre ellos.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Memoria:</strong> Asigna memoria a los procesos y gestiona la memoria virtual.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Dispositivos:</strong> Controla el acceso a los periféricos a través de los drivers.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Llamadas al Sistema (System Calls):</strong> Proporciona una interfaz para que las aplicaciones soliciten servicios al sistema operativo.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Archivos:</strong> Interactúa con el sistema de archivos para leer, escribir y organizar datos en el almacenamiento.</li>
+        </ul>
+
+        <h3>8.2. Modos de Operación del Kernel</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Modo Kernel (o Modo Privilegiado):</strong> Es el modo en el que el kernel se ejecuta. Tiene acceso completo y sin restricciones a todos los recursos de hardware y memoria del sistema. Una falla en el modo kernel puede causar un bloqueo total del sistema (ej. Pantalla Azul de la Muerte en Windows).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Modo Usuario (o Modo No Privilegiado):</strong> Es el modo en el que se ejecutan las aplicaciones. Tienen acceso limitado a los recursos del sistema y deben solicitar servicios al kernel a través de las llamadas al sistema. Esto protege el sistema de errores o acciones maliciosas de las aplicaciones.</li>
+        </ul>
+
+        <h2 id="seccion-9-conclusion">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            9. Conclusión: La Base de la Computación Moderna
+        </h2>
+        <p>El sistema operativo es la pieza de software más compleja y crítica en cualquier sistema informático. Su rol como gestor de recursos, intermediario entre hardware y software, y proveedor de una interfaz de usuario es indispensable para la funcionalidad de la computadora. Desde la gestión de la memoria y los procesos, hasta la interacción con los drivers y la protección del sistema a través del kernel, cada función del SO es vital.</p>
+        <p>La evolución de las arquitecturas (x86 a x64) y la diversificación de los tipos de sistemas operativos demuestran la constante adaptación de este software fundamental a las crecientes demandas tecnológicas. Para un ingeniero, comprender en profundidad cómo operan los sistemas operativos no solo es una necesidad académica, sino una habilidad práctica que permite innovar, optimizar y resolver problemas en el vasto mundo de la informática y la tecnología.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Puntos Clave del Apunte:</strong>
+            <ul>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>El <a href="#seccion-1-que-es-so">Sistema Operativo</a> gestiona hardware y software, siendo el mediador principal.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>El SO <a href="#seccion-2-relacion-hardware-aplicaciones">interactúa con hardware</a> vía drivers y con aplicaciones vía APIs.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Existen diversos <a href="#seccion-3-tipos-so">tipos de SO</a> (multitarea, multiusuario, RTOS, etc.) con sus ventajas y desventajas.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><a href="#seccion-4-x86-x64">x86 (32 bits) y x64 (64 bits)</a> definen la capacidad de procesamiento y acceso a memoria del hardware.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Los SO se presentan con <a href="#seccion-5-interfaces-usuario">interfaz de línea de comandos (CLI) o gráfica (GUI)</a>.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>El SO es fundamental en la <a href="#seccion-6-relacion-memorias">gestión de memoria</a> (RAM y virtual) y la <a href="#seccion-7-relacion-drivers">interacción con drivers</a>.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>El <a href="#seccion-8-kernel">Kernel</a> es el núcleo del SO, con control total sobre el sistema en modo privilegiado.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
