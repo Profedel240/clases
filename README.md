@@ -45,7 +45,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 
 Aquí se listarán las infografías y apuntes relacionados con esta materia.
 
-1.  [Título de la Clase 1 aquí](https://link-de-tu-infografia-1-aqui.github.io/clase_gestion_1.html)
+1.  [Grupos-organizaciones-empresas](https://profedel240.github.io/clases/clase1gad.html)
 2.  [Título de la Clase 2 aquí](https://link-de-tu-infografia-2-aqui.github.io/clase_gestion_2.html)
 3.  [Título de la Clase 3 aquí](https://link-de-tu-infografia-3-aqui.github.io/clase_gestion_3.html)
 4.  [Título de la Clase 4 aquí](https://link-de-tu-infografia-4-aqui.github.io/clase_gestion_4.html)
