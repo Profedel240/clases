@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Ley 24.065 y el Sector Eléctrico Argentino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y contenedor */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+            color: #343a40; /* Gris oscuro para texto principal */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        /* Estilos de encabezados */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50; /* Azul oscuro profesional */
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a2c4e; /* Azul más oscuro para el título principal */
+        }
+        h2 {
+            font-size: 2.5rem; /* Aumentado para mayor prominencia */
+            font-weight: 700;
+            border-bottom: 4px solid #3498db; /* Borde más grueso para resaltar */
+            padding-bottom: 0.75rem;
+            margin-top: 3rem; /* Más espacio superior */
+            margin-bottom: 1.8rem; /* Más espacio inferior */
+            /* Eliminado: cursor: pointer; display: flex; align-items: center; justify-content: space-between; */
+        }
+        /* Eliminado: h2 .toggle-icon, h2.expanded .toggle-icon */
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2980b9; /* Azul medio */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #34495e; /* Azul grisáceo */
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        /* Estilo de lista sin asteriscos, usando íconos SVG */
+        ul {
+            list-style: none; /* Elimina la viñeta por defecto */
+            padding-left: 0; /* Elimina el padding por defecto */
+            margin-bottom: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 2rem; /* Espacio para el ícono SVG */
+            margin-bottom: 0.75rem;
+        }
+        ul li .list-icon {
+            position: absolute;
+            left: 0;
+            top: 0.4rem; /* Ajusta la posición vertical del ícono */
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: #3498db; /* Color del ícono */
+        }
+        ol {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .box-info {
+            background-color: #e8f4f8; /* Azul muy claro */
+            border-left: 5px solid #5dade2; /* Azul para el borde */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: #2e86c1; /* Texto azul para el cuadro */
+        }
+        .box-info strong {
+            color: #1a5276;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #3498db; /* Color de los íconos generales */
+        }
+        .diagram-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+        .flow-node {
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            color: #2c3e50;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            min-width: 200px;
+        }
+        .flow-arrow {
+            width: 2px;
+            height: 30px;
+            background-color: #7f8c8d;
+            position: relative;
+        }
+        .flow-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: -4px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 8px solid #7f8c8d;
+        }
+        .horizontal-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .horizontal-flow .flow-arrow {
+            width: 40px;
+            height: 2px;
+        }
+        .horizontal-flow .flow-arrow::after {
+            bottom: auto;
+            right: -5px;
+            left: auto;
+            top: -4px;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid #7f8c8d;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid-item {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e7eb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .grid-item h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para tablas */
+        .table-container {
+            margin: 2rem 0;
+            overflow-x: auto; /* Permite scroll en tablas pequeñas en móviles */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #c8d8e0; /* Borde suave para tablas */
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #d1e2ed; /* Azul claro para encabezados de tabla */
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f7fb; /* Franjas claras para legibilidad */
+        }
+
+        /* Eliminado: Estilos para el contenido colapsable */
+        /* Eliminado: .collapsible-content, .collapsible-content.show */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 La Ley 24.065: Pilares del Sector Eléctrico Argentino</h1>
+        <p class="text-center text-lg italic text-gray-600 mb-6">Un análisis de su impacto en la regulación y los usuarios</p>
+
+        <p>La Ley N° 24.065, promulgada en 1991, representa un hito fundamental en la historia del sector eléctrico argentino. Enmarcada en un contexto de profundas reformas estructurales y privatizaciones a nivel global, esta legislación transformó radicalmente el modelo de gestión y operación de la energía eléctrica en el país. Su objetivo principal fue introducir la competencia en los segmentos donde era posible y establecer un marco regulatorio robusto para los monopolios naturales, buscando eficiencia, inversión y calidad de servicio. Este documento explora los principios de esta ley y el rol crucial de sus organismos clave, CAMMESA y ENRE, así como la clasificación de los usuarios consumidores de energía.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Importancia para la Ingeniería:</strong> Para los futuros ingenieros, comprender la Ley 24.065 es esencial. Define el marco legal y económico en el que opera la infraestructura eléctrica, influyendo directamente en la planificación, el diseño, la operación y el mantenimiento de los sistemas de generación, transmisión y distribución. Un conocimiento profundo de esta ley permite no solo entender el presente del sector, sino también anticipar sus desafíos y oportunidades futuras, así como diseñar soluciones que se integren eficazmente en el marco regulatorio existente.
+        </div>
+
+        <h2 id="seccion-ley-24065">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            1. La Ley 24.065: Marco Regulatorio del Sector Eléctrico (1991)
+            </h2>
+        <p>Antes de la promulgación de la Ley 24.065, el sector eléctrico argentino operaba bajo un modelo predominantemente estatal y verticalmente integrado. Empresas como Agua y Energía Eléctrica (AyEE) y Servicios Eléctricos del Gran Buenos Aires (SEGBA) controlaban la generación, transmisión y distribución. Sin embargo, este modelo enfrentaba serias deficiencias, evidenciadas por la crisis energética de fines de los años 80, que se manifestó en cortes de suministro y una infraestructura deteriorada. La necesidad de atraer inversiones urgentes y mejorar la eficiencia impulsó la decisión de una reforma profunda.</p>
+
+            <h3>1.1. Principios Fundamentales de la Ley</h3>
+            <p>La Ley 24.065 estableció un paradigma completamente nuevo para el sector, basado en la desregulación, la competencia y la creación de un marco regulatorio específico para los monopolios naturales. Sus principios clave son:</p>
+            <ul>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Desverticalización (Unbundling):</strong> Este es uno de los pilares más importantes de la reforma. Implicó la separación estricta de las actividades de generación, transporte y distribución. Antes, una única empresa podía realizar todas estas funciones. Con la ley, cada una se convirtió en un segmento independiente, fomentando la especialización y la transparencia en los costos y operaciones. La generación se concibió como un segmento competitivo, mientras que el transporte y la distribución, por ser monopolios naturales, quedaron sujetos a una regulación estricta. Esta separación buscaba evitar conflictos de interés y promover la eficiencia en cada etapa de la cadena de valor eléctrica.
+                </li>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Fomento de la Competencia:</strong> La ley buscó introducir mecanismos de mercado en el segmento de generación. Esto significó que múltiples empresas generadoras competirían entre sí para producir y vender energía al menor costo posible en el Mercado Eléctrico Mayorista (MEM). La teoría detrás de esto era que la competencia llevaría a una mayor eficiencia, a precios más bajos para el sistema en su conjunto y a una mayor innovación en la oferta de energía.
+                </li>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Regulación Independiente:</strong> Consciente de que el transporte y la distribución son monopolios naturales (es decir, no es eficiente tener múltiples empresas tendiendo cables en la misma calle), la ley estableció la creación de organismos reguladores autárquicos. Estos entes tienen como misión principal proteger los derechos de los usuarios y controlar la calidad del servicio, así como las tarifas de los segmentos regulados, buscando un equilibrio entre los intereses de las empresas y los consumidores. La independencia de estos organismos es clave para la credibilidad del marco regulatorio.
+                </li>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Privatización:</strong> La ley habilitó la venta de las empresas estatales de generación, transporte y distribución al sector privado. Este proceso de privatización masiva buscaba transferir la responsabilidad de la operación, el mantenimiento y, crucialmente, la inversión y el desarrollo de la infraestructura eléctrica a capitales privados, tanto nacionales como extranjeros, con la expectativa de una gestión más eficiente y dinámica.
+                </li>
+            </ul>
+
+            <div class="box-info">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                <strong>Objetivos Estratégicos de la Ley 24.065:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Reducir el Gasto Público y el Déficit Fiscal:</strong> Al transferir la operación de los servicios públicos al sector privado, el Estado buscaba aliviar la carga financiera que representaban las empresas estatales, muchas de las cuales eran deficitarias y requerían subsidios.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Atraer Inversión Privada:</strong> La ley prometía un marco de seguridad jurídica y rentabilidad que incentivaría a los capitales privados a invertir en la expansión y modernización de la infraestructura eléctrica, algo que el Estado no podía financiar en ese momento.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Mejorar la Eficiencia y la Calidad del Servicio:</strong> Se esperaba que la competencia en generación y la gestión privada en transporte y distribución llevaran a una mayor eficiencia operativa, reducción de pérdidas y una mejora sustancial en la calidad y confiabilidad del suministro eléctrico.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Promover la Transparencia en el Mercado:</strong> Al separar las actividades y crear un mercado mayorista, se buscaba mayor transparencia en la formación de precios y en las transacciones de energía.</li>
+                </ul>
+            </div>
+        <h2 id="seccion-cammesa">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            2. CAMMESA: Compañía Administradora del Mercado Mayorista Eléctrico
+            </h2>
+        <p>CAMMESA (Compañía Administradora del Mercado Mayorista Eléctrico S.A.) es una institución fundamental en el funcionamiento del sistema eléctrico argentino post-Ley 24.065. Fue creada en 1992, poco después de la sanción de la ley, y se le encomendó la compleja tarea de la administración y operación técnica del Mercado Eléctrico Mayorista (MEM).</p>
+
+            <h3>2.1. Naturaleza y Composición Accionaria</h3>
+            <ul>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Empresa Mixta y No Lucrativa:</strong> CAMMESA es una sociedad anónima de capital mixto. El **40% de su capital social está en manos del Estado Nacional**, a través de la Secretaría de Energía, lo que le otorga una participación significativa en la dirección estratégica. El **60% restante se distribuye equitativamente (15% cada una)** entre las principales asociaciones que representan a los agentes del MEM:
+                    <ul>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Asociación de Generadores de Energía Eléctrica de la República Argentina (AGEERA):</strong> Representa a las empresas que producen energía.</li>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Asociación de Transportistas de Energía Eléctrica de la República Argentina (ATEERA):</strong> Agrupa a las empresas que operan las líneas de alta tensión.</li>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Asociación de Distribuidores de Energía Eléctrica de la República Argentina (ADEERA):</strong> Reúne a las empresas que distribuyen la energía a los usuarios finales.</li>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Asociación de Grandes Usuarios de Energía Eléctrica de la República Argentina (AGUEERA):</strong> Representa a los grandes consumidores que compran energía directamente en el MEM.</li>
+                    </ul>
+                    Esta composición asegura una gobernanza que integra la visión estatal con la experiencia y los intereses de los principales actores del mercado. Es fundamental destacar que CAMMESA no persigue fines de lucro; su objetivo es la eficiencia y la seguridad del sistema.
+                </li>
+            </ul>
+
+            <h3>2.2. Funciones Principales de CAMMESA: El Cerebro Operativo del MEM</h3>
+            <p>Las responsabilidades de CAMMESA son complejas y vitales para la estabilidad y el funcionamiento continuo del sistema eléctrico interconectado, requiriendo una alta capacidad técnica y de coordinación:</p>
+            <ul>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Administración del Mercado Eléctrico Mayorista (MEM):</strong> CAMMESA gestiona todas las transacciones de compra y venta de energía eléctrica a nivel mayorista. Esto implica la coordinación de los contratos entre generadores y grandes usuarios, la liquidación de los precios de la energía y la gestión de los flujos financieros entre todos los agentes del MEM. Su rol es asegurar que las transacciones se realicen de manera transparente y eficiente, facilitando el intercambio de energía en un entorno competitivo.
+                </li>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Despacho de Carga (Operación del SADI):</strong> Esta es, quizás, la función más crítica y compleja de CAMMESA, que la convierte en el centro neurálgico del sistema. Se refiere a la determinación en tiempo real de qué centrales de generación deben operar, en qué cantidad y en qué momento para satisfacer la demanda eléctrica instantánea del Sistema Argentino de Interconexión (SADI). El objetivo es doble y a menudo contradictorio:
+                    <ul>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Minimizar Costos:</strong> Despachar las centrales en orden de mérito económico (las más baratas primero), siempre que sea técnicamente factible. Esto implica una optimización constante para reducir el costo marginal de la energía, considerando la disponibilidad de combustible, la eficiencia de las plantas y las restricciones de la red de transporte.</li>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Garantizar Seguridad y Estabilidad:</strong> Asegurar la calidad del suministro (manteniendo la frecuencia y tensión dentro de los límites operativos estrictos) y la estabilidad de la red. Esto incluye la gestión de contingencias (como la salida imprevista de una central o una línea de transmisión), la coordinación de mantenimientos programados para minimizar el impacto en el suministro, y la gestión de reservas de potencia. Requiere un monitoreo constante de miles de variables del sistema y el uso de modelos complejos de optimización y simulación en tiempo real.</li>
+                    </ul>
+                </li>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Planificación Operativa y de Expansión:</strong> CAMMESA realiza estudios y pronósticos de la demanda eléctrica a corto, mediano y largo plazo. Con base en estos pronósticos, evalúa la disponibilidad de generación existente y la capacidad de transporte, identificando las necesidades de inversión en nuevas centrales o líneas de transmisión para asegurar el suministro futuro y la confiabilidad del sistema. Su rol en la planificación es crucial para el desarrollo sostenible del sector.
+                </li>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Liquidación de Transacciones:</strong> CAMMESA es responsable de calcular los precios de la energía en el MEM (precios spot, precios nudo de la energía y potencia) y de realizar la liquidación económica de todas las transacciones entre los agentes (generadores, transportistas, distribuidores y grandes usuarios). Esto asegura que cada actor reciba el pago correspondiente por la energía inyectada al sistema o por el consumo realizado, manteniendo la fluidez financiera del mercado y la equidad en las transacciones.
+                </li>
+            </ul>
+        <h2 id="seccion-enre">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            3. ENRE: Ente Nacional Regulador de la Electricidad
+            </h2>
+        <p>El ENRE (Ente Nacional Regulador de la Electricidad) es el organismo autárquico creado por la Ley 24.065 y su Decreto Reglamentario 1398/92. Su misión principal es la aplicación y fiscalización del cumplimiento del marco regulatorio eléctrico, actuando como un garante del equilibrio entre los intereses de las empresas concesionarias y los derechos de los usuarios, especialmente en los segmentos de monopolio natural.</p>
+
+            <h3>3.1. Naturaleza y Autonomía Regulatoria</h3>
+            <ul>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Organismo Autárquico:</strong> La autonomía funcional y financiera del ENRE respecto del Poder Ejecutivo es un principio clave establecido por la ley. Esta independencia busca asegurar que sus decisiones regulatorias no estén sujetas a presiones políticas o de intereses económicos particulares, permitiéndole actuar de manera objetiva y en beneficio del interés público general de los usuarios y del sistema. Esto es fundamental para la credibilidad y eficacia de la regulación.
+                </li>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Jurisdicción y Coordinación:</strong> La competencia del ENRE se extiende sobre las actividades de transporte y distribución de electricidad bajo jurisdicción nacional. Esto incluye específicamente a las grandes empresas distribuidoras del Área Metropolitana de Buenos Aires (Edenor y Edesur) y a las empresas transportistas de energía eléctrica en alta tensión (como TRANSENER S.A.). Es importante destacar que las provincias tienen sus propios entes reguladores que cumplen funciones similares para las empresas de distribución que operan exclusivamente dentro de sus límites territoriales, lo que requiere un nivel de coordinación y articulación entre los distintos niveles de regulación para asegurar la coherencia del sistema eléctrico a nivel nacional.
+                </li>
+            </ul>
+
+            <h3>3.2. Funciones Principales del ENRE: El Guardián de los Usuarios y la Calidad</h3>
+            <p>Las funciones del ENRE son vitales para la protección del consumidor, la garantía de la calidad del servicio y la estabilidad del marco regulatorio, actuando como un contrapeso a los monopolios naturales:</p>
+            <ul>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Fiscalización y Control:</strong> El ENRE supervisa de manera continua y rigurosa el cumplimiento de las obligaciones contractuales y regulatorias por parte de las empresas transportistas y distribuidoras. Esto incluye la verificación de las inversiones comprometidas en los contratos de concesión, el mantenimiento adecuado de la infraestructura, y el cumplimiento de los indicadores de calidad de servicio (como la frecuencia y duración de los cortes - SAIFI y SAIDI, los niveles de tensión, etc.). Realiza auditorías, inspecciones y monitoreos constantes para asegurar que el servicio se preste en las condiciones establecidas y que se respeten los estándares de seguridad.
+                </li>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Protección de los Derechos de los Usuarios:</strong> Una de sus funciones más visibles y directas para el público es la atención de reclamos y la resolución de conflictos entre los usuarios y las empresas de transporte y distribución. El ENRE actúa como un mediador y defensor de los derechos de los consumidores, asegurándose de que las empresas cumplan con sus obligaciones de servicio, que las facturaciones sean correctas y que las tarifas sean aplicadas adecuadamente. Esto puede abarcar desde reclamos por facturación excesiva hasta interrupciones de servicio prolongadas, problemas con la calidad de la energía o daños a artefactos eléctricos.
+                </li>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Fijación Tarifaria:</strong> El ENRE tiene la potestad de establecer y revisar los cuadros tarifarios para los servicios de transporte y distribución. Este proceso es altamente técnico y complejo, involucrando audiencias públicas y análisis de costos. Busca un equilibrio delicado entre la necesidad de las empresas de recuperar sus costos de inversión y operación y obtener una rentabilidad razonable, y la accesibilidad de las tarifas para los usuarios. Las revisiones tarifarias suelen ser periódicas (bienales o quinquenales) y consideran factores como la inflación, los costos de operación, las inversiones realizadas y los planes de calidad de servicio.
+                </li>
+                <li>
+                    <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                    <strong>Aplicación de Sanciones:</strong> En caso de incumplimiento de la normativa vigente o de los contratos de concesión por parte de las empresas reguladas, el ENRE tiene la facultad de aplicar diversas sanciones. Estas pueden ser multas económicas significativas, la obligación de realizar inversiones específicas para corregir deficiencias, o incluso la rescisión de la concesión en casos extremos y reiterados de incumplimiento. El objetivo es asegurar el cumplimiento de las obligaciones y disuadir futuras infracciones.
+                </li>
+            </ul>
+
+            <div class="box-info">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                <strong>Diferencia Clave entre CAMMESA y ENRE: Un Vínculo Complementario</strong>
+                Es fundamental distinguir los roles de estos dos organismos centrales para comprender la arquitectura del sector. **CAMMESA** es el **operador técnico y económico del Mercado Mayorista**, su función es coordinar el despacho de generación y la comercialización de la energía a gran escala, asegurando el balance entre oferta y demanda en tiempo real. Es el "cerebro" que optimiza el flujo de energía. Por otro lado, el **ENRE** es el **organismo regulador y fiscalizador** de los monopolios naturales (transporte y distribución), cuyo foco principal es la protección de los derechos de los usuarios finales, la calidad del servicio y la fijación de tarifas en los segmentos regulados. CAMMESA es un actor del mercado que gestiona la operación; ENRE es el árbitro que asegura el cumplimiento de las reglas y protege al consumidor. Ambos son indispensables y complementarios para el funcionamiento eficiente, seguro y equitativo del sistema eléctrico argentino moderno.
+            </div>
+        <h2 id="seccion-tipos-usuarios">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            4. Tipos de Usuarios Consumidores de Energía Eléctrica
+            </h2>
+        <p>La Ley 24.065 y la estructura del Mercado Eléctrico Mayorista (MEM) definen diferentes categorías de usuarios consumidores de energía eléctrica. Esta clasificación es crucial porque determina la modalidad de contratación del suministro, la estructura tarifaria aplicable y el nivel de interacción con los distintos agentes del mercado. La principal distinción se basa en el nivel de tensión de conexión y la potencia demandada, lo que a su vez influye en su capacidad de negociación y en los cargos que deben afrontar.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo de Usuario</th>
+                            <th>Conexión Típica</th>
+                            <th>Modalidad Tarifaria/Compra</th>
+                            <th>Características Clave</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Usuarios Residenciales</strong></td>
+                            <td>Baja Tensión (BT)</td>
+                            <td>Tarifas reguladas integrales (generación, transporte, distribución + impuestos). Estructura progresiva por bloques de consumo.</td>
+                            <td>
+                                <ul>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Hogares y viviendas.</li>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Atendidos por distribuidora local (no eligen proveedor).</li>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Menor potencia demandada, patrones de consumo variables.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Usuarios Comerciales y Pequeñas Industrias</strong></td>
+                            <td>Baja Tensión (BT) o Media Tensión (MT)</td>
+                            <td>Tarifas reguladas con cargo por potencia contratada y energía consumida.</td>
+                            <td>
+                                <ul>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Comercios, oficinas, pymes, talleres.</li>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Atendidos por distribuidora local.</li>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Demanda de potencia moderada a significativa.</li>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Tarifas con componentes de potencia y energía.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Grandes Usuarios (GU)</strong></td>
+                            <td>Media Tensión (MT) o Alta Tensión (AT)</td>
+                            <td>Compran energía directamente en el MEM (contratos con generadores/comercializadores). Pagan cargos por transporte y distribución.</td>
+                            <td>
+                                <ul>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Grandes industrias, complejos comerciales, centros de datos.</li>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Demanda de potencia significativa (generalmente >300 kW).</li>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Pueden gestionar activamente su consumo y contratos para optimizar costos.</li>
+                                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Mayor responsabilidad en la gestión de su conexión.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="box-info">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                <strong>Rol del Ingeniero en la Gestión de Usuarios:</strong>
+                Los ingenieros eléctricos desempeñan un papel fundamental en la interacción con los distintos tipos de usuarios. Para las empresas distribuidoras, son clave en la planificación, diseño y operación de las redes para atender la demanda de todos los tipos de usuarios de manera confiable y eficiente, asegurando la calidad del servicio en cada punto de conexión. Para los Grandes Usuarios, los ingenieros son esenciales para asesorar en la optimización de su consumo energético, la elección de los contratos de energía más convenientes en el MEM, la implementación de tecnologías de eficiencia energética, la gestión de la demanda y la integración de fuentes de autogeneración o energías renovables en sus instalaciones. Su expertise permite a estos usuarios tomar decisiones informadas que impactan directamente en sus costos operativos y su sostenibilidad.
+            </div>
+        <h2 id="seccion-conclusion">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            5. Conclusión: Un Marco Dinámico y en Constante Evolución
+            </h2>
+        <p>La Ley 24.065 marcó un antes y un después en la configuración del sector eléctrico argentino. Al introducir principios de desregulación, competencia y regulación independiente, buscó modernizar el sistema y atraer las inversiones necesarias para su desarrollo. En este nuevo esquema, organismos como CAMMESA y el ENRE se erigen como pilares fundamentales: CAMMESA, como el cerebro operativo que garantiza el equilibrio entre la oferta y la demanda a nivel mayorista y la eficiencia económica del despacho; y el ENRE, como el garante de los derechos de los usuarios y la calidad del servicio en los segmentos regulados de transporte y distribución.</p>
+            <p>La diversidad de tipos de usuarios, desde los residenciales hasta las grandes industrias, refleja la complejidad de la demanda eléctrica y la necesidad de esquemas tarifarios y de suministro diferenciados. Comprender la interacción entre el marco legal, los organismos reguladores y los distintos consumidores es fundamental para cualquier profesional que aspire a contribuir al desarrollo y la sostenibilidad del sistema eléctrico argentino en el futuro. Los desafíos persisten, especialmente en términos de inversión en infraestructura, diversificación de la matriz energética y la búsqueda de un equilibrio tarifario justo, pero la estructura establecida por la Ley 24.065 sigue siendo el marco sobre el cual se construyen las soluciones.</p>
+
+            <div class="box-info">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                <strong>Puntos Clave del Apunte:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><a href="#seccion-ley-24065">La Ley 24.065</a> desverticalizó el sector en generación (competitiva), transporte y distribución (monopolios regulados), y habilitó su privatización.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><a href="#seccion-cammesa"><strong>CAMMESA</strong></a> es la Compañía Administradora del Mercado Mayorista Eléctrico, responsable de la operación técnica y económica del MEM y el despacho de carga.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>El <a href="#seccion-enre"><strong>ENRE</strong></a> es el Ente Nacional Regulador de la Electricidad, un organismo autárquico que fiscaliza el transporte y la distribución, protege al usuario y fija tarifas.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Los usuarios se clasifican principalmente en <a href="#seccion-tipos-usuarios"><strong>Residenciales</strong></a>, <strong>Comerciales/Pequeñas Industrias</strong> (usuarios regulados) y <strong>Grandes Usuarios</strong> (que pueden comprar directamente en el MEM).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>El sector requiere inversión continua en infraestructura, una diversificación energética hacia fuentes más sostenibles y una regulación estable para su desarrollo a largo plazo.</li>
+                </ul>
+            </div>
+        </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Se elimina la funcionalidad de los menús desplegables.
+            // El contenido ahora estará visible por defecto.
+            // Si en el futuro se desea reintroducir, esta sección de JS debería ser restaurada.
+        });
+    </script>
+</body>
+</html>
