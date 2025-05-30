@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Sistemas de Archivos - La Estructura de Tus Datos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y contenedor */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+            color: #343a40; /* Gris oscuro para texto principal */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        /* Estilos de encabezados */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50; /* Azul oscuro profesional */
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a2c4e; /* Azul más oscuro para el título principal */
+        }
+        h2 {
+            font-size: 2.5rem; /* Aumentado para mayor prominencia */
+            font-weight: 700;
+            border-bottom: 4px solid #3498db; /* Borde más grueso para resaltar */
+            padding: 1rem 0.5rem; /* Aumentado padding vertical */
+            margin-top: 3rem; /* Más espacio superior */
+            margin-bottom: 1.8rem; /* Más espacio inferior */
+            background-color: #e0e7ed; /* Color de fondo para resaltar el título */
+            border-radius: 0.75rem 0.75rem 0 0; /* Bordes redondeados solo arriba */
+            display: flex; /* Para alinear el ícono y el texto */
+            align-items: center;
+        }
+        h2 .section-icon { /* Nuevo estilo para el ícono dentro del h2 */
+            margin-right: 0.75rem;
+            width: 2rem; /* Tamaño un poco más grande */
+            height: 2rem;
+            fill: #1a2c4e; /* Color oscuro para el ícono del título */
+        }
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2980b9; /* Azul medio */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #34495e; /* Azul grisáceo */
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        /* Estilo de lista sin asteriscos, usando íconos SVG */
+        ul {
+            list-style: none; /* Elimina la viñeta por defecto */
+            padding-left: 0; /* Elimina el padding por defecto */
+            margin-bottom: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 2rem; /* Espacio para el ícono SVG */
+            margin-bottom: 0.75rem;
+        }
+        ul li .list-icon {
+            position: absolute;
+            left: 0;
+            top: 0.6rem; /* Ajusta la posición vertical del ícono */
+            width: 0.75rem; /* Tamaño más pequeño para viñeta */
+            height: 0.75rem;
+            fill: #3498db; /* Color del ícono de viñeta */
+        }
+        ol {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .box-info {
+            background-color: #e8f4f8; /* Azul muy claro */
+            border-left: 5px solid #5dade2; /* Azul para el borde */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: #2e86c1; /* Texto azul para el cuadro */
+        }
+        .box-info strong {
+            color: #1a5276;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #3498db; /* Color de los íconos generales (ej. en box-info) */
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid-item {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e7eb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .grid-item h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para tablas */
+        .table-container {
+            margin: 2rem 0;
+            overflow-x: auto; /* Permite scroll en tablas pequeñas en móviles */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #c8d8e0; /* Borde suave para tablas */
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #d1e2ed; /* Azul claro para encabezados de tabla */
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f7fb; /* Franjas claras para legibilidad */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗄️ Sistemas de Archivos: La Estructura de Tus Datos</h1>
+        <p class="text-center text-lg italic text-gray-600 mb-6">Organizando la información en el corazón de tu computadora</p>
+
+        <p>En el vasto universo de la computación, los datos son el activo más valioso. Pero, ¿cómo se almacenan, organizan y recuperan de manera eficiente en un disco? La respuesta reside en los <strong>Sistemas de Archivos</strong>. Estos son componentes fundamentales del sistema operativo que dictan cómo se guardan y acceden a los archivos en los dispositivos de almacenamiento. Sin un sistema de archivos, un disco duro sería una colección desordenada de bits, incomprensible para el usuario y las aplicaciones. Esta infografía explora su rol, funciones, su intrínseca relación con el firmware de arranque y los sistemas operativos, y los diversos tipos que existen en el panorama tecnológico actual.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Relevancia para la Ingeniería:</strong> Para los ingenieros, comprender los sistemas de archivos es vital. Desde el diseño de sistemas de almacenamiento y bases de datos, hasta la optimización del rendimiento de aplicaciones, la ciberseguridad y la recuperación de datos, el conocimiento de cómo se organizan y gestionan los archivos a bajo nivel es indispensable. Permite diseñar soluciones más robustas, eficientes y seguras para el manejo de la información.
+        </div>
+
+        <h2 id="seccion-1-rol-funciones">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            1. Rol, Funciones y Responsabilidades de un Sistema de Archivos
+        </h2>
+        <p>Un <strong>Sistema de Archivos (File System)</strong> es la estructura lógica que el sistema operativo utiliza para controlar cómo se almacenan y recuperan los datos en un dispositivo de almacenamiento. Es la capa de software que organiza los datos en el disco para que puedan ser accedidos de manera significativa.</p>
+
+        <h3>1.1. Rol Principal</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Organización de Datos:</strong> Transforma un espacio de almacenamiento lineal en una estructura jerárquica de archivos y directorios.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Abstracción:</strong> Oculta la complejidad física del disco (sectores, cilindros) a las aplicaciones y al usuario, permitiendo interactuar con nombres de archivos y rutas.</li>
+        </ul>
+
+        <h3>1.2. Funciones Clave</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Creación, Eliminación, Lectura y Escritura de Archivos:</strong> Proporciona las operaciones básicas para manipular los datos.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión del Espacio Libre:</strong> Rastrea qué bloques del disco están ocupados y cuáles están disponibles para almacenar nuevos datos.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Gestión de Metadatos:</strong> Almacena información sobre los archivos (nombre, tamaño, fecha de creación/modificación, propietario, permisos).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Manejo de Directorios:</strong> Permite organizar los archivos en estructuras jerárquicas (carpetas).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Control de Acceso y Seguridad:</strong> Implementa permisos para controlar quién puede leer, escribir o ejecutar archivos.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Integridad de Datos:</strong> Mecanismos para asegurar que los datos no se corrompan (ej. *journaling*).</li>
+        </ul>
+
+        <h2 id="seccion-2-relacion-uefi-bios-gpt-mbr">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            2. Relación con UEFI/BIOS y Formateo (GPT/MBR)
+        </h2>
+        <p>La elección del sistema de archivos está intrínsecamente ligada al esquema de particionamiento del disco y al firmware de arranque del sistema (BIOS o UEFI). Esto es crucial para el proceso de inicio de la computadora.</p>
+
+        <h3>2.1. Esquemas de Particionamiento: MBR vs. GPT</h3>
+        <p>Antes de que un sistema de archivos pueda ser creado en un disco, el disco debe ser particionado. Los dos esquemas principales son MBR y GPT:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>MBR (Master Boot Record):</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Esquema tradicional.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Limitado a discos de hasta 2.2 TB.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Soporta un máximo de 4 particiones primarias.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Utilizado por sistemas con **BIOS heredado**.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>GPT (GUID Partition Table):</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Esquema moderno.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Soporta discos de tamaño virtualmente ilimitado (hasta 9.4 ZB).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Permite un número casi ilimitado de particiones (128 por defecto en Windows).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Utilizado por sistemas con **UEFI**.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>2.2. Interacción con BIOS y UEFI</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>BIOS:</strong> Para arrancar un sistema operativo, el BIOS busca el Master Boot Record (MBR) en el primer sector del disco. El MBR contiene el código de arranque y la tabla de particiones. Las particiones suelen estar formateadas con sistemas de archivos como FAT32 o NTFS.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>UEFI:</strong> UEFI busca una partición especial llamada EFI System Partition (ESP), que debe estar formateada en FAT32. La ESP contiene los cargadores de arranque del sistema operativo en formato .efi. UEFI es compatible con discos GPT, lo que permite arrancar desde particiones de gran tamaño y aprovechar características como Secure Boot.</li>
+        </ul>
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Nota Importante:</strong> Un sistema operativo instalado en un disco MBR generalmente debe arrancar en modo BIOS (o CSM en UEFI). Un sistema operativo instalado en un disco GPT debe arrancar en modo UEFI. La incompatibilidad entre el esquema de particionamiento y el modo de arranque del firmware es una causa común de problemas al instalar o iniciar un SO.
+        </div>
+
+        <h2 id="seccion-3-tipos-sistemas-archivos">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></"/></svg>
+            3. Tipos de Sistemas de Archivos: Características, Ventajas y Desventajas
+        </h2>
+        <p>Existen diversos sistemas de archivos, cada uno diseñado con diferentes propósitos y optimizaciones para distintos entornos y sistemas operativos. A continuación, se presenta un cuadro comparativo de algunos de los más relevantes:</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sistema de Archivos</th>
+                        <th>Características Clave</th>
+                        <th>Ventajas</th>
+                        <th>Desventajas</th>
+                        <th>Uso Común</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>FAT32 (File Allocation Table 32)</strong></td>
+                        <td>Antiguo, simple, sin seguridad avanzada, tabla de asignación de archivos.</td>
+                        <td>Amplia compatibilidad (Windows, macOS, Linux, consolas, cámaras).</td>
+                        <td>No soporta archivos > 4 GB, no soporta particiones > 2 TB, sin journaling, propenso a corrupción.</td>
+                        <td>Unidades USB, tarjetas SD, dispositivos de almacenamiento externos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NTFS (New Technology File System)</strong></td>
+                        <td>Journaling, seguridad a nivel de archivo/directorio (ACLs), compresión, cifrado, cuotas de disco.</td>
+                        <td>Robustez, tolerancia a fallos (journaling), seguridad, soporta archivos y particiones muy grandes.</td>
+                        <td>Menor compatibilidad con SO no Windows (lectura/escritura limitada o requiere software adicional en Linux/macOS).</td>
+                        <td>Unidades internas de Windows (predeterminado), discos duros externos para Windows.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ext4 (Fourth Extended Filesystem)</strong></td>
+                        <td>Journaling, extensiones (extents) para archivos grandes, asignación de bloques diferida, mayor rendimiento.</td>
+                        <td>Robusto, rápido, eficiente, soporta archivos y particiones muy grandes.</td>
+                        <td>Menor compatibilidad nativa con Windows (requiere software de terceros).</td>
+                        <td>Distribuciones de Linux (predeterminado), servidores Linux.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>APFS (Apple File System)</strong></td>
+                        <td>Optimizado para SSDs, cifrado nativo, snapshots, clonación instantánea de archivos/directorios.</td>
+                        <td>Rendimiento rápido en SSDs, seguridad robusta, eficiente para macOS/iOS.</td>
+                        <td>Exclusivo de Apple, no compatible con otros SO, solo funciona bien en SSDs.</td>
+                        <td>Dispositivos Apple (macOS, iOS, watchOS, tvOS).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HFS+ (Hierarchical File System Plus)</strong></td>
+                        <td>Sistema de archivos antiguo de Apple, journaling.</td>
+                        <td>Compatible con sistemas Apple más antiguos.</td>
+                        <td>Menos eficiente que APFS, sin muchas características modernas.</td>
+                        <td>Dispositivos Apple antiguos (macOS, iPods).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>exFAT (Extended File Allocation Table)</strong></td>
+                        <td>Versión mejorada de FAT32, soporta archivos > 4 GB.</td>
+                        <td>Amplia compatibilidad (Windows, macOS, Linux, Android, cámaras, consolas).</td>
+                        <td>Sin journaling, sin seguridad avanzada, no tan robusto como NTFS o ext4.</td>
+                        <td>Unidades USB, tarjetas SD de gran capacidad, almacenamiento externo para compatibilidad cruzada.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ZFS (Zettabyte File System)</strong></td>
+                        <td>Pools de almacenamiento, checksums de datos, snapshots, clonación, compresión, deduplicación, auto-reparación.</td>
+                        <td>Alta integridad de datos, escalabilidad masiva, gestión avanzada de volumen, robusto.</td>
+                        <td>Complejo de configurar y administrar, alto consumo de RAM, no es nativo en la mayoría de los SO de escritorio.</td>
+                        <td>Servidores (FreeBSD, Linux - OpenZFS), NAS (Network Attached Storage), almacenamiento empresarial.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Btrfs (B-tree File System)</strong></td>
+                        <td>Journaling, snapshots, clonación, checksums, pools de almacenamiento, compresión, deduplicación.</td>
+                        <td>Similar a ZFS en características avanzadas, flexibilidad, auto-reparación.</td>
+                        <td>Aún en desarrollo activo (aunque estable para muchos usos), rendimiento variable, menos maduro que ext4/NTFS.</td>
+                        <td>Distribuciones de Linux (opcional), NAS.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="seccion-4-relacion-sistemas-operativos">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            4. Relación con los Sistemas Operativos
+        </h2>
+        <p>El sistema de archivos es una parte integral del sistema operativo. El SO es el encargado de interactuar con el sistema de archivos para realizar todas las operaciones de disco que solicitan las aplicaciones y el usuario.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Componente del Kernel:</strong> La mayor parte de la lógica del sistema de archivos reside en el kernel del sistema operativo, permitiéndole un control directo y eficiente sobre las operaciones de E/S.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Abstracción para Aplicaciones:</strong> El SO proporciona APIs (Application Programming Interfaces) para que las aplicaciones puedan interactuar con los archivos sin necesidad de conocer el sistema de archivos subyacente. Por ejemplo, una aplicación simplemente llama a una función para "abrir un archivo", y el SO, a través de su sistema de archivos, se encarga de encontrarlo en el disco.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Sistemas de Archivos Nativos/Preferidos:</strong> Cada sistema operativo tiene uno o más sistemas de archivos que utiliza de forma nativa y que son los más optimizados para su funcionamiento.
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Windows:</strong> Principalmente NTFS. También soporta FAT32 y exFAT para compatibilidad.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>macOS:</strong> APFS (moderno), HFS+ (legado). Soporta FAT32 y exFAT.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Linux:</strong> ext4 es el más común. También soporta una amplia variedad como ext3, ext2, XFS, Btrfs, ZFS (a través de OpenZFS), y puede leer/escribir en NTFS y FAT32.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Android:</strong> Utiliza sistemas de archivos basados en Linux como ext4.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>iOS:</strong> APFS.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Montaje de Sistemas de Archivos:</strong> El SO es responsable de "montar" (hacer accesible) los sistemas de archivos de las particiones o dispositivos de almacenamiento para que puedan ser utilizados.</li>
+        </ul>
+
+        <h2 id="seccion-5-conclusion">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            5. Conclusión: La Base Invisible de Tus Datos
+        </h2>
+        <p>Los sistemas de archivos son una capa de infraestructura crucial que a menudo pasa desapercibida para el usuario final, pero sin la cual la computación moderna sería imposible. Son el corazón de la organización de datos en cualquier dispositivo de almacenamiento, desde una pequeña tarjeta SD hasta un gigantesco servidor de datos.</p>
+        <p>Su rol en la organización, el acceso eficiente, la protección y la integridad de los datos es fundamental. La elección del sistema de archivos adecuado, en conjunto con el esquema de particionamiento (MBR/GPT) y el firmware de arranque (BIOS/UEFI), es una decisión de ingeniería que impacta directamente en el rendimiento, la compatibilidad y la fiabilidad de un sistema. Para los ingenieros, dominar estos conceptos es esencial para diseñar, implementar y mantener sistemas de almacenamiento robustos y eficientes.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Puntos Clave del Apunte:</strong>
+            <ul>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Los <a href="#seccion-1-rol-funciones">Sistemas de Archivos</a> organizan y gestionan los datos en el almacenamiento.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Su elección está ligada al firmware (<a href="#seccion-2-relacion-uefi-bios-gpt-mbr">BIOS/UEFI</a>) y al esquema de particionamiento (<a href="#seccion-2-relacion-uefi-bios-gpt-mbr">MBR/GPT</a>).</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Existen diversos <a href="#seccion-3-tipos-sistemas-archivos">tipos de Sistemas de Archivos</a>, cada uno con características, ventajas y desventajas.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Son un <a href="#seccion-4-relacion-sistemas-operativos">componente integral del Sistema Operativo</a>, que los utiliza para interactuar con el almacenamiento.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
