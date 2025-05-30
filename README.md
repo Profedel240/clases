@@ -9,7 +9,7 @@
 Aquí se listarán las infografías y apuntes relacionados con esta materia.
 
 1.  [Historia de la Matriz Eléctrica Argentina](https://profedel240.github.io/clases/clase1.html)
-2.  [Título de la Clase 2 aquí](https://link-de-tu-infografia-2-aqui.github.io/apunte_2.html)
+2.  [Ley 24.065](https://profedel240.github.io/clases/clase2orf.html)
 3.  [Título de la Clase 3 aquí](https://link-de-tu-infografia-3-aqui.github.io/apunte_3.html)
 4.  [Título de la Clase 4 aquí](https://link-de-tu-infografia-4-aqui.github.io/apunte_4.html)
 5.  [Título de la Clase 5 aquí](https://link-de-tu-infografia-5-aqui.github.io/apunte_5.html)
