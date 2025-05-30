@@ -119,8 +119,8 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 
 Aquí se listarán las infografías y apuntes relacionados con esta materia.
 
-1.  [Título de la Clase 1 aquí](https://link-de-tu-infografia-1-aqui.github.io/clase_so_1.html)
-2.  [Título de la Clase 2 aquí](https://link-de-tu-infografia-2-aqui.github.io/clase_so_2.html)
+1.  [Intr a los S.O.](https://profedel240.github.io/clases/clase1so.html)
+2.  [BIOS-UEFI](https://profedel240.github.io/clases/clase2so.html)
 3.  [Título de la Clase 3 aquí](https://link-de-tu-infografia-3-aqui.github.io/clase_so_3.html)
 4.  [Título de la Clase 4 aquí](https://link-de-tu-infografia-4-aqui.github.io/clase_so_4.html)
 5.  [Título de la Clase 5 aquí](https://link-de-tu-infografia-5-aqui.github.io/clase_so_5.html)
