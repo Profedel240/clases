@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Grupo, Organización y Empresa - Conceptos Clave</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y contenedor */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+            color: #343a40; /* Gris oscuro para texto principal */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        /* Estilos de encabezados */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50; /* Azul oscuro profesional */
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a2c4e; /* Azul más oscuro para el título principal */
+        }
+        h2 {
+            font-size: 2.5rem; /* Aumentado para mayor prominencia */
+            font-weight: 700;
+            border-bottom: 4px solid #3498db; /* Borde más grueso para resaltar */
+            padding-bottom: 0.75rem;
+            margin-top: 3rem; /* Más espacio superior */
+            margin-bottom: 1.8rem; /* Más espacio inferior */
+        }
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2980b9; /* Azul medio */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #34495e; /* Azul grisáceo */
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        /* Estilo de lista sin asteriscos, usando íconos SVG */
+        ul {
+            list-style: none; /* Elimina la viñeta por defecto */
+            padding-left: 0; /* Elimina el padding por defecto */
+            margin-bottom: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 2rem; /* Espacio para el ícono SVG */
+            margin-bottom: 0.75rem;
+        }
+        ul li .list-icon {
+            position: absolute;
+            left: 0;
+            top: 0.4rem; /* Ajusta la posición vertical del ícono */
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: #3498db; /* Color del ícono */
+        }
+        ol {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .box-info {
+            background-color: #e8f4f8; /* Azul muy claro */
+            border-left: 5px solid #5dade2; /* Azul para el borde */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: #2e86c1; /* Texto azul para el cuadro */
+        }
+        .box-info strong {
+            color: #1a5276;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #3498db; /* Color de los íconos generales */
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid-item {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e7eb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .grid-item h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para tablas */
+        .table-container {
+            margin: 2rem 0;
+            overflow-x: auto; /* Permite scroll en tablas pequeñas en móviles */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #c8d8e0; /* Borde suave para tablas */
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #d1e2ed; /* Azul claro para encabezados de tabla */
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f7fb; /* Franjas claras para legibilidad */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👥 Grupo, Organización y Empresa: Desentrañando Conceptos</h1>
+        <p class="text-center text-lg italic text-gray-600 mb-6">Comprendiendo las estructuras fundamentales en el ámbito social y económico</p>
+
+        <p>En el estudio de las ciencias sociales, la administración y la economía, es crucial comprender las diferencias entre los términos "grupo", "organización" y "empresa". Aunque a menudo se utilizan de forma intercambiable en el lenguaje cotidiano, cada uno posee características distintivas que definen su estructura, propósito y funcionamiento. Esta infografía busca aclarar estas definiciones, sus elementos clave y las relaciones que existen entre ellos.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Importancia del Concepto:</strong> Entender estas distinciones es fundamental para el análisis de cualquier estructura social o económica. Permite identificar los objetivos, la dinámica interna y el impacto de diferentes entidades, desde un equipo de trabajo hasta una corporación multinacional o una institución sin fines de lucro.
+        </div>
+
+        <h2 id="seccion-grupo">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            1. ¿Qué es un Grupo?
+        </h2>
+        <p>Un <strong>grupo</strong> se refiere a un conjunto de dos o más individuos que interactúan entre sí, son interdependientes y se unen para lograr objetivos particulares. La clave de un grupo radica en la <strong>interacción</strong> y la <strong>percepción de pertenencia</strong>. No se trata solo de una aglomeración de personas, sino de individuos que se reconocen como parte de una unidad y cuyas acciones influyen mutuamente.</p>
+
+        <h3>1.1. Características Principales de un Grupo</h3>
+        <ul>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Interacción:</strong> Los miembros se comunican y se influyen recíprocamente. Esta interacción puede ser formal o informal, directa o indirecta.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Objetivos Compartidos:</strong> Aunque no siempre estén explícitamente definidos, los miembros del grupo comparten alguna finalidad o interés común que los mantiene unidos.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Sentido de Pertenencia:</strong> Los individuos se identifican como parte del grupo, desarrollando un "nosotros" que los distingue de otros.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Normas y Roles (a menudo implícitos):</strong> Con el tiempo, los grupos desarrollan reglas de comportamiento (normas) y los miembros asumen diferentes funciones (roles), aunque no siempre de manera formal.
+            </li>
+        </ul>
+
+        <h3>1.2. Ejemplos de Grupos</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Un grupo de amigos que se reúne para jugar al fútbol.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Los vecinos de un mismo edificio que se conocen y se ayudan.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Un equipo de estudio universitario.</li>
+        </ul>
+
+        <h2 id="seccion-organizacion">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            2. ¿Qué es una Organización?
+        </h2>
+        <p>Una <strong>organización</strong> es una estructura social creada intencionalmente para la consecución de objetivos específicos. A diferencia de un grupo, una organización implica un nivel de <strong>formalidad, estructura y coordinación</strong> mucho mayor. Sus elementos están diseñados para operar de manera sistemática y eficiente.</p>
+
+        <h3>2.1. Características Principales de una Organización</h3>
+        <ul>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Propósito Definido y Explícito:</strong> Las organizaciones se crean con una misión y visión claras, y objetivos que se buscan alcanzar de manera deliberada.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Estructura Formal:</strong> Poseen una jerarquía clara, división del trabajo, roles y responsabilidades definidos, y canales de comunicación establecidos. Esto se refleja en organigramas, manuales de funciones y procedimientos.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Coordinación y Control:</strong> Existe un sistema para coordinar las actividades de los miembros y controlar el progreso hacia los objetivos.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Recursos:</strong> Utilizan recursos (humanos, financieros, materiales, tecnológicos) de manera planificada para alcanzar sus fines.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Límites Identificables:</strong> Tienen límites claros que las distinguen de su entorno, aunque interactúen con él.
+            </li>
+        </ul>
+
+        <h3>2.2. Ejemplos de Organizaciones</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Una universidad o escuela.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Un hospital o clínica.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Una ONG (Organización No Gubernamental).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Un club deportivo.</li>
+        </ul>
+
+        <h2 id="seccion-empresa">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            3. ¿Qué es una Empresa?
+        </h2>
+        <p>Una <strong>empresa</strong> es un tipo específico de organización que se distingue por su <strong>finalidad económica y de lucro</strong>. Su objetivo principal es producir bienes o servicios para el mercado, con el fin de obtener un beneficio económico. Todas las empresas son organizaciones, pero no todas las organizaciones son empresas.</p>
+
+        <h3>3.1. Características Principales de una Empresa</h3>
+        <ul>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Fin de Lucro:</strong> El objetivo primordial es la generación de ganancias o beneficios económicos para sus propietarios o accionistas.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Producción de Bienes o Servicios:</strong> Se dedican a la creación y/o comercialización de productos o servicios que satisfacen necesidades del mercado.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Riesgo Económico:</strong> Operan en un entorno de mercado, asumiendo riesgos financieros y de competencia.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Estructura Legal:</strong> Suelen estar constituidas bajo una forma jurídica específica (sociedad anónima, SRL, etc.) que les otorga personalidad jurídica.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Orientación al Mercado:</strong> Sus decisiones y estrategias están fuertemente influenciadas por las condiciones del mercado, la demanda de los consumidores y la competencia.
+            </li>
+        </ul>
+
+        <h3>3.2. Ejemplos de Empresas</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Una fábrica de automóviles.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Una cadena de supermercados.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Una empresa de software.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Un banco.</li>
+        </ul>
+
+        <h2 id="seccion-diferencias">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            4. Diferencias Clave: Grupo, Organización y Empresa
+        </h2>
+        <p>Para comprender mejor las distinciones, la siguiente tabla resume las características fundamentales de cada concepto:</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>Grupo</th>
+                        <th>Organización</th>
+                        <th>Empresa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Definición</strong></td>
+                        <td>Conjunto de individuos que interactúan y comparten un sentido de pertenencia.</td>
+                        <td>Estructura social creada intencionalmente para lograr objetivos específicos.</td>
+                        <td>Tipo de organización con fin de lucro, que produce bienes o servicios para el mercado.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Propósito Principal</strong></td>
+                        <td>Satisfacción de necesidades sociales, personales o intereses comunes (a menudo implícito).</td>
+                        <td>Logro de objetivos definidos (sociales, educativos, de servicio, económicos, etc.).</td>
+                        <td>Obtención de beneficio económico (lucro) a través de la producción/comercialización.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estructura</strong></td>
+                        <td>Informal, roles y normas pueden ser implícitos. Flexible.</td>
+                        <td>Formal, jerarquía, división del trabajo, roles y procedimientos definidos. Rígida o flexible según el tipo.</td>
+                        <td>Formal, con estructura legal (sociedad anónima, SRL, etc.) y operativa.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Formalidad</strong></td>
+                        <td>Baja a Nula</td>
+                        <td>Alta</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recursos</strong></td>
+                        <td>Principalmente humanos, a veces mínimos materiales.</td>
+                        <td>Humanos, financieros, materiales, tecnológicos (planificados).</td>
+                        <td>Humanos, financieros, materiales, tecnológicos (con foco en la eficiencia y rentabilidad).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relación entre ellos</strong></td>
+                        <td>Puede existir dentro de una organización, pero no es una organización por sí mismo.</td>
+                        <td>Contiene grupos. Las empresas son un tipo de organización.</td>
+                        <td>Es un tipo específico de organización.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ejemplos</strong></td>
+                        <td>Familia, grupo de amigos, equipo deportivo informal.</td>
+                        <td>Universidad, hospital, ONG, gobierno, club deportivo.</td>
+                        <td>Fábrica, banco, cadena de tiendas, empresa de tecnología.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Concepto Clave:</strong> Toda empresa es una organización, y toda organización está compuesta por grupos (formales o informales). Sin embargo, no todo grupo es una organización, y no toda organización es una empresa.
+        </div>
+
+        <h2 id="seccion-conclusion">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            5. Conclusión
+        </h2>
+        <p>Los conceptos de grupo, organización y empresa representan niveles crecientes de complejidad y formalidad en la interacción humana. Un <strong>grupo</strong> es la forma más básica de asociación, definida por la interacción y el sentido de pertenencia. Una <strong>organización</strong> es una estructura más formal y deliberada, creada con un propósito específico y dotada de una jerarquía y división del trabajo. Finalmente, una <strong>empresa</strong> es un tipo particular de organización que se distingue por su objetivo primordial de generar lucro mediante la producción de bienes o servicios para el mercado.</p>
+        <p>Comprender estas diferencias es esencial para analizar la dinámica de cualquier entidad, desde un pequeño equipo de trabajo hasta una gran corporación o una institución gubernamental. Permite a los profesionales, especialmente en campos como la ingeniería, la administración y la economía, diseñar estructuras más eficientes, gestionar recursos de manera óptima y entender los diversos fines que impulsan las actividades humanas en sociedad.</p>
+
+    </div>
+</body>
+</html>
