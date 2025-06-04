@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Gestión Organizacional - Fundamentos y Teorías para Ingenieros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y contenedor */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+            color: #343a40; /* Gris oscuro para texto principal */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        /* Estilos de encabezados */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50; /* Azul oscuro profesional */
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a2c4e; /* Azul más oscuro para el título principal */
+        }
+        h2 {
+            font-size: 2.5rem; /* Aumentado para mayor prominencia */
+            font-weight: 700;
+            border-bottom: 4px solid #3498db; /* Borde más grueso para resaltar */
+            padding: 1rem 0.5rem; /* Aumentado padding vertical */
+            margin-top: 3rem; /* Más espacio superior */
+            margin-bottom: 1.8rem; /* Más espacio inferior */
+            background-color: #e0e7ed; /* Color de fondo para resaltar el título */
+            border-radius: 0.75rem 0.75rem 0 0; /* Bordes redondeados solo arriba */
+            display: flex; /* Para alinear el ícono y el texto */
+            align-items: center;
+        }
+        h2 .section-icon { /* Nuevo estilo para el ícono dentro del h2 */
+            margin-right: 0.75rem;
+            width: 2rem; /* Tamaño un poco más grande */
+            height: 2rem;
+            fill: #1a2c4e; /* Color oscuro para el ícono del título */
+        }
+        h3 {
+            font-size: 2.2rem; /* Increased font size */
+            font-weight: 700; /* Made bolder */
+            color: #21618C; /* Slightly darker blue */
+            margin-top: 3rem; /* Increased top margin for more space */
+            margin-bottom: 1.5rem; /* Increased bottom margin for more space */
+        }
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #34495e; /* Azul grisáceo */
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        /* Estilo de lista sin asteriscos, usando íconos SVG */
+        ul {
+            list-style: none; /* Elimina la viñeta por defecto */
+            padding-left: 0; /* Elimina el padding por defecto */
+            margin-bottom: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 2rem; /* Espacio para el ícono SVG */
+            margin-bottom: 0.75rem;
+        }
+        ul li .list-icon {
+            position: absolute;
+            left: 0;
+            top: 0.6rem; /* Ajusta la posición vertical del ícono */
+            width: 0.75rem; /* Tamaño más pequeño para viñeta */
+            height: 0.75rem;
+            fill: #3498db; /* Color del ícono de viñeta */
+        }
+        ol {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .box-info {
+            background-color: #e8f4f8; /* Azul muy claro */
+            border-left: 5px solid #5dade2; /* Azul para el borde */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: #2e86c1; /* Texto azul para el cuadro */
+        }
+        .box-info strong {
+            color: #1a5276;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #3498db; /* Color de los íconos generales (ej. en box-info) */
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid-item {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e7eb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .grid-item h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para tablas */
+        .table-container {
+            margin: 2rem 0;
+            overflow-x: auto; /* Permite scroll en tablas pequeñas en móviles */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #c8d8e0; /* Borde suave para tablas */
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #d1e2ed; /* Azul claro para encabezados de tabla */
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f7fb; /* Franjas claras para legibilidad */
+        }
+        .formula-box {
+            background-color: #f0f8ff; /* Light blue background */
+            border-left: 4px solid #3498db; /* Blue left border */
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+            color: #2c3e50;
+        }
+        .formula-display {
+            font-family: 'Consolas', 'Courier New', monospace; /* Monospace font for formulas */
+            font-size: 1.4rem; /* Larger font size for formulas */
+            text-align: center;
+            padding: 0.5rem 0;
+            color: #1a5276; /* Darker blue for formula text */
+            font-weight: 600;
+        }
+        .variable-list {
+            list-style: none;
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .variable-list li {
+            margin-bottom: 0.3rem;
+        }
+        .variable-list strong {
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Módulo Teórico: Gestión Organizacional</h1>
+        <p class="text-center text-lg italic text-gray-600 mb-6">Fundamentos y Teorías para la Optimización del Desempeño Empresarial</p>
+
+        <p>Este módulo profundiza en los conceptos esenciales de la gestión organizacional, proporcionando una base sólida para comprender cómo las empresas y proyectos se estructuran, operan y evolucionan. Desde la identificación de recursos hasta la aplicación de teorías de liderazgo y la clasificación de entidades, el conocimiento aquí presentado es crucial para cualquier ingeniero que busque optimizar procesos, liderar equipos y contribuir al éxito estratégico.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Aplicación en Ingeniería:</strong> Comprender la gestión organizacional permite a los ingenieros no solo diseñar y optimizar sistemas técnicos, sino también liderar equipos multidisciplinarios, gestionar proyectos complejos y tomar decisiones estratégicas que impacten la eficiencia y competitividad de la empresa.
+        </div>
+
+        <h2 id="seccion-1-recursos-organizacion">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            1. Recursos de una Organización: Pilares para el Desempeño
+        </h2>
+        <p>Los recursos de una organización son los elementos fundamentales que esta necesita para llevar a cabo sus actividades, producir bienes o servicios y alcanzar sus objetivos estratégicos. Su gestión eficiente es clave para la sostenibilidad y el crecimiento.</p>
+
+        <h3>1.1. Clasificación de los Recursos</h3>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>Recursos Humanos</h4>
+                <p><strong>Definición:</strong> Son las personas que integran la organización, aportando su conocimiento, habilidades, experiencia, esfuerzo físico e intelectual, y valores. Son el motor principal de la innovación y la ejecución.</p>
+                <p><strong>Ejemplo:</strong> Un equipo de ingenieros de software desarrollando un nuevo algoritmo, el personal de producción en una fábrica de automóviles, o el equipo de ventas de una empresa tecnológica.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Recursos Materiales</h4>
+                <p><strong>Definición:</strong> Comprenden los bienes tangibles y físicos que la organización utiliza para sus operaciones. Son la infraestructura y los insumos necesarios para la producción.</p>
+                <p><strong>Ejemplo:</strong> Maquinaria industrial, edificios de oficinas, materias primas para la fabricación, vehículos de transporte, equipos de laboratorio, o los productos terminados almacenados.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Recursos Financieros</h4>
+                <p><strong>Definición:</strong> Se refieren al capital monetario en todas sus formas que la organización posee o puede obtener para financiar sus operaciones, inversiones y compromisos. Son el lubricante que permite el funcionamiento de todos los demás recursos.</p>
+                <p><strong>Ejemplo:</strong> Efectivo en caja, capital social, créditos bancarios, ingresos por ventas, inversiones en bolsa, o el presupuesto asignado a un proyecto de ingeniería.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Recursos Intangibles</h4>
+                <p><strong>Definición:</strong> Son activos no físicos pero de gran valor para la organización, que no pueden ser tocados o medidos fácilmente, pero que generan ventajas competitivas. Se dividen en legales y competitivos.</p>
+                <p><strong>Ejemplo:</strong>
+                    <ul>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Legales:</strong> Patentes de un nuevo proceso de fabricación, derechos de autor sobre un software, marcas registradas de productos, licencias y permisos operativos.</li>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Competitivos:</strong> El "know-how" (conocimiento técnico y experiencia acumulada) de un equipo de I+D, la reputación de la marca, la cultura organizacional, las bases de datos de clientes, o la lealtad de los empleados.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <h2 id="seccion-2-clasificacion-empresas">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            2. Clasificación de Empresas: Un Marco para Entender el Tejido Productivo
+        </h2>
+        <p>Las empresas pueden clasificarse de diversas maneras, lo que permite comprender su estructura, impacto y rol en la economía. Para un ingeniero, esta clasificación es útil para entender el contexto en el que opera y las particularidades de cada tipo de organización.</p>
+
+        <h3>2.1. Por su Tamaño</h3>
+        <p>La clasificación por tamaño suele basarse en el número de empleados, el volumen de ventas o el valor de sus activos. Aquí nos centraremos en el número de empleados como criterio principal, que es común en muchas regulaciones.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Empresa</th>
+                        <th>Número de Empleados (Referencia)</th>
+                        <th>Características y Ejemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Microempresa</strong></td>
+                        <td>Hasta 10 empleados</td>
+                        <td>
+                            <ul>
+                                <li>Operación a pequeña escala, a menudo familiar.</li>
+                                <li>Flexibilidad y cercanía al cliente.</li>
+                                <li>Recursos limitados.</li>
+                            </ul>
+                            <p><strong>Ejemplo:</strong> Un pequeño taller de reparación de electrónica, una consultora de ingeniería con 3-5 especialistas.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pequeña Empresa</strong></td>
+                        <td>11 a 50 empleados</td>
+                        <td>
+                            <ul>
+                                <li>Mayor estructura que la microempresa.</li>
+                                <li>Potencial de crecimiento significativo.</li>
+                                <li>Gestión más formalizada.</li>
+                            </ul>
+                            <p><strong>Ejemplo:</strong> Una empresa de desarrollo de software con un equipo de 20 programadores, una constructora local con varias cuadrillas.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mediana Empresa</strong></td>
+                        <td>51 a 250 empleados</td>
+                        <td>
+                            <ul>
+                                <li>Estructura más compleja, con departamentos.</li>
+                                <li>Acceso a mercados más amplios.</li>
+                                <li>Mayor capacidad de inversión y especialización.</li>
+                            </ul>
+                            <p><strong>Ejemplo:</strong> Una fábrica de componentes automotrices, una empresa de servicios de ingeniería con proyectos a nivel regional.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gran Empresa</strong></td>
+                        <td>Más de 250 empleados</td>
+                        <td>
+                            <ul>
+                                <li>Operaciones a gran escala, a menudo multinacionales.</li>
+                                <li>Alta complejidad organizacional y burocracia.</li>
+                                <li>Grandes volúmenes de producción y facturación.</li>
+                            </ul>
+                            <p><strong>Ejemplo:</strong> Una empresa energética global, un fabricante de aviones, una gran cadena de supermercados.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>2.2. Por su Sector Económico</h3>
+        <p>Esta clasificación se basa en la actividad principal que realiza la empresa:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Sector Primario:</strong> Actividades que extraen recursos directamente de la naturaleza.
+                <p class="italic">Ejemplo: Empresas agrícolas, ganaderas, pesqueras, mineras.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Sector Secundario (Industrial):</strong> Actividades que transforman materias primas en productos elaborados.
+                <p class="italic">Ejemplo: Fábricas de automóviles, empresas de construcción, plantas químicas, industrias textiles.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Sector Terciario (Servicios):</strong> Actividades que ofrecen servicios a personas o a otras empresas.
+                <p class="italic">Ejemplo: Bancos, hospitales, empresas de telecomunicaciones, consultoras de ingeniería, restaurantes, educación.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Sector Cuaternario:</strong> Actividades relacionadas con la investigación, el desarrollo, la innovación y la gestión de la información y el conocimiento. A menudo se considera una extensión del sector terciario.
+                <p class="italic">Ejemplo: Empresas de biotecnología, centros de investigación universitaria, empresas de inteligencia artificial, desarrollo de software avanzado.</p>
+            </li>
+        </ul>
+
+        <h3>2.3. Por la Propiedad del Capital</h3>
+        <p>Esta clasificación se refiere a quién posee la empresa:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Empresas Públicas:</strong> El capital es propiedad del Estado (nacional, provincial o municipal). Su objetivo principal no es el lucro, sino el servicio público.
+                <p class="italic">Ejemplo: Empresas de agua y saneamiento (ej. AySA en Argentina), servicios postales nacionales, empresas de energía estatales.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Empresas Privadas:</strong> El capital es propiedad de individuos o entidades privadas. Su objetivo principal es la obtención de lucro.
+                <p class="italic">Ejemplo: La mayoría de las empresas de tecnología, fabricantes de automóviles, cadenas de restaurantes, empresas de consultoría.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Empresas Mixtas:</strong> El capital es compartido entre el Estado y particulares. Combinan objetivos de servicio público con la búsqueda de eficiencia y rentabilidad.
+                <p class="italic">Ejemplo: Empresas de servicios públicos que han sido parcialmente privatizadas, donde el Estado mantiene una participación significativa.</p>
+            </li>
+        </ul>
+
+        <h3>2.4. Por su Forma Jurídica</h3>
+        <p>Se refiere a la estructura legal bajo la cual se constituye la empresa:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Empresario Individual (Autónomo/Unipersonal):</strong> Una persona física realiza una actividad económica en nombre propio, asumiendo responsabilidad ilimitada.
+                <p class="italic">Ejemplo: Un ingeniero consultor que trabaja de forma independiente.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Sociedad de Responsabilidad Limitada (SRL / S.R.L.):</strong> Los socios tienen responsabilidad limitada al capital aportado. Es una forma común para pequeñas y medianas empresas.
+                <p class="italic">Ejemplo: Una pequeña empresa de desarrollo de software fundada por dos o tres socios.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Sociedad Anónima (SA / S.A.):</strong> El capital está dividido en acciones y la responsabilidad de los socios se limita al capital que han suscrito. Es la forma más adecuada para grandes empresas y aquellas que buscan cotizar en bolsa.
+                <p class="italic">Ejemplo: Grandes corporaciones, bancos, empresas de telecomunicaciones.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Otras Formas Jurídicas:</strong>
+                <p>Existen otras estructuras legales que las empresas pueden adoptar, cada una con características específicas en cuanto a la propiedad, la responsabilidad y los objetivos. Las cooperativas son un ejemplo destacado:</p>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Cooperativas:</strong>
+                        <p><strong>Definición:</strong> Son asociaciones autónomas de personas unidas voluntariamente para satisfacer sus necesidades y aspiraciones económicas, sociales y culturales comunes a través de una empresa de propiedad conjunta y control democrático. Se basan en los principios de ayuda mutua, responsabilidad, democracia, igualdad, equidad y solidaridad.</p>
+                        <p><strong>Características Clave:</strong>
+                            <ul>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Control Democrático de los Miembros:</strong> "Una persona, un voto", independientemente del capital aportado.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Participación Económica de los Miembros:</strong> Contribuyen equitativamente al capital de su cooperativa y lo gestionan democráticamente.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Autonomía e Independencia:</strong> Son organizaciones autónomas de autoayuda, controladas por sus miembros.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Educación, Formación e Información:</strong> Las cooperativas educan a sus miembros, dirigentes electos, gerentes y empleados.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Cooperación entre Cooperativas:</strong> Trabajan conjuntamente a través de estructuras locales, nacionales, regionales e internacionales.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Interés por la Comunidad:</strong> Trabajan para el desarrollo sostenible de su comunidad.</li>
+                            </ul>
+                        </p>
+                        <p><strong>Ejemplo:</strong> Una cooperativa eléctrica rural que provee energía a sus miembros, una cooperativa de trabajo donde los empleados son también los dueños, o una cooperativa de consumo que busca mejores precios para sus asociados.</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2 id="seccion-3-principios-organizacion">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            3. Principios de la Organización: Guías para la Estructura y el Desempeño
+        </h2>
+        <p>Los principios de la organización administrativa son las directrices que fundamentan la estructura y el funcionamiento de cualquier entidad, estableciendo responsabilidades, formas de actuación y medios para el logro de objetivos.</p>
+
+        <h3>3.1. Principios Económicos</h3>
+        <p>El rol económico de una empresa en la sociedad moderna es fundamental. Consiste en:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Posibilitar el Consumo:</strong> A través de la producción de bienes y servicios que satisfacen las necesidades del mercado.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Crear y Distribuir Riqueza:</strong> Generando valor económico que se distribuye entre empleados (salarios), inversores (dividendos), proveedores y el Estado (impuestos).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Ser Agente de Desarrollo:</strong> Contribuyendo al crecimiento económico y social de individuos y comunidades.</li>
+        </ul>
+        <p><strong>Ejemplo:</strong> Una empresa de energía solar no solo produce electricidad (posibilita el consumo), sino que también genera empleos, paga impuestos y contribuye al desarrollo de tecnologías limpias, creando riqueza y desarrollo.</p>
+
+        <h3>3.2. Principios Administrativos (El Proceso Administrativo)</h3>
+        <p>Este proceso cíclico es la base de la gestión en cualquier organización:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Planificación (¿Qué se quiere hacer?):</strong> Establecer objetivos, definir estrategias y desarrollar planes de acción para alcanzarlos.
+                <p class="italic">Ejemplo: Un equipo de ingeniería decide desarrollar un nuevo producto en 12 meses, definiendo las fases y recursos necesarios.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Organización (¿Cómo se hará?):</strong> Diseñar la estructura de la empresa, asignar tareas, delegar autoridad y coordinar recursos para ejecutar los planes.
+                <p class="italic">Ejemplo: Se crea un departamento de I+D con roles definidos para cada ingeniero (diseño, prototipado, pruebas).</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Dirección (Hacer que se logren los objetivos):</strong> Liderar, motivar, comunicar y supervisar al personal para que las tareas se realicen de manera efectiva.
+                <p class="italic">Ejemplo: El gerente de proyecto motiva al equipo, resuelve conflictos y asegura que se cumplan los plazos.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Control (¿Cómo se ha realizado?):</strong> Medir el desempeño, compararlo con los estándares establecidos y tomar acciones correctivas si es necesario.
+                <p class="italic">Ejemplo: Se revisan los avances semanales del proyecto, se comparan con el cronograma y se ajustan las actividades si hay desvíos.</p>
+            </li>
+        </ul>
+
+        <h3>3.3. Principios Éticos</h3>
+        <p>La ética organizacional es crucial para la sostenibilidad y reputación de una empresa. Se enfoca en:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Determinar lo Correcto y Justo:</strong> En todas las decisiones y acciones que puedan afectar a empleados, clientes, proveedores, la comunidad o el medio ambiente.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Evitar Conductas Perjudiciales:</strong> Que puedan ir en desmedro de la moral, las utilidades, las posibilidades de promoción o la estabilidad laboral.</li>
+        </ul>
+        <p><strong>Ejemplo:</strong> Una empresa de ingeniería que se niega a utilizar materiales de baja calidad para reducir costos, priorizando la seguridad y durabilidad de sus construcciones, demuestra un fuerte principio ético.</p>
+
+        <h2 id="seccion-4-teorias-administrativas">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            4. Principales Teorías Administrativas: Evolución del Pensamiento Gerencial
+        </h2>
+        <p>La administración es una disciplina dinámica que ha evolucionado a través de diversas teorías, cada una aportando una perspectiva única sobre cómo optimizar la gestión organizacional.</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Teoría</th>
+                        <th>Representante(s)</th>
+                        <th>Énfasis Principal</th>
+                        <th>Concepto de Hombre</th>
+                        <th>Aportes Clave y Ejemplos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Científica (1903)</strong></td>
+                        <td>Frederick Taylor</td>
+                        <td>Tareas, Eficiencia en la Producción</td>
+                        <td>Homo Economicus (motivado por incentivos económicos)</td>
+                        <td>
+                            <ul>
+                                <li>Principios de planeación, preparación, control y ejecución.</li>
+                                <li>Estudio de tiempos y movimientos.</li>
+                                <li><strong>Ejemplo:</strong> La línea de montaje de Ford, donde cada trabajador realiza una tarea específica y optimizada para maximizar la producción de vehículos.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clásica (1916)</strong></td>
+                        <td>Henri Fayol</td>
+                        <td>Estructura, Organización Formal</td>
+                        <td>Homo Economicus</td>
+                        <td>
+                            <ul>
+                                <li>Funciones administrativas (planeación, organización, comando, coordinación, control).</li>
+                                <li>14 Principios de Gestión (ej. Unidad de Mando, Jerarquía).</li>
+                                <li><strong>Ejemplo:</strong> La estructura jerárquica de un ejército o una gran corporación con departamentos definidos y cadenas de mando claras.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Humanista (1932)</strong></td>
+                        <td>Elton Mayo</td>
+                        <td>Relaciones Humanas, Organización Informal</td>
+                        <td>Hombre Social (motivado por factores sociales)</td>
+                        <td>
+                            <ul>
+                                <li>Importancia de los grupos informales y la delegación de autoridad.</li>
+                                <li>Las recompensas sociales y el contenido del cargo son motivadores.</li>
+                                <li><strong>Ejemplo:</strong> Implementación de equipos de trabajo auto-gestionados en una empresa de desarrollo de software, donde la moral y la colaboración influyen directamente en la productividad.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Comportamiento (1950)</strong></td>
+                        <td>Abraham Maslow, Douglas McGregor</td>
+                        <td>Psicología Organizacional, Motivación</td>
+                        <td>Ser Individual y Social</td>
+                        <td>
+                            <ul>
+                                <li>Pirámide de Necesidades de Maslow (fisiológicas, seguridad, sociales, estima, autorrealización).</li>
+                                <li>Teoría X (control, coerción) y Teoría Y (autocontrol, creatividad) de McGregor.</li>
+                                <li><strong>Ejemplo:</strong> Un programa de beneficios para empleados que no solo cubre necesidades básicas (salario, seguro) sino que también ofrece oportunidades de crecimiento profesional y reconocimiento.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Neoclásica (1954)</strong></td>
+                        <td>Peter Drucker</td>
+                        <td>Objetivos, Dirección por Objetivos (DPO)</td>
+                        <td>Sistema Social con Objetivos Racionales</td>
+                        <td>
+                            <ul>
+                                <li>Reafirma conceptos clásicos con un enfoque en la eficiencia y los resultados.</li>
+                                <li>Integración de objetivos individuales y organizacionales.</li>
+                                <li><strong>Ejemplo:</strong> Una empresa que establece metas SMART (Específicas, Medibles, Alcanzables, Relevantes, con Plazo) para cada departamento y empleado, y los evalúa en función de su cumplimiento.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estructuralista (1947)</strong></td>
+                        <td>James Burnham</td>
+                        <td>Estructura Organizacional, Personas y Ambiente</td>
+                        <td>Ser Social (desempeña roles en varias organizaciones)</td>
+                        <td>
+                            <ul>
+                                <li>Análisis de la organización como una unidad social compleja.</li>
+                                <li>Énfasis en los niveles jerárquicos (técnico, gerencial, institucional).</li>
+                                <li><strong>Ejemplo:</strong> El estudio de cómo las diferentes jerarquías en una empresa de construcción interactúan con el entorno externo (clientes, regulaciones, proveedores) para completar un proyecto.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="seccion-5-procesos-organizacionales">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            5. Procesos Organizacionales Clave para la Identidad y Estrategia
+        </h2>
+        <p>La identidad y la dirección estratégica de una organización se construyen sobre una serie de procesos interconectados que definen su propósito, sus aspiraciones y su forma de operar.</p>
+
+        <h3>5.1. Misión, Visión y Valores</h3>
+        <p>Estos tres pilares definen la esencia de una organización:</p>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>Misión</h4>
+                <p><strong>Definición:</strong> La razón de ser de la empresa en el presente. Define qué es, qué hace y a quién sirve.</p>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Corta y Precisa:</strong> Fácil de entender.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Inspiradora:</strong> Motiva a los miembros.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Original:</strong> Refleja la singularidad de la empresa.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Dirigida al Mercado:</strong> Indica el valor para el cliente.</li>
+                </ul>
+                <p><strong>Ejemplo:</strong> La misión de Google es "Organizar la información mundial para que resulte universalmente accesible y útil."</p>
+            </div>
+            <div class="grid-item">
+                <h4>Visión</h4>
+                <p><strong>Definición:</strong> La aspiración de la empresa en el futuro. Define a dónde quiere llegar y cómo quiere ser percibida.</p>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Proyectada al Futuro:</strong> Metas a corto, mediano y largo plazo.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Clara y Realista:</strong> Comprensible y alcanzable.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Inspiradora y Consecuente:</strong> Alineada con la misión.</li>
+                </ul>
+                <p><strong>Ejemplo:</strong> La visión de Google es "Ser el motor de búsqueda más prestigioso y el más importante del mundo."</p>
+            </div>
+            <div class="grid-item">
+                <h4>Valores</h4>
+                <p><strong>Definición:</strong> El conjunto de principios, creencias y reglas que guían la conducta y las decisiones en la organización. Son el soporte de la cultura organizacional.</p>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Convincentes:</strong> Representan lo que la empresa realmente cree.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Coherentes:</strong> Alineados con los valores de los líderes y socios.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Aceptados y Cumplidos:</strong> Respetados por todos los involucrados.</li>
+                </ul>
+                <p><strong>Ejemplo:</strong> Valores de Google incluyen "Integridad" y "Utilidad". Valores de Walmart incluyen "Servicio al cliente" y "Respeto al individuo".</p>
+            </div>
+        </div>
+
+        <h3>5.2. Objetivos y Metas</h3>
+        <p>Aunque a menudo se usan indistintamente, tienen una distinción clave en la planificación:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Meta:</strong> Un logro específico y medible, a menudo a corto plazo, que contribuye a un objetivo mayor. Es un paso concreto.
+                <p class="italic">Ejemplo: "Reducir los defectos de producción en un 10% en el próximo trimestre."</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Objetivo:</strong> El resultado final deseado, la cristalización de un plan de acción. Es más amplio y a menudo a largo plazo, alcanzado a través de la suma de varias metas.
+                <p class="italic">Ejemplo: "Mejorar la calidad general del producto para aumentar la satisfacción del cliente."</p>
+            </li>
+        </ul>
+
+        <h3>5.3. Eficiencia, Eficacia y Productividad</h3>
+        <p>Conceptos fundamentales para evaluar el desempeño organizacional:</p>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>Eficiencia</h4>
+                <p><strong>Definición:</strong> Relación entre los recursos utilizados y los logros obtenidos. Se trata de "hacer bien las cosas".</p>
+                <p><strong>Ejemplo:</strong> Un ingeniero de procesos que logra producir la misma cantidad de componentes utilizando un 15% menos de materia prima o energía.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Eficacia</h4>
+                <p><strong>Definición:</strong> Nivel de consecución de metas y objetivos. Se trata de "hacer las cosas correctas" o "lograr lo propuesto".</p>
+                <p><strong>Ejemplo:</strong> Un equipo de desarrollo que completa un proyecto de software en el plazo establecido, independientemente de si utilizaron más o menos recursos de los inicialmente previstos.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Productividad</h4>
+                <p><strong>Definición:</strong> Relación entre la cantidad de bienes/servicios producidos y la cantidad de recursos utilizados. Es el resultado final de un proceso social complejo.</p>
+                <p><strong>Fórmula:</strong> Productividad = Salida / Entrada</p>
+                <p><strong>Ejemplo:</strong> Una fábrica que produce 1000 unidades de un producto con 500 horas-hombre de trabajo, tiene una productividad de 2 unidades/hora-hombre. Si luego produce 1200 unidades con las mismas horas-hombre, su productividad ha aumentado.</p>
+            </div>
+        </div>
+
+        <h3>5.4. Estrategia, Táctica y Operación</h3>
+        <p>Niveles de decisión que guían la ejecución de los planes:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Estrategia:</strong> Decisiones de alto nivel (directivos) sobre qué hacer y cómo, considerando factores internos y externos para lograr los objetivos a largo plazo.
+                <p class="italic">Ejemplo: La estrategia de una empresa automotriz es convertirse en líder mundial en vehículos eléctricos para 2035.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Táctica:</strong> Decisiones de nivel medio (ejecutivos) que detallan cómo implementar la estrategia en áreas específicas.
+                <p class="italic">Ejemplo: Tácticas incluyen invertir en una nueva planta de baterías, formar al personal en tecnología de vehículos eléctricos, y lanzar una campaña de marketing específica.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Operación/Ejecución:</strong> Decisiones y acciones de bajo nivel (personal de línea) que concretan el cumplimiento diario de las tácticas.
+                <p class="italic">Ejemplo: Los ingenieros de producción implementan nuevos procesos de ensamblaje para los vehículos eléctricos, y los equipos de ventas organizan eventos para promocionarlos.</p>
+            </li>
+        </ul>
+
+        <h3>5.5. Competitividad</h3>
+        <p>La competitividad es la capacidad de una empresa para crear e implementar estrategias que le permitan mantener o mejorar su posición en el mercado. Está influenciada por múltiples factores:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Factores Internos:</strong> Capacitación técnica del personal, eficiencia de los procesos gerenciales y administrativos, calidad del producto/servicio, capacidad de innovación.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Factores Externos:</strong> Políticas públicas, infraestructura disponible (transporte, energía), peculiaridades de la demanda y la oferta en el mercado, acceso a tecnología y productos internacionales.</li>
+        </ul>
+        <p><strong>Ejemplo:</strong> Una empresa de telecomunicaciones que invierte en tecnología 5G (factor interno) y opera en un país con políticas de fomento a la infraestructura digital (factor externo) tendrá una mayor competitividad.</p>
+
+        <h2 id="seccion-6-liderazgo">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            6. Liderazgo: Dirigiendo e Inspirando el Potencial Humano
+        </h2>
+        <p>El liderazgo es la habilidad de dirigir, influir y motivar a un grupo de personas para que trabajen con entusiasmo hacia el logro de objetivos comunes. Un líder efectivo no solo da órdenes, sino que inspira confianza, fomenta el compromiso y respalda a su equipo.</p>
+
+        <h3>6.1. Fuentes de Poder del Líder</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Poder Legítimo:</strong> Basado en la autoridad formal que proviene de la posición jerárquica en la organización.
+                <p class="italic">Ejemplo: El CEO de una empresa tiene poder legítimo por su cargo.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Poder de Recompensa:</strong> Deriva de la capacidad del líder para otorgar recompensas (económicas, promociones, reconocimiento) a quienes cumplen los objetivos.
+                <p class="italic">Ejemplo: Un gerente que ofrece un bono por el cumplimiento de metas de ventas.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Poder Coercitivo:</strong> Se basa en la capacidad del líder para aplicar castigos o sanciones por el incumplimiento de tareas o normas.
+                <p class="italic">Ejemplo: Un supervisor que amonesta a un empleado por faltas repetidas.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Poder Referente o de Referencia:</strong> Proviene del carisma, la admiración o el deseo de los seguidores de identificarse con el líder.
+                <p class="italic">Ejemplo: Un fundador de una startup que inspira a sus empleados por su visión y pasión, haciendo que quieran emularlo.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Poder de Experto:</strong> Se fundamenta en el conocimiento, las habilidades o la experiencia especializada que el líder posee y que es valorada por el equipo.
+                <p class="italic">Ejemplo: Un ingeniero senior que lidera un equipo de desarrollo debido a su profundo conocimiento técnico en un área específica.</p>
+            </li>
+        </ul>
+
+        <h3>6.2. Tipos de Liderazgo</h3>
+        <p>Existen diversos estilos de liderazgo, cada uno con sus propias características y contextos de aplicación:</p>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>Liderazgo Autocrático</h4>
+                <p><strong>Descripción:</strong> El líder toma todas las decisiones sin consultar al equipo. La autoridad es centralizada y la comunicación es unidireccional (de arriba hacia abajo).</p>
+                <p><strong>Ventajas:</strong> Rapidez en la toma de decisiones, útil en situaciones de crisis o cuando se requiere control estricto.</p>
+                <p><strong>Desventajas:</strong> Baja moral del equipo, poca innovación, dependencia del líder.</p>
+                <p><strong>Ejemplo:</strong> Un jefe de obra que da instrucciones precisas y no negociables sobre cómo y cuándo realizar cada tarea en un proyecto con plazos muy ajustados.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Liderazgo Democrático / Participativo</h4>
+                <p><strong>Descripción:</strong> El líder involucra al equipo en la toma de decisiones, fomenta la participación y escucha las opiniones. La autoridad es compartida y la comunicación es bidireccional.</p>
+                <p><strong>Ventajas:</strong> Mayor compromiso del equipo, fomento de la creatividad, mejora de la moral y el trabajo en equipo.</p>
+                <p><strong>Desventajas:</strong> Toma de decisiones más lenta, puede ser ineficiente en situaciones de emergencia.</p>
+                <p><strong>Ejemplo:</strong> Un gerente de proyecto que organiza reuniones regulares para discutir soluciones a problemas técnicos, permitiendo que los ingenieros propongan ideas y voten por la mejor opción.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Liderazgo Laissez-faire (Delegativo)</h4>
+                <p><strong>Descripción:</strong> El líder otorga un alto grado de autonomía al equipo, delegando casi todas las decisiones y la responsabilidad. Interviene solo cuando es estrictamente necesario.</p>
+                <p><strong>Ventajas:</strong> Alta autonomía y empoderamiento del equipo, ideal para equipos altamente competentes y motivados.</p>
+                <p><strong>Desventajas:</strong> Puede llevar a la falta de dirección, baja productividad en equipos inmaduros, o conflictos internos sin resolución.</p>
+                <p><strong>Ejemplo:</strong> Un director de un laboratorio de investigación que permite a sus científicos diseñar y ejecutar sus propios experimentos con mínima supervisión, confiando en su experiencia.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Liderazgo Transformacional</h4>
+                <p><strong>Descripción:</strong> El líder inspira y motiva a los empleados a ir más allá de sus intereses personales por el bien de la organización. Fomenta la innovación, el crecimiento personal y el cambio.</p>
+                <p><strong>Ventajas:</strong> Alta motivación, lealtad, creatividad y adaptabilidad al cambio. Genera un impacto duradero.</p>
+                <p><strong>Desventajas:</strong> Requiere un líder carismático y con visión, puede ser difícil de sostener a largo plazo sin resultados tangibles.</p>
+                <p><strong>Ejemplo:</strong> Un líder de una startup tecnológica que inspira a su equipo a trabajar incansablemente en un producto revolucionario, transmitiendo una visión de futuro y un propósito más allá del beneficio económico.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Liderazgo Transaccional</h4>
+                <p><strong>Descripción:</strong> Se basa en un intercambio entre el líder y los seguidores: el líder establece objetivos y recompensas por el cumplimiento, y castigos por el incumplimiento. Se enfoca en el mantenimiento del status quo.</p>
+                <p><strong>Ventajas:</strong> Claridad en roles y expectativas, eficiencia en tareas rutinarias, útil para el cumplimiento de objetivos a corto plazo.</p>
+                <p><strong>Desventajas:</strong> Poca motivación intrínseca, falta de innovación, puede generar resentimiento.</p>
+                <p><strong>Ejemplo:</strong> Un gerente de ventas que establece cuotas mensuales para su equipo y ofrece bonos por alcanzar o superar esas cuotas, mientras que los que no las cumplen enfrentan consecuencias.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Liderazgo Situacional</h4>
+                <p><strong>Descripción:</strong> El líder adapta su estilo de liderazgo (desde directivo hasta delegativo) según la madurez, competencia y motivación del equipo o del individuo para una tarea específica.</p>
+                <p><strong>Ventajas:</strong> Flexibilidad, maximiza el potencial de cada miembro, mejora la efectividad en diferentes contextos.</p>
+                <p><strong>Desventajas:</strong> Requiere alta capacidad de diagnóstico y adaptación por parte del líder, puede parecer inconsistente si no se comunica bien.</p>
+                <p><strong>Ejemplo:</strong> Un supervisor de ingeniería que es muy directivo con un ingeniero recién graduado en una tarea compleja, pero delega completamente en un ingeniero senior para un proyecto similar.</p>
+            </div>
+        </div>
+
+        <h3>6.3. Claves del Trabajo en Equipo</h3>
+        <p>El trabajo en equipo es fundamental para el éxito organizacional, y el liderazgo juega un papel crucial en su fomento:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Construir Confianza:</strong> Fomentar un ambiente donde los miembros conozcan las habilidades de los demás y se sientan seguros para colaborar.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Establecer Objetivos Comunes:</strong> Asegurar que todos persigan las mismas metas y entiendan cómo su contribución individual se alinea con la misión.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Crear Sentido de Pertenencia:</strong> Desarrollar una identidad común y valores compartidos para que los miembros se sientan parte integral del equipo.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Involucrar en Decisiones:</strong> Impulsar la generación de ideas y la participación en la toma de decisiones para aumentar el compromiso.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Entendimiento entre Partes:</strong> Fomentar la empatía y el conocimiento de las funciones de los demás miembros del equipo.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Responsabilidad y Compromiso Mutuo:</strong> Promover la idea de que los logros y fracasos son compartidos por todo el equipo.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Impulsar la Comunicación:</strong> Establecer canales adecuados para una comunicación abierta, retroalimentación constante y colaboración.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Aprovechar la Diversidad:</strong> Fomentar equipos con personalidades e intereses distintos para promover la innovación.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Celebrar los Éxitos Grupales:</strong> Reconocer y celebrar los logros del equipo para fortalecer la cohesión y la motivación.</li>
+        </ul>
+
+        <h2 id="seccion-7-inteligencia-emocional">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            7. Inteligencia Emocional: Habilidad Clave para el Liderazgo y la Colaboración
+        </h2>
+        <p>La inteligencia emocional (IE) se refiere a las capacidades y habilidades psicológicas que permiten sentir, entender, controlar y modificar las emociones propias y ajenas. Es fundamental para lograr resultados positivos en las relaciones interpersonales y en el ámbito laboral.</p>
+
+        <h3>7.1. Formas Elementales de Inteligencia Emocional</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Inteligencia Interpersonal:</strong> La habilidad de entender y comprender las emociones de los otros, y de reaccionar adecuadamente según su estado anímico. Es clave para la empatía y la construcción de relaciones.
+                <p class="italic">Ejemplo: Un líder que percibe la frustración de un miembro del equipo y ajusta su enfoque para ofrecer apoyo y soluciones.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Inteligencia Intrapersonal:</strong> La habilidad de entender y comprender las propias emociones, tenerlas en cuenta al momento de tomar decisiones y ser capaz de regularlas según la situación. Es la base del autoconocimiento y la autorregulación.
+                <p class="italic">Ejemplo: Un ingeniero que, al sentirse estresado por un plazo, es capaz de reconocer esa emoción, tomar un breve descanso y volver a la tarea con una mente más clara y enfocada.</p>
+            </li>
+        </ul>
+
+        <h3>7.2. Componentes de la Inteligencia Emocional</h3>
+        <p>Según Daniel Goleman, los principales componentes de la inteligencia emocional son:</p>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>Autoconciencia</h4>
+                <p>Capacidad de reconocer y entender las propias emociones, estados de ánimo e impulsos, así como su efecto en los demás.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Autorregulación</h4>
+                <p>Habilidad para controlar o redirigir los impulsos y estados de ánimo disruptivos, y la propensión a suspender el juicio y pensar antes de actuar.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Motivación</h4>
+                <p>Pasión por trabajar por razones que van más allá del dinero o el estatus, y una propensión a perseguir metas con energía y persistencia.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Empatía</h4>
+                <p>Capacidad de entender las emociones de los demás y de reaccionar apropiadamente a sus necesidades y preocupaciones.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Habilidades Sociales</h4>
+                <p>Dominio en el manejo de relaciones y en la construcción de redes, capacidad para encontrar puntos en común y establecer compenetración.</p>
+            </div>
+        </div>
+        <p><strong>Importancia en el Ámbito Laboral:</strong> La IE es vital para resolver conflictos, convencer a otros, trabajar en equipo, reconocer ideas ajenas y, especialmente, para que un líder gestione con éxito. La productividad aumenta cuando los miembros de un equipo utilizan correctamente la inteligencia emocional.</p>
+
+    </div>
+</body>
+</html>
