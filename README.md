@@ -74,7 +74,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 27. [Título de la Clase 27 aquí](https://link-de-tu-infografia-27-aqui.github.io/clase_gestion_27.html)
 28. [Título de la Clase 28 aquí](https://link-de-tu-infografia-28-aqui.github.io/clase_gestion_28.html)
 29. [Título de la Clase 29 aquí](https://link-de-tu-infografia-29-aqui.github.io/clase_gestion_29.html)
-30. [Título de la Clase 30 aquí](https://link-de-tu-infografia-30-aqui.github.io/clase_gestion_30.html)
+30. [Cuadros de estructuras de empresas y tipos de liderazgos](https://profedel240.github.io/clases/cuadrosliderazgoyestructuras.html)
 
 ---
 
