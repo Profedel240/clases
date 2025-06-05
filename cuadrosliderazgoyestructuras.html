@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Liderazgo y Estructuras Organizacionales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y contenedor */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+            color: #343a40; /* Gris oscuro para texto principal */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2.5rem auto; /* Aumentado el margen superior e inferior */
+            padding: 2.5rem; /* Aumentado el padding general */
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        /* Estilos de encabezados */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50; /* Azul oscuro profesional */
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2.5rem; /* Aumentado el margen inferior */
+            color: #1a2c4e; /* Azul más oscuro para el título principal */
+        }
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            border-bottom: 4px solid #3498db;
+            padding: 1.25rem 0.75rem; /* Aumentado padding */
+            margin-top: 3.5rem; /* Más espacio superior */
+            margin-bottom: 2rem; /* Más espacio inferior */
+            background-color: #e0e7ed;
+            border-radius: 0.75rem 0.75rem 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centralizar el contenido del h2 */
+            text-align: center;
+        }
+        h2 .section-icon {
+            margin-right: 0.75rem;
+            width: 2.2rem; /* Tamaño un poco más grande */
+            height: 2.2rem;
+            fill: #1a2c4e;
+        }
+        /* h3 original para secciones */
+        h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #21618C;
+            margin-top: 3.5rem; /* Aumentado el margen superior */
+            margin-bottom: 1.75rem; /* Aumentado el margen inferior */
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centralizar el contenido del h3 */
+            text-align: center;
+        }
+        h3 .heading-icon {
+            margin-right: 0.75rem;
+            width: 2rem; /* Tamaño un poco más grande */
+            height: 2rem;
+            fill: #2980b9;
+        }
+        /* Nuevo estilo para h3 dentro de td (títulos de esquema) */
+        td h3 {
+            font-size: 1.1rem; /* Más pequeño para esquema */
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            display: block; /* Asegura que ocupe su propio espacio */
+            padding: 0;
+            border: none;
+        }
+        td h3 .heading-icon {
+            display: none; /* Oculta el ícono dentro del esquema */
+        }
+
+
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        /* Estilo de lista sin asteriscos, usando íconos SVG */
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        ul li .list-icon {
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 0.75rem;
+            height: 0.75rem;
+            fill: #3498db;
+        }
+        ol {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .box-info {
+            background-color: #e8f4f8;
+            border-left: 5px solid #5dade2;
+            padding: 1.25rem 1.75rem; /* Aumentado padding */
+            border-radius: 0.5rem;
+            margin: 2rem 0; /* Aumentado margen */
+            font-size: 1rem; /* Ligeramente más grande */
+            color: #2e86c1;
+        }
+        .box-info strong {
+            color: #1a5276;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #3498db;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid-item {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e7eb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .grid-item h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para tablas */
+        .table-container {
+            margin: 2.5rem 0; /* Aumentado margen */
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #c8d8e0;
+            padding: 0.75rem 1rem; /* Ajustado padding */
+            text-align: left;
+            vertical-align: top; /* Asegura que el contenido se alinee arriba */
+        }
+        th {
+            background-color: #d1e2ed;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f7fb;
+        }
+        /* Estilos para la tabla de estructuras organizacionales */
+        .table-organizational-structures {
+            max-width: 100%; /* Aumentado el ancho máximo de la tabla para ser más legible */
+            margin: 2.5rem auto; /* Centralizar la tabla */
+        }
+        .table-organizational-structures th,
+        .table-organizational-structures td {
+            padding: 0.75rem 1rem; /* Padding cómodo para mejor lectura */
+            font-size: 0.9rem; /* Tamaño de fuente legible */
+        }
+        /* Ajuste para que la primera columna (antes la segunda) ocupe un ancho razonable */
+        .table-organizational-structures th:nth-child(1),
+        .table-organizational-structures td:nth-child(1) {
+            width: 20%; /* Ajustar ancho para el esquema + título */
+            text-align: center; /* Centrar el esquema y su título */
+        }
+        /* Ajuste para la columna de definición */
+        .table-organizational-structures th:nth-child(2),
+        .table-organizational-structures td:nth-child(2) {
+            width: 25%; /* Ajustar ancho para la definición */
+        }
+        /* Ajuste para la columna de ventajas */
+        .table-organizational-structures th:nth-child(3),
+        .table-organizational-structures td:nth-child(3) {
+            width: 20%; /* Ajustar ancho para ventajas */
+        }
+        /* Ajuste para la columna de desventajas */
+        .table-organizational-structures th:nth-child(4),
+        .table-organizational-structures td:nth-child(4) {
+            width: 20%; /* Ajustar ancho para desventajas */
+        }
+        /* Ajuste para la columna de ejemplo */
+        .table-organizational-structures th:nth-child(5),
+        .table-organizational-structures td:nth-child(5) {
+            width: 15%; /* Ajustar ancho para ejemplo */
+        }
+
+
+        /* Estilos para diagramas de estructura */
+        .structure-diagram {
+            display: flex;
+            flex-direction: column; /* Cambiado a columna para mejor control vertical */
+            justify-content: center;
+            align-items: center;
+            margin-top: 0.5rem; /* Reducido margen */
+            margin-bottom: 0.5rem; /* Reducido margen */
+            flex-wrap: wrap;
+            gap: 0.75rem; /* Espacio cómodo entre nodos */
+            min-height: 100px; /* Asegura un espacio mínimo para el diagrama */
+        }
+        .structure-node {
+            background-color: #dbe9f1;
+            border: 1px solid #a8c4d4;
+            padding: 0.5rem 0.7rem;
+            border-radius: 0.4rem;
+            font-size: 0.75rem; /* Tamaño de fuente legible */
+            text-align: center;
+            color: #2c3e50;
+            position: relative;
+            min-width: 80px; /* Ajuste para contenido */
+            max-width: 120px; /* Limitar ancho */
+            line-height: 1.2;
+        }
+        .structure-arrow {
+            width: 2px; /* Flechas verticales */
+            height: 18px; /* Altura de flechas */
+            background-color: #607d8b;
+            position: relative;
+            margin: 0 auto; /* Centralizar */
+        }
+        .structure-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: -3px;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 6px solid #607d8b;
+        }
+        .structure-horizontal-line {
+            width: 70%; /* Ajustar para que sea más centralizado */
+            height: 2px;
+            background-color: #607d8b;
+            margin: 0 auto; /* Centralizar */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .structure-horizontal-line .vertical-connector {
+            width: 2px;
+            height: 18px;
+            background-color: #607d8b;
+            position: relative;
+            margin-top: -9px; /* Para que la línea se conecte bien */
+        }
+        .structure-horizontal-line .vertical-connector::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: -3px;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 6px solid #607d8b;
+        }
+
+        .functional-structure .level {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alineado arriba para múltiples filas */
+            flex-wrap: wrap;
+            gap: 1rem; /* Aumentar el espacio entre nodos */
+        }
+        .divisional-structure .division {
+            border: 1px dashed #607d8b;
+            padding: 0.8rem;
+            border-radius: 0.6rem;
+            margin-top: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .divisional-structure .division-title {
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+            color: #2c3e50;
+            font-size: 0.8rem;
+        }
+        .divisional-structure .functional-unit {
+            background-color: #e0e7ed;
+            padding: 0.4rem 0.6rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            border: 1px solid #c8d8e0;
+        }
+        .matrix-structure .matrix-grid {
+            display: grid;
+            gap: 0px;
+            margin-top: 0.8rem;
+            border: 1px solid #c0d0d8; /* Borde para la cuadrícula */
+        }
+        .matrix-structure .row-header, .matrix-structure .col-header {
+            font-weight: bold;
+            background-color: #ebf3f7;
+            padding: 0.4rem;
+            border: 1px solid #c0d0d8;
+            text-align: center;
+            white-space: nowrap; /* Evitar que el texto se rompa */
+            font-size: 0.75rem;
+        }
+        .matrix-structure .cell {
+            background-color: #f8fbfd;
+            padding: 0.4rem;
+            border: 1px solid #c0d0d8;
+            text-align: center;
+            font-size: 0.7rem;
+        }
+        .project-structure .project-center {
+            background-color: #a8dadc;
+            color: #1d3557;
+            font-weight: bold;
+            padding: 0.8rem;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            font-size: 0.8rem;
+        }
+        .project-structure .project-center .text-xs {
+            font-size: 0.7rem;
+        }
+        .project-structure .team-member {
+            background-color: #e0e7ed;
+            border: 1px solid #c0d0d8;
+            padding: 0.4rem 0.6rem;
+            border-radius: 0.4rem;
+            font-size: 0.75rem;
+            margin-top: 0.4rem;
+        }
+        .flat-structure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem; /* Aumentado gap */
+        }
+        .flat-structure .top-management {
+            background-color: #457b9d;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.6rem;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .flat-structure .employees {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem; /* Aumentado gap */
+            margin-top: 0.8rem;
+        }
+        .flat-structure .employee-node {
+            background-color: #e0e7ed;
+            border: 1px solid #c0d0d8;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.4rem;
+            font-size: 0.8rem;
+        }
+        /* Estilos para estructura lineal */
+        .linear-structure .line {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .linear-structure .level-nodes {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Estilos para estructura de staff */
+        .staff-structure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .staff-structure .line-authority {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .staff-structure .staff-unit {
+            background-color: #fce8d7;
+            border: 1px solid #f9c784;
+            padding: 0.6rem 0.8rem;
+            border-radius: 0.4rem;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #d17a22;
+            min-width: 80px;
+            max-width: 120px;
+            margin-top: 0.4rem;
+            line-height: 1.2;
+        }
+        .staff-advisory-line-horizontal {
+            width: 40px;
+            height: 2px;
+            background-color: #f9c784;
+            position: relative;
+            margin: 0 8px;
+        }
+        .staff-advisory-line-horizontal::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: -3px;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-left: 6px solid #f9c784;
+        }
+        .staff-advisory-line-vertical {
+            width: 2px;
+            height: 25px;
+            background-color: #f9c784;
+            margin: 0 auto;
+            position: relative;
+        }
+        .staff-advisory-line-vertical::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: -3px;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 6px solid #f9c784;
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+                margin: 1.5rem auto;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1.5rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+                padding: 1rem 0.5rem;
+                margin-top: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+            h3 {
+                font-size: 1.6rem;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+            }
+            h2 .section-icon, h3 .heading-icon {
+                width: 1.5rem;
+                height: 1.5rem;
+                margin-right: 0.5rem;
+            }
+            td h3 {
+                font-size: 1rem; /* Ajuste para móvil */
+            }
+            .table-container {
+                margin: 1.5rem 0;
+            }
+            th, td {
+                padding: 0.7rem 0.8rem;
+            }
+            .structure-diagram {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+                min-height: 80px; /* Ajuste para móvil */
+            }
+            .functional-structure .level,
+            .divisional-structure .division,
+            .matrix-grid,
+            .project-structure,
+            .flat-structure .employees,
+            .linear-structure .level-nodes,
+            .staff-structure .line-authority {
+                width: 100%;
+                justify-content: center;
+                gap: 0.75rem;
+            }
+            .matrix-structure .row-header, .matrix-structure .col-header, .matrix-structure .cell {
+                font-size: 0.7rem;
+                padding: 0.3rem;
+            }
+            .structure-node, .staff-unit {
+                min-width: unset;
+                max-width: 100%;
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            .structure-horizontal-line {
+                width: 90%;
+            }
+            .table-organizational-structures {
+                max-width: 100%; /* Asegura que la tabla se adapte en móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Liderazgo y Estructuras Organizacionales</h1>
+        <p class="text-center text-lg italic text-gray-600 mb-6">Claves para Entender Cómo Funcionan los Equipos y las Empresas</p>
+
+        <p>En cualquier ámbito de la vida, desde un grupo de amigos que organiza una salida hasta una gran empresa, la forma en que las personas se organizan y son dirigidas es fundamental para el éxito. Esta infografía explora los diferentes estilos de liderazgo y las estructuras que las organizaciones adoptan para funcionar, ofreciendo una visión clara de cómo se toman las decisiones, se distribuyen las responsabilidades y se fomenta la colaboración.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Importancia Práctica:</strong> Comprender el liderazgo y las estructuras organizacionales te permitirá desenvolverte mejor en cualquier equipo o empresa. Te ayudará a entender cómo se toman las decisiones, a quién reportar, cómo colaborar de manera efectiva y cómo contribuir al éxito colectivo, sin importar tu rol.
+        </div>
+
+        <h2 id="seccion-1-tipos-liderazgo">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            1. Tipos de Liderazgo: Estilos para Dirigir e Inspirar Equipos
+        </h2>
+        <p>El liderazgo es la habilidad de influir en un grupo para que trabajen con entusiasmo hacia el logro de metas. No existe un único estilo de liderazgo "correcto"; el más efectivo depende del contexto, la tarea y la madurez del equipo.</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Liderazgo</th>
+                        <th>Descripción</th>
+                        <th>Ventajas</th>
+                        <th>Desventajas</th>
+                        <th>Ejemplo Cotidiano</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h3>
+                                <svg class="heading-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                                Autocrático
+                            </h3>
+                        </td>
+                        <td>El líder toma todas las decisiones sin consultar al equipo. La autoridad es centralizada y la comunicación es unidireccional (de arriba hacia abajo).</td>
+                        <td>Rapidez en la toma de decisiones, útil en situaciones de crisis o cuando se requiere control estricto. Eficiencia en tareas repetitivas.</td>
+                        <td>Baja moral del equipo, poca innovación, dependencia del líder. Puede generar resentimiento y rotación de personal.</td>
+                        <td>Un chef de cocina que da instrucciones exactas sobre cómo preparar cada plato sin aceptar sugerencias. Un director de orquesta que exige a los músicos seguir su partitura al pie de la letra.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>
+                                <svg class="heading-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-10H8v2h3v3h2v-3h3v-2h-3V8h-2v2z"/></svg>
+                                Democrático
+                            </h3>
+                        </td>
+                        <td>El líder involucra al equipo en la toma de decisiones, fomenta la participación y escucha las opiniones. La autoridad es compartida y la comunicación es bidireccional.</td>
+                        <td>Mayor compromiso del equipo, fomento de la creatividad, mejora de la moral y el trabajo en equipo. Soluciones más robustas al considerar diversas perspectivas.</td>
+                        <td>Toma de decisiones más lenta, puede ser ineficiente en situaciones de emergencia. Requiere un equipo maduro y proactivo.</td>
+                        <td>El capitán de un equipo de fútbol que consulta con los jugadores sobre la estrategia a seguir durante el partido. Un profesor que permite a los estudiantes elegir el tema de un proyecto en grupo y guía el proceso.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>
+                                <svg class="heading-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v-4h-2v4zm0-6h2V8h-2v2z"/></svg>
+                                Laissez-faire
+                            </h3>
+                        </td>
+                        <td>El líder otorga un alto grado de autonomía al equipo, delegando casi todas las decisiones y la responsabilidad. Interviene solo cuando es estrictamente necesario.</td>
+                        <td>Alta autonomía y empoderamiento del equipo, ideal para equipos altamente competentes y motivados. Fomenta la auto-organización y la iniciativa.</td>
+                        <td>Puede llevar a la falta de dirección, baja productividad en equipos inmaduros, o conflictos internos sin resolución. Riesgo de descoordinación si no hay una comunicación horizontal fuerte.</td>
+                        <td>El dueño de una tienda de ropa que deja a sus empleados organizar el inventario y las ventas como ellos consideren más eficiente, interviniendo solo si hay problemas graves. Un director de un equipo de desarrolladores de software experimentados que les da libertad total para elegir las herramientas y metodologías.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>
+                                <svg class="heading-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v-4h-2v4zm0-6h2V8h-2v2z"/></svg>
+                                Transformacional
+                            </h3>
+                        </td>
+                        <td>El líder inspira y motiva a los empleados a ir más allá de sus intereses personales por el bien de la organización. Fomenta la innovación, el crecimiento personal y el cambio.</td>
+                        <td>Alta motivación, lealtad, creatividad y adaptabilidad al cambio. Genera un impacto duradero en la cultura organizacional. Fomenta la visión a largo plazo.</td>
+                        <td>Requiere un líder carismático y con visión, puede ser difícil de sostener a largo plazo sin resultados tangibles. Riesgo de "burnout" si la inspiración no se acompaña de recursos.</td>
+                        <td>El director de una escuela que inspira a los profesores a adoptar nuevas metodologías de enseñanza para mejorar la experiencia de los alumnos, compartiendo una visión de educación innovadora. Un emprendedor que motiva a su pequeño equipo a trabajar largas horas por una causa social, más allá del salario.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>
+                                <svg class="heading-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v-4h-2v4zm0-6h2V8h-2v2z"/></svg>
+                                Transaccional
+                            </h3>
+                        </td>
+                        <td>Se basa en un intercambio entre el líder y los seguidores: el líder establece objetivos y recompensas por el cumplimiento, y castigos por el incumplimiento. Se enfoca en el mantenimiento del status quo.</td>
+                        <td>Claridad en roles y expectativas, eficiencia en tareas rutinarias, útil para el cumplimiento de objetivos a corto plazo. Facilita la medición del desempeño.</td>
+                        <td>Poca motivación intrínseca, falta de innovación, puede generar resentimiento. No fomenta la iniciativa ni el crecimiento personal más allá de las metas.</td>
+                        <td>Un gerente de ventas que ofrece un bono a los vendedores que superen su cuota mensual, y establece penalizaciones para quienes no la alcancen. Un supervisor de call center que premia a los agentes con mayor número de llamadas resueltas y sanciona la baja productividad.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>
+                                <svg class="heading-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v-4h-2v4zm0-6h2V8h-2v2z"/></svg>
+                                Situacional
+                            </h3>
+                        </td>
+                        <td>El líder adapta su estilo de liderazgo (desde directivo hasta delegativo) según la madurez, competencia y motivación del equipo o del individuo para una tarea específica.</td>
+                        <td>Flexibilidad, maximiza el potencial de cada miembro, mejora la efectividad en diferentes contextos. Permite un desarrollo individualizado de los empleados.</td>
+                        <td>Requiere alta capacidad de diagnóstico y adaptación por parte del líder, puede parecer inconsistente si no se comunica bien. Exige un monitoreo constante del equipo.</td>
+                        <td>Un entrenador deportivo que es muy directivo con los atletas principiantes, enseñándoles cada movimiento, pero da mucha autonomía a los atletas experimentados para que desarrollen sus propias estrategias de juego. Un gerente de tienda que supervisa de cerca a los nuevos empleados, pero confía en los veteranos para gestionar sus secciones de forma independiente.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="seccion-2-estructuras-organizacionales">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            2. Tipos de Estructuras Organizacionales: Diseñando la Empresa
+        </h2>
+        <p>La estructura organizacional define cómo se dividen, agrupan y coordinan las tareas formales de trabajo. Es el esqueleto de la empresa y afecta directamente la comunicación, la eficiencia y la adaptabilidad.</p>
+
+        <div class="table-container table-organizational-structures">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Esquema y Nombre</th>
+                        <th>Definición</th>
+                        <th>Ventajas</th>
+                        <th>Desventajas</th>
+                        <th>Ejemplo Cotidiano</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h3>Lineal</h3>
+                            <div class="structure-diagram linear-structure">
+                                <div class="line">
+                                    <div class="structure-node">Dueño / Gerente</div>
+                                    <div class="structure-arrow"></div>
+                                    <div class="structure-node">Jefe de Sección</div>
+                                    <div class="structure-arrow"></div>
+                                    <div class="level-nodes">
+                                        <div class="structure-node">Empleado A</div>
+                                        <div class="structure-node">Empleado B</div>
+                                        <div class="structure-node">Empleado C</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Caracterizada por una cadena de mando única y directa. La autoridad fluye de arriba hacia abajo, y cada empleado reporta a un solo superior. Es una estructura simple y jerárquica.</td>
+                        <td>Claridad en la autoridad y responsabilidad. Comunicación directa y rápida. Fácil de entender e implementar en organizaciones pequeñas.</td>
+                        <td>Falta de especialización (el jefe debe saber de todo). Sobrecarga de trabajo para los superiores. Rigidez y dificultad para adaptarse a cambios. Poca innovación.</td>
+                        <td>Una pequeña panadería donde el dueño es el jefe de todo, y los panaderos y vendedores le reportan directamente. Una tienda de barrio donde el encargado supervisa a todos los empleados.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>De Staff</h3>
+                            <div class="structure-diagram staff-structure">
+                                <div class="structure-node">Director General</div>
+                                <div class="structure-arrow"></div>
+                                <div class="line-authority">
+                                    <div class="flex items-center justify-center w-full">
+                                        <div class="structure-node">Gerente de Producción</div>
+                                        <div class="staff-advisory-line-horizontal"></div>
+                                        <div class="staff-unit">Asesor Legal</div>
+                                    </div>
+                                    <div class="staff-advisory-line-vertical"></div>
+                                    <div class="flex items-center justify-center w-full">
+                                        <div class="structure-node">Jefe de Operaciones</div>
+                                        <div class="staff-advisory-line-horizontal"></div>
+                                        <div class="staff-unit">Consultor de RRHH</div>
+                                    </div>
+                                    <div class="structure-arrow"></div>
+                                    <div class="structure-node">Empleados de Línea</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Combina la estructura lineal con unidades de "staff" o asesoramiento. Las unidades de línea tienen autoridad directa, mientras que las unidades de staff proporcionan apoyo, asesoramiento y servicios especializados a la línea, sin autoridad directa sobre ella.</td>
+                        <td>Permite la especialización sin romper la unidad de mando. Asesoramiento experto para la toma de decisiones. Mejora la calidad de las decisiones.</td>
+                        <td>Posibles conflictos entre línea y staff (por autoridad o implementación). Costos adicionales por personal especializado. El staff puede carecer de autoridad para implementar sus recomendaciones.</td>
+                        <td>Un hospital donde el Director Médico (línea) tiene autoridad sobre los médicos y enfermeras, pero cuenta con un equipo de asesores de calidad y seguridad del paciente (staff) que le brindan recomendaciones. Una empresa de manufactura donde el gerente de planta (línea) tiene un equipo de ingenieros de procesos (staff) que le asesoran en la optimización de la producción.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Funcional</h3>
+                            <div class="structure-diagram functional-structure">
+                                <div class="structure-node">Dirección General</div>
+                                <div class="structure-arrow"></div>
+                                <div class="level">
+                                    <div class="structure-node">Ventas</div>
+                                    <div class="structure-node">Producción</div>
+                                    <div class="structure-node">Marketing</div>
+                                    <div class="structure-node">Contabilidad</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Agrupa a los empleados por especialidades o funciones (ej., ventas, producción, marketing, contabilidad). Es una estructura común y jerárquica.</td>
+                        <td>Desarrollo de expertos en cada función. Economías de escala por especialización. Claridad en la carrera profesional dentro de cada área.</td>
+                        <td>Poca comunicación y coordinación entre departamentos. Lenta adaptación a cambios del mercado. Visión limitada del objetivo global de la empresa por parte de los empleados.</td>
+                        <td>Una fábrica de muebles con departamentos separados de "Diseño", "Corte y Ensamblaje", "Pintura y Acabado", "Ventas" y "Administración". Una escuela con departamentos de "Matemáticas", "Lengua", "Ciencias", etc.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Divisional</h3>
+                            <div class="structure-diagram divisional-structure">
+                                <div class="structure-node">Dirección General</div>
+                                <div class="structure-arrow"></div>
+                                <div class="level">
+                                    <div class="division">
+                                        <div class="division-title">División de Bebidas</div>
+                                        <div class="functional-unit">Producción</div>
+                                        <div class="functional-unit">Ventas</div>
+                                        <div class="functional-unit">Marketing</div>
+                                    </div>
+                                    <div class="division">
+                                        <div class="division-title">División de Alimentos</div>
+                                        <div class="functional-unit">Producción</div>
+                                        <div class="functional-unit">Ventas</div>
+                                        <div class="functional-unit">Marketing</div>
+                                    </div>
+                                    <div class="division">
+                                        <div class="division-title">División Internacional</div>
+                                        <div class="functional-unit">Producción</div>
+                                        <div class="functional-unit">Ventas</div>
+                                        <div class="functional-unit">Marketing</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Organiza la empresa en divisiones semi-autónomas, cada una responsable de un producto, geografía o tipo de cliente. Cada división tiene sus propias funciones (producción, ventas, marketing, etc.).</td>
+                        <td>Mayor flexibilidad y adaptabilidad a mercados específicos. Responsabilidad clara por los resultados de la división. Permite una rápida respuesta a las necesidades del cliente o del mercado.</td>
+                        <td>Duplicación de recursos y costos (cada división tiene su propio departamento de marketing, por ejemplo). Posibles conflictos entre divisiones por recursos o prioridades.</td>
+                        <td>Una gran empresa de alimentos y bebidas que tiene una "División de Lácteos", una "División de Snacks" y una "División de Jugos", cada una con sus propios equipos de producción y marketing. Una cadena de tiendas minoristas que tiene divisiones por región geográfica (ej., "Región Norte", "Región Sur"), adaptándose a las preferencias locales.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Matricial</h3>
+                            <div class="structure-diagram matrix-structure">
+                                <div class="structure-node">Dirección General</div>
+                                <div class="structure-arrow"></div>
+                                <div class="matrix-grid" style="grid-template-columns: auto repeat(3, 1fr);">
+                                    <div class="col-header">Proyecto</div>
+                                    <div class="col-header">"App Móvil"</div>
+                                    <div class="col-header">"Web"</div>
+                                    <div class="col-header">"Diseño Gráfico"</div>
+
+                                    <div class="row-header">Diseñadores</div>
+                                    <div class="cell">Diseñador A</div>
+                                    <div class="cell">Diseñador B</div>
+                                    <div class="cell">Diseñador C</div>
+
+                                    <div class="row-header">Desarrolladores</div>
+                                    <div class="cell">Desarrollador X</div>
+                                    <div class="cell">Desarrollador Y</div>
+                                    <div class="cell">Desarrollador Z</div>
+
+                                    <div class="row-header">Marketing</div>
+                                    <div class="cell">Mkt. P</div>
+                                    <div class="cell">Mkt. Q</div>
+                                    <div class="cell">Mkt. R</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Combina elementos de las estructuras funcional y divisional. Los empleados reportan a dos gerentes: uno funcional (por su especialidad) y uno de proyecto/producto/división.</td>
+                        <td>Uso eficiente de recursos especializados al compartirlos entre proyectos. Mayor flexibilidad y capacidad de respuesta a múltiples demandas. Fomenta la colaboración y el intercambio de conocimientos.</td>
+                        <td>Confusión y conflictos de autoridad por la doble subordinación. Requiere alta habilidad de comunicación y negociación. Puede generar estrés en los empleados.</td>
+                        <td>Una agencia de publicidad donde los diseñadores gráficos y redactores reportan a su jefe de departamento (ej., "Jefe de Diseño") y también a los gerentes de los diferentes proyectos de campañas publicitarias en los que están trabajando. Una empresa de desarrollo de videojuegos donde los programadores y artistas trabajan en varios títulos simultáneamente, reportando a su jefe de disciplina y al líder de cada juego.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Por Proyectos</h3>
+                            <div class="structure-diagram project-structure">
+                                <div class="project-center">
+                                    Gerente de Proyecto
+                                    <div class="text-xs mt-1">Evento Anual</div>
+                                </div>
+                                <div class="flex flex-wrap justify-center gap-2 mt-4">
+                                    <div class="team-member">Coordinador Logística</div>
+                                    <div class="team-member">Diseñador Gráfico</div>
+                                    <div class="team-member">Encargado de Ventas</div>
+                                    <div class="team-member">Equipo de Montaje</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>La organización se estructura en torno a proyectos específicos. Los equipos se forman para cada proyecto y se disuelven al finalizarlo. El gerente de proyecto tiene autoridad casi total.</td>
+                        <td>Claridad en la autoridad y responsabilidad del proyecto. Alta flexibilidad y capacidad de respuesta al proyecto. Fomenta la cohesión del equipo en torno a un objetivo común.</td>
+                        <td>Inseguridad laboral para los empleados entre proyectos. Duplicación de recursos si no se gestiona bien. Falta de desarrollo de habilidades funcionales a largo plazo. Puede llevar a la "cultura de silos" entre proyectos.</td>
+                        <td>Una empresa organizadora de eventos donde cada evento (ej., un festival de música, una conferencia corporativa) es un proyecto independiente con su propio equipo dedicado (logística, marketing, producción, etc.). Un estudio de cine que forma un equipo específico para cada película, el cual se disuelve una vez terminada la producción.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Plana / Horizontal</h3>
+                            <div class="structure-diagram flat-structure">
+                                <div class="top-management">Gerencia General</div>
+                                <div class="structure-arrow"></div>
+                                <div class="employees">
+                                    <div class="employee-node">Empleado 1</div>
+                                    <div class="employee-node">Empleado 2</div>
+                                    <div class="employee-node">Empleado 3</div>
+                                    <div class="employee-node">Empleado 4</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Minimiza los niveles jerárquicos, promoviendo la autonomía y la toma de decisiones descentralizada. Hay pocos o ningún nivel de gerencia intermedia entre el personal de línea y la alta dirección.</td>
+                        <td>Mayor agilidad y velocidad en la toma de decisiones. Empoderamiento y alta moral de los empleados. Reducción de costos administrativos. Fomenta la comunicación directa y la colaboración.</td>
+                        <td>Puede generar confusión de roles si no hay claridad en las responsabilidades. Menos oportunidades de crecimiento vertical. Difícil de escalar a medida que la empresa crece. Puede llevar a una sobrecarga de trabajo en la alta dirección.</td>
+                        <td>Una pequeña agencia de diseño gráfico donde los diseñadores trabajan directamente con los socios fundadores, sin gerentes intermedios, y tienen mucha libertad creativa. Un equipo de desarrollo de software ágil donde todos los miembros son considerados iguales y auto-organizados, reportando directamente al "Product Owner".</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>
