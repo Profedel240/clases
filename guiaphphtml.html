@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Práctica: Sistema Web con PHP y MySQL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      details summary::-webkit-details-marker {
+        display: none;
+      }
+      details summary {
+        list-style: none;
+      }
+      /* Estilo para los bloques de código PHP dentro de las explicaciones */
+      pre code {
+        font-family: 'Menlo', 'Consolas', 'Monaco', monospace;
+      }
+      /* Estilo para el código inline */
+      .inline-code {
+        background-color: #e2e8f0;
+        padding: 0.2em 0.4em;
+        border-radius: 0.3em;
+        font-size: 0.875em;
+        font-weight: 600;
+        color: #334155;
+      }
+      .table-container table thead th,
+      .table-container table tbody td {
+        border-color: #e2e8f0; /* Color de borde para las tablas */
+      }
+      /* Estilo para el gráfico de proceso */
+      .process-graph {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+      }
+      .process-step {
+        background-color: #bfdbfe; /* blue-200 */
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #1e40af; /* blue-800 */
+      }
+      .process-arrow {
+        font-size: 1.5rem;
+        color: #60a5fa; /* blue-400 */
+        margin: 0.2rem 0;
+      }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Import React from 'react'; // Not needed when using UMD build
+        // Import useState from 'react'; // Not needed when using UMD build
+
+        // Componente simple para el ícono de flecha desplegable
+        const ChevronDown = () => (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 transition-transform duration-300 group-open:rotate-180">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+        );
+
+        // Icono para conceptos clave o importantes
+        const LightbulbIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 inline-block mr-2 text-yellow-600">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 1.5a6 6 0 0 0-6-6v-1.5m6 1.5v-1.5m6 9v-1.5m6-1.5V12A9 9 0 0 0 3 12v1.5m6 9v-1.5m6 0a6 6 0 0 0 6-6V12A9 9 0 0 0 3 12v1.5m6 9a6 6 0 0 0-6-6V12A9 9 0 0 0 3 12v1.5" />
+            </svg>
+        );
+
+        // Icono para seguridad
+        const ShieldCheckIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 inline-block mr-2 text-green-600">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.47-1.678 3.121a4.5 4.5 0 0 1-5.87-1.123 4.5 4.5 0 0 0-5.869 1.123A4.5 4.5 0 0 1 3 12c0-1.268.63-2.47 1.678-3.121a4.5 4.5 0 0 1 5.87-1.123 4.5 4.5 0 0 0 5.869-1.123A4.5 4.5 0 0 1 21 12Z" />
+            </svg>
+        );
+
+
+        // Componente principal de la aplicación (la infografía)
+        const App = () => {
+          return (
+            <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 p-4 sm:p-8 font-sans antialiased">
+              {/* Tailwind CSS y fuente Inter ya están en el head del HTML */}
+
+              <div className="max-w-4xl mx-auto bg-gray-50 shadow-xl rounded-2xl p-6 sm:p-10 border border-blue-300">
+                <header className="text-center mb-10">
+                  <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                    Guía Práctica: Sistema Web con PHP y MySQL
+                  </h1>
+                  <p className="text-lg text-gray-700">
+                    Diseño e Implementación de un Sistema de Gestión de Usuarios y Stock
+                  </p>
+                  <p className="mt-4 text-base text-gray-600">
+                    En esta guía, exploraremos la arquitectura, el código y las mejores prácticas para construir un sistema web funcional.
+                  </p>
+                </header>
+
+                <section className="space-y-6">
+                  {/* Sección 1: Introducción al Proyecto */}
+                  <details className="group bg-blue-100 border border-blue-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-blue-900">
+                      <span>1. Introducción al Sistema</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-blue-300">
+                      <p className="mb-3 leading-relaxed">
+                        Este proyecto práctico tiene como objetivo construir un sistema web básico para la gestión de usuarios y un inventario de stock. Abordaremos tanto el desarrollo del <span className="font-bold">Front-end (HTML)</span>, que es lo que ve el usuario, como el <span className="font-bold">Back-end (PHP)</span>, que se encarga de la lógica del servidor y la interacción con la base de datos <span className="font-bold">MySQL</span>.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Objetivos de Aprendizaje:</h3>
+                      <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                        <li><LightbulbIcon />Diseñar interfaces de usuario simples y funcionales en HTML.</li>
+                        <li><LightbulbIcon />Comprender el flujo de datos entre el cliente (navegador) y el servidor (PHP).</li>
+                        <li><LightbulbIcon />Implementar operaciones CRUD básicas (Crear, Leer, Actualizar, Eliminar) con PHP y MySQL.</li>
+                        <li><LightbulbIcon />Aplicar principios fundamentales de seguridad web, especialmente en la gestión de credenciales.</li>
+                      </ul>
+                      <h3 className="font-bold text-gray-900 mb-2 mt-4">Componentes Clave:</h3>
+                      <div className="bg-white p-4 rounded-md shadow-sm border border-gray-200">
+                        <ul className="list-disc list-inside ml-6 space-y-1">
+                          <li><span className="font-semibold">HTML:</span> Estructura las páginas web (<span className="font-mono text-sm bg-gray-100 p-1 rounded">inicio.html</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">loguin.html</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">loguearse.html</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">formulario_modificar_producto.html</span>).</li>
+                          <li><span className="font-semibold">PHP:</span> Procesamiento del lado del servidor (<span className="font-mono text-sm bg-gray-100 p-1 rounded">guardar_usuario.php</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">verificar_usuario_basico.php</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">modificar_producto.php</span>).</li>
+                          <li><span className="font-semibold">MySQL:</span> Base de datos para almacenar usuarios y productos.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </details>
+
+                  {/* Sección 2: Configuración del Entorno y Base de Datos */}
+                  <details className="group bg-green-100 border border-green-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-green-900">
+                      <span>2. Configuración del Entorno y Base de Datos</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-green-300">
+                      <h3 className="font-bold text-gray-900 mb-2">Entorno de Desarrollo (XAMPP/WAMP):</h3>
+                      <p className="mb-3 leading-relaxed">
+                        Para ejecutar PHP y MySQL en tu máquina local, vas a necesitar un paquete de servidor web como <span className="font-bold">XAMPP</span> o <span className="font-bold">WAMP</span>. Estos paquetes instalan Apache (servidor web), MySQL (base de datos) y PHP, todo configurado para funcionar en conjunto. Asegurate de tener Apache y MySQL corriendo.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2 mt-4">Estructura de la Base de Datos (MySQL):</h3>
+                      <p className="mb-3 leading-relaxed">
+                        Usaremos una base de datos llamada <code className="inline-code">usuarios</code> (o el nombre que prefieras) y dentro de ella, dos tablas principales: <code className="inline-code">clientes</code> para los usuarios y <code className="inline-code">productos</code> para el stock. Podés crear estas tablas usando phpMyAdmin (normalmente accesible en <code className="inline-code">http://localhost/phpmyadmin/</code>).
+                      </p>
+                      <h4 className="font-semibold text-gray-900 mb-2">Tabla `clientes` (para usuarios):</h4>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`CREATE TABLE clientes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Apellido VARCHAR(100) NOT NULL,
+    Nombre VARCHAR(100) NOT NULL,
+    dni VARCHAR(20) UNIQUE NOT NULL,
+    mail VARCHAR(100) UNIQUE NOT NULL,
+    usuario VARCHAR(50) UNIQUE NOT NULL,
+    pass VARCHAR(255) NOT NULL -- Aquí se guarda el hash de la contraseña
+);`}</code></pre>
+                      <p className="leading-relaxed">
+                        <span className="font-bold text-red-700">¡Importante!</span> La columna `pass` debe ser <span className="font-mono text-sm bg-gray-100 p-1 rounded">VARCHAR(255)</span> para almacenar el hash de la contraseña de forma segura. <span className="font-mono text-sm bg-gray-100 p-1 rounded">UNIQUE</span> asegura que no haya usuarios o DNI duplicados.
+                      </p>
+                      <h4 className="font-semibold text-gray-900 mb-2 mt-4">Tabla `productos` (para stock):</h4>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`CREATE TABLE productos (
+    idprod INT AUTO_INCREMENT PRIMARY KEY,
+    marca VARCHAR(100) NOT NULL,
+    modelo VARCHAR(100) NOT NULL,
+    color VARCHAR(50),
+    stock INT NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL
+);`}</code></pre>
+                      <p className="leading-relaxed">
+                        Esta tabla almacenará la información de los productos, con <span className="font-mono text-sm bg-gray-100 p-1 rounded">idprod</span> como clave primaria.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 3: Diseño del Front-end (HTML) */}
+                  <details className="group bg-yellow-100 border border-yellow-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-yellow-900">
+                      <span>3. Diseño del Front-end (HTML)</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-yellow-300">
+                      <h3 className="font-bold text-gray-900 mb-2">Principios Generales:</h3>
+                      <ul className="list-disc list-inside ml-6 mb-3 space-y-1">
+                        <li><LightbulbIcon />Todos los archivos HTML deben incluir <code className="inline-code">&lt;meta charset="UTF-8"&gt;</code> y <code className="inline-code">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>.</li>
+                        <li><LightbulbIcon />Los formularios siempre usarán <code className="inline-code">method="POST"</code> para enviar datos sensibles al servidor.</li>
+                        <li><LightbulbIcon />Los atributos <code className="inline-code">name</code> en los campos <code className="inline-code">&lt;input&gt;</code> son cruciales, ya que PHP los usará para identificar los datos recibidos (ej. <code className="inline-code">$_POST['nombre']</code>).</li>
+                      </ul>
+
+                      <h4 className="font-semibold text-gray-900 mb-2 mt-4">3.1. <span className="font-mono text-sm bg-gray-100 p-1 rounded">inicio.html</span> (Página Principal)</h4>
+                      <p className="mb-3 leading-relaxed">
+                        Es la página de entrada del sitio. Contiene enlaces a otras secciones, incluyendo el formulario de login.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra primer Página Web</title>
+</head>
+<body>
+    <header>
+        <h1>Base de Datos 2025</h1>
+        <nav>
+            <ul>
+                <li><a href="#lista">Servicios y Productos</a></li>
+                <li><a href="#tabla">Lista de Precios</a></li>
+                <li><a href="loguin.html">Ingresar</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="inicio">...</section>
+    <section id="lista">...</section>
+    <section id="tabla">...</section>
+    <footer>...</footer>
+</body>
+</html>`}</code></pre>
+                      <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                        <li>El enlace <code className="inline-code">&lt;a href="loguin.html"&gt;Ingresar&lt;/a&gt;</code> es el punto de acceso al sistema de autenticación.</li>
+                      </ul>
+
+                      <h4 className="font-semibold text-gray-900 mb-2 mt-4">3.2. <span className="font-mono text-sm bg-gray-100 p-1 rounded">loguin.html</span> (Formulario de Inicio de Sesión)</h4>
+                      <p className="mb-3 leading-relaxed">
+                        Permite a los usuarios existentes acceder al sistema. Envía el usuario y la contraseña al script de verificación.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Básico</title>
+</head>
+<body>
+    <h2>Iniciar Sesión</h2>
+    <form action="verificar_usuario_basico.php" method="POST">
+        <label for="usuario">Usuario:</label><br>
+        <input type="text" id="usuario" name="usuario" required><br><br>
+        <label for="pass">Contraseña:</label><br>
+        <input type="password" id="pass" name="pass" required><br><br>
+        <input type="submit" value="Ingresar">
+    </form>
+    <br>
+    <a href="loguearse.html">¿No tenés cuenta? Regístrate aquí</a>
+</body>
+</html>`}</code></pre>
+                      <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                        <li><span className="font-mono text-sm bg-gray-100 p-1 rounded">action="verificar_usuario_basico.php"</span>: Es el script PHP que procesará los datos de login.</li>
+                        <li><span className="font-mono text-sm bg-gray-100 p-1 rounded">name="usuario"</span> y <span className="font-mono text-sm bg-gray-100 p-1 rounded">name="pass"</span>: Claves que PHP usará para acceder a los valores.</li>
+                        <li><span className="font-mono text-sm bg-gray-100 p-1 rounded">&lt;a href="loguearse.html"&gt;</span>: Enlace para ir al formulario de registro.</li>
+                      </ul>
+
+                      <h4 className="font-semibold text-gray-900 mb-2 mt-4">3.3. <span className="font-mono text-sm bg-gray-100 p-1 rounded">loguearse.html</span> (Formulario de Registro de Usuario)</h4>
+                      <p className="mb-3 leading-relaxed">
+                        Este formulario es para que los nuevos usuarios se creen una cuenta en el sistema.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso Usuario</title>
+</head>
+<body>
+    <form action="guardar_usuario.php" method="POST">
+        <label for="Apellido">Apellido</label>
+        <input type="text" id="Apellido" name="Apellido" required><br>
+        <label for="Nombre">Nombre</label>
+        <input type="text" id="Nombre" name="Nombre" required> <br>
+        <label for="DNI">DNI</label>
+        <input type="number" id="DNI" name="DNI" required><br>
+        <label for="Mail">Mail</label>
+        <input type="email" id="Mail" name="Mail" required> <br>
+        <label for="Usuario">Usuario</label>
+        <input type="text" id="Usuario" name="Usuario" required><br>
+        <label for="Pass">contraseña</label> 
+		<input type="password" id="Pass" name="Pass" required> <br>
+		<input type="submit" value="Guardar" name="guardar_btn"> 
+    </form>
+    <br>
+    <li><a href="inicio.html">Inicio</a></li>
+</body>
+</html>`}</code></pre>
+                      <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                        <li><span className="font-mono text-sm bg-gray-100 p-1 rounded">action="guardar_usuario.php"</span>: Script PHP para procesar el registro.</li>
+                        <li>Atributos <span className="font-mono text-sm bg-gray-100 p-1 rounded">name</span>: <span className="font-mono text-sm bg-gray-100 p-1 rounded">Apellido</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">Nombre</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">DNI</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">Mail</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">Usuario</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">Pass</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">guardar_btn</span>. Estos serán las claves en el array <span className="font-mono text-sm bg-gray-100 p-1 rounded">$_POST</span> de PHP.</li>
+                      </ul>
+
+                      <h4 className="font-semibold text-gray-900 mb-2 mt-4">3.4. <span className="font-mono text-sm bg-gray-100 p-1 rounded">formulario_modificar_producto.html</span> (Formulario de Modificación de Stock)</h4>
+                      <p className="mb-3 leading-relaxed">
+                        Formulario para actualizar los datos de un producto existente en la tabla <span className="font-mono text-sm bg-gray-100 p-1 rounded">productos</span>.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Producto - Stock</title>
+</head>
+<body>
+    <h2>Modificar Producto en Stock</h2>
+    <form action="modificar_producto.php" method="POST">
+        <p>Ingrese el ID del producto a modificar y sus nuevos datos:</p>
+        <label for="idprod">ID del Producto:</label>
+        <input type="number" id="idprod" name="idprod" required><br>
+        <label for="marca">Nueva Marca:</label>
+        <input type="text" id="marca" name="marca" required><br>
+        <label for="modelo">Nuevo Modelo:</label>
+        <input type="text" id="modelo" name="modelo" required><br>
+        <label for="color">Nuevo Color:</label>
+        <input type="text" id="color" name="color" required><br>
+        <label for="stock">Nuevo Stock:</label>
+        <input type="number" id="stock" name="stock" required><br>
+        <label for="precio">Nuevo Precio:</label>
+        <input type="number" id="precio" name="precio" step="0.01" required><br>
+        <input type="submit" value="Actualizar Producto">
+    </form>
+    <br>
+    <a href="inicio.html">Volver a la Página de Inicio</a>
+</body>
+</html>`}</code></pre>
+                      <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                        <li><span className="font-mono text-sm bg-gray-100 p-1 rounded">action="modificar_producto.php"</span>: Script PHP para procesar la actualización.</li>
+                        <li>Atributos <span className="font-mono text-sm bg-gray-100 p-1 rounded">name</span>: <span className="font-mono text-sm bg-gray-100 p-1 rounded">idprod</span> (clave para la actualización), <span className="font-mono text-sm bg-gray-100 p-1 rounded">marca</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">modelo</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">color</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">stock</span>, <span className="font-mono text-sm bg-gray-100 p-1 rounded">precio</span>.</li>
+                      </ul>
+                    </div>
+                  </details>
+
+                  {/* Sección 4: Back-end PHP: Conexión y Registro de Usuarios (`guardar_usuario.php`) */}
+                  <details className="group bg-blue-100 border border-blue-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-blue-900">
+                      <span>4. Back-end PHP: Registro de Usuarios (Altas)</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-blue-300">
+                      <h3 className="font-bold text-gray-900 mb-2">Rol de <span className="font-mono text-sm bg-gray-100 p-1 rounded">guardar_usuario.php</span>:</h3>
+                      <p className="mb-3 leading-relaxed">
+                        Este script recibe los datos del formulario de registro (<span className="font-mono text-sm bg-gray-100 p-1 rounded">loguearse.html</span>), los procesa y los inserta en la tabla <span className="font-mono text-sm bg-gray-100 p-1 rounded">clientes</span> de la base de datos <span className="font-mono text-sm bg-gray-100 p-1 rounded">usuarios</span>.
+                      </p>
+                      <h4 className="font-semibold text-gray-900 mb-2">Conceptos Clave:</h4>
+                      <ol className="list-decimal list-inside ml-6 mb-3 space-y-1">
+                        <li><LightbulbIcon />Conexión a la DB: Establece la conexión con MySQL usando <code className="inline-code">new mysqli()</code>.</li>
+                        <li><LightbulbIcon /><span className="font-mono text-sm bg-gray-100 p-1 rounded">$_POST</span>: Recoge los datos enviados desde el formulario.</li>
+                        <li><ShieldCheckIcon /><span className="font-bold text-red-700">¡CRÍTICO!</span> <code className="inline-code">password_hash($pass, PASSWORD_DEFAULT)</code>: Hashea la contraseña antes de guardarla. Nunca guardes contraseñas en texto plano.</li>
+                        <li><LightbulbIcon /><span className="font-mono text-sm bg-gray-100 p-1 rounded">INSERT INTO</span>: Sentencia SQL para añadir un nuevo registro.</li>
+                        <li><LightbulbIcon /><span className="font-mono text-sm bg-gray-100 p-1 rounded">$conn{'->'}query()</span>: Ejecuta la consulta SQL.</li>
+                        <li><LightbulbIcon /><span className="font-mono text-sm bg-gray-100 p-1 rounded">$conn{'->'}error</span>: Útil para depurar errores de la base de datos.</li>
+                        <li><LightbulbIcon /><span className="font-mono text-sm bg-gray-100 p-1 rounded">$conn{'->'}close()</span>: Cierra la conexión a la base de datos.</li>
+                      </ol>
+                      <h4 className="font-semibold text-gray-900 mb-2">Código <span className="font-mono text-sm bg-gray-100 p-1 rounded">guardar_usuario.php</span>:</h4>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// Configuración de la conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "usuarios";
+
+// Intentar conectar a la base de datos
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar si la conexión falló
+if ($conn->connect_error) {
+    die("¡Error de conexión a la base de datos! El problema es: " . $conn->connect_error);
+}
+
+// Verificar si el botón "Guardar" fue presionado
+if (isset($_POST['guardar_btn'])) {
+    // Recoger los datos enviados desde el formulario HTML
+    $apellido = $_POST['Apellido'];
+    $nombre = $_POST['Nombre'];
+    $dni = $_POST['DNI'];
+    $mail = $_POST['Mail'];
+    $usuario = $_POST['Usuario'];
+    $pass = $_POST['Pass']; // Contraseña en texto plano (temporalmente)
+
+    // ¡IMPORTANTE PARA LA SEGURIDAD! Hashear la contraseña antes de guardarla.
+    $pass_hasheada = password_hash($pass, PASSWORD_DEFAULT);
+
+    // Preparar la consulta SQL para insertar un nuevo registro
+    // Nota: Para máxima seguridad, aquí también se deberían usar sentencias preparadas.
+    // Este ejemplo usa inserción directa para ilustrar el INSERT.
+    $sql = "INSERT INTO clientes (Apellido, Nombre, dni, mail, usuario, pass) 
+            VALUES ('$apellido', '$nombre', '$dni', '$mail', '$usuario', '$pass_hasheada')";
+
+    // Ejecutar la consulta SQL
+    if ($conn->query($sql) === TRUE) {
+        echo "¡Nuevo usuario registrado con éxito en la base de datos!";
+    } else {
+        echo "Error al registrar el usuario: " . $conn->error;
+    }
+} else {
+    echo "No se recibieron datos del formulario para guardar.";
+}
+
+// Cerrar la conexión a la base de datos
+$conn->close();
+?>`}</code></pre>
+            </div>
+          </details>
+
+          {/* Sección 5: Back-end PHP: Verificación de Usuario (Login) */}
+          <details className="group bg-red-100 border border-red-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+            <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-red-900">
+              <span>5. Back-end PHP: Verificación de Usuario (Login)</span>
+              <ChevronDown />
+            </summary>
+            <div className="p-5 pt-0 text-gray-800 border-t border-red-300">
+              <h3 className="font-bold text-gray-900 mb-2">Rol de <span className="font-mono text-sm bg-gray-100 p-1 rounded">verificar_usuario_basico.php</span>:</h3>
+              <p className="mb-3 leading-relaxed">
+                Este script procesa las credenciales del formulario de login (<span className="font-mono text-sm bg-gray-100 p-1 rounded">loguin.html</span>), consulta la tabla <span className="font-mono text-sm bg-gray-100 p-1 rounded">clientes</span> y verifica si el usuario y la contraseña son correctos.
+              </p>
+              <h4 className="font-semibold text-gray-900 mb-2">Conceptos Clave:</h4>
+              <ol className="list-decimal list-inside ml-6 mb-3 space-y-1">
+                <li><LightbulbIcon /><span className="font-mono text-sm bg-gray-100 p-1 rounded">$_SERVER["REQUEST_METHOD"]</span>: Asegura que la solicitud sea POST.</li>
+                <li><ShieldCheckIcon /><span className="font-bold text-red-700">¡ESENCIAL PARA LA SEGURIDAD!</span> Sentencias Preparadas (<code className="inline-code">mysqli::prepare()</code>): Previene la Inyección SQL.</li>
+                <li><LightbulbIcon /><code className="inline-code">bind_param()</code>: Vincula variables a los marcadores de posición en la consulta preparada, definiendo sus tipos.</li>
+                <li><LightbulbIcon /><code className="inline-code">execute()</code>: Ejecuta la consulta preparada.</li>
+                <li><LightbulbIcon /><code className="inline-code">get_result()</code> y <code className="inline-code">fetch_assoc()</code>: Obtienen los resultados de la consulta (el hash de la contraseña almacenado).</li>
+                <li><ShieldCheckIcon /><span className="font-bold text-red-700">¡CRÍTICO!</span> <code className="inline-code">password_verify()</code>: Compara la contraseña ingresada con el hash almacenado de forma segura.</li>
+                <li><LightbulbIcon />Cierre de recursos: <code className="inline-code">$stmt{'->'}close()</code> y <code className="inline-code">$conn{'->'}close()</code>.</li>
+              </ol>
+              <h4 className="font-semibold text-gray-900 mb-2">Código <span className="font-mono text-sm bg-gray-100 p-1 rounded">verificar_usuario_basico.php</span>:</h4>
+              <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// Configuración de la conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "usuarios";
+
+// Intentar conectar a la base de datos
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar si la conexión falló
+if ($conn->connect_error) {
+    die("ERROR: ¡Error de conexión a la base de datos! El problema es: " . $conn->connect_error);
+}
+
+// Verificar si la solicitud HTTP es de tipo POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recoger los datos enviados desde el formulario HTML
+    $usuario_ingresado = $_POST['usuario'];
+    $pass_ingresada = $_POST['pass'];
+
+    // Preparar la consulta SQL para buscar el usuario y su contraseña (hash)
+    // Usamos una sentencia preparada para prevenir ataques de Inyección SQL.
+    $sql = "SELECT pass FROM clientes WHERE usuario = ?";
+
+    // Preparar la sentencia
+    $stmt = $conn->prepare($sql);
+    
+    // Si la preparación de la sentencia falla, mostramos un error
+    if (!$stmt) {
+        die("ERROR: Error al preparar la consulta: " . $conn->error);
+    }
+
+    // Vincular el parámetro (el usuario ingresado)
+    $stmt->bind_param("s", $usuario_ingresado); // "s" indica que el parámetro es un string
+
+    // Ejecutar la consulta
+    $stmt->execute();
+
+    // Obtener el resultado de la consulta
+    $result = $stmt->get_result();
+
+    // Verificar si se encontró el usuario
+    if ($result->num_rows > 0) {
+        // Obtener la fila de resultados (que contiene el hash de la contraseña)
+        $row = $result->fetch_assoc();
+        $hash_almacenado = $row['pass']; // El hash guardado en la DB
+
+        // Verificar la contraseña ingresada con el hash almacenado (¡seguro!)
+        if (password_verify($pass_ingresada, $hash_almacenado)) {
+            echo "RESULTADO: ¡Inicio de Sesión Exitoso! Bienvenido/a, " . htmlspecialchars($usuario_ingresado) . ".";
+            // Aquí podrías redirigir al usuario a una página de bienvenida o crear una sesión.
+        } else {
+            echo "RESULTADO: Usuario o contraseña incorrectos.";
+        }
+    } else {
+        echo "RESULTADO: Usuario o contraseña incorrectos.";
+    }
+
+    // Cerrar la sentencia preparada
+    $stmt->close();
+
+} else {
+    echo "ERROR: Por favor, accede a esta página desde el formulario de login.";
+}
+
+// Cerrar la conexión a la base de datos
+$conn->close();
+?>`}</code></pre>
+            </div>
+          </details>
+
+                  {/* Sección 6: Back-end PHP: Modificación de Stock (`modificar_producto.php`) */}
+                  <details className="group bg-teal-100 border border-teal-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-teal-900">
+                      <span>6. Back-end PHP: Modificación de Stock (UPDATE)</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-teal-300">
+                      <h3 className="font-bold text-gray-900 mb-2">Rol de <span className="font-mono text-sm bg-gray-100 p-1 rounded">modificar_producto.php</span>:</h3>
+                      <p className="mb-3 leading-relaxed">
+                        Este script recibe los nuevos datos de un producto desde el formulario (<span className="font-mono text-sm bg-gray-100 p-1 rounded">formulario_modificar_producto.html</span>) y los actualiza en la tabla <span className="font-mono text-sm bg-gray-100 p-1 rounded">productos</span> basándose en su <span className="font-mono text-sm bg-gray-100 p-1 rounded">idprod</span>.
+                      </p>
+                      <h4 className="font-semibold text-gray-900 mb-2">Conceptos Clave:</h4>
+                      <ol className="list-decimal list-inside ml-6 mb-3 space-y-1">
+                        <li><LightbulbIcon /><span className="font-mono text-sm bg-gray-100 p-1 rounded">UPDATE</span>: Sentencia SQL para modificar registros existentes.</li>
+                        <li><LightbulbIcon /><span className="font-mono text-sm bg-gray-100 p-1 rounded">WHERE idprod = ?</span>: Cláusula esencial para especificar qué registro actualizar.</li>
+                        <li><ShieldCheckIcon /><span className="font-bold text-red-700">¡OBLIGATORIO!</span> Sentencias Preparadas: También para <span className="font-mono text-sm bg-gray-100 p-1 rounded">UPDATE</span> para prevenir inyección SQL.</li>
+                        <li><LightbulbIcon /><code className="inline-code">bind_param("sssisd", ...)</code>: Definición precisa de tipos de datos para los parámetros.</li>
+                        <li><LightbulbIcon /><span className="font-mono text-sm bg-gray-100 p-1 rounded">$stmt{'->'}affected_rows</span>: Propiedad para verificar si la actualización afectó a alguna fila, indicando si el <span className="font-mono text-sm bg-gray-100 p-1 rounded">idprod</span> existía y se realizaron cambios.</li>
+                      </ol>
+                      <h4 className="font-semibold text-gray-900 mb-2">Código <span className="font-mono text-sm bg-gray-100 p-1 rounded">modificar_producto.php</span>:</h4>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// Configuración de la conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "usuarios"; // Asegúrate que sea la DB correcta
+
+// Intentar conectar a la base de datos
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar si la conexión falló
+if ($conn->connect_error) {
+    die("ERROR: ¡Error de conexión a la base de datos! El problema es: " . $conn->connect_error);
+}
+
+// Verificar si la solicitud HTTP es de tipo POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recoger los datos enviados desde el formulario HTML
+    $idprod = $_POST['idprod'];
+    $marca = $_POST['marca'];
+    $modelo = $_POST['modelo'];
+    $color = $_POST['color'];
+    $stock = $_POST['stock'];
+    $precio = $_POST['precio'];
+
+    // Preparar la consulta SQL para actualizar el producto
+    $sql = "UPDATE productos SET marca = ?, modelo = ?, color = ?, stock = ?, precio = ? WHERE idprod = ?";
+
+    // Preparar la sentencia
+    $stmt = $conn->prepare($sql);
+
+    // Si la preparación de la sentencia falla
+    if (!$stmt) {
+        die("ERROR: Error al preparar la consulta de actualización: " . $conn->error);
+    }
+
+    // Vincular los parámetros: sssisd -> string, string, string, integer, double, integer
+    $stmt->bind_param("sssisd", $marca, $modelo, $color, $stock, $precio, $idprod);
+
+    // Ejecutar la sentencia
+    if ($stmt->execute()) {
+        if ($stmt->affected_rows > 0) {
+            echo "RESULTADO: Producto con ID " . htmlspecialchars($idprod) . " actualizado con éxito.";
+        } else {
+            echo "RESULTADO: No se encontró el producto con ID " . htmlspecialchars($idprod) . " o no se realizaron cambios.";
+        }
+    } else {
+        echo "ERROR: Error al ejecutar la actualización: " . $stmt->error;
+    }
+
+    // Cerrar la sentencia preparada
+    $stmt->close();
+
+} else {
+    echo "ERROR: Por favor, accede a esta página desde el formulario de modificación.";
+}
+
+// Cerrar la conexión a la base de datos
+$conn->close();
+?>`}</code></pre>
+                    </div>
+                  </details>
+
+                  {/* Sección 7: Principios Clave de Seguridad y Buenas Prácticas */}
+                  <details className="group bg-purple-100 border border-purple-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-purple-900">
+                      <span>7. Principios Clave de Seguridad y Buenas Prácticas</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-purple-300">
+                      <h3 className="font-bold text-gray-900 mb-2">7.1. Hashing de Contraseñas: ¡Nunca en Texto Plano!</h3>
+                      <div className="bg-white p-4 rounded-md shadow-sm border border-gray-200 mb-3">
+                        <p className="mb-2 leading-relaxed">
+                          Guardar contraseñas directamente en la base de datos es un riesgo de seguridad enorme. Si la base de datos es comprometida, todas las contraseñas de tus usuarios quedarían expuestas.
+                        </p>
+                        <ol className="list-decimal list-inside ml-6 space-y-1">
+                          <li><ShieldCheckIcon />**Función <code className="inline-code">password_hash($pass, PASSWORD_DEFAULT)</code>:** Transforma la contraseña en una cadena ilegible (hash) que no se puede revertir.</li>
+                          <li><ShieldCheckIcon />**Función <code className="inline-code">password_verify($pass_ingresada, $hash_almacenado)</code>:** Compara la contraseña ingresada con el hash almacenado de forma segura, sin "deshashear" nada.</li>
+                        </ol>
+                      </div>
+                      <div className="text-center p-4 bg-gray-100 rounded-md my-4">
+                        <p className="text-gray-700 font-semibold">
+                          Diagrama Conceptual: Proceso de Hashing de Contraseñas
+                        </p>
+                        <pre className="text-sm text-left whitespace-pre-wrap">
+{`Usuario ingresa "miContraseña123"
+       |
+       V
+PHP: password_hash("miContraseña123", PASSWORD_DEFAULT)
+       |
+       V
+Se genera un HASH (ej. "$2y$10$abcdefghijklmnopqrstuvwxyz...")
+       |
+       V
+Este HASH se guarda en la base de datos (columna 'pass')`}
+                        </pre>
+                      </div>
+
+                      <h3 className="font-bold text-gray-900 mb-2 mt-4">7.2. Sentencias Preparadas: Defensa contra Inyección SQL</h3>
+                      <div className="bg-white p-4 rounded-md shadow-sm border border-gray-200 mb-3">
+                        <p className="mb-2 leading-relaxed">
+                          La Inyección SQL es un ataque donde el atacante inserta código SQL malicioso a través de las entradas del usuario. Las sentencias preparadas son la principal herramienta para prevenir esto.
+                        </p>
+                        <ol className="list-decimal list-inside ml-6 space-y-1">
+                          <li><ShieldCheckIcon />**Separación de Consulta y Datos:** La consulta se envía a la base de datos primero, y los datos se envían por separado, lo que evita que el atacante "engañe" a la base de datos para ejecutar código no deseado.</li>
+                          <li><ShieldCheckIcon />**Uso de Marcadores de Posición (<code className="inline-code">?</code>):** En lugar de insertar variables directamente en la cadena SQL.</li>
+                          <li><ShieldCheckIcon />**<code className="inline-code">bind_param()</code>:** Permite especificar el tipo de dato, lo que añade otra capa de validación.</li>
+                        </ol>
+                      </div>
+                      <h4 className="font-semibold text-gray-900 mb-2 mt-4">Cuadro Comparativo: Inyección SQL vs. Sentencias Preparadas</h4>
+                      <div className="table-container overflow-x-auto mb-3">
+                        <table className="comparison-table w-full border-collapse text-sm">
+                          <thead>
+                            <tr className="bg-gray-200">
+                              <th className="p-3 border text-left">Característica</th>
+                              <th className="p-3 border text-left">Consulta Directa (Vulnerable)</th>
+                              <th className="p-3 border text-left">Sentencia Preparada (Segura)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td className="p-3 border">Sintaxis SQL</td>
+                              <td className="p-3 border">`SELECT * FROM users WHERE user='[valor_ingresado_por_usuario]'`</td>
+                              <td className="p-3 border">`SELECT * FROM users WHERE user=?`</td>
+                            </tr>
+                            <tr>
+                              <td className="p-3 border">Manejo de Datos</td>
+                              <td className="p-3 border">Datos concatenados directamente en la consulta.</td>
+                              <td className="p-3 border">Datos enviados por separado, vinculados.</td>
+                            </tr>
+                            <tr>
+                              <td className="p-3 border">Vulnerabilidad</td>
+                              <td className="p-3 border text-red-700 font-bold">ALTA (Inyección SQL)</td>
+                              <td className="p-3 border text-green-700 font-bold">BAJA (Protección integrada)</td>
+                            </tr>
+                            <tr>
+                              <td className="p-3 border">Rendimiento</td>
+                              <td className="p-3 border">La DB analiza la consulta en cada ejecución.</td>
+                              <td className="p-3 border">La DB analiza la consulta una vez, reutiliza para múltiples ejecuciones.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <h3 className="font-bold text-gray-900 mb-2 mt-4">7.3. Saneamiento de Salida (<code className="inline-code">htmlspecialchars()</code>):</h3>
+                      <p className="mb-3 leading-relaxed">
+                        Cuando mostrás datos que provienen de la base de datos o de la entrada del usuario en tus páginas HTML, siempre debés "sanearlos" para evitar ataques de Cross-Site Scripting (XSS).
+                      </p>
+                      <ul className="list-disc list-inside ml-6 space-y-1">
+                        <li><LightbulbIcon />**Función <code className="inline-code">htmlspecialchars()</code>:** Convierte caracteres especiales HTML en entidades HTML seguras, previniendo que se interpreten como código.</li>
+                        <li>Ejemplo: <code className="inline-code">echo "Bienvenido/a, " . htmlspecialchars($usuario_ingresado) . ".";</code></li>
+                      </ul>
+
+                      <h3 className="font-bold text-gray-900 mb-2 mt-4">7.4. Manejo de Errores Controlado:</h3>
+                      <p className="mb-3 leading-relaxed">
+                        Durante el desarrollo, <code className="inline-code">die()</code> es útil, pero en producción, nunca debés mostrar mensajes de error crudos de la base de datos al usuario final. Esto podría revelar información sensible sobre tu sistema.
+                      </p>
+                      <ul className="list-disc list-inside ml-6 space-y-1">
+                        <li><LightbulbIcon />Implementá un sistema de **logging** de errores en el servidor.</li>
+                        <li><LightbulbIcon />Mostrá mensajes de error genéricos y amigables al usuario.</li>
+                      </ul>
+                    </div>
+                  </details>
+                </section>
+
+                <footer className="text-center mt-10 text-gray-600 text-sm">
+                  <p>&copy; 2025 Guía de Desarrollo Web para Ingeniería Informática. Creado para fines educativos.</p>
+                </footer>
+              </div>
+            </div>
+          );
+        };
+
+        // Renderiza el componente React en el div con id "root"
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+</
