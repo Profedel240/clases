@@ -82,8 +82,8 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 
 Aquí se listarán las infografías y apuntes relacionados con esta materia.
 
-1.  [Título de la Clase 1 aquí](https://profedel240.github.io/clases/altasphp.html)
-2.  [Título de la Clase 2 aquí](https://profedel240.github.io/clases/consultasphp.html)
+1.  [altas en php loguearse](https://profedel240.github.io/clases/altasphp.html)
+2.  [consultas en php loguin](https://profedel240.github.io/clases/consultasphp.html)
 3.  [Título de la Clase 3 aquí](https://link-de-tu-infografia-3-aqui.github.io/clase_bd_3.html)
 4.  [Título de la Clase 4 aquí](https://link-de-tu-infografia-4-aqui.github.io/clase_bd_4.html)
 5.  [Título de la Clase 5 aquí](https://link-de-tu-infografia-5-aqui.github.io/clase_bd_5.html)
