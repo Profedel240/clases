@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía PHP y Bases de Datos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+          font-family: 'Inter', sans-serif;
+        }
+        details summary::-webkit-details-marker {
+          display: none;
+        }
+        details summary {
+          list-style: none;
+        }
+        /* Estilo para los bloques de código PHP dentro de las explicaciones */
+        pre code {
+          font-family: 'Menlo', 'Consolas', 'Monaco', monospace;
+        }
+        /* Estilo para el código inline */
+        .inline-code {
+          background-color: #BFDBFE; /* blue-200 */
+          color: #1E3A8A; /* blue-900 */
+          padding: 0.2rem 0.4rem;
+          border-radius: 0.375rem; /* rounded-md */
+          font-weight: 600; /* semibold */
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Iconos simples para los desplegables
+        const ChevronDown = () => (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 transition-transform duration-300 group-open:rotate-180">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+        );
+
+        const App = () => {
+          return (
+            <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 p-4 sm:p-8 font-sans antialiased">
+              <div className="max-w-4xl mx-auto bg-gray-50 shadow-xl rounded-2xl p-6 sm:p-10 border border-blue-300">
+                <header className="text-center mb-10">
+                  <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                    PHP y Bases de Datos: Tus Primeros Pasos
+                  </h1>
+                  <p className="text-lg text-gray-700">
+                    Una guía interactiva y detallada para entender cómo PHP guarda información en MySQL.
+                  </p>
+                </header>
+
+                <section className="space-y-6">
+                  {/* Sección 1: ¿Qué es PHP y por qué lo usamos? */}
+                  <details className="group bg-blue-100 border border-blue-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-blue-900">
+                      <span>1. ¿Qué es PHP y por qué lo usamos?</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-blue-300">
+                      <p className="mb-3 leading-relaxed">
+                        PHP (Hypertext Preprocessor) es un lenguaje de programación de propósito general que se ejecuta en el <span className="font-semibold">servidor</span>. Esto significa que el código PHP no lo procesa el navegador del usuario, sino que se ejecuta en la computadora que aloja tu sitio web antes de que se envíe el resultado (generalmente HTML) al navegador. Es el "cerebro" detrás de muchas páginas web dinámicas.
+                      </p>
+                      <p className="mb-3 leading-relaxed">
+                        <span className="font-bold text-gray-900">¿Cuál es su rol principal?</span> A diferencia de HTML, CSS o JavaScript (que se ejecutan en el navegador del usuario), PHP es ideal para tareas que requieren interacción con el servidor o bases de datos.
+                      </p>
+                      <p className="mb-3 leading-relaxed">
+                        <span className="font-bold text-gray-900">¿Para qué lo usamos?</span>
+                        <ul className="list-disc ml-6 mt-2 space-y-1">
+                          <li><span className="font-semibold">Procesar formularios:</span> Recibir la información que un usuario ingresa (como nombres, correos, contraseñas) y hacer algo con ella.</li>
+                          <li><span className="font-semibold">Interactuar con bases de datos:</span> Guardar, leer, actualizar y borrar información en sistemas como MySQL, PostgreSQL, etc. Esto es fundamental para sitios con usuarios, productos, publicaciones, etc.</li>
+                          <li><span className="font-semibold">Crear contenido dinámico:</span> Generar páginas web que cambian según el usuario, la hora o la información de una base de datos (ej. un feed de noticias personalizado).</li>
+                          <li><span className="font-semibold">Gestión de sesiones y usuarios:</span> Mantener a los usuarios logueados, recordar sus preferencias.</li>
+                        </ul>
+                      </p>
+                      <p className="leading-relaxed">
+                        PHP es muy popular por su facilidad de aprendizaje, su gran comunidad y la cantidad de recursos disponibles. Es la base de sistemas como WordPress, Facebook y muchos otros.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 2: Preparando el Terreno: Conexión a la Base de Datos */}
+                  <details className="group bg-green-100 border border-green-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-green-900">
+                      <span>2. Conexión a la Base de Datos: El Primer Paso</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-green-300">
+                      <p className="mb-3 leading-relaxed">
+                        Para que PHP pueda guardar o leer datos, primero necesita establecer una "conversación" con tu base de datos. Piensa en esto como abrir una puerta y presentarte. Esta conexión se realiza usando las credenciales correctas.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Variables de Conexión:</h3>
+                      <p className="mb-3 leading-relaxed">
+                        Son la información necesaria para que PHP sepa dónde y cómo acceder a tu base de datos:
+                      </p>
+                      <ul className="list-disc ml-6 mb-3 space-y-1">
+                        <li><code className="inline-code">$servername</code>: La dirección de tu servidor de base de datos. Si estás trabajando en tu propia computadora con XAMPP o WAMP, casi siempre será <code className="inline-code">"localhost"</code>.</li>
+                        <li><code className="inline-code">$username</code>: El nombre de usuario que tiene permisos para acceder a tu base de datos. Por defecto en XAMPP/WAMP, suele ser <code className="inline-code">"root"</code>.</li>
+                        <li><code className="inline-code">$password</code>: La contraseña asociada a ese usuario. En instalaciones por defecto de XAMPP/WAMP, la contraseña de `root` suele estar <span className="font-semibold">vacía</span> (una cadena de texto vacía <code className="inline-code">""</code>).</li>
+                        <li><code className="inline-code">$dbname</code>: El nombre específico de la base de datos a la que te vas a conectar. En nuestro ejemplo, es <code className="inline-code">"usuarios"</code>. Asegúrate de que esta base de datos exista.</li>
+                      </ul>
+                      <h3 className="font-bold text-gray-900 mb-2">Estableciendo la Conexión (con `mysqli`):</h3>
+                      <p className="mb-3 leading-relaxed">
+                        En PHP, usamos la extensión <code className="inline-code">MySQLi</code> (MySQL Improved) para interactuar con bases de datos MySQL. La función <code className="inline-code">new mysqli()</code> es la que inicia la conexión.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// Configuración de la conexión
+$servername = "localhost"; 
+$username = "root";        
+$password = "";            
+$dbname = "usuarios";      
+
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Manejo de errores: si la conexión falla, muestra un mensaje y detiene el script
+if ($conn->connect_error) {
+    die("¡Error de conexión a la base de datos! El problema es: " . $conn->connect_error);
+}
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        La línea <code className="inline-code">if ($conn-&gt;connect_error)</code> es crucial. Si la conexión no se pudo establecer (por ejemplo, los datos de acceso son incorrectos, el servidor de base de datos no está corriendo), la variable <code className="inline-code">$conn-&gt;connect_error</code> contendrá un mensaje de error. La función <code className="inline-code">die()</code> detiene la ejecución del script y muestra ese mensaje, lo que es muy útil para depurar problemas de conexión.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 3: Recibiendo Datos del Formulario HTML ($_POST) */}
+                  <details className="group bg-yellow-100 border border-yellow-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-yellow-900">
+                      <span>3. Recibiendo Datos: La Magia de <code className="inline-code">$_POST</code></span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-yellow-300">
+                      <p className="mb-3 leading-relaxed">
+                        Cuando un usuario interactúa con un formulario en tu página HTML y lo "envía" (haciendo click en un botón de tipo `submit`), los datos que ingresó se envían al script PHP que especificaste en el atributo <code className="inline-code">action</code> del formulario.
+                      </p>
+                      <p className="mb-3 leading-relaxed">
+                        PHP tiene una "superglobal" llamada <code className="inline-code">$_POST</code>. Es un array asociativo (como un diccionario) que contiene todos los datos enviados desde un formulario HTML usando el método <code className="inline-code">POST</code>.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">¿Cómo funciona <code className="inline-code">$_POST</code>?</h3>
+                      <ul className="list-disc ml-6 mb-3 space-y-1">
+                        <li>Cada campo <code className="inline-code">&lt;input&gt;</code>, <code className="inline-code">&lt;textarea&gt;</code> o <code className="inline-code">&lt;select&gt;</code> en tu HTML debe tener un atributo <code className="inline-code">name</code> (ej. <code className="inline-code">name="Apellido"</code>, <code className="inline-code">name="Pass"</code>).</li>
+                        <li>PHP usa el valor de ese atributo <code className="inline-code">name</code> como la "clave" para acceder al dato en el array <code className="inline-code">$_POST</code>.</li>
+                        <li>Por ejemplo, si en tu HTML tienes <code className="inline-code">&lt;input type="text" name="Nombre"&gt;</code>, en PHP accedes a su valor con <code className="inline-code">$_POST['Nombre']</code>.</li>
+                      </ul>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// Verificamos si el formulario fue enviado a través del botón 'guardar_btn'
+if (isset($_POST['guardar_btn'])) {
+    // Recogemos los datos del formulario y los guardamos en variables PHP
+    $apellido = $_POST['Apellido'];
+    $nombre = $_POST['Nombre'];
+    $dni = $_POST['DNI'];
+    $mail = $_POST['Mail'];
+    $usuario = $_POST['Usuario'];
+    $pass = $_POST['Pass']; // ¡Importante: 'Pass' debe coincidir con el 'name' del input en HTML!
+    // ... el resto del código PHP ...
+} else {
+    // Este mensaje se muestra si el script se accede directamente sin enviar el formulario
+    echo "No se recibieron datos del formulario para guardar.";
+}
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        La función <code className="inline-code">isset()</code> se usa para verificar si una variable (o en este caso, una clave en el array <code className="inline-code">$_POST</code>) existe y no es nula. Es una buena práctica para asegurarnos de que el formulario fue enviado y el botón específico fue clickeado antes de intentar procesar los datos.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 4: Guardando la Contraseña de Forma Segura (Hasheo) */}
+                  <details className="group bg-purple-100 border border-purple-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-purple-900">
+                      <span>4. Seguridad: Hasheando la Contraseña</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-purple-300">
+                      <p className="mb-3 leading-relaxed">
+                        ¡Esta es una de las lecciones más importantes en seguridad web! <span className="font-bold text-red-700">Nunca, bajo ninguna circunstancia, debes guardar las contraseñas de tus usuarios en texto plano en la base de datos.</span> Si tu base de datos fuera comprometida, todas las contraseñas de tus usuarios quedarían expuestas, lo que podría llevar a robos de identidad y otros problemas graves.
+                      </p>
+                      <p className="mb-3 leading-relaxed">
+                        <span className="font-bold text-gray-900">¿Qué es el hasheo?</span> El hasheo es un proceso criptográfico que transforma una cadena de texto (tu contraseña) en una cadena de caracteres de longitud fija que parece aleatoria (el "hash"). Es como una "huella digital" de la contraseña.
+                      </p>
+              <ul className="list-disc ml-6 mb-3 space-y-1">
+                <li>Es un proceso <span className="font-semibold">unidireccional</span>: No se puede revertir el hash para obtener la contraseña original.</li>
+                <li>Incluso un pequeño cambio en la contraseña original produce un hash completamente diferente.</li>
+              </ul>
+              <h3 className="font-bold text-gray-900 mb-2">Función <code className="inline-code">password_hash()</code> en PHP:</h3>
+              <p className="mb-3 leading-relaxed">
+                PHP nos facilita esta tarea con la función <code className="inline-code">password_hash()</code>. Esta función es la forma recomendada de hashear contraseñas porque automáticamente agrega un "salt" (una cadena aleatoria) a la contraseña antes de hashearla, lo que hace que los ataques de "tablas arcoíris" (rainbow tables) sean inútiles.
+              </p>
+              <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+$pass = $_POST['Pass']; // La contraseña que el usuario ingresó
+$pass_hasheada = password_hash($pass, PASSWORD_DEFAULT);
+// Ahora, $pass_hasheada contiene el hash seguro de la contraseña.
+// ¡Este es el valor que guardaremos en la columna 'pass' de la base de datos!
+?>`}</code></pre>
+              <p className="leading-relaxed">
+                <code className="inline-code">PASSWORD_DEFAULT</code> le dice a PHP que use el algoritmo de hasheo más fuerte y seguro disponible en tu versión de PHP (actualmente, suele ser bcrypt). Para verificar la contraseña en el login, usarías <code className="inline-code">password_verify()</code>.
+              </p>
+            </div>
+          </details>
+
+          {/* Sección 5: La Consulta SQL: INSERT INTO */}
+          <details className="group bg-red-100 border border-red-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+            <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-red-900">
+              <span>5. La Consulta SQL: <code className="inline-code">INSERT INTO</code></span>
+              <ChevronDown />
+            </summary>
+            <div className="p-5 pt-0 text-gray-800 border-t border-red-300">
+              <p className="mb-3 leading-relaxed">
+                SQL (Structured Query Language) es el lenguaje estándar para interactuar con bases de datos relacionales como MySQL. Es el "idioma" que PHP usa para darle instrucciones a la base de datos.
+              </p>
+              <p className="mb-3 leading-relaxed">
+                Para agregar un nuevo registro (una nueva fila de datos) a una tabla en tu base de datos, utilizamos la sentencia <code className="inline-code">INSERT INTO</code>.
+              </p>
+              <h3 className="font-bold text-gray-900 mb-2">Estructura Básica de <code className="inline-code">INSERT INTO</code>:</h3>
+              <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`INSERT INTO nombre_de_tabla (columna1, columna2, columna3, ...) 
+VALUES (valor1, valor2, valor3, ...)`}</code></pre>
+              <p className="mb-3 leading-relaxed">
+                En nuestro caso, queremos insertar datos en la tabla <code className="inline-code">clientes</code> de nuestra base de datos <code className="inline-code">usuarios</code>. Es <span className="font-bold">crucial</span> que los nombres de las columnas en la consulta SQL (<code className="inline-code">Apellido</code>, <code className="inline-code">Nombre</code>, <code className="inline-code">dni</code>, etc.) coincidan <span className="font-bold">exactamente</span> (¡respetando mayúsculas y minúsculas!) con los nombres de las columnas en la estructura real de tu tabla en MySQL.
+              </p>
+              <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// La variable $sql contiene la consulta que enviaremos a la base de datos
+$sql = "INSERT INTO clientes (Apellido, Nombre, dni, mail, usuario, pass) 
+        VALUES ('$apellido', '$nombre', '$dni', '$mail', '$usuario', '$pass_hasheada')";
+?>`}</code></pre>
+              <p className="leading-relaxed">
+                Fijate cómo cada variable PHP (<code className="inline-code">$apellido</code>, <code className="inline-code">$nombre</code>, etc.) se inserta en el lugar de su columna correspondiente. Los valores de texto (strings) siempre deben ir entre comillas simples (<code className="inline-code">'valor'</code>) en SQL. Los números (como el DNI) generalmente no necesitan comillas.
+              </p>
+              <p className="mt-3 leading-relaxed font-bold text-red-700">
+                <span className="font-bold">¡Advertencia de Seguridad!</span> Aunque para esta primera clase usamos la inserción directa de variables en la consulta, en un entorno de producción, esto es <span className="font-bold">vulnerable a "Inyección SQL"</span>. Más adelante, aprenderás sobre "Sentencias Preparadas" (<code className="inline-code">prepared statements</code>) con <code className="inline-code">mysqli::prepare()</code> y <code className="inline-code">bind_param()</code>, que son la forma segura de manejar esto.
+              </p>
+            </div>
+          </details>
+
+          {/* Sección 6: Ejecutando la Consulta y Verificando el Éxito */}
+          <details className="group bg-teal-100 border border-teal-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+            <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-teal-900">
+              <span>6. ¡A Guardar! Ejecutando y Verificando</span>
+              <ChevronDown />
+            </summary>
+            <div className="p-5 pt-0 text-gray-800 border-t border-teal-300">
+              <p className="mb-3 leading-relaxed">
+                Una vez que hemos construido nuestra consulta SQL en la variable <code className="inline-code">$sql</code>, el siguiente paso es enviarla a la base de datos para que se ejecute.
+              </p>
+              <h3 className="font-bold text-gray-900 mb-2">Función <code className="inline-code">$conn-&gt;query()</code>:</h3>
+              <p className="mb-3 leading-relaxed">
+                El objeto de conexión <code className="inline-code">$conn</code> (que creamos al inicio con <code className="inline-code">new mysqli()</code>) tiene un método llamado <code className="inline-code">query()</code>. Este método toma nuestra consulta SQL como argumento y la envía a MySQL.
+              </p>
+              <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// Ejecutamos la consulta SQL y verificamos el resultado
+if ($conn->query($sql) === TRUE) {
+    echo "¡Nuevo usuario registrado con éxito en la base de datos!";
+} else {
+    // Si la consulta falla, mostramos el error específico de MySQL
+    echo "Error al registrar el usuario: " . $conn->error;
+}
+?>`}</code></pre>
+              <p className="mb-3 leading-relaxed">
+                * <code className="inline-code">$conn-&gt;query($sql)</code>: Intenta ejecutar la consulta.
+                * <code className="inline-code">=== TRUE</code>: Si la consulta se ejecutó sin problemas (por ejemplo, el usuario se insertó correctamente), el método <code className="inline-code">query()</code> devuelve el valor booleano <code className="inline-code">TRUE</code>. Usamos <code className="inline-code">===</code> (comparación estricta) para asegurarnos de que el tipo de dato también coincida.
+                * <code className="inline-code">$conn-&gt;error</code>: Si la consulta falla (por ejemplo, intentamos insertar un DNI que ya existe y la columna es `UNIQUE`, o hay un error de sintaxis en el SQL), esta propiedad del objeto <code className="inline-code">$conn</code> contendrá el mensaje de error específico que MySQL nos devuelve. Esto es fundamental para depurar.
+              </p>
+            </div>
+          </details>
+
+          {/* Sección 7: Cerrando la Conexión */}
+          <details className="group bg-blue-100 border border-blue-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+            <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-blue-900">
+              <span>7. Limpiando: Cerrando la Conexión</span>
+              <ChevronDown />
+            </summary>
+            <div className="p-5 pt-0 text-gray-800 border-t border-blue-300">
+              <p className="mb-3 leading-relaxed">
+                Una vez que PHP ha terminado todas sus operaciones con la base de datos (ya sea que haya guardado, leído o actualizado información), es una muy buena práctica <span className="font-bold">cerrar la conexión</span>.
+              </p>
+              <h3 className="font-bold text-gray-900 mb-2">¿Por qué cerrar la conexión?</h3>
+              <ul className="list-disc ml-6 mb-3 space-y-1">
+                <li><span className="font-semibold">Liberación de recursos:</span> Cada conexión a la base de datos consume memoria y recursos en el servidor. Cerrarlas ayuda a que el servidor funcione de manera más eficiente, especialmente en sitios con mucho tráfico.</li>
+                <li><span className="font-semibold">Seguridad:</span> Aunque menos crítico en este caso, cerrar conexiones reduce la ventana de oportunidad para posibles ataques si una conexión queda abierta innecesariamente.</li>
+              </ul>
+              <h3 className="font-bold text-gray-900 mb-2">Función <code className="inline-code">$conn-&gt;close()</code>:</h3>
+              <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// Al final del script, cerramos la conexión a la base de datos
+$conn->close();
+?>`}</code></pre>
+              <p className="leading-relaxed">
+                Esta línea se coloca generalmente al final de tu script PHP, después de que todas las interacciones con la base de datos han concluido. Es un paso simple pero importante para mantener tu aplicación PHP robusta y eficiente.
+              </p>
+            </div>
+          </details>
+
+          {/* Sección 8: ¡El Código Completo! */}
+          <details className="group bg-gray-100 border border-gray-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+            <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-gray-900">
+              <span>8. ¡El Código PHP Completo!</span>
+              <ChevronDown />
+            </summary>
+            <div className="p-5 pt-0 text-gray-800 border-t border-gray-300">
+              <p className="mb-3 leading-relaxed">
+                Aquí tenés el código `guardar_usuario.php` completo, uniendo todos los conceptos que vimos. Este es el archivo que se ejecuta cuando el formulario HTML es enviado.
+              </p>
+              <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// 1. Configuración de la conexión a la base de datos
+$servername = "localhost"; // Dirección del servidor de la DB
+$username = "root";        // Usuario de la DB
+$password = "";            // Contraseña del usuario de la DB
+$dbname = "usuarios";      // Nombre de la base de datos a usar
+
+// 2. Intentar conectar a la base de datos
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// 3. Verificar si la conexión falló
+if ($conn->connect_error) {
+    die("¡Error de conexión a la base de datos! El problema es: " . $conn->connect_error);
+}
+
+// 4. Verificar si el botón "Guardar" fue presionado en el formulario HTML
+if (isset($_POST['guardar_btn'])) {
+    // 5. Recoger los datos enviados desde el formulario HTML usando $_POST
+    $apellido = $_POST['Apellido'];
+    $nombre = $_POST['Nombre'];
+    $dni = $_POST['DNI'];
+    $mail = $_POST['Mail'];
+    $usuario = $_POST['Usuario'];
+    $pass = $_POST['Pass']; // El 'name' del input en HTML es 'Pass'
+
+    // 6. ¡IMPORTANTE PARA LA SEGURIDAD! Hashear la contraseña antes de guardarla.
+    $pass_hasheada = password_hash($pass, PASSWORD_DEFAULT);
+
+    // 7. Preparar la consulta SQL para insertar un nuevo registro en la tabla 'clientes'
+    // Asegúrate que los nombres de las columnas (Apellido, Nombre, dni, mail, usuario, pass)
+    // coincidan EXACTAMENTE con los de tu tabla en la base de datos.
+    $sql = "INSERT INTO clientes (Apellido, Nombre, dni, mail, usuario, pass) 
+            VALUES ('$apellido', '$nombre', '$dni', '$mail', '$usuario', '$pass_hasheada')";
+
+    // 8. Ejecutar la consulta SQL en la base de datos
+    if ($conn->query($sql) === TRUE) {
+        echo "¡Nuevo usuario registrado con éxito en la base de datos!";
+    } else {
+        // Si hay un error al ejecutar la consulta, mostramos el mensaje de error de MySQL.
+        echo "Error al registrar el usuario: " . $conn->error;
+    }
+} else {
+    // Este mensaje se muestra si el script PHP se llama directamente sin enviar el formulario,
+    // o si se presionó otro botón que no sea 'guardar_btn'.
+    echo "No se recibieron datos del formulario para guardar.";
+}
+
+// 9. Cerrar la conexión a la base de datos para liberar recursos.
+$conn->close();
+?>`}</code></pre>
+              <p className="mt-4 text-center text-gray-700 leading-relaxed">
+                ¡Con esta infografía detallada, tus alumnos tienen una base sólida y clara para entender cómo PHP interactúa con las bases de datos! Recordá siempre la importancia de la seguridad y las buenas prácticas.
+              </p>
+            </div>
+          </details>
+        </section>
+
+        <footer className="text-center mt-10 text-gray-600 text-sm">
+          <p>&copy; 2025 Infografía de PHP y Bases de Datos. Creado para fines educativos.</p>
+        </footer>
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía PHP Login y Verificación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+          font-family: 'Inter', sans-serif;
+        }
+        details summary::-webkit-details-marker {
+          display: none;
+        }
+        details summary {
+          list-style: none;
+        }
+        /* Estilo para los bloques de código PHP dentro de las explicaciones */
+        pre code {
+          font-family: 'Menlo', 'Consolas', 'Monaco', monospace;
+        }
+        /* Estilo para el código inline */
+        .inline-code {
+          background-color: #BFDBFE; /* blue-200 */
+          color: #1E3A8A; /* blue-900 */
+          padding: 0.2rem 0.4rem;
+          border-radius: 0.375rem; /* rounded-md */
+          font-weight: 600; /* semibold */
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Iconos simples para los desplegables
+        const ChevronDown = () => (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 transition-transform duration-300 group-open:rotate-180">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+        );
+
+        const App = () => {
+          return (
+            <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 p-4 sm:p-8 font-sans antialiased">
+              <div className="max-w-4xl mx-auto bg-gray-50 shadow-xl rounded-2xl p-6 sm:p-10 border border-blue-300">
+                <header className="text-center mb-10">
+                  <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                    Login y Verificación de Usuarios en PHP
+                  </h1>
+                  <p className="text-lg text-gray-700">
+                    Cómo PHP consulta la base de datos para saber si un usuario y contraseña son correctos.
+                  </p>
+                </header>
+
+                <section className="space-y-6">
+                  {/* Sección 1: Introducción al Proceso de Login */}
+                  <details className="group bg-blue-100 border border-blue-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-blue-900">
+                      <span>1. El Proceso de Login: ¿Cómo funciona?</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-blue-300">
+                      <p className="mb-3 leading-relaxed">
+                        Cuando un usuario intenta iniciar sesión en una página web, el proceso no es tan simple como comparar directamente el usuario y la contraseña ingresados con lo que está guardado en la base de datos. ¡Hay pasos de seguridad muy importantes!
+                      </p>
+                      <p className="mb-3 leading-relaxed">
+                        <span className="font-bold text-gray-900">Objetivo:</span> Verificar si el "usuario" existe y si la "contraseña" que ingresó es la correcta para ese usuario, sin exponer la contraseña real.
+                      </p>
+                      <p className="mb-3 leading-relaxed">
+                        Este proceso involucra:
+                        <ul className="list-disc ml-6 mt-2 space-y-1">
+                          <li>Recibir los datos del formulario (usuario y contraseña).</li>
+                          <li>Buscar al usuario en la base de datos.</li>
+                          <li>Comparar la contraseña ingresada con el hash (versión segura) de la contraseña guardada.</li>
+                          <li>Dar una respuesta al usuario (éxito o error).</li>
+                        </ul>
+                      </p>
+                      <p className="leading-relaxed">
+                        La seguridad es la prioridad número uno en este proceso, por eso usaremos "sentencias preparadas" y funciones de hasheo.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 2: Recibiendo Datos del Formulario HTML ($_POST) */}
+                  <details className="group bg-yellow-100 border border-yellow-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-yellow-900">
+                      <span>2. Recibiendo Datos del Formulario: <code className="inline-code">$_POST</code></span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-yellow-300">
+                      <p className="mb-3 leading-relaxed">
+                        Al igual que en el registro, cuando el usuario envía el formulario de login, PHP recolecta los datos ingresados en la superglobal <code className="inline-code">$_POST</code>.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Cómo Acceder a los Datos:</h3>
+                      <ul className="list-disc ml-6 mb-3 space-y-1">
+                        <li>El formulario HTML (`login_basico.html`) tiene campos con <code className="inline-code">name="usuario"</code> y <code className="inline-code">name="pass"</code>.</li>
+                        <li>En PHP, accedemos a esos valores usando <code className="inline-code">$_POST['usuario']</code> y <code className="inline-code">$_POST['pass']</code>.</li>
+                      </ul>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// Verificamos que la solicitud sea de tipo POST (viene del formulario)
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $usuario_ingresado = $_POST['usuario']; // Valor del campo 'usuario' del HTML
+    $pass_ingresada = $_POST['pass'];     // Valor del campo 'pass' del HTML
+    // ...
+}
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        La condición <code className="inline-code">$_SERVER["REQUEST_METHOD"] == "POST"</code> es una buena práctica para asegurarnos de que el script solo procese datos cuando el formulario fue enviado correctamente, y no cuando alguien intenta acceder a la página PHP directamente.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 3: La Consulta SQL para Buscar (SELECT y WHERE) */}
+                  <details className="group bg-red-100 border border-red-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-red-900">
+                      <span>3. La Consulta SQL: <code className="inline-code">SELECT</code> y <code className="inline-code">WHERE</code></span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-red-300">
+                      <p className="mb-3 leading-relaxed">
+                        Para verificar un usuario, primero necesitamos buscarlo en nuestra tabla de `clientes`. Usamos la sentencia SQL <code className="inline-code">SELECT</code> para obtener datos y <code className="inline-code">WHERE</code> para filtrar por una condición.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Estructura Básica:</h3>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`SELECT columna1, columna2 FROM nombre_tabla WHERE condicion;`}</code></pre>
+                      <p className="mb-3 leading-relaxed">
+                        En nuestro caso, queremos obtener la contraseña (hash) de la columna `pass` para el usuario que se ingresó.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// Solo necesitamos la columna 'pass' para verificar la contraseña
+$sql = "SELECT pass FROM clientes WHERE usuario = ?";
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        Fíjate en el <code className="inline-code">?</code>. Este es un <span className="font-bold">marcador de posición</span>. No ponemos el nombre de usuario directamente aquí, porque eso podría abrir la puerta a ataques de "Inyección SQL". En su lugar, usaremos "sentencias preparadas" para insertar el valor de forma segura.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 4: Sentencias Preparadas (Parte 1: prepare() y bind_param()) */}
+                  <details className="group bg-green-100 border border-green-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-green-900">
+                      <span>4. Sentencias Preparadas (Parte 1): <code className="inline-code">prepare()</code> y <code className="inline-code">bind_param()</code></span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-green-300">
+                      <p className="mb-3 leading-relaxed">
+                        Las sentencias preparadas son una característica de seguridad fundamental en PHP para interactuar con bases de datos. Protegen tu aplicación de la <span className="font-bold text-red-700">Inyección SQL</span>, un tipo de ataque donde un usuario malintencionado puede manipular tus consultas a la base de datos.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Paso 1: Preparar la Sentencia con <code className="inline-code">$conn-&gt;prepare($sql)</code></h3>
+                      <p className="mb-3 leading-relaxed">
+                        Esta función le dice a la base de datos: "Aquí tengo una consulta que voy a ejecutar varias veces, y tiene marcadores de posición para datos. ¡Prepárate para recibir esos datos de forma segura!"
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+$stmt = $conn->prepare($sql); // $sql es "SELECT pass FROM clientes WHERE usuario = ?"
+
+// Verificamos si la preparación fue exitosa
+if (!$stmt) {
+    die("ERROR: Error al preparar la consulta: " . $conn->error);
+}
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        <code className="inline-code">$stmt</code> es ahora un "objeto de sentencia preparada". Si la preparación falla (ej. error de sintaxis en `$sql`), <code className="inline-code">$stmt</code> será `false`.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Paso 2: Vincular Parámetros con <code className="inline-code">$stmt-&gt;bind_param("tipos", $variable1, ...)</code></h3>
+                      <p className="mb-3 leading-relaxed">
+                        Aquí le decimos a la sentencia preparada qué valor va en cada marcador de posición (`?`) y qué tipo de dato es.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+$stmt->bind_param("s", $usuario_ingresado); 
+// "s" indica que $usuario_ingresado es un STRING (cadena de texto)
+// Si tuviéramos más '?', pondríamos más letras y variables aquí.
+// Ej: "si" para string y integer
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        Los tipos de datos más comunes son:
+                        <ul className="list-disc ml-6 mt-2 space-y-1">
+                          <li><code className="inline-code">s</code>: string (cadena de texto)</li>
+                          <li><code className="inline-code">i</code>: integer (número entero)</li>
+                          <li><code className="inline-code">d</code>: double (número decimal)</li>
+                        </ul>
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 5: Sentencias Preparadas (Parte 2: execute() y get_result()) */}
+                  <details className="group bg-teal-100 border border-teal-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-teal-900">
+                      <span>5. Sentencias Preparadas (Parte 2): <code className="inline-code">execute()</code> y <code className="inline-code">get_result()</code></span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-teal-300">
+                      <p className="mb-3 leading-relaxed">
+                        Después de preparar la consulta y vincular los datos, es hora de ejecutarla y obtener los resultados.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Paso 3: Ejecutar la Sentencia con <code className="inline-code">$stmt-&gt;execute()</code></h3>
+                      <p className="mb-3 leading-relaxed">
+                        Esta función envía la consulta preparada a la base de datos con los valores ya vinculados de forma segura.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+$stmt->execute(); // La consulta se ejecuta en la DB
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        Si la ejecución es exitosa, la base de datos procesa la consulta (en nuestro caso, busca el usuario).
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Paso 4: Obtener el Resultado con <code className="inline-code">$stmt-&gt;get_result()</code></h3>
+                      <p className="mb-3 leading-relaxed">
+                        Una vez ejecutada la consulta <code className="inline-code">SELECT</code>, necesitamos obtener las filas de datos que la base de datos nos devuelve.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+$result = $stmt->get_result(); // $result ahora contiene las filas encontradas
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        <code className="inline-code">$result</code> es un objeto que representa el conjunto de resultados de la consulta. Aún no son los datos en sí, sino una forma de acceder a ellos.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 6: Verificando el Resultado (num_rows, fetch_assoc()) */}
+                  <details className="group bg-purple-100 border border-purple-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-purple-900">
+                      <span>6. Verificando el Resultado: <code className="inline-code">num_rows</code> y <code className="inline-code">fetch_assoc()</code></span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-purple-300">
+                      <p className="mb-3 leading-relaxed">
+                        Una vez que tenemos el objeto <code className="inline-code">$result</code>, necesitamos saber si se encontró al usuario y, si es así, obtener su información.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Contando Filas con <code className="inline-code">$result-&gt;num_rows</code>:</h3>
+                      <p className="mb-3 leading-relaxed">
+                        Esta propiedad nos dice cuántas filas (usuarios) encontró la consulta. Si es <code className="inline-code">&gt; 0</code>, significa que el usuario existe.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+if ($result->num_rows > 0) { // Corregido: > 0
+    // El usuario fue encontrado en la base de datos
+    // Ahora necesitamos obtener sus datos
+} else {
+    // No se encontró ningún usuario con ese nombre
+    echo "Usuario o contraseña incorrectos.";
+}
+?>`}</code></pre>
+                      <h3 className="font-bold text-gray-900 mb-2">Obteniendo la Fila de Datos con <code className="inline-code">$result-&gt;fetch_assoc()</code>:</h3>
+                      <p className="mb-3 leading-relaxed">
+                        Si se encontró el usuario, esta función extrae la primera fila de resultados como un array asociativo (donde las claves son los nombres de las columnas).
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+$row = $result->fetch_assoc(); // $row es un array: ['pass' => 'el_hash_de_la_contraseña']
+$hash_almacenado = $row['pass']; // Obtenemos el hash de la columna 'pass'
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        Ahora tenemos el hash de la contraseña que está guardado en la base de datos, listo para compararlo con la contraseña que el usuario ingresó.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 7: Verificación Segura de Contraseña (password_verify()) */}
+                  <details className="group bg-red-100 border border-red-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-red-900">
+                      <span>7. Verificación Segura: <code className="inline-code">password_verify()</code></span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-red-300">
+                      <p className="mb-3 leading-relaxed">
+                        ¡Este es el paso más importante para la seguridad del login! <span className="font-bold text-red-700">Nunca compares la contraseña ingresada directamente con el hash almacenado.</span> La función <code className="inline-code">password_verify()</code> se encarga de esto de forma segura.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Función <code className="inline-code">password_verify($password_ingresada, $hash_almacenado)</code>:</h3>
+                      <ul className="list-disc ml-6 mb-3 space-y-1">
+                        <li>Toma la contraseña en texto plano que el usuario ingresó.</li>
+                        <li>Toma el hash de la contraseña que obtuvimos de la base de datos.</li>
+                        <li>Internamente, <code className="inline-code">password_verify()</code> hashea la contraseña ingresada usando el mismo "salt" y algoritmo que se usó cuando se guardó.</li>
+                        <li>Luego, compara estos dos hashes.</li>
+                        <li>Devuelve <code className="inline-code">TRUE</code> si coinciden, y <code className="inline-code">FALSE</code> si no.</li>
+                      </ul>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// $pass_ingresada viene del formulario
+// $hash_almacenado viene de la base de datos
+if (password_verify($pass_ingresada, $hash_almacenado)) {
+    echo "¡Inicio de Sesión Exitoso!"; // ¡Contraseña correcta!
+} else {
+    echo "Usuario o contraseña incorrectos."; // Contraseña incorrecta
+}
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        De esta manera, la contraseña real nunca se "deshashea" ni se expone, manteniendo la seguridad de las credenciales de tus usuarios.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 8: Cerrando la Conexión y Sentencia */}
+                  <details className="group bg-blue-100 border border-blue-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-blue-900">
+                      <span>8. Limpiando: Cerrando Sentencia y Conexión</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-blue-300">
+                      <p className="mb-3 leading-relaxed">
+                        Al igual que cerramos la conexión a la base de datos, es una buena práctica cerrar también la sentencia preparada una vez que ya no la necesitamos. Esto libera recursos del servidor de la base de datos.
+                      </p>
+                      <h3 className="font-bold text-gray-900 mb-2">Cerrar Sentencia con <code className="inline-code">$stmt-&gt;close()</code>:</h3>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+$stmt->close(); // Cierra la sentencia preparada
+?>`}</code></pre>
+                      <h3 className="font-bold text-gray-900 mb-2">Cerrar Conexión con <code className="inline-code">$conn-&gt;close()</code>:</h3>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+$conn->close(); // Cierra la conexión principal a la base de datos
+?>`}</code></pre>
+                      <p className="leading-relaxed">
+                        Ambas líneas se colocan al final del script PHP, una vez que todas las operaciones de base de datos han terminado. Es una práctica de "limpieza" que ayuda a mantener tu aplicación eficiente y robusta.
+                      </p>
+                    </div>
+                  </details>
+
+                  {/* Sección 9: ¡El Código PHP Completo! */}
+                  <details className="group bg-gray-100 border border-gray-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                    <summary className="flex justify-between items-center p-5 cursor-pointer text-xl font-bold text-gray-900">
+                      <span>9. ¡El Código PHP Completo de Login!</span>
+                      <ChevronDown />
+                    </summary>
+                    <div className="p-5 pt-0 text-gray-800 border-t border-gray-300">
+                      <p className="mb-3 leading-relaxed">
+                        Aquí tienes el código `verificar_usuario_basico.php` completo, uniendo todos los conceptos que vimos para el proceso de login.
+                      </p>
+                      <pre className="bg-gray-800 text-white p-3 rounded-md text-sm overflow-x-auto mb-3"><code>{`<?php
+// Incluimos estilos CSS directamente para esta demostración.
+// En una aplicación real, irían en un archivo .css separado.
+echo "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'><title>Resultado Login</title>";
+echo "<style>
+    body { font-family: 'Inter', sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; color: #333; }
+    .login-container { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: center; border: 1px solid #e0e0e0; }
+    h2 { color: #333; margin-bottom: 25px; font-size: 1.8em; font-weight: 600; }
+    p.message { margin-top: 20px; font-weight: bold; padding: 10px; border-radius: 5px; }
+    p.success { color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; }
+    p.error { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; }
+    a { color: #007bff; text-decoration: none; margin-top: 15px; display: block; font-size: 0.9em; }
+    a:hover { text-decoration: underline; }
+</style></head><body><div class='login-container'>";
+
+// 1. Configuración de la conexión a la base de datos
+$servername = "localhost"; 
+$username = "root";        
+$password = "";            
+$dbname = "usuarios";      
+
+// 2. Intentar conectar a la base de datos
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// 3. Verificar si la conexión falló
+if ($conn->connect_error) {
+    die("<p class='message error'>¡Error de conexión a la base de datos! El problema es: " . $conn->connect_error . "</p>");
+}
+
+// 4. Verificar si la solicitud HTTP es de tipo POST (viene del formulario)
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // 5. Recoger los datos enviados desde el formulario HTML
+    $usuario_ingresado = $_POST['usuario'];
+    $pass_ingresada = $_POST['pass'];
+
+    // 6. Preparar la consulta SQL para buscar el usuario y su contraseña (hash)
+    $sql = "SELECT pass FROM clientes WHERE usuario = ?";
+
+    // 7. Preparar la sentencia (¡fundamental para la seguridad!)
+    $stmt = $conn->prepare($sql);
+    
+    // Si la preparación falla, mostramos un error
+    if (!$stmt) {
+        die("<p class='message error'>Error al preparar la consulta: " . $conn->error . "</p>");
+    }
+
+    // 8. Vincular el parámetro (el usuario ingresado)
+    $stmt->bind_param("s", $usuario_ingresado); // "s" = string
+
+    // 9. Ejecutar la consulta
+    $stmt->execute();
+
+    // 10. Obtener el resultado de la consulta
+    $result = $stmt->get_result();
+
+    // 11. Verificar si se encontró el usuario
+    if ($result->num_rows > 0) {
+        // Obtener la fila de resultados (que contiene el hash de la contraseña)
+        $row = $result->fetch_assoc();
+        $hash_almacenado = $row['pass']; // El hash guardado en la DB
+
+        // 12. Verificar la contraseña ingresada con el hash almacenado (¡seguro!)
+        if (password_verify($pass_ingresada, $hash_almacenado)) {
+            echo "<h2>¡Inicio de Sesión Exitoso!</h2>";
+            echo "<p class='message success'>Bienvenido/a, " . htmlspecialchars($usuario_ingresado) . ".</p>";
+            // Aquí podrías redirigir al usuario a una página de bienvenida
+        } else {
+            echo "<h2>Error de Login</h2>";
+            echo "<p class='message error'>Usuario o contraseña incorrectos.</p>";
+        }
+    } else {
+        echo "<h2>Error de Login</h2>";
+        echo "<p class='message error'>Usuario o contraseña incorrectos.</p>";
+    }
+
+    // 13. Cerrar la sentencia preparada
+    $stmt->close();
+
+} else {
+    echo "<h2>Error de Acceso</h2>";
+    echo "<p class='message error'>Por favor, accede a esta página desde el formulario de login.</p>";
+}
+
+// 14. Cerrar la conexión a la base de datos
+$conn->close();
+
+echo "</div></body></html>";
+?>`}</code></pre>
+              <p className="mt-4 text-center text-gray-700 leading-relaxed">
+                ¡Con esta infografía, tus alumnos tienen una guía completa y visual para entender el proceso de login en PHP de forma segura!
+              </p>
+            </div>
+          </details>
+        </section>
+
+        <footer className="text-center mt-10 text-gray-600 text-sm">
+          <p>&copy; 2025 Infografía de PHP y Bases de Datos. Creado para fines educativos.</p>
+        </footer>
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
