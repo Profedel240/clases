@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Transformadores de Potencia en Subestaciones</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y contenedor */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+            color: #343a40; /* Gris oscuro para texto principal */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        /* Estilos de encabezados */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50; /* Azul oscuro profesional */
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a2c4e; /* Azul más oscuro para el título principal */
+        }
+        h2 {
+            font-size: 2.5rem; /* Aumentado para mayor prominencia */
+            font-weight: 700;
+            border-bottom: 4px solid #3498db; /* Borde más grueso para resaltar */
+            padding: 1rem 0.5rem; /* Aumentado padding vertical */
+            margin-top: 3rem; /* Más espacio superior */
+            margin-bottom: 1.8rem; /* Más espacio inferior */
+            background-color: #e0e7ed; /* Color de fondo para resaltar el título */
+            border-radius: 0.75rem 0.75rem 0 0; /* Bordes redondeados solo arriba */
+            display: flex; /* Para alinear el ícono y el texto */
+            align-items: center;
+        }
+        h2 .section-icon { /* Nuevo estilo para el ícono dentro del h2 */
+            margin-right: 0.75rem;
+            width: 2rem; /* Tamaño un poco más grande */
+            height: 2rem;
+            fill: #1a2c4e; /* Color oscuro para el ícono del título */
+        }
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2980b9; /* Azul medio */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #34495e; /* Azul grisáceo */
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        /* Estilo de lista sin asteriscos, usando íconos SVG */
+        ul {
+            list-style: none; /* Elimina la viñeta por defecto */
+            padding-left: 0; /* Elimina el padding por defecto */
+            margin-bottom: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 2rem; /* Espacio para el ícono SVG */
+            margin-bottom: 0.75rem;
+        }
+        ul li .list-icon {
+            position: absolute;
+            left: 0;
+            top: 0.6rem; /* Ajusta la posición vertical del ícono */
+            width: 0.75rem; /* Tamaño más pequeño para viñeta */
+            height: 0.75rem;
+            fill: #3498db; /* Color del ícono de viñeta */
+        }
+        ol {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .box-info {
+            background-color: #e8f4f8; /* Azul muy claro */
+            border-left: 5px solid #5dade2; /* Azul para el borde */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: #2e86c1; /* Texto azul para el cuadro */
+        }
+        .box-info strong {
+            color: #1a5276;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #3498db; /* Color de los íconos generales (ej. en box-info) */
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid-item {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e7eb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .grid-item h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para tablas */
+        .table-container {
+            margin: 2rem 0;
+            overflow-x: auto; /* Permite scroll en tablas pequeñas en móviles */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #c8d8e0; /* Borde suave para tablas */
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #d1e2ed; /* Azul claro para encabezados de tabla */
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f7fb; /* Franjas claras para legibilidad */
+        }
+        .formula-box {
+            background-color: #f0f8ff; /* Light blue background */
+            border-left: 4px solid #3498db; /* Blue left border */
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+            color: #2c3e50;
+        }
+        .formula-display {
+            font-family: 'Consolas', 'Courier New', monospace; /* Monospace font for formulas */
+            font-size: 1.4rem; /* Larger font size for formulas */
+            text-align: center;
+            padding: 0.5rem 0;
+            color: #1a5276; /* Darker blue for formula text */
+            font-weight: 600;
+        }
+        .variable-list {
+            list-style: none;
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .variable-list li {
+            margin-bottom: 0.3rem;
+        }
+        .variable-list strong {
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ Transformadores de Potencia: Corazón de la Red Eléctrica</h1>
+        <p class="text-center text-lg italic text-gray-600 mb-6">Desde la Subestación al Hogar: Tipos, Cálculo y Aplicaciones</p>
+
+        <p>Los transformadores de potencia son equipos estáticos esenciales en los sistemas eléctricos de potencia, permitiendo el transporte eficiente de energía eléctrica mediante la modificación de los niveles de tensión y corriente. Su correcta selección y cálculo son vitales para asegurar un suministro eléctrico seguro y eficiente, desde las grandes centrales generadoras hasta los puntos de consumo en barrios residenciales.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Aplicación en Ingeniería Eléctrica:</strong> El diseño, operación y mantenimiento de sistemas de potencia requiere un profundo conocimiento de los transformadores, su comportamiento, sus parámetros de diseño y los métodos de cálculo para la planificación de redes de distribución.
+        </div>
+
+        <h2 id="seccion-1-tipos-transformadores">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            1. Tipos de Transformadores de Potencia en Subestaciones (Alta-Media Tensión)
+        </h2>
+        <p>En el contexto de subestaciones de alta y media tensión, los transformadores de potencia cumplen la función crítica de adecuar los niveles de tensión para el transporte (elevación) o la distribución (reducción) de la energía eléctrica. Edenor, como otras distribuidoras en Argentina, utiliza principalmente transformadores trifásicos de distintas potencias y configuraciones.</p>
+
+        <h3>1.1. Clasificación Principal por Función</h3>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Transformadores Elevadores:</strong> Ubicados en centrales de generación, aumentan la tensión de la energía generada (ej., de 20 kV a 132 kV o 500 kV) para su transmisión a larga distancia, minimizando las pérdidas por efecto Joule.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Transformadores Reductores (de Subtransmisión/Distribución):</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>En subestaciones primarias, reducen la tensión de transmisión a niveles de subtransmisión (ej., de 132 kV a 33 kV o 13,2 kV).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>En subestaciones secundarias (o transformadores de distribución), reducen la tensión de media tensión (ej., 13,2 kV ó 33 kV) a baja tensión (ej., 3 x 380 V / 220 V en Argentina) para el consumo final.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>1.2. Modelos Típicos Utilizados por Edenor (Argentina)</h3>
+        <p>Edenor opera una vasta red de distribución, utilizando principalmente transformadores trifásicos de distribución de potencia, generalmente sumergidos en aceite (ONAN). Los modelos varían en potencia y características, pero la tipología constructiva es similar.</p>
+        <h4>Transformadores de Distribución Tipo Pedestal/Rural/Urbano</h4>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Potencias Comunes:</strong> Desde 160 kVA, 250 kVA, 315 kVA, 500 kVA, 800 kVA hasta 1000 kVA o más para grandes consumidores o zonas de alta densidad.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Tensiones Típicas:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Primario (Media Tensión): 13,2 kV, 33 kV (en algunas zonas).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Secundario (Baja Tensión): 400V (entre fases) / 231V (fase-neutro), o 380V/220V (en Argentina).</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Conexiones:</strong> Generalmente se utilizan conexiones Estrella-Estrella (Yyn0) o Triángulo-Estrella (Dyn11) en el primario y secundario respectivamente, ambas con neutro accesible en el secundario para la distribución.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Material:</strong> Los devanados suelen ser de cobre o aluminio.</li>
+        </ul>
+
+        <h3>1.3. Clasificación por Construcción y Enfriamiento</h3>
+        <p>Los transformadores de potencia pueden clasificarse por su aislamiento y método de enfriamiento, lo cual es crucial para su disipación de calor y vida útil. Para subestaciones y distribución, predominan los transformadores en aceite.</p>
+        <h4>Sistemas de Enfriamiento (según Nomenclatura IEC)</h4>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>ONAN (Oil Natural Air Natural)</h4>
+                <p><strong>Aceite Natural, Aire Natural:</strong> El calor se disipa por convección natural del aceite dentro del tanque y luego por convección natural del aire sobre la superficie del radiador/tanque. Es el más común para transformadores de distribución de pequeña y mediana potencia (hasta aprox. 10 MVA).</p>
+            </div>
+            <div class="grid-item">
+                <h4>ONAF (Oil Natural Air Forced)</h4>
+                <p><strong>Aceite Natural, Aire Forzado:</strong> Similar a ONAN, pero se utilizan ventiladores para forzar el flujo de aire sobre los radiadores, mejorando significativamente la disipación de calor y aumentando la capacidad de carga del transformador (generalmente para potencias mayores a 10 MVA).</p>
+            </div>
+            <div class="grid-item">
+                <h4>OFAF (Oil Forced Air Forced)</h4>
+                <p><strong>Aceite Forzado, Aire Forzado:</strong> Se utilizan bombas para forzar la circulación del aceite a través de los radiadores, donde ventiladores fuerzan el aire. Es muy eficiente para transformadores de gran potencia (superiores a 60 MVA) o donde se requiere máxima compactibilidad.</p>
+            </div>
+            <div class="grid-item">
+                <h4>ODAF (Oil Directed Air Forced)</h4>
+                <p><strong>Aceite Forzado Direccionado, Aire Forzado:</strong> Similar a OFAF, pero el flujo de aceite es dirigido a las partes más calientes del bobinado, mejorando aún más la eficiencia de enfriamiento. Usado en transformadores de muy alta potencia.</p>
+            </div>
+        </div>
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Nota Técnica:</strong> El enfriamiento es crítico para la vida útil del transformador. Un aumento de 8°C en la temperatura de operación puede reducir la vida útil a la mitad.
+        </div>
+
+        <h2 id="seccion-2-partes-transformador">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            2. Partes Principales de un Transformador de Potencia
+        </h2>
+        <p>Un transformador de potencia es un equipo robusto compuesto por varias partes clave que trabajan en conjunto para su correcto funcionamiento y seguridad.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Núcleo Magnético:</strong>
+                <p><strong>Descripción:</strong> Fabricado con láminas delgadas de acero al silicio (chapas) apiladas y aisladas entre sí. Puede ser de tipo núcleo (columnas rodeadas por devanados) o acorazado (devanados rodeados por el núcleo).<br>
+                <strong>Función:</strong> Proporcionar un camino de baja reluctancia para el flujo magnético generado por el devanado primario, minimizando las pérdidas por corrientes de Foucault e histéresis, y concentrando el flujo para inducir tensión en el devanado secundario.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Devanados (Bobinas):</strong>
+                <p><strong>Descripción:</strong> Conductores de cobre o aluminio aislados y enrollados alrededor del núcleo. Se distinguen el devanado primario (conectado a la fuente de tensión) y el devanado secundario (donde se induce la tensión de salida).<br>
+                <strong>Función:</strong> El devanado primario crea el flujo magnético variable al ser energizado. El devanado secundario es donde el flujo magnético induce una tensión proporcional al número de espiras, realizando la transformación de tensión.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Tanque Principal:</strong>
+                <p><strong>Descripción:</strong> Recipiente metálico robusto que contiene el núcleo y los devanados, sumergidos en aceite dieléctrico.<br>
+                <strong>Función:</strong> Contener el aceite aislante y proteger los componentes internos del transformador del ambiente externo.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Aceite Dieléctrico (Aislante y Refrigerante):</strong>
+                <p><strong>Descripción:</strong> Un fluido aislante (generalmente aceite mineral, aunque también existen sintéticos o vegetales) que llena el tanque.<br>
+                <strong>Función:</strong> Proporcionar aislamiento eléctrico entre los devanados y el tanque, y entre las espiras de los devanados. Además, disipa el calor generado en el núcleo y los devanados hacia las paredes del tanque o los radiadores.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Radiadores y/o Aletas de Enfriamiento:</strong>
+                <p><strong>Descripción:</strong> Superficies externas con aletas o tubos que aumentan el área de contacto con el aire.<br>
+                <strong>Función:</strong> Mejorar la disipación de calor del aceite al ambiente, facilitando la convección natural o forzada del aire (ONAN, ONAF, etc.).</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Conservador (Tanque de Expansión):</strong>
+                <p><strong>Descripción:</strong> Un tanque auxiliar ubicado por encima del tanque principal, conectado a este.<br>
+                <strong>Función:</strong> Alojar la expansión y contracción del aceite dieléctrico debido a los cambios de temperatura, evitando que el tanque principal esté completamente lleno y reduciendo la exposición del aceite al aire (y humedad).</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Bornes / Bujes (Bushings):</strong>
+                <p><strong>Descripción:</strong> Aisladores cerámicos o de resina que permiten la conexión eléctrica de los devanados a las líneas externas, manteniendo el aislamiento.<br>
+                <strong>Función:</strong> Proporcionar una conexión segura y aislada entre los devanados internos del transformador y las líneas de alta y baja tensión de la red eléctrica.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Cambiador de Tomas (Tap Changer):</strong>
+                <p><strong>Descripción:</strong> Un dispositivo que permite modificar el número de espiras en uno de los devanados (generalmente el primario). Puede ser bajo carga (OLTC - On-Load Tap Changer) o sin carga (DETC - De-Energized Tap Changer).<br>
+                <strong>Función:</strong> Ajustar la relación de transformación del transformador para mantener la tensión de salida dentro de los límites deseados, compensando las variaciones de tensión en la red o las caídas de tensión por carga.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Relé Buchholz:</strong>
+                <p><strong>Descripción:</strong> Un dispositivo de protección sensible a la acumulación de gases y al flujo rápido de aceite.<br>
+                <strong>Función:</strong> Detectar fallas internas incipientes o graves (como cortocircuitos entre espiras, fallas de aislamiento) dentro del tanque del transformador, activando alarmas o disparando el interruptor para desconectarlo antes de que ocurran daños mayores. (Ver también sección de Protecciones).</p>
+            </li>
+        </ul>
+
+        <h2 id="seccion-3-calculo-potencia">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            3. Cálculo de Potencia para Alimentar un Barrio de 200 Viviendas
+        </h2>
+        <p>El cálculo de la potencia de un transformador para un barrio residencial es un proceso de ingeniería que requiere considerar la demanda máxima simultánea de las viviendas, no solo la suma de sus potencias instaladas.</p>
+
+        <h3>3.1. Metodología Simplificada (Estimación Rápida)</h3>
+        <p>Esta metodología proporciona una estimación inicial y se basa en el consumo promedio por vivienda y un factor de simultaneidad.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Paso 1: Estimar la Demanda Individual por Vivienda.</strong>
+                <p>Asumimos una demanda promedio típica para una vivienda moderna en Argentina. Este valor puede variar según la región y el equipamiento de los hogares.</p>
+                <div class="formula-box">
+                    <p class="text-center font-bold">Demanda Individual por Vivienda:</p>
+                    <div class="formula-display">
+                        P_ind = 3 kW/vivienda
+                    </div>
+                    <p class="text-center italic">(Valor típico en Argentina para viviendas con equipamiento estándar, sin gran climatización eléctrica)</p>
+                </div>
+                <ul class="variable-list">
+                    <li><strong>P_ind:</strong> Potencia activa individual estimada por vivienda (en kilowatts - kW).</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Paso 2: Calcular la Potencia Total Instalada (Nominal).</strong>
+                <p>Es la suma de las demandas individuales de todas las viviendas si todas consumieran su máximo al mismo tiempo, lo cual es irreal.</p>
+                <div class="formula-box">
+                    <p class="text-center font-bold">Fórmula de Potencia Total Nominal:</p>
+                    <div class="formula-display">
+                        Potencia Total Nominal = Número de Viviendas x Demanda Individual
+                    </div>
+                    <p class="text-center">Cálculo para 200 viviendas:</p>
+                    <div class="formula-display">
+                        Potencia Total Nominal = 200 viviendas x 3 kW/vivienda = 600 kW
+                    </div>
+                </div>
+                <ul class="variable-list">
+                    <li><strong>Potencia Total Nominal:</strong> Potencia activa total nominal (en kilowatts - kW).</li>
+                    <li><strong>Número de Viviendas:</strong> Cantidad de viviendas a alimentar.</li>
+                    <li><strong>Demanda Individual:</strong> Potencia activa individual estimada por vivienda (en kilowatts - kW).</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Paso 3: Aplicar el Factor de Simultaneidad (Fs).</strong>
+                <p>El factor de simultaneidad (o diversidad) considera que no todas las cargas operan a su máxima capacidad al mismo tiempo. Disminuye a medida que aumenta el número de usuarios.</p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Número de Viviendas</th>
+                                <th>Factor de Simultaneidad (Fs) Típico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>1.0</td>
+                            </tr>
+                            <tr>
+                                <td>Hasta 5</td>
+                                <td>0.8 - 0.9</td>
+                            </tr>
+                            <tr>
+                                <td>50 - 100</td>
+                                <td>0.4 - 0.5</td>
+                            </tr>
+                            <tr>
+                                <td>100 - 300</td>
+                                <td>0.3 - 0.4</td>
+                            </tr>
+                            <tr>
+                                <td>Más de 300</td>
+                                <td>0.25 - 0.35</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Para 200 viviendas, un rango típico de Fs podría ser **0.35**.</p>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Paso 4: Calcular la Potencia Activa Demandada (P_d).</strong>
+                <div class="formula-box">
+                    <p class="text-center font-bold">Fórmula de Potencia Activa Demandada:</p>
+                    <div class="formula-display">
+                        Potencia Activa Demandada = Potencia Total Nominal x Factor de Simultaneidad
+                    </div>
+                    <p class="text-center">Cálculo:</p>
+                    <div class="formula-display">
+                        Potencia Activa Demandada = 600 kW x 0.35 = 210 kW
+                    </div>
+                </div>
+                <ul class="variable-list">
+                    <li><strong>Potencia Activa Demandada:</strong> La potencia activa real que el transformador deberá suministrar (en kilowatts - kW).</li>
+                    <li><strong>Potencia Total Nominal:</strong> Potencia activa total nominal (en kilowatts - kW), calculada en el paso anterior.</li>
+                    <li><strong>Factor de Simultaneidad (Fs):</strong> Valor adimensional que considera la no coincidencia de las demandas máximas individuales.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Paso 5: Determinar la Potencia Aparente del Transformador (S_T).</strong>
+                <p>Los transformadores se dimensionan por su potencia aparente (kVA o MVA) debido a que su capacidad térmica está limitada por la corriente que circula por sus devanados, independientemente del factor de potencia de la carga. Se debe considerar un factor de potencia (FP o cos($\phi$)) típico para cargas residenciales.</p>
+                <div class="formula-box">
+                    <p class="text-center font-bold">Fórmula de Potencia Aparente del Transformador:</p>
+                    <div class="formula-display">
+                        Potencia Aparente = Potencia Activa Demandada / Factor de Potencia
+                    </div>
+                    <p class="text-center">Considerando un Factor de Potencia típico para cargas residenciales de **0.9**:</p>
+                    <div class="formula-display">
+                        Potencia Aparente = 210 kW / 0.9 &#8776; 233.33 kVA
+                    </div>
+                </div>
+                <ul class="variable-list">
+                    <li><strong>Potencia Aparente (S_T):</strong> La potencia requerida para el transformador (en kilovolt-amperes - kVA).</li>
+                    <li><strong>Potencia Activa Demandada (P_d):</strong> La potencia activa real que el transformador deberá suministrar (en kilowatts - kW).</li>
+                    <li><strong>Factor de Potencia (cos($\phi$)):</strong> Valor adimensional que representa la eficiencia con la que la potencia activa se convierte en trabajo útil.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Paso 6: Seleccionar el Transformador Comercial.</strong>
+                <p>Se selecciona el transformador de potencia comercial estandarizado más cercano e inmediatamente superior al valor calculado. Para **233.33 kVA**, se optaría por un transformador de **250 kVA** o incluso **315 kVA** si se prevé crecimiento futuro o si el factor de carga es fluctuante.</p>
+            </li>
+        </ul>
+
+        <h3>3.2. Metodología Detallada (Consideraciones Adicionales)</h3>
+        <p>Un análisis más profundo considera diferentes tipos de carga, pérdidas y proyecciones de crecimiento.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Demanda por Tipo de Vivienda:</strong> Diferenciar entre casas, departamentos, etc., y el tipo de equipamiento (aire acondicionado, calefacción eléctrica). Se puede usar una planilla para sumar cargas y aplicar factores de carga individuales antes del factor de simultaneidad general.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Curvas de Carga y Diversidad:</strong> Utilizar curvas de carga horarias y factores de diversidad (Kd) más precisos, obtenidos de estudios de consumo reales o normativas locales (ej., AEA en Argentina).
+                <div class="formula-box">
+                    <p class="text-center font-bold">Fórmula de Potencia Aparente con Factores de Demanda y Diversidad:</p>
+                    <div class="formula-display">
+                        Potencia Aparente = Suma de (Pot. Aparente Individual x Factor de Demanda Individual) / Factor de Diversidad Global
+                    </div>
+                    <p class="text-center italic">Este enfoque es más preciso y requiere más datos de entrada.</p>
+                </div>
+                <ul class="variable-list">
+                    <li><strong>Potencia Aparente (S_T):</strong> Potencia requerida para el transformador (en kilovolt-amperes - kVA).</li>
+                    <li><strong>Suma de (Potencia Aparente Individual x Factor de Demanda Individual):</strong> Representa la suma de las potencias aparentes de cada carga individual, ajustadas por su propio factor de demanda.</li>
+                    <li><strong>Factor de Diversidad Global:</strong> Valor adimensional que considera la no simultaneidad de la demanda a nivel de todo el grupo de viviendas.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Pérdidas del Transformador:</strong> Aunque las pérdidas en el transformador no se suman directamente a la demanda del barrio, sí afectan la eficiencia y la corriente nominal. El cálculo inicial de la potencia aparente debe cubrir también estas pérdidas.
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Pérdidas en Vacío (P_0):</strong> Debidas a la magnetización del núcleo (Histeresis y Corrientes de Foucault). Constantes e independientes de la carga. (ej. 0.1% - 0.5% de la potencia nominal).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Pérdidas en Carga (P_cu):</strong> Debidas a la resistencia de los devanados (Efecto Joule). Proporcionales al cuadrado de la corriente. (ej. 1% - 2% de la potencia nominal a plena carga).</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Reserva de Crecimiento:</strong> Es fundamental sobredimensionar ligeramente el transformador para acomodar futuros aumentos de demanda o nuevas conexiones. Un 15-25% adicional es una práctica común.</li>
+        </ul>
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Consideración para Argentina:</strong> Las normativas de distribuidoras como Edenor (y la AEA - Asociación Electrotécnica Argentina) establecen pautas y valores de referencia para la demanda y factores de simultaneidad, que deben ser consultados en proyectos reales.
+        </div>
+
+        <h2 id="seccion-4-conexiones-protecciones">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            4. Conexiones y Protecciones Típicas de Transformadores
+        </h2>
+        <p>La forma en que se conectan los devanados del transformador y las protecciones asociadas son fundamentales para su operación segura y eficiente.</p>
+
+        <h3>4.1. Conexiones Trifásicas Comunes</h3>
+        <p>La elección de la conexión depende de la aplicación, el desfasaje angular y la capacidad de manejar cargas desequilibradas y armónicos. En Argentina, la conexión DYn11 (Delta en primario, Estrella con neutro en secundario, desfasaje 11) es muy común en transformadores de distribución.</p>
+        <p>La notación de las conexiones trifásicas sigue un estándar internacional (IEC) que indica la configuración de los devanados de alta y baja tensión, y el desfasaje angular entre ellos:</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Letra Mayúscula (Primer Devanado - Alta Tensión):</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>D:</strong> Conexión Delta (Triángulo)</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Y:</strong> Conexión Estrella</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Letra Minúscula (Segundo Devanado - Baja Tensión):</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>d:</strong> Conexión Delta (Triángulo)</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>y:</strong> Conexión Estrella</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>n (opcional):</strong> Indica que el punto neutro del devanado en Estrella está accesible (conectado a tierra o disponible para cargas).</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg><strong>Número (0 a 11):</strong> Representa el desfasaje angular entre las tensiones de línea del devanado de alta tensión y las tensiones de línea del devanado de baja tensión, expresado en "horas de reloj" (cada hora equivale a 30 grados eléctricos).</li>
+        </ul>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Conexión (Notación)</th>
+                        <th>Significado y Características Principales</th>
+                        <th>Aplicación Típica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Dyn11</strong></td>
+                        <td>
+                            <ul>
+                                <li><strong>D:</strong> Devanado primario (AT) conectado en Delta (Triángulo).</li>
+                                <li><strong>y:</strong> Devanado secundario (BT) conectado en Estrella.</li>
+                                <li><strong>n:</strong> Neutro del devanado secundario accesible y generalmente conectado a tierra.</li>
+                                <li><strong>11:</strong> Desfasaje angular de 330 grados (o -30 grados) entre las tensiones de línea del primario y secundario.</li>
+                            </ul>
+                            <p><strong>Características:</strong> Permite un neutro estable en el secundario para cargas monofásicas y trifásicas. Es robusta frente a desequilibrios de carga. La conexión Delta en el primario ayuda a suprimir armónicos de tercer orden.</p>
+                        </td>
+                        <td>Transformadores de distribución (MT/BT), muy común en Argentina para alimentar cargas residenciales (220V fase-neutro y 380V fase-fase).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Yyn0</strong></td>
+                        <td>
+                            <ul>
+                                <li><strong>Y:</strong> Devanado primario (AT) conectado en Estrella.</li>
+                                <li><strong>y:</strong> Devanado secundario (BT) conectado en Estrella.</li>
+                                <li><strong>n:</strong> Neutro del devanado secundario accesible y generalmente conectado a tierra.</li>
+                                <li><strong>0:</strong> Sin desfasaje angular entre las tensiones de línea del primario y secundario.</li>
+                            </ul>
+                            <p><strong>Características:</strong> Permite la conexión a tierra del neutro en ambos lados. Puede ser susceptible a problemas con armónicos de tercer orden si el neutro no está sólidamente conectado a tierra. No introduce desfasaje.</p>
+                        </td>
+                        <td>Transformadores de potencia en subestaciones, especialmente donde se requiere un neutro para la conexión a tierra o para cargas desequilibradas en ambos lados. También en sistemas de transmisión.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Yy0</strong></td>
+                        <td>
+                            <ul>
+                                <li><strong>Y:</strong> Devanado primario (AT) conectado en Estrella.</li>
+                                <li><strong>y:</strong> Devanado secundario (BT) conectado en Estrella.</li>
+                                <li><strong>0:</strong> Sin desfasaje angular entre las tensiones de línea del primario y secundario.</li>
+                            </ul>
+                            <p><strong>Características:</strong> Similar a Yyn0, pero sin el neutro accesible en el secundario para la carga. Esto limita su uso para cargas que no requieren neutro o en sistemas donde el neutro ya está provisto por otra fuente.</p>
+                        </td>
+                        <td>Aplicaciones más limitadas, a menudo en sistemas de transmisión o en aplicaciones industriales donde no se requiere conexión a neutro en la carga.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>4.2. Protecciones Típicas de Transformadores</h3>
+        <p>Los transformadores son activos críticos que requieren diversas protecciones para salvaguardar su integridad y la continuidad del suministro.</p>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>Protección por Sobrecorriente (Fusibles / Relés de Sobrecorriente)</h4>
+                <p>Protegen contra cortocircuitos externos o sobrecargas sostenidas que superan la capacidad nominal del transformador. Comunes en el lado de alta y baja tensión.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Relé Buchholz</h4>
+                <p>Detecta fallas internas del transformador (arcos, sobrecalentamiento local, aislamiento defectuoso) que generan gases en el aceite aislante. Ubicado entre el tanque principal y el conservador. Actúa por acumulación de gases o por flujo rápido de aceite.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Protección Diferencial</h4>
+                <p>Compara las corrientes de entrada y salida del transformador. Si hay una diferencia significativa (que no se deba a la relación de transformación o a la corriente de magnetización), indica una falla interna (cortocircuito entre espiras, falla a tierra dentro del transformador). Altamente sensible y rápida.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Protección de Temperatura</h4>
+                <p>Termómetros de bobinado y de aceite que activan alarmas o disparan el interruptor cuando la temperatura excede límites seguros, previniendo el deterioro del aislamiento.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Relé de Presión Súbita</h4>
+                <p>Detecta un aumento brusco de presión dentro del tanque del transformador, indicativo de una falla interna grave (ej., arco interno) que genera una gran cantidad de gases y vapor en poco tiempo. Actúa rápidamente para desconectar el transformador.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Descargadores de Sobretensión (Pararrayos)</h4>
+                <p>Protegen el transformador contra sobretensiones transitorias causadas por rayos o maniobras en la red, derivando el exceso de energía a tierra.</p>
+            </div>
+        </div>
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Normativa Argentina (ej. AEA 90364):</strong> Las protecciones de transformadores y los criterios de dimensionamiento están definidos por la Asociación Electrotécnica Argentina, que establece los requisitos mínimos de seguridad y operación en el país.
+        </div>
+
+        <h2 id="seccion-5-conclusion">
+            <svg class="section-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            5. Conclusión: La Eficiencia de la Red Eléctrica
+        </h2>
+        <p>Los transformadores de potencia son pilares insustituibles en la infraestructura eléctrica. Su diseño, selección y protección son resultado de principios de ingeniería eléctrica fundamentales, asegurando que la energía generada llegue de manera confiable y segura a cada hogar e industria. El cálculo preciso de su potencia es un arte y una ciencia que combina la estimación de la demanda, la aplicación de factores de simultaneidad y una visión a futuro para garantizar la capacidad de la red.</p>
+        <p>Dominar estos conceptos es crucial para cualquier ingeniero eléctrico que aspire a diseñar, operar o mantener sistemas de potencia robustos y eficientes en el contexto de las redes de distribución modernas.</p>
+
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Puntos Clave:</strong>
+            <ul>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Los transformadores <a href="#seccion-1-tipos-transformadores">elevan o reducen la tensión</a> para transmisión y distribución.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Las <a href="#seccion-2-partes-transformador">partes de un transformador</a> trabajan en conjunto para su funcionamiento.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>El <a href="#seccion-3-calculo-potencia">cálculo de potencia para un barrio</a> considera la demanda individual, el factor de simultaneidad y el factor de potencia.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Los <a href="#seccion-1-3-sistemas-enfriamiento">sistemas de enfriamiento</a> y las <a href="#seccion-4-conexiones-protecciones">protecciones</a> son vitales para la operación segura.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8"/></svg>Las <a href="#seccion-4-conexiones-protecciones">conexiones trifásicas</a> definen el comportamiento de la red.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
