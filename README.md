@@ -37,7 +37,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 27. [Título de la Clase 27 aquí](https://link-de-tu-infografia-27-aqui.github.io/apunte_27.html)
 28. [Título de la Clase 28 aquí](https://link-de-tu-infografia-28-aqui.github.io/apunte_28.html)
 29. [Título de la Clase 29 aquí](https://link-de-tu-infografia-29-aqui.github.io/apunte_29.html)
-30. [Título de la Clase 30 aquí](https://link-de-tu-infografia-30-aqui.github.io/apunte_30.html)
+30. [modulo orf](https://profedel240.github.io/clases/modulo1orf.html)
 
 ---
 
