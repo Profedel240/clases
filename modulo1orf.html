@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: El Sector Eléctrico Argentino - Historia, Regulación y Estructura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales del cuerpo y contenedor */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+            color: #343a40; /* Gris oscuro para texto principal */
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+        }
+        /* Estilos de encabezados */
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50; /* Azul oscuro profesional */
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a2c4e; /* Azul más oscuro para el título principal */
+        }
+        h2 {
+            font-size: 2.5rem; /* Aumentado para mayor prominencia */
+            font-weight: 700;
+            border-bottom: 4px solid #3498db; /* Borde más grueso para resaltar */
+            padding-bottom: 0.75rem;
+            margin-top: 3rem; /* Más espacio superior */
+            margin-bottom: 1.8rem; /* Más espacio inferior */
+            display: flex; /* Para alinear ícono y texto */
+            align-items: center; /* Centrar verticalmente */
+        }
+        h2 .icon {
+            margin-right: 1rem; /* Espacio entre ícono y texto */
+        }
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2980b9; /* Azul medio */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #34495e; /* Azul grisáceo */
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        /* Estilo de lista sin asteriscos, usando íconos SVG */
+        ul {
+            list-style: none; /* Elimina la viñeta por defecto */
+            padding-left: 0; /* Elimina el padding por defecto */
+            margin-bottom: 1rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 2rem; /* Espacio para el ícono SVG */
+            margin-bottom: 0.75rem;
+        }
+        ul li .list-icon {
+            position: absolute;
+            left: 0;
+            top: 0.4rem; /* Ajusta la posición vertical del ícono */
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: #3498db; /* Color del ícono */
+        }
+        ol {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .box-info {
+            background-color: #e8f4f8; /* Azul muy claro */
+            border-left: 5px solid #5dade2; /* Azul para el borde */
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            color: #2e86c1; /* Texto azul para el cuadro */
+        }
+        .box-info strong {
+            color: #1a5276;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: #3498db; /* Color de los íconos generales */
+        }
+        .diagram-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+        .flow-node {
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            color: #2c3e50;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            min-width: 200px;
+        }
+        .flow-arrow {
+            width: 2px;
+            height: 30px;
+            background-color: #7f8c8d;
+            position: relative;
+        }
+        .flow-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: -4px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 8px solid #7f8c8d;
+        }
+        .horizontal-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .horizontal-flow .flow-arrow {
+            width: 40px;
+            height: 2px;
+        }
+        .horizontal-flow .flow-arrow::after {
+            bottom: auto;
+            right: -5px;
+            left: auto;
+            top: -4px;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid #7f8c8d;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .grid-item {
+            background-color: #f8fbfd;
+            border: 1px solid #e0e7eb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .grid-item h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        /* Estilos para tablas */
+        .table-container {
+            margin: 2rem 0;
+            overflow-x: auto; /* Permite scroll en tablas pequeñas en móviles */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #c8d8e0; /* Borde suave para tablas */
+            padding: 0.8rem 1rem;
+            text-align: left;
+        }
+        th {
+            background-color: #d1e2ed; /* Azul claro para encabezados de tabla */
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f7fb; /* Franjas claras para legibilidad */
+        }
+
+        /* Estilos para el Gráfico de Torta (SVG) */
+        .pie-chart-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        .pie-chart-legend {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+        .legend-color-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* Estilos para la Línea de Tiempo */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding: 1rem 0;
+            list-style: none;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: #ced4da; /* Gris claro para la línea central */
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1rem 2rem;
+            background-color: #f8f9fa;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            width: calc(50% - 1rem); /* 50% width minus half of gap */
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            transform: translateX(-1rem); /* Adjust for visual alignment */
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+            transform: translateX(1rem); /* Adjust for visual alignment */
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background: #5a7d9a; /* Punto azul */
+            border-radius: 50%;
+            border: 2px solid #ffffff; /* Borde blanco */
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd)::before {
+            right: -1.75rem; /* Position relative to the item */
+        }
+        .timeline-item:nth-child(even)::before {
+            left: -1.75rem; /* Position relative to the item */
+        }
+        .timeline-item-date {
+            font-weight: 700;
+            color: #34495e;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-item-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Ajustes responsivos para la línea de tiempo */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 1.5rem; /* Mueve la línea a la izquierda para móviles */
+            }
+            .timeline-item {
+                width: calc(100% - 3rem); /* Ancho completo menos padding a la izquierda */
+                left: 0;
+                padding-left: 2.5rem; /* Espacio para el punto */
+                transform: translateX(0); /* Sin transformación horizontal */
+            }
+            .timeline-item::before {
+                left: 0.75rem; /* Ajusta la posición del punto */
+                right: auto;
+            }
+            .timeline-item:nth-child(odd) {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Infografía Académica: El Sector Eléctrico Argentino - Historia, Regulación y Estructura</h1>
+
+        <h2 id="historia">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 13.5h-1V10h-2V8h3v7.5z"/></svg>
+            1. Reseña Histórica del Sistema Eléctrico Argentino
+        </h2>
+        <p>La historia del sector eléctrico en Argentina se divide en tres etapas principales, marcadas por cambios significativos en su organización, propiedad y su capacidad de respuesta a la demanda nacional.</p>
+
+        <ul class="timeline">
+            <li class="timeline-item">
+                <div class="timeline-item-date">Desde fines del s. XIX - hasta 1940</div>
+                <div class="timeline-item-title">Orígenes y Servicios Locales Autónomos</div>
+                <p><strong>Contexto:</strong> La electricidad irrumpe a fines del siglo XIX, impulsada principalmente por la necesidad de iluminación en las crecientes ciudades. Este periodo se caracteriza por la iniciativa privada y la adopción de tecnologías incipientes.
+                <br><strong>Hitos Clave:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>1887:</strong> Primer alumbrado público eléctrico en Plaza de Mayo, Buenos Aires, un símbolo de modernización.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>1889:</strong> Inauguración de la primera central eléctrica del país en la calle Balcarce, Buenos Aires, operada por la Compañía Luz y Fuerza del Ferrocarril Gran Sud, utilizando máquinas a vapor a carbón.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Predominio de empresas privadas extranjeras, como la Compañía Alemana Transatlántica de Electricidad (CATE), que consolidaron su posición en las grandes urbes.</li>
+                </ul>
+                </p>
+            </li>
+            <li class="timeline-item">
+                <div class="timeline-item-date">Desde 1940 - hasta 1990</div>
+                <div class="timeline-item-title">Protagonismo Estatal y Grandes Obras de Infraestructura</div>
+                <p><strong>Contexto:</strong> Este período se caracterizó por un fuerte protagonismo del Estado, impulsado por una visión de industrialización y la búsqueda de autoabastecimiento energético post-Segunda Guerra Mundial, con la nacionalización de servicios públicos a partir de 1946.
+                <br><strong>Hitos Clave:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Creación de Entes Estatales:</strong> Nacen empresas clave como Agua y Energía Eléctrica (AyEE - 1947), Servicios Eléctricos del Gran Buenos Aires (SEGBA - 1958) e HIDRONOR (fines de los '60), que gestionaba el polo hidroeléctrico del Comahue.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Construcción de Grandes Proyectos:</strong> Se desarrollan mega-proyectos como las represas hidroeléctricas El Chocón (1973) y Salto Grande (1979), y se inicia el programa nuclear con Atucha I (1974) y Embalse (1984). Esto impulsó la integración del Sistema Argentino de Interconexión (SADI).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>El Colapso Energético de 1988-1989:</strong> Hacia fines de los años 80, la falta crónica de inversión en infraestructura, el deterioro de las centrales (muchas con más de 30 años de servicio) y una sequía prolongada que afectó drásticamente la generación hidroeléctrica, sumado a la falta de gas y paradas por mantenimiento de unidades térmicas, llevó al sistema eléctrico argentino a una crisis sin precedentes. Esto se tradujo en prolongados y frecuentes cortes de suministro eléctrico a nivel nacional, que llegaron a durar entre 6 y 8 horas diarias y afectaron gravemente la producción industrial, el comercio y la vida cotidiana. La insuficiencia de reservas de potencia y la vulnerabilidad del sistema evidenciaron la necesidad impostergable de una transformación profunda y la atracción de capitales para la modernización de la infraestructura. Esta crisis fue un factor determinante que impulsó la posterior reforma y privatización del sector.</li>
+                </ul>
+                </p>
+            </li>
+            <li class="timeline-item">
+                <div class="timeline-item-date">Desde 1990 - Actualidad</div>
+                <div class="timeline-item-title">Privatización y Regulación Post-Colapso</div>
+                <p><strong>Contexto:</strong> La crisis del '89 y las políticas de Reforma del Estado impulsaron una reestructuración radical, abriendo el sector a la inversión privada y estableciendo un nuevo marco regulatorio.
+                <br><strong>Hitos Clave:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>1991:</strong> Promulgación de la Ley 24.065, que desverticalizó el sector (separando las actividades de <strong>Generación, Transporte y Distribución</strong> en entidades legalmente independientes) y habilitó su privatización.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Privatización de las principales empresas estatales (AyEE, SEGBA, HIDRONOR), dando paso a nuevos operadores privados como Edenor, Edesur, Transener, etc.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Creación de CAMMESA (1992) y ENRE (1992) como pilares de la nueva estructura de mercado y regulación.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Crecimiento de las energías renovables, impulsado por leyes como la 27.191 (2015), que establece metas de participación.</li>
+                </ul>
+                </p>
+            </li>
+        </ul>
+
+        <h2 id="ley-24065">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>
+            2. La Ley 24.065: El Paradigma de la Reforma Eléctrica (1991)
+        </h2>
+        <p>La Ley N° 24.065 es la piedra angular de la profunda reestructuración del sector eléctrico argentino. Su promulgación en 1991, en un contexto de crisis económica y energética, sentó las bases para un modelo de mercado y una nueva arquitectura institucional.</p>
+
+        <h3>2.1. Objetivos y Principios Fundamentales de la Ley</h3>
+        <p>La Ley 24.065 estableció un paradigma completamente nuevo para el sector, basado en la desregulación, la competencia y la creación de un marco regulatorio específico para los monopolios naturales. Sus principios clave y objetivos estratégicos fueron:</p>
+        <ul>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Desverticalización (Unbundling):</strong> Este es uno de los pilares más importantes de la reforma. Implicó la separación estricta de las actividades de <strong>Generación, Transporte y Distribución</strong> en entidades legalmente independientes. Antes, una única empresa estatal podía realizar todas estas funciones. Con la ley, cada una se convirtió en un negocio distinto, fomentando la especialización y la transparencia en los costos y operaciones. La generación se concibió como un segmento competitivo, mientras que el transporte y la distribución, por ser monopolios naturales, quedaron sujetos a una regulación estricta. Esta separación buscaba evitar conflictos de interés y promover la eficiencia en cada etapa de la cadena de valor eléctrica.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Fomento de la Competencia:</strong> La ley buscó introducir mecanismos de mercado en el segmento de generación. Esto significó que múltiples empresas generadoras competirían entre sí para producir y vender energía al menor costo posible en el <strong>Mercado Eléctrico Mayorista (MEM)</strong>. La premisa era que la competencia impulsaría una mayor eficiencia, precios más bajos para el sistema en su conjunto y una mayor innovación en la oferta de energía.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Regulación Independiente:</strong> Reconociendo que el transporte y la distribución son monopolios naturales (no es eficiente ni práctico tener múltiples empresas con infraestructura paralela), la ley estableció la creación de organismos reguladores <strong>autárquicos</strong>. Estos entes tienen la misión principal de proteger los derechos de los usuarios y controlar la calidad del servicio, así como las tarifas de los segmentos regulados, buscando un equilibrio entre los intereses de las empresas y los consumidores.
+            </li>
+            <li>
+                <svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+                <strong>Privatización:</strong> La ley habilitó la venta de las empresas estatales de generación, transporte y distribución al sector privado. Este proceso masivo buscaba transferir la responsabilidad de la operación, el mantenimiento y, crucialmente, la inversión y el desarrollo de la infraestructura eléctrica a capitales privados, tanto nacionales como extranjeros, con la expectativa de una gestión más eficiente y dinámica.
+            </li>
+        </ul>
+
+        <h2 id="estructura-sector">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zm0-8h14V7H7v2z"/></svg>
+            3. Estructura del Mercado Eléctrico Mayorista (MEM) y Sus Actores
+        </h2>
+        <p>Tras la reforma, el sector se organiza en segmentos claramente definidos que interactúan en el Mercado Eléctrico Mayorista (MEM), un ámbito donde se encuentran la oferta y la demanda de energía eléctrica a gran escala.</p>
+
+        <h3>3.1. Diagrama de Flujo: Cadena de Valor Eléctrica</h3>
+        <div class="diagram-flow">
+            <div class="horizontal-flow">
+                <div class="flow-node">GENERACIÓN<br>(Centrales)</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node">TRANSMISIÓN<br>(Líneas de Alta Tensión)</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node">DISTRIBUCIÓN<br>(Redes Locales)</div>
+                <div class="flow-arrow"></div>
+                <div class="flow-node">CONSUMIDORES<br>(Hogares, Industrias)</div>
+            </div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node">MERCADO ELÉCTRICO<br>MAYORISTA (MEM)<br>(Coordinado por CAMMESA)</div>
+        </div>
+        <p class="text-center"><em>Representación de la cadena de valor de la electricidad en Argentina, donde el MEM centraliza las operaciones.</em></p>
+
+        <h3>3.2. Actores Principales y sus Roles Detallados</h3>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>Generación</h4>
+                <p><strong>Función:</strong> Es el proceso de transformación de diversas fuentes de energía primaria (hidráulica, térmica, nuclear, renovable) en energía eléctrica. Las unidades son despachadas económicamente para abastecer la demanda al menor costo posible.
+                <br><strong>Características:</strong> Es el único segmento competitivo del sector. Múltiples empresas generadoras compiten libremente en el MEM. Sus ingresos están asociados a la eficiencia y el precio spot horario.
+                <br><strong>Ejemplos:</strong> Empresas como Central Puerto, Pampa Energía, AES Argentina, y la estatal Nucleoeléctrica Argentina (NA-SA) que opera las centrales nucleares. También se incluyen cogeneradores (producen electricidad y vapor para fines industriales) y autogeneradores (consumidores que generan electricidad como subproducto de su actividad principal).</p>
+            </div>
+            <div class="grid-item">
+                <h4>Transmisión</h4>
+                <p><strong>Función:</strong> Consiste en el transporte de grandes volúmenes de energía eléctrica a muy alta tensión (500 kV, 220 kV, 132 kV) desde las centrales de generación hasta los grandes centros de consumo o los puntos de interconexión con las redes de distribución. Este servicio es de vinculación física.
+                <br><strong>Características:</strong> Es un <strong>monopolio natural regulado</strong>. No es eficiente la duplicación de estas redes. Su operación está estrictamente regulada, con obligación de brindar libre acceso a todos los agentes del MEM y tarifas reguladas (peaje por hora de disponibilidad). No pueden comprar ni vender electricidad por cuenta propia.
+                <br><strong>Actor Clave:</strong> TRANSENER S.A. es la principal empresa encargada de operar y mantener el Sistema Argentino de Interconexión (SADI). Existen también empresas de transporte por distribución troncal a nivel regional.</p>
+            </div>
+            <div class="grid-item">
+                <h4>Distribución</h4>
+                <p><strong>Función:</strong> Se encarga de llevar la energía eléctrica desde los puntos de entrega de la red de transmisión hasta los consumidores finales (hogares, comercios, industrias) a través de redes de media y baja tensión. Implica la operación y mantenimiento de estas redes locales.
+                <br><strong>Características:</strong> Es también un <strong>monopolio natural regulado</strong> a nivel local. Las empresas distribuidoras tienen la obligación de abastecer indiscriminadamente en su área de concesión, cumpliendo con estándares de calidad y precios establecidos.
+                <br><strong>Ejemplos:</strong> Edenor y Edesur son las distribuidoras en el Gran Buenos Aires y CABA. En el resto del país, operan diversas empresas de capital provincial o cooperativas como EPEC (Córdoba), EDET (Tucumán), EPE (Santa Fe), etc. Compran energía en el mercado spot o a término y cobran a los usuarios finales según tarifas reguladas.</p>
+            </div>
+        </div>
+
+        <h3>3.3. Mercado Spot: Determinación del Precio de la Energía Horaria</h3>
+        <p>El <strong>Mercado Spot</strong> es el componente del MEM donde se compra y vende energía y potencia eléctrica en tiempo real. Su funcionamiento es crucial para el equilibrio entre oferta y demanda instantánea y la fijación de precios.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Precio Horario:</strong> El precio de la energía eléctrica se fija en forma horaria, determinado por el <strong>costo marginal de corto plazo</strong> medido en el centro de carga del sistema (barra Ezeiza). Este costo representa el menor costo declarado por los generadores que pueden aumentar su oferta para abastecer la demanda en el momento requerido. Para centrales térmicas, se basa en el consumo bruto de combustible; para hidroeléctricas con embalse, se considera el "Valor del Agua" (VA), que es el costo de oportunidad de utilizar el agua almacenada.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Despacho Óptimo de Carga:</strong> CAMMESA es el encargado de coordinar y programar la operación y el despacho del sistema. Determina qué centrales generadoras deben funcionar para cubrir la demanda. El orden de entrada se basa en un criterio puramente económico: las centrales con el menor costo marginal de producción son las primeras en ser despachadas. Este proceso requiere una comunicación en tiempo real y la consideración de múltiples factores, como la disponibilidad de recursos y las limitaciones de la red de transporte.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Mercado a Término o por Contratos:</strong> Paralelamente al mercado spot, los agentes pueden firmar contratos de compra/venta de energía a largo plazo, estableciendo precios y cantidades fijas. Estos contratos dan mayor estabilidad a los agentes y deben ser informados a CAMMESA.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Mercado Estacional:</strong> Las distribuidoras compran energía a un precio estabilizado estacionalmente, que se determina a través de una programación semestral. Las diferencias entre este precio y el precio spot horario son gestionadas por un fondo compensador de CAMMESA.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Mercado a Término de Energías Renovables (MATER):</strong> Creado por la Ley 27.191, permite a los grandes usuarios contratar energía renovable directamente con generadores, buscando cumplir con las metas de participación de fuentes no fósiles en la matriz energética.</li>
+        </ul>
+
+        <h2 id="organismos-clave">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7C17.9 16.57 14.96 19.55 12 20.94V12H5V6.3l7-3.11v8.7z"/></svg>
+            4. Organismos Rectores y Reguladores
+        </h2>
+        <p>Dos instituciones clave aseguran el funcionamiento coordinado y equitativo del sistema post-reforma, cada una con roles específicos y complementarios:</p>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>CAMMESA (Compañía Administradora del Mercado Mayorista Eléctrico S.A.)</h4>
+                <p><strong>Naturaleza y Composición Accionaria:</strong> Es una sociedad anónima de capital mixto y no lucrativa, creada en 1992 en el marco de la Ley 24.065. Su estructura de capital refleja la participación conjunta del Estado Nacional y los principales actores del mercado eléctrico, buscando un balance entre el interés público y el privado en la gestión del sistema:
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Estado Nacional:</strong> Posee el 40% del capital social a través de la Secretaría de Energía, garantizando la supervisión gubernamental y la orientación estratégica.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Agentes del MEM (60%):</strong> El 60% restante se distribuye equitativamente (15% cada uno) entre las cuatro asociaciones representativas de los principales agentes del mercado:
+                        <ul>
+                            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>AGEERA:</strong> Asociación de Generadores de Energía Eléctrica de la República Argentina.</li>
+                            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>ATEERA:</strong> Asociación de Transportistas de Energía Eléctrica de la República Argentina.</li>
+                            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>ADEERA:</strong> Asociación de Distribuidores de Energía Eléctrica de la República Argentina.</li>
+                            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>AGUEERA:</strong> Asociación de Grandes Usuarios de Energía Eléctrica de la República Argentina.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <br><strong>Funciones Principales: El Cerebro Operativo del MEM</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Administración Técnica y Económica del MEM:</strong> CAMMESA gestiona todas las transacciones de compra y venta de energía a nivel mayorista. Coordina contratos, liquida precios de energía y potencia, y maneja los flujos financieros entre todos los agentes, asegurando transparencia y eficiencia en la valorización de la energía.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Despacho de Carga (Operación del SADI):</strong> Esta es su función más crítica. Determina en tiempo real qué centrales de generación deben operar, en qué cantidad y en qué momento para satisfacer la demanda eléctrica instantánea del Sistema Argentino de Interconexión (SADI). El objetivo es doble:
+                        <ul>
+                            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Minimización de Costos:</strong> Despachar las centrales en orden de mérito económico (las más baratas primero) siempre que sea técnicamente factible, considerando disponibilidad de combustible, eficiencia y restricciones de red.</li>
+                            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Seguridad y Estabilidad:</strong> Mantener la calidad del suministro (frecuencia y tensión) y la estabilidad de la red, gestionando contingencias y reservas de potencia para evitar colapsos.</li>
+                        </ul>
+                    </li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Planificación Operativa y de Expansión:</strong> Realiza pronósticos de demanda a corto y mediano plazo, evalúa la capacidad de generación y transporte existente, e identifica las necesidades de inversión para asegurar el suministro futuro y la confiabilidad del sistema.</li>
+                </ul></p>
+            </div>
+            <div class="grid-item">
+                <h4>ENRE (Ente Nacional Regulador de la Electricidad)</h4>
+                <p><strong>Naturaleza:</strong> Organismo autárquico, creado por la Ley 24.065 y el Decreto Reglamentario 1398/92, con autonomía funcional y financiera, lo que le permite actuar con independencia de los intereses de las empresas reguladas.
+                <br><strong>Funciones Principales: El Guardián de los Usuarios y la Calidad</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Fiscalización y Control:</strong> Supervisa rigurosamente el cumplimiento de las obligaciones contractuales y regulatorias de las empresas transportistas y distribuidoras. Esto incluye la verificación de sus planes de inversión, el mantenimiento de la infraestructura, y el cumplimiento de los estándares de calidad de servicio (ej. indicadores SAIFI - System Average Interruption Frequency Index, y SAIDI - System Average Interruption Duration Index, que miden la frecuencia y duración promedio de las interrupciones).</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Protección de Derechos de los Usuarios:</strong> Actúa como mediador y garante de los derechos de los usuarios. Atiende reclamos relacionados con la calidad del servicio, facturación incorrecta, conexiones, o cualquier otro aspecto del suministro, buscando la resolución de conflictos y la aplicación adecuada de las normativas tarifarias.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Fijación Tarifaria:</strong> Establece y revisa los cuadros tarifarios para los servicios de transporte y distribución. Este proceso se realiza a través de revisiones tarifarias integrales (RTI) periódicas, buscando un equilibrio entre la recuperación de costos de las empresas, la rentabilidad razonable que incentive la inversión, y la accesibilidad de las tarifas para los usuarios.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Aplicación de Sanciones:</strong> Tiene la facultad de aplicar multas económicas, exigir la realización de inversiones forzosas, o, en casos de incumplimientos graves y reiterados, proponer la rescisión de contratos de concesión.</li>
+                </ul></p>
+            </div>
+        </div>
+
+        <h2 id="matriz-energetica">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M10 20h4L13 11h3L11 4H8L9 13H6L10 20z"/></svg>
+            5. Matriz de Generación Eléctrica Argentina
+        </h2>
+        <p>La matriz energética argentina ha experimentado una evolución significativa, aunque mantiene una fuerte dependencia de las fuentes térmicas, con un crecimiento sostenido de las renovables en las últimas décadas.</p>
+
+        <h3>5.1. Composición de la Matriz de Generación Eléctrica (Ej. Año Reciente)</h3>
+        <div class="pie-chart-container">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <!-- SVG content will be generated by JavaScript for responsiveness and dynamic data -->
+            </svg>
+        </div>
+        <div class="pie-chart-legend">
+            <div class="legend-item"><span class="legend-color-box" style="background-color: #a8dadc;"></span>Térmica (57.5%)</div>
+            <div class="legend-item"><span class="legend-color-box" style="background-color: #457b9d;"></span>Hidroeléctrica (27.5%)</div>
+            <div class="legend-item"><span class="legend-color-box" style="background-color: #1d3557;"></span>Nuclear (6%)</div>
+            <div class="legend-item"><span class="legend-color-box" style="background-color: #2a9d8f;"></span>Renovables (9%)</div>
+        </div>
+        <p class="text-center"><em>Nota: Los porcentajes son aproximados y representan una composición típica reciente (Ej. 2023/2024). La matriz real puede variar anualmente según factores hídricos, disponibilidad de combustibles y nuevas incorporaciones.</em></p>
+
+        <h3>5.2. Evolución de la Matriz Energética</h3>
+        <ul class="timeline">
+            <li class="timeline-item">
+                <div class="timeline-item-date">Predominio Inicial (Fines s. XIX - Mediados s. XX)</div>
+                <div class="timeline-item-title">Centrales Térmicas a Carbón y Pequeñas Hidroeléctricas</div>
+                <p>En sus orígenes, la generación eléctrica en Argentina era mayormente local y dependía de pequeñas centrales térmicas a vapor, alimentadas con carbón o combustibles líquidos. Las primeras hidroeléctricas eran de pequeña escala y servían a necesidades regionales.</p>
+            </li>
+            <li class="timeline-item">
+                <div class="timeline-item-date">Expansión Estatal (Mediados s. XX - 1990)</div>
+                <div class="timeline-item-title">Grandes Hidroeléctricas y Nuclear como Fuentes de Base</div>
+                <p>Durante la etapa estatal, se produjo una fuerte diversificación. Las grandes represas hidroeléctricas (como El Chocón y Salto Grande) aportaron una base de energía limpia y renovable. El programa nuclear (Atucha I, Embalse) sumó capacidad de base constante e independiente de factores climáticos. Las térmicas seguían siendo importantes para la cobertura de picos y flexibilidad.</p>
+            </li>
+            <li class="timeline-item">
+                <div class="timeline-item-date">Post-Privatización (Desde 1991)</div>
+                <div class="timeline-item-title">Predominio Térmico con Crecimiento de Energías Renovables</div>
+                <p>Tras la privatización, la alta disponibilidad de gas natural impulsó un crecimiento significativo de la generación térmica de ciclo combinado. Aunque persiste el predominio térmico, las políticas de fomento (ej. Ley 27.191) han impulsado el crecimiento sostenido de las energías renovables (eólica y solar) en los últimos años, con el objetivo de diversificar la matriz y reducir la huella de carbono.</p>
+            </li>
+        </ul>
+
+        <h3>5.3. El Impulso de las Energías Renovables</h3>
+        <p>El sector de las energías renovables en Argentina ha experimentado un crecimiento significativo en los últimos años, impulsado por marcos regulatorios específicos y la creciente conciencia sobre la sostenibilidad. Esta expansión busca diversificar la matriz energética del país, reducir la dependencia de los combustibles fósiles y cumplir con compromisos ambientales internacionales.</p>
+        <ul>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Ley 27.191 (Régimen de Fomento Nacional para el uso de Fuentes Renovables de Energía destinada a la Producción de Energía Eléctrica):</strong> Promulgada en 2015, esta ley establece el objetivo de alcanzar un 20% de participación de fuentes renovables en la matriz de consumo eléctrico al año 2025. Ha sido un motor clave para las inversiones en proyectos eólicos y solares, entre otros.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Principales Fuentes Renovables:</strong>
+                <ul>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Energía Eólica:</strong> Argentina cuenta con un recurso eólico excepcional, especialmente en la Patagonia, lo que ha permitido el desarrollo de parques eólicos de gran escala.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Energía Solar Fotovoltaica:</strong> La región del noroeste argentino (NOA) posee una de las radiaciones solares más altas del mundo, favoreciendo la instalación de grandes plantas solares.</li>
+                    <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>También se incluyen bioenergías (biomasa, biogás) y pequeñas centrales hidroeléctricas.</li>
+                </ul>
+            </li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Mercado a Término de Energías Renovables (MATER):</strong> Este mecanismo permite a los Grandes Usuarios (GU) comprar directamente energía de fuentes renovables a través de contratos específicos. Esto no solo ayuda a los GU a cumplir con sus objetivos de energía limpia, sino que también estimula la inversión y el desarrollo de nuevos proyectos renovables al asegurarles un comprador directo y precios estables a largo plazo.</li>
+            <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Beneficios:</strong> La integración de renovables contribuye a la seguridad energética (diversificando fuentes), la reducción de emisiones de gases de efecto invernadero y la creación de empleo local. Representa un pilar fundamental para la transición energética del país.</li>
+        </ul>
+
+
+        <h2 id="tipos-usuarios">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            6. Tipos de Usuarios Consumidores de Energía Eléctrica
+        </h2>
+        <p>La Ley 24.065 y el funcionamiento del Mercado Eléctrico Mayorista (MEM) establecen una clara clasificación de los usuarios, la cual determina su modalidad de contratación del suministro, la estructura tarifaria aplicable y su nivel de interacción con los distintos agentes del mercado. La principal distinción se basa en el nivel de tensión de conexión y la potencia demandada.</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Usuario</th>
+                        <th>Conexión Típica</th>
+                        <th>Modalidad Tarifaria/Compra</th>
+                        <th>Características Clave</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Usuarios Residenciales</strong></td>
+                        <td>Baja Tensión (BT)</td>
+                        <td>Tarifas reguladas integrales (generación, transporte, distribución + impuestos). Estructura progresiva por bloques de consumo.</td>
+                        <td>
+                            <ul>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Corresponde a hogares y viviendas.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Son atendidos exclusivamente por la distribuidora local de su área, no pueden elegir proveedor.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Caracterizados por una menor potencia demandada y patrones de consumo variables.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Usuarios Comerciales y Pequeñas Industrias</strong></td>
+                        <td>Baja Tensión (BT) o Media Tensión (MT)</td>
+                        <td>Tarifas reguladas con cargo por potencia contratada y energía consumida.</td>
+                        <td>
+                            <ul>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Incluye comercios, oficinas, pequeñas y medianas empresas (PYMES), talleres.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>También son atendidos por la distribuidora local de su área de concesión.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Presentan una demanda de potencia moderada a significativa.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grandes Usuarios (GU)</strong></td>
+                        <td>Media Tensión (MT) o Alta Tensión (AT)</td>
+                        <td>Compran energía directamente en el MEM (contratos con generadores/comercializadores). Pagan cargos por transporte y distribución.</td>
+                        <td>
+                            <p>Son consumidores de energía eléctrica con un alto volumen de demanda, lo que les permite operar directamente en el MEM. Se subdividen en:</p>
+                            <ul>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Grandes Usuarios Mayores (GUMA):</strong> Demanda de potencia igual o superior a 1 MW y/o consumo de energía igual o superior a 4380 MWh/año. Tienen la capacidad de <strong>contratar energía directamente con generadores o comercializadores</strong> en el Mercado a Término, debiendo cubrir al menos el 50% de su demanda por esta vía.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Grandes Usuarios Menores (GUME):</strong> Demanda de potencia entre 0.1 MW y menos de 1 MW (o entre 30 kW y menos de 1 MW en algunas definiciones provinciales). Deben contratar la totalidad de su demanda de energía en el Mercado a Término.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Grandes Usuarios Particulares (GUPA):</strong> Demanda de potencia entre 0.05 MW y menos de 0.1 MW (o entre 10 kW y 30 kW en algunas definiciones). Deben contratar la totalidad de su demanda en el Mercado a Término.</li>
+                                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Estos usuarios tienen la capacidad de gestionar activamente su consumo y negociar contratos para optimizar costos, dada su significativa demanda.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="tarifas-electricas">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>
+            7. Conformación de las Tarifas Eléctricas
+        </h2>
+        <p>La tarifa eléctrica que paga el usuario final es el resultado de la suma de diversos componentes que cubren los costos de cada etapa de la cadena de valor, además de impuestos y cargos regulatorios. Comprender su estructura es fundamental para analizar la política energética y las implicancias económicas de la provisión del servicio.</p>
+        <div class="box-info">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <strong>Componentes Clave de la Tarifa Eléctrica:</strong>
+            <ul>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Costo de la Energía (Generación):</strong> Es el componente más significativo y corresponde al precio mayorista de la electricidad generada y adquirida en el Mercado Eléctrico Mayorista (MEM). Para los usuarios regulados (residenciales, comercios), este costo es abonado por la distribuidora y trasladado en la factura. Para los Grandes Usuarios, es el precio que negocian directamente con los generadores o comercializadores en el mercado a término, o el precio spot de la energía.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Costo de Transporte:</strong> Corresponde al "peaje" por el uso de las líneas de muy alta tensión del Sistema Argentino de Interconexión (SADI), que transportan la energía desde las centrales hasta los puntos de conexión con las distribuidoras o Grandes Usuarios. Este costo es regulado por el ENRE a nivel nacional y remunera la inversión, operación y mantenimiento de la infraestructura de transporte troncal.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Costo de Distribución (VAD - Valor Agregado de Distribución):</strong> Es el margen que perciben las empresas distribuidoras por el uso, operación y mantenimiento de sus redes de media y baja tensión (que llevan la energía hasta el domicilio del usuario), y por los servicios de comercialización (toma de lecturas, facturación, atención al cliente, gestión de conexiones y reclamos). Este componente es regulado por el ENRE para las distribuidoras nacionales (Edenor, Edesur) y por entes provinciales para las distribuidoras de cada jurisdicción.</li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Impuestos y Tasas:</strong> Constituyen una parte significativa de la factura final. Incluyen:
+                    <ul>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Impuestos Nacionales (ej. IVA - Impuesto al Valor Agregado).</li>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Impuestos Provinciales (ej. Ingresos Brutos, Fondo para el Desarrollo Eléctrico).</li>
+                        <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg>Tasas Municipales (ej. Alumbrado Público, Barrido y Limpieza).</li>
+                    </ul>
+                </li>
+                <li><svg class="list-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-4h2v-6h-2v6z"/></svg><strong>Cargos y Recargos Específicos:</strong> Pueden existir cargos adicionales establecidos por el Estado para fines específicos, como el sostenimiento de ciertos fondos (ej. Fondo Nacional de la Energía Eléctrica - FNEE), la aplicación de subsidios cruzados (donde algunos usuarios pagan más para subsidiar a otros), o el fomento de ciertas tecnologías (ej. cargos para el desarrollo de energías renovables).</li>
+            </ul>
+            <p>La combinación de estos componentes determina la tarifa final y su estructura, que puede variar significativamente entre los distintos tipos de usuarios y regiones del país, y es objeto de constantes revisiones y ajustes por parte de los entes reguladores.</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Función para dibujar el gráfico de torta (ajustando los ángulos y colores)
+        function drawPieChart() {
+            // Datos basados en la composición aproximada reciente
+            const data = {
+                thermal: 57.5,
+                hydro: 27.5,
+                nuclear: 6,
+                renewables: 9
+            };
+            const colors = {
+                thermal: '#a8dadc', /* Azul claro */
+                hydro: '#457b9d',    /* Azul medio */
+                nuclear: '#1d3557',  /* Azul oscuro */
+                renewables: '#2a9d8f' /* Verde azulado */
+            };
+
+            const total = Object.values(data).reduce((sum, val) => sum + val, 0);
+            let startAngle = -90; // Empezar desde la parte superior (equivalente a -90 grados en sistema cartesiano)
+
+            const svg = document.querySelector('.pie-chart-container svg');
+            svg.innerHTML = ''; // Limpiar segmentos existentes si los hay
+
+            for (const key in data) {
+                const value = data[key];
+                const angle = (value / total) * 360;
+                const endAngle = startAngle + angle;
+
+                // Coordenadas para el arco
+                const x1 = 50 + 40 * Math.cos(Math.PI * startAngle / 180);
+                const y1 = 50 + 40 * Math.sin(Math.PI * startAngle / 180);
+                const x2 = 50 + 40 * Math.cos(Math.PI * endAngle / 180);
+                const y2 = 50 + 40 * Math.sin(Math.PI * endAngle / 180);
+
+                const largeArcFlag = angle > 180 ? 1 : 0;
+
+                const pathData = [
+                    `M 50 50`, // Mover al centro del círculo
+                    `L ${x1} ${y1}`, // Línea al inicio del arco
+                    `A 40 40 0 ${largeArcFlag} 1 ${x2} ${y2}`, // Arco
+                    `Z` // Cerrar la forma al centro
+                ].join(' ');
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', pathData);
+                path.setAttribute('fill', colors[key]);
+                path.setAttribute('stroke', '#ffffff');
+                path.setAttribute('stroke-width', '0.5');
+                svg.appendChild(path);
+
+                // Añadir etiquetas de texto
+                const midAngle = startAngle + angle / 2;
+                // Posición ligeramente fuera del arco para los textos
+                let textX = 50 + 55 * Math.cos(Math.PI * midAngle / 180);
+                let textY = 50 + 55 * Math.sin(Math.PI * midAngle / 180);
+
+                // Ajuste manual para las porciones más pequeñas, moviéndolas un poco más al centro
+                if (key === 'nuclear' || key === 'renewables') {
+                    textX = 50 + 30 * Math.cos(Math.PI * midAngle / 180); // Más cerca del centro
+                    textY = 50 + 30 * Math.sin(Math.PI * midAngle / 180);
+                }
+
+                const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                textElement.setAttribute('x', textX);
+                textElement.setAttribute('y', textY);
+                textElement.setAttribute('font-size', '6'); /* Ajustado para mejor ajuste */
+                textElement.setAttribute('text-anchor', 'middle');
+                // Color del texto para que contraste con el fondo del segmento
+                textElement.setAttribute('fill', (key === 'thermal' || key === 'hydro') ? '#343a40' : '#FFFFFF');
+                textElement.setAttribute('font-weight', 'bold');
+                textElement.textContent = `${value}%`;
+                svg.appendChild(textElement);
+
+                startAngle = endAngle;
+            }
+        }
+
+        // Llamar a drawPieChart cuando la ventana se carga
+        window.onload = function() {
+            drawPieChart();
+        };
+    </script>
+</body>
+</html>
