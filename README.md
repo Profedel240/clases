@@ -123,7 +123,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 2.  [BIOS-UEFI](https://profedel240.github.io/clases/clase2so.html)
 3.  [Sistemas de Archivos](https://profedel240.github.io/clases/clase3so.html)
 4.  [Tabla de particiones](https://profedel240.github.io/clases/clase4so.html)
-5.  [Título de la Clase 5 aquí](https://link-de-tu-infografia-5-aqui.github.io/clase_so_5.html)
+5.  [Instalación de Windows y Linux (dual boot)](https://profedel240.github.io/clases/instwinlin.html)
 6.  [Título de la Clase 6 aquí](https://link-de-tu-infografia-6-aqui.github.io/clase_so_6.html)
 7.  [Título de la Clase 7 aquí](https://link-de-tu-infografia-7-aqui.github.io/clase_so_7.html)
 8.  [Título de la Clase 8 aquí](https://link-de-tu-infografia-8-aqui.github.io/clase_so_8.html)
