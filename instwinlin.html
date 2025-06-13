@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Dual Boot: Windows 10 + Linux Mint MATE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Estilos generales del cuerpo y contenedor */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f7f6; /* Gris muy claro, casi blanco azulado */
+      color: #343a40; /* Gris oscuro para texto principal */
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #ffffff;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      border-radius: 1rem;
+    }
+    /* Estilos de encabezados */
+    h1, h2, h3, h4 {
+      font-family: 'Merriweather', serif;
+      color: #2c3e50; /* Azul oscuro profesional */
+    }
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #1a2c4e; /* Azul más oscuro para el título principal */
+    }
+    h2 {
+      font-size: 2.2rem; /* Aumentado para mayor prominencia */
+      font-weight: 700;
+      border-bottom: 3px solid #3498db; /* Borde más grueso para resaltar */
+      padding-bottom: 0.75rem;
+      margin-top: 3rem; /* Más espacio superior */
+      margin-bottom: 1.8rem; /* Más espacio inferior */
+      display: flex; /* Para alinear ícono y texto */
+      align-items: center; /* Centrar verticalmente */
+    }
+    h2 .icon {
+      margin-right: 1rem; /* Espacio entre ícono y texto */
+      width: 2rem; /* Tamaño más grande para los íconos de sección */
+      height: 2rem;
+      fill: #3498db; /* Color del ícono */
+      stroke: #3498db; /* Para íconos Lucide que usan stroke */
+      stroke-width: 2;
+    }
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #2980b9; /* Azul medio */
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    h4 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #34495e; /* Azul grisáceo */
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    /* Estilo de lista sin asteriscos, usando íconos SVG de Lucide */
+    /* Modificado para asegurar un flujo de texto natural sin "columnas" */
+    ul:not(.list-disc) { /* No aplica a listas con clase list-disc de Tailwind */
+        list-style: none; /* Elimina la viñeta por defecto */
+        padding-left: 0; /* Elimina el padding por defecto */
+        margin-bottom: 1rem;
+    }
+    ul:not(.list-disc) li {
+        margin-bottom: 0.75rem;
+        /* Eliminar display: flex y position: relative para que el ícono sea inline */
+    }
+    ul:not(.list-disc) li .list-icon {
+        display: inline-block; /* Asegura que el ícono se comporte como texto */
+        vertical-align: middle; /* Alinea verticalmente el ícono con el texto */
+        margin-right: 0.75rem; /* Espacio entre el ícono y el texto */
+        width: 1.25rem;
+        height: 1.25rem;
+        fill: none; /* Lucide icons use stroke */
+        stroke: #3498db; /* Color del ícono */
+        stroke-width: 2; /* Grosor de línea del ícono */
+        flex-shrink: 0; /* Evita que el ícono se encoja en líneas de texto largas */
+    }
+
+    ol {
+      list-style: decimal;
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    ol li {
+      margin-bottom: 0.75rem; /* Aumento de espacio para mejor legibilidad */
+    }
+    /* Estilos para el ícono dentro de listas ordenadas (si se usa) */
+    ol li .list-icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 0.75rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        fill: none;
+        stroke: #3498db;
+        stroke-width: 2;
+        flex-shrink: 0;
+    }
+
+    /* Estilos para los cuadros de consejos/notas */
+    .info-box {
+      background-color: #e8f4f8; /* Azul muy claro */
+      border-left: 5px solid #5dade2; /* Azul para el borde */
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      color: #2e86c1; /* Texto azul para el cuadro */
+      display: flex;
+      align-items: flex-start;
+    }
+    .info-box.warning {
+        background-color: #fffbeb; /* Amarillo muy claro */
+        border-color: #fbbf24; /* Amarillo para el borde */
+        color: #d97706; /* Texto naranja oscuro */
+    }
+    .info-box.success {
+        background-color: #ecfdf5; /* Verde muy claro */
+        border-color: #34d399; /* Verde para el borde */
+        color: #047857; /* Texto verde oscuro */
+    }
+    .info-box .icon {
+        margin-right: 1rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        flex-shrink: 0; /* Evita que el ícono se encoja */
+        margin-top: 0.2rem; /* Ajuste para alinear con el texto */
+    }
+    .info-box strong {
+      color: #1a5276;
+    }
+
+    /* Estilos para el Modal */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .modal-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+    .modal-content {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        max-width: 600px;
+        width: 90%;
+        position: relative;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .modal-overlay.show .modal-content {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    .modal-close-button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #6c757d;
+    }
+    .modal-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+    .modal-body {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #34495e;
+        max-height: 70vh; /* Limita la altura del contenido */
+        overflow-y: auto; /* Agrega scroll si el contenido es largo */
+        padding-right: 0.5rem; /* Espacio para el scrollbar */
+    }
+    .loading-indicator {
+        display: none;
+        text-align: center;
+        margin-top: 1rem;
+        font-style: italic;
+        color: #555;
+    }
+    /* Estilos para el teclado (kbd) */
+    kbd {
+      background-color: #eee;
+      border-radius: 3px;
+      border: 1px solid #b4b4b4;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+      color: #333;
+      display: inline-block;
+      font-family: monospace;
+      font-size: 0.85em;
+      font-weight: 700;
+      line-height: 1;
+      padding: 2px 4px;
+      white-space: nowrap;
+    }
+
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <div class="container">
+    <header class="bg-blue-900 text-white p-6 rounded-t-lg -mx-2 -mt-2 mb-8 shadow-md">
+      <h1 class="text-3xl font-bold text-center">⚙️ Guía Paso a Paso: Instalación Dual Boot</h1>
+      <p class="text-center text-lg mt-2 font-light">Windows 10 + Linux Mint MATE con UEFI y GRUB para Ingenieros</p>
+    </header>
+
+    <main class="py-4 px-2">
+      <!-- Índice -->
+      <section class="mb-10 p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm">
+        <h2 class="text-2xl font-semibold mb-4 text-blue-800 flex items-center border-b-2 border-blue-200 pb-3">
+            <svg class="icon" data-lucide="list-checks"></svg> Índice de Contenidos
+        </h2>
+        <ul class="list-disc ml-6 space-y-1 text-blue-700">
+          <li><a href="#preparacion" class="hover:underline">1. Preparación previa del sistema</a></li>
+          <li><a href="#instalacion-windows" class="hover:underline">2. Instalación inicial de Windows 10</a></li>
+          <li><a href="#preparacion-linux" class="hover:underline">3. Preparación del espacio en disco para Linux Mint</a></li>
+          <li><a href="#instalacion-linux" class="hover:underline">4. Proceso de instalación de Linux Mint MATE</a></li>
+          <li><a href="#grub" class="hover:underline">5. Configuración de GRUB y gestión del arranque dual</a></li>
+        </ul>
+      </section>
+
+      <!-- Sección: Preparación previa -->
+      <section id="preparacion" class="mb-12">
+        <h2 class="flex items-center">
+            <svg class="icon" data-lucide="download"></svg>
+            1. Preparación previa del sistema
+            <button class="ml-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="generateSummary('preparacion')">Resumir Sección ✨</button>
+        </h2>
+        <p>Antes de iniciar cualquier proceso de instalación de sistemas operativos, es imperativo realizar una serie de pasos preparatorios. Estos pasos no solo aseguran la compatibilidad y funcionalidad post-instalación, sino que también mitigan significativamente el riesgo de pérdida de datos o de configuraciones corruptas en el sistema.</p>
+        <div class="space-y-2">
+          <ul>
+            <li><svg class="list-icon" data-lucide="file-text"></svg> Descargar la imagen ISO oficial de <a href="https://www.microsoft.com/es-es/software-download/windows10" class="text-blue-700 underline" target="_blank" rel="noopener noreferrer">Windows 10</a> desde el sitio oficial de Microsoft. Se recomienda obtener la versión más reciente para asegurar la compatibilidad con el hardware moderno y las últimas actualizaciones de seguridad.</li>
+            <li><svg class="list-icon" data-lucide="package"></svg> Descargar la imagen ISO de <a href="https://linuxmint.com/download.php" class="text-blue-700 underline" target="_blank" rel="noopener noreferrer">Linux Mint MATE</a> desde el sitio oficial de Linux Mint. Se ha elegido la edición MATE por su ligereza y eficiencia en recursos, ideal para equipos con especificaciones variadas.</li>
+            <li>
+                <svg class="list-icon" data-lucide="usb"></svg> Para la creación de unidades USB booteables, utilice una herramienta robusta y fiable como <a href="https://rufus.ie/" class="text-blue-700 underline" target="_blank" rel="noopener noreferrer"><strong>Rufus</strong></a>. Es crucial configurar Rufus correctamente para el modo <strong>UEFI</strong>, lo que implica seleccionar el esquema de partición <strong>GPT (GUID Partition Table)</strong> y el sistema de destino <strong>UEFI (no CSM)</strong>. Este método asegura que los sistemas operativos se instalen en un modo compatible con las BIOS/UEFI modernas, lo que es fundamental para el correcto funcionamiento del arranque dual y la gestión de particiones.
+            </li>
+            <li>
+                <svg class="list-icon" data-lucide="save"></svg> Ejecutar una <strong>copia de seguridad completa y verificada</strong> de todos los datos críticos almacenados en el disco duro actual. Este es el paso más importante para cualquier operación de manipulación de discos, ya que previene la pérdida irrecuperable de información debido a errores humanos o del sistema durante el particionado e instalación. Considere utilizar una unidad de almacenamiento externa o un servicio de respaldo en la nube para esta tarea fundamental.
+            </li>
+          </ul>
+          <div class="info-box warning">
+            <svg class="icon" data-lucide="alert-triangle"></svg>
+            <div>
+              <strong>Consideración crítica de Hardware:</strong> Para el medio de instalación, se sugiere una memoria USB de al menos <strong>8 GB</strong> para cada ISO. Asegúrese de que la unidad USB esté formateada en <strong>FAT32</strong>, ya que este sistema de archivos es el más compatible y requerido por la mayoría de las implementaciones UEFI para el arranque de medios externos.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección: Instalación de Windows 10 -->
+      <section id="instalacion-windows" class="mb-12">
+        <h2 class="flex items-center">
+            <svg class="icon" data-lucide="windows"></svg>
+            2. Instalación inicial de Windows 10
+            <button class="ml-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="generateSummary('instalacion-windows')">Resumir Sección ✨</button>
+        </h2>
+        <p>En un escenario de arranque dual, es una práctica estándar y altamente recomendable instalar Windows 10 en primer lugar. Esto se debe a que el gestor de arranque nativo de Windows (Windows Boot Manager) carece de la capacidad de reconocer y gestionar la mayoría de los sistemas operativos Linux. Por el contrario, el gestor de arranque de Linux, GRUB (Grand Unified Bootloader), está diseñado para detectar y ofrecer opciones de arranque para múltiples sistemas operativos, incluyendo Windows.</p>
+        <div class="space-y-4">
+          <ol class="list-decimal ml-6 space-y-1">
+            <li><svg class="list-icon" data-lucide="usb"></svg> Inserte el USB booteable que contiene la imagen de Windows 10 en un puerto USB del equipo. Posteriormente, <strong>reinicie el sistema</strong> para que el equipo intente iniciar desde este medio.</li>
+            <li><svg class="list-icon" data-lucide="monitor"></svg> Durante el inicio del sistema (generalmente cuando aparece el logo del fabricante), acceda a la configuración de la <strong>BIOS/UEFI</strong>. Las teclas de acceso común incluyen <kbd>Supr</kbd>, <kbd>F2</kbd>, <kbd>F10</kbd>, <kbd>F12</kbd> o <kbd>Esc</kbd>. La tecla exacta puede variar según el fabricante de la placa base.</li>
+            <li><svg class="list-icon" data-lucide="boot"></svg> Dentro de la interfaz de la BIOS/UEFI, navegue a la sección de opciones de arranque (comúnmente etiquetada como "Boot Options", "Boot Order" o "UEFI/BIOS Boot Mode"). Aquí, debe seleccionar la unidad USB UEFI como el <strong>primer dispositivo de booteo</strong>. Esto asegura que el instalador de Windows se inicie correctamente en modo UEFI.</li>
+            <li><svg class="list-icon" data-lucide="settings"></svg> Procesa con la instalación de Windows 10. Cuando llegue al tipo de instalación, seleccione <strong>"Personalizada: instalar solo Windows (avanzado)"</strong>. Esta opción le permite controlar el particionado del disco.</li>
+            <li><svg class="list-icon" data-lucide="hard-drive"></svg> En la interfaz de gestión de particiones del instalador de Windows, debe <strong>crear una partición primaria dedicada a Windows</strong>. Se recomienda un tamaño mínimo de <strong>100 GB</strong> para una instalación estándar de Windows 10 más aplicaciones. Si el disco es nuevo, seleccione el "Espacio no asignado" y haga clic en "Nuevo" para crearla. Si ya tiene un sistema operativo, deberá reducir una partición existente para liberar espacio. Asegúrese de que esta partición tenga el formato <strong>NTFS</strong>.</li>
+            <li><svg class="list-icon" data-lucide="hard-drive"></svg> Un paso crítico para el dual boot es <strong>dejar un segmento de disco sin particionar</strong>, que será el espacio designado para Linux Mint. Este espacio debe ser de al menos 30-50 GB, o más si se planea una instalación extensa de Linux o el almacenamiento de datos considerables en este sistema. No lo formatee ni asigne una letra de unidad en este momento; deberá aparecer como "Espacio no asignado" o "Espacio libre" en el administrador de discos de Windows.</li>
+            <li><svg class="list-icon" data-lucide="check-circle"></svg> Procede a completar la instalación y configuración inicial de Windows 10. Una vez finalizado el proceso, el sistema se reiniciará automáticamente en el recién instalado Windows.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Sección: Preparar espacio para Linux -->
+      <section id="preparacion-linux" class="mb-12">
+        <h2 class="flex items-center">
+            <svg class="icon" data-lucide="hard-drive-cog"></svg>
+            3. Preparación del espacio en disco para Linux Mint
+            <button class="ml-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="generateSummary('preparacion-linux')">Resumir Sección ✨</button>
+        </h2>
+        <p>Aunque ya se realizó una asignación inicial de espacio durante la instalación de Windows, es fundamental verificar y, si es necesario, ajustar el tamaño de la partición de Windows para liberar el espacio óptimo para la instalación de Linux Mint. Este proceso se realiza desde el sistema operativo Windows.</p>
+        <h4>Pasos a seguir desde Windows:</h4>
+        <ol class="list-decimal ml-6">
+          <li><svg class="list-icon" data-lucide="bar-chart-2"></svg> Acceda al <strong>Administrador de discos</strong>. La forma más rápida es presionar la combinación de teclas <kbd>Win</kbd> + <kbd>X</kbd> y seleccionar "Administración de discos" en el menú contextual que aparece.</li>
+          <li><svg class="list-icon" data-lucide="arrow-down-circle"></svg> Dentro del Administrador de discos, identifique la partición principal de Windows (generalmente etiquetada como C:). Haga clic derecho sobre ella y seleccione la opción <strong>"Reducir volumen..."</strong>.</li>
+          <li>
+              <svg class="list-icon" data-lucide="ruler"></svg> En la ventana de diálogo "Reducir (nombre de la partición)", se le solicitará que ingrese la cantidad de espacio que desea reducir (expresado en megabytes). Este será el espacio libre para Linux Mint. Considere los siguientes lineamientos para el dimensionamiento:
+              <ul class="list-disc ml-6 mt-1">
+                  <li>Para una instalación básica de Linux Mint, un mínimo de <strong>30 GB (aproximadamente 30720 MB)</strong> es suficiente.</li>
+                  <li>Sin embargo, si planea instalar numerosas aplicaciones, herramientas de desarrollo, o almacenar datos personales en la partición de Linux, se recomienda un rango de <strong>50 GB a 100 GB (51200 MB - 102400 MB)</strong> o más para asegurar suficiente holgura.</li>
+              </ul>
+          </li>
+          <li>
+              <svg class="list-icon" data-lucide="disc"></svg> Una vez completada la operación de reducción, observará un nuevo segmento en el disco etiquetado como <strong>"Espacio no asignado"</strong> o "Espacio libre". Es de vital importancia <strong>no formatear este espacio</strong> en Windows ni asignarle una letra de unidad. El instalador de Linux Mint será el encargado de gestionar y formatear este espacio de acuerdo con sus propios requerimientos de particionado.
+          </li>
+        </ol>
+        <div class="info-box info">
+            <svg class="icon" data-lucide="info"></svg>
+            <div>
+              <strong>Nota Técnica:</strong> El "Espacio no asignado" es un área del disco duro que no pertenece a ninguna partición existente y, por lo tanto, no está accesible directamente por el sistema operativo. Linux Mint utilizará su propio gestor de particiones durante la instalación para dividir este espacio en las particiones necesarias (raíz, swap, home, etc.).
+            </div>
+          </div>
+      </section>
+
+      <!-- Sección: Instalación de Linux Mint -->
+      <section id="instalacion-linux" class="mb-12">
+        <h2 class="flex items-center">
+            <svg class="icon" data-lucide="linux"></svg>
+            4. Proceso de instalación de Linux Mint MATE
+            <button class="ml-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="generateSummary('instalacion-linux')">Resumir Sección ✨</button>
+        </h2>
+        <p>Con Windows 10 ya operacional y el espacio en disco debidamente preparado, el siguiente paso es la instalación de Linux Mint MATE. Este proceso es donde se definen las particiones para el sistema Linux y se configura el gestor de arranque GRUB, esencial para la funcionalidad dual boot.</p>
+        <ol class="list-decimal ml-6 space-y-1">
+          <li><svg class="list-icon" data-lucide="usb"></svg> Inserte el USB booteable de Linux Mint y <strong>reinicie el equipo</strong>.</li>
+          <li><svg class="list-icon" data-lucide="boot"></svg> Acceda nuevamente a la BIOS/UEFI y asegúrese de que el equipo inicie desde el USB de Linux Mint en modo <strong>UEFI</strong>. Es fundamental mantener la consistencia en el modo de arranque (UEFI para ambos sistemas).</li>
+          <li><svg class="list-icon" data-lucide="play"></svg> Al iniciar desde el USB, se le presentará la opción de "Probar Linux Mint" (Try Linux Mint) o "Instalar Linux Mint". Se recomienda encarecidamente seleccionar <strong>"Probar Linux Mint"</strong> primero. Esto le permite probar el sistema operativo en vivo, verificar la compatibilidad del hardware (Wi-Fi, gráficos, sonido) y familiarizarse con el entorno antes de realizar cambios permanentes en el disco.</li>
+          <li><svg class="list-icon" data-lucide="install"></svg> Una vez en el entorno de prueba (Live CD/USB), encontrará un icono en el escritorio llamado <strong>"Install Linux Mint"</strong>. Haga doble clic para iniciar el instalador.</li>
+          <li><svg class="list-icon" data-lucide="layout-dashboard"></svg> Al llegar a la sección <strong>"Tipo de instalación"</strong>, se le presentarán varias opciones. Se detallan las dos más relevantes para un dual boot:
+            <ul class="list-disc ml-6 mt-2">
+              <li><strong>"Instalar Linux Mint junto a Windows Boot Manager":</strong> Esta es la opción más sencilla y generalmente recomendada para usuarios menos experimentados. El instalador de Linux Mint detectará automáticamente la instalación existente de Windows y el espacio libre no asignado. Procederá a particionar este espacio de forma automática para Linux y configurará GRUB para que detecte ambos sistemas operativos. Es una opción "automática" que minimiza errores.</li>
+              <li><strong>"Algo más" (Crear particiones manualmente):</strong> Esta opción es preferible para usuarios con conocimientos avanzados o para aquellos que requieren un control preciso sobre la distribución del espacio en disco. Seleccionando esta opción, usted gestionará el "espacio no asignado" creado previamente. Se recomienda crear las siguientes particiones principales:
+                <ul class="list-disc ml-6 mt-2">
+                  <li><svg class="list-icon" data-lucide="folder"></svg> Una partición para el sistema raíz (<strong><code>/</code></strong>). Esta es la partición principal donde se instalará todo el sistema operativo Linux (excepto, opcionalmente, los datos de usuario). El sistema de archivos recomendado es <strong>Ext4</strong>. Se sugiere un tamaño mínimo de <strong>20-30 GB</strong>; sin embargo, para un uso universitario con múltiples aplicaciones y herramientas, <strong>40-60 GB</strong> es más adecuado.</li>
+                  <li><svg class="list-icon" data-lucide="swap"></svg> Una partición de <strong>intercambio (Swap)</strong>. Funciona como una extensión de la RAM en el disco duro. Su necesidad y tamaño varían:
+                    <ul>
+                        <li>Si su sistema tiene <strong>8 GB de RAM o más y un SSD</strong>, una partición swap dedicada podría no ser estrictamente necesaria, ya que Linux Mint puede usar un archivo swap (swapfile) dentro de la partición raíz.</li>
+                        <li>Para sistemas con <strong>menos de 8 GB de RAM</strong> o con <strong>discos HDD</strong>, se recomienda una partición swap de 1.5 a 2 veces la cantidad de RAM física.</li>
+                        <li>Si planea utilizar hibernación, el tamaño de la partición swap debe ser al menos igual a la cantidad de RAM.</li>
+                    </ul>
+                    El tipo de partición es "área de intercambio".
+                  </li>
+                  <li><svg class="list-icon" data-lucide="folder-open"></svg> **Opcional:** Una partición para el directorio <strong><code>/home</code></strong>. Esta partición es altamente recomendada para la separación de los datos de usuario y la configuración personal del sistema operativo. Si necesita reinstalar Linux Mint en el futuro, podrá hacerlo sin afectar sus archivos y configuraciones personales si los tiene en una partición <code>/home</code> separada. Utilice <strong>Ext4</strong> y asigne el resto del espacio disponible que le quede del "espacio no asignado".</li>
+                  <li><svg class="list-icon" data-lucide="hard-drive"></svg> Un punto crucial: asegúrese de que el <strong>"Dispositivo para la instalación del cargador de arranque" (Device for boot loader installation)</strong> apunte al <strong>disco principal completo</strong> (ej. <code>/dev/sda</code> si es un disco SATA o <code>/dev/nvme0n1</code> if es un SSD NVMe), y <strong>NO a una partición específica</strong> (ej. <code>/dev/sda1</code>). Esto asegura que GRUB se instale correctamente en la partición EFI del sistema (que ya debería existir por la instalación de Windows) o la cree y la gestione adecuadamente si es la primera instalación UEFI en un disco.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><svg class="list-icon" data-lucide="check-square"></svg> Continúe con el resto de la configuración del instalador (selección de zona horaria, distribución de teclado, creación de nombre de usuario y contraseña).</li>
+          <li><svg class="list-icon" data-lucide="power"></svg> Una vez que la instalación haya finalizado, el sistema le solicitará reiniciar el equipo. Es importante <strong>retirar el USB booteable</strong> cuando se le indique para asegurar que el sistema intente iniciar desde el disco duro.</li>
+        </ol>
+      </section>
+
+      <!-- Sección: GRUB y arranque dual -->
+      <section id="grub" class="mb-12">
+        <h2 class="flex items-center">
+            <svg class="icon" data-lucide="boot"></svg>
+            5. Configuración de GRUB y gestión del arranque dual
+            <button class="ml-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="generateSummary('grub')">Resumir Sección ✨</button>
+        </h2>
+        <p>El Gestor de Arranque GRUB (Grand Unified Bootloader) es el componente esencial en una configuración de arranque dual con Linux. Su función principal es permitir al usuario seleccionar qué sistema operativo desea iniciar al encender el equipo, actuando como un intermediario entre el firmware del sistema (UEFI) y los kernels de los sistemas operativos instalados.</p>
+        <p>Tras el primer reinicio exitoso después de la instalación de Linux Mint, debería aparecer automáticamente el menú de GRUB en pantalla. Este menú presenta una lista de opciones de arranque, que típicamente incluyen (el orden y el texto exacto pueden variar):</p>
+        <ul class="list-disc ml-6">
+          <li><strong>Linux Mint</strong> (o la versión específica del kernel de Linux Mint instalado, e.g., "Linux Mint 21.3 Cinnamon")</li>
+          <li><strong>Opciones avanzadas para Linux Mint</strong> (para iniciar en modo recuperación, kernels antiguos, etc.)</li>
+          <li><strong>Windows Boot Manager</strong> (o "Windows 10", detectado y añadido por GRUB)</li>
+          <li>Otras opciones de arranque (como pruebas de memoria, recuperación del sistema, etc.)</li>
+        </ul>
+        <div class="info-box success mt-4">
+          <svg class="icon" data-lucide="check-circle"></svg>
+          <div>
+            <strong>Verificación y Solución de Problemas Comunes:</strong> Si el menú de GRUB no se muestra al reiniciar, y el sistema arranca directamente en Windows, esto indica una configuración incorrecta en la secuencia de arranque de la BIOS/UEFI. Para corregirlo:
+            <ol class="list-decimal ml-6 mt-2">
+                <li><strong>Reinicie el equipo</strong> y acceda nuevamente a la configuración de la BIOS/UEFI (usando las teclas <kbd>Supr</kbd>, <kbd>F2</kbd>, etc.).</li>
+                <li>Navegue a la sección de "Opciones de arranque" o "Boot Order".</li>
+                <li>Busque una entrada que diga <strong>"Ubuntu"</strong> (ya que Linux Mint se basa en Ubuntu, su cargador de arranque a menudo se identifica con este nombre en la BIOS/UEFI) o "Linux Boot Manager".</li>
+                <li>Utilice las opciones provistas por su BIOS/UEFI (generalmente teclas <kbd>F5</kbd>/<kbd>F6</kbd> o arrastrar y soltar) para mover la entrada "Ubuntu" o "Linux Boot Manager" a la <strong>primera posición</strong> en la lista de orden de arranque.</li>
+                <li><strong>Guarde los cambios</strong> en la configuración de la BIOS/UEFI y reinicie el sistema. GRUB debería aparecer ahora, permitiéndole elegir entre Linux Mint y Windows.</li>
+            </ol>
+          </div>
+        </div>
+        <p class="mt-4">¡Felicidades! Ha completado exitosamente la instalación de un sistema dual boot. Esta configuración le proporciona la flexibilidad de utilizar las potentes herramientas y la estabilidad de Linux para el desarrollo y la investigación, junto con las aplicaciones y la familiaridad de Windows, maximizando así su entorno de trabajo académico e ingenieril.</p>
+      </section>
+    </main>
+
+    <footer class="bg-gray-200 text-center p-4 text-sm rounded-b-lg -mx-2 -mb-2 text-gray-600">
+      <p>&copy; 2025 - Guía educativa para uso académico. Elaborado para estudiantes universitarios de ingeniería.</p>
+      <p><em>Adaptado y mejorado con asistencia de IA para fines didácticos por un ingeniero y profesor universitario.</em></p>
+    </footer>
+  </div>
+
+  <!-- Modal para mostrar el resumen -->
+  <div id="summaryModal" class="modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close-button" onclick="hideSummaryModal()">&times;</button>
+          <h3 class="modal-title">Resumen de la Sección</h3>
+          <div id="summaryModalBody" class="modal-body">
+              <!-- El resumen se cargará aquí -->
+          </div>
+          <div id="loadingSummary" class="loading-indicator">Cargando resumen...</div>
+      </div>
+  </div>
+
+  <script>
+    // Inicializar los íconos de Lucide
+    lucide.createIcons();
+
+    // Función para mostrar el modal
+    function showSummaryModal() {
+        document.getElementById('summaryModal').classList.add('show');
+    }
+
+    // Función para ocultar el modal
+    function hideSummaryModal() {
+        document.getElementById('summaryModal').classList.remove('show');
+        document.getElementById('summaryModalBody').innerHTML = ''; // Limpiar contenido
+        document.getElementById('loadingSummary').style.display = 'none'; // Ocultar cargando
+    }
+
+    // Función para extraer el texto de una sección
+    function getSectionContent(sectionId) {
+        const sectionElement = document.getElementById(sectionId);
+        if (!sectionElement) return '';
+
+        let content = '';
+        // Empezamos desde el primer elemento hermano después del h2 de la sección
+        let currentNode = sectionElement.querySelector('h2').nextElementSibling;
+
+        while (currentNode && currentNode.tagName !== 'H2' && !currentNode.classList.contains('container')) {
+            if (currentNode.nodeType === Node.ELEMENT_NODE) {
+                // Excluir el botón de resumen de la captura de texto
+                const isSummaryButton = currentNode.classList.contains('ml-auto') && currentNode.classList.contains('bg-blue-600');
+                if (!isSummaryButton) {
+                    content += currentNode.textContent + ' ';
+                }
+
+                // Asegurarse de capturar texto dentro de elementos complejos como info-box
+                if (currentNode.classList.contains('info-box')) {
+                    content += currentNode.textContent + ' ';
+                }
+
+                // Para listas con elementos dentro de un div (como la parte de particiones manuales)
+                if (currentNode.querySelector('ul') && !currentNode.classList.contains('list-disc')) {
+                    Array.from(currentNode.querySelectorAll('li')).forEach(li => {
+                        content += li.textContent + ' ';
+                    });
+                }
+            }
+            currentNode = currentNode.nextElementSibling;
+        }
+        return content.trim();
+    }
+
+
+    // Función para generar el resumen usando la API de Gemini
+    async function generateSummary(sectionId) {
+        const sectionContent = getSectionContent(sectionId);
+        const summaryModalBody = document.getElementById('summaryModalBody');
+        const loadingIndicator = document.getElementById('loadingSummary');
+
+        summaryModalBody.innerHTML = ''; // Limpiar resumen anterior
+        loadingIndicator.style.display = 'block'; // Mostrar indicador de carga
+        showSummaryModal(); // Mostrar el modal
+
+        const prompt = `Como si fueras un profesor universitario de ingeniería, resume el siguiente texto sobre la instalación dual boot de sistemas operativos (Windows y Linux) en español. El resumen debe ser conciso, técnico y claro, destacando los puntos clave para un estudiante universitario. Utiliza un lenguaje preciso y evita redundancias. El resumen debe tener entre 100 y 250 palabras.
+
+        Texto a resumir de la sección "${sectionId}":
+        "${sectionContent}"`;
+
+        let chatHistory = [];
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+        const payload = { contents: chatHistory };
+        const apiKey = ""; // La API key será proporcionada en tiempo de ejecución por Canvas
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+            loadingIndicator.style.display = 'none'; // Ocultar indicador de carga
+
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const text = result.candidates[0].content.parts[0].text;
+                summaryModalBody.innerHTML = text; // Mostrar el resumen
+            } else {
+                summaryModalBody.innerHTML = 'Lo siento, no pude generar un resumen para esta sección. Inténtalo de nuevo más tarde o verifica el contenido de la sección.';
+            }
+        } catch (error) {
+            console.error("Error al llamar a la API de Gemini:", error);
+            loadingIndicator.style.display = 'none'; // Ocultar indicador de carga
+            summaryModalBody.innerHTML = 'Hubo un error al conectar con el servicio de resumen. Por favor, revisa tu conexión a internet o inténtalo de nuevo.';
+        }
+    }
+  </script>
+</body>
+</html>
