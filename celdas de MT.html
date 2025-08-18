@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Celdas de Control de Media Tensión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #004d40;
+            --secondary-color: #80cbc4;
+            --accent-color: #ff9800;
+            --bg-color: #f0f4f8;
+            --text-color: #37474f;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: var(--primary-color);
+            color: var(--card-bg);
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro {
+            text-align: justify;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .component-card {
+            background-color: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease;
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .component-card h3 {
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 0;
+        }
+
+        .icon {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            display: inline-block;
+            vertical-align: middle;
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        table th {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        table tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .accordion {
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            transition: 0.4s;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion:hover {
+            background-color: #64b5f6;
+        }
+
+        .accordion.active, .accordion:hover {
+            background-color: var(--primary-color);
+            color: var(--card-bg);
+        }
+
+        .accordion-panel {
+            padding: 0 18px;
+            background-color: var(--card-bg);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .panel-content {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .panel-content h3 {
+            color: var(--primary-color);
+        }
+        
+        .image-container {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .image-container figcaption {
+            margin-top: 0.8rem;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Íconos de Font Awesome */
+        .fa-bolt::before { content: "\f0e7"; }
+        .fa-cogs::before { content: "\f013"; }
+        .fa-plug::before { content: "\f1e6"; }
+        .fa-power-off::before { content: "\f011"; }
+        .fa-wrench::before { content: "\f0ad"; }
+        .fa-chart-line::before { content: "\f201"; }
+        .fa-shield-alt::before { content: "\f3ed"; }
+        .fa-cube::before { content: "\f1b2"; }
+        .fa-microchip::before { content: "\f2db"; }
+        .fa-user-cog::before { content: "\f4fe"; }
+        .fa-sitemap::before { content: "\f0e8"; }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <!-- Incluir Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Infografía Técnica: Celdas de Control de Media Tensión</h1>
+            <p>Componente esencial en la protección, maniobra y control de sistemas eléctricos de distribución.</p>
+        </header>
+
+        <section class="section intro">
+            <h2><i class="fas fa-bolt"></i> El Eslabón Crítico en la Distribución Eléctrica</h2>
+            <p>
+                Las celdas de control de media tensión (MT) son unidades funcionales blindadas que sirven como interfaz
+                operativa entre las redes de alta tensión (AT) y las de media tensión. Su diseño, regido por la norma
+                IEC 62271, las convierte en el corazón de las subestaciones eléctricas, garantizando la protección de la red,
+                la seguridad del personal y la continuidad del servicio. Este documento desglosa sus principios, componentes
+                y aplicaciones para el estudio de la ingeniería eléctrica.
+            </p>
+        </section>
+
+        <!-- Nueva sección agregada para la imagen de la subestación -->
+        <section class="section">
+            <h2><i class="fas fa-sitemap"></i> Configuración de Subestación y Flujo de Energía</h2>
+            <p>
+                Para comprender el rol de las celdas, es fundamental visualizar cómo se integran en una subestación completa.
+                Las celdas de MT reciben la energía transformada y la distribuyen de manera segura a las redes secundarias.
+            </p>
+            <div class="image-container">
+                <img src="https://areatecnologia.com/electricidad/imagenes/partes-centro-transformacion.jpg" 
+                     alt="Diagrama de un centro de transformación mostrando la conexión de las celdas">
+                <figcaption>Flujo de energía desde la línea de MT, a través del transformador y la celda, hasta la red de BT.</figcaption>
+            </div>
+        </section>
+
+        <!-- Nueva sección agregada para la imagen del panel de control -->
+        <section class="section">
+            <h2><i class="fas fa-user-cog"></i> Panel de Control y Operación de la Celda</h2>
+            <p>
+                El panel de control es la interfaz directa entre el operador y el equipo de alta potencia.
+                Cada elemento visual y de control en el panel está diseñado para comunicar el estado del sistema y permitir
+                maniobras seguras.
+            </p>
+            <div class="image-container">
+                <img src="https://i.ytimg.com/vi/luVDrCaal4o/maxresdefault.jpg" 
+                     alt="Imagen de un panel de control de una celda de media tensión">
+                <figcaption>Vista frontal de un panel de celda de MT, mostrando los elementos de control y señalización.</figcaption>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-cogs"></i> Componentes Principales</h2>
+            <div class="grid">
+                <div class="component-card">
+                    <h3><i class="fas fa-power-off"></i> Interruptor de Potencia</h3>
+                    <p>
+                        Dispositivo de conmutación capaz de interrumpir la corriente bajo carga y, crucialmente, la corriente de cortocircuito. Utiliza medios de extinción de arco como vacío o gas SF$_6$. Es el único dispositivo diseñado para abrir el circuito en condiciones de falla.
+                    </p>
+                </div>
+                <div class="component-card">
+                    <h3><i class="fas fa-wrench"></i> Seccionador</h3>
+                    <p>
+                        Dispositivo mecánico que crea una distancia de aislamiento visible, asegurando la seguridad durante el mantenimiento. Nunca debe operarse bajo carga, ya que carece de capacidad para extinguir el arco eléctrico.
+                    </p>
+                </div>
+                <div class="component-card">
+                    <h3><i class="fas fa-bolt"></i> Transformadores de Medida</h3>
+                    <p>
+                        Transformador de Corriente (TC) y Transformador de Potencial (TP). Reducen la corriente y la tensión primaria a valores seguros para alimentar los relés de protección y los instrumentos de medida, aislando galvánicamente el equipo de control.
+                    </p>
+                </div>
+                <div class="component-card">
+                    <h3><i class="fas fa-shield-alt"></i> Relés de Protección</h3>
+                    <p>
+                        La "inteligencia" de la celda. Monitorean las magnitudes eléctricas y, al detectar una condición de falla (ej. sobrecorriente), envían una señal de disparo al interruptor para que aísle el circuito, previniendo daños.
+                    </p>
+                </div>
+                <div class="component-card">
+                    <h3><i class="fas fa-cube"></i> Barras y Aisladores</h3>
+                    <p>
+                        Las barras son conductores rígidos que distribuyen la corriente entre las celdas. Los aisladores mantienen las barras y otros componentes energizados aislados de la estructura metálica de la celda, previniendo cortocircuitos a tierra.
+                    </p>
+                </div>
+                <div class="component-card">
+                    <h3><i class="fas fa-lock"></i> Enclavamientos</h3>
+                    <p>
+                        Mecanismos de seguridad (mecánicos o eléctricos) que previenen la realización de maniobras incorrectas, como operar el seccionador mientras el interruptor está cerrado, lo que podría generar un accidente catastrófico.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-chart-line"></i> Tipos de Celdas según su Función y Tecnología</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo de Celda</th>
+                            <th>Descripción</th>
+                            <th>Función Típica</th>
+                            <th>Tecnología de Aislamiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Primarias</strong></td>
+                            <td>Conectadas a las barras principales, con alta capacidad de interrupción.</td>
+                            <td>Acometida a transformadores, alimentadores principales.</td>
+                            <td>Aparamenta Aislada en Aire (AIS) o en Gas (GIS).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Secundarias</strong></td>
+                            <td>Conectadas en cascada desde las celdas primarias. Menor capacidad.</td>
+                            <td>Distribución a ramales de baja potencia, cargas específicas.</td>
+                            <td>Interruptor-seccionador con fusibles.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>De Medida (TC y TP)</strong></td>
+                            <td>Contienen transformadores de medida para monitorización.</td>
+                            <td>Adquisición de datos para relés y medidores.</td>
+                            <td>AIS o GIS.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aislada en Aire (AIS)</strong></td>
+                            <td>Utiliza aire ambiente como medio aislante.</td>
+                            <td>Subestaciones en exteriores o grandes espacios.</td>
+                            <td>Aire ambiente.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aislada en Gas (GIS)</strong></td>
+                            <td>Utiliza gas SF$_6$ para un diseño extremadamente compacto.</td>
+                            <td>Áreas urbanas densas, subestaciones subterráneas.</td>
+                            <td>Gas Hexafluoruro de Azufre (SF$_6$).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Híbrida</strong></td>
+                            <td>Combina componentes GIS y AIS.</td>
+                            <td>Remodelación o expansión de subestaciones existentes.</td>
+                            <td>SF$_6$ y Aire ambiente.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-microchip"></i> Funciones Operativas y Seguridad</h2>
+            <button class="accordion"><i class="fas fa-cogs"></i> Protección del Sistema</button>
+            <div class="accordion-panel">
+                <div class="panel-content">
+                    <h3>Secuencia de Protección</h3>
+                    <ol>
+                        <li><strong>Detección de Falla:</strong> El relé de protección monitorea la corriente. En un cortocircuito, la corriente (I$_f$) excede el umbral ajustado.</li>
+                        <li><strong>Activación del Relé:</strong> El relé detecta la condición de falla y activa su lógica interna.</li>
+                        <li><strong>Envío de Señal de Disparo:</strong> El relé envía una señal (trip) a la bobina del interruptor de potencia.</li>
+                        <li><strong>Apertura del Circuito:</strong> El interruptor se abre en milisegundos, interrumpiendo la corriente de falla y aislando el tramo defectuoso.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <button class="accordion"><i class="fas fa-lock"></i> Maniobra Segura y Enclavamientos</button>
+            <div class="accordion-panel">
+                <div class="panel-content">
+                    <h3>Maniobra de Mantenimiento</h3>
+                    <ul>
+                        <li><strong>1. Abrir el interruptor de potencia:</strong> Siempre sin carga.</li>
+                        <li><strong>2. Abrir el seccionador:</strong> Para crear una distancia de aislamiento visible y segura.</li>
+                        <li><strong>3. Asegurar la puesta a tierra del circuito.</strong></li>
+                    </ul>
+                    <p>Los <strong>Enclavamientos</strong> son cruciales; impiden que el seccionador se abra si el interruptor de potencia está cerrado, evitando un accidente catastrófico. Estos mecanismos garantizan que las operaciones se realicen en el orden lógico y seguro establecido.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Lógica para el funcionamiento de los menús desplegables (acordeones)
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                // Alternar la clase "active" para el botón
+                this.classList.toggle("active");
+
+                // Obtener el panel y alternar su visibilidad
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
