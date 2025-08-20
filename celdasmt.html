@@ -250,7 +250,6 @@
             </p>
         </section>
 
-        <!-- Nueva sección agregada para la imagen de la subestación -->
         <section class="section">
             <h2><i class="fas fa-sitemap"></i> Configuración de Subestación y Flujo de Energía</h2>
             <p>
@@ -264,7 +263,6 @@
             </div>
         </section>
 
-        <!-- Nueva sección agregada para la imagen del panel de control -->
         <section class="section">
             <h2><i class="fas fa-user-cog"></i> Panel de Control y Operación de la Celda</h2>
             <p>
@@ -322,56 +320,47 @@
         </section>
 
         <section class="section">
-            <h2><i class="fas fa-chart-line"></i> Tipos de Celdas según su Función y Tecnología</h2>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tipo de Celda</th>
-                            <th>Descripción</th>
-                            <th>Función Típica</th>
-                            <th>Tecnología de Aislamiento</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Primarias</strong></td>
-                            <td>Conectadas a las barras principales, con alta capacidad de interrupción.</td>
-                            <td>Acometida a transformadores, alimentadores principales.</td>
-                            <td>Aparamenta Aislada en Aire (AIS) o en Gas (GIS).</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Secundarias</strong></td>
-                            <td>Conectadas en cascada desde las celdas primarias. Menor capacidad.</td>
-                            <td>Distribución a ramales de baja potencia, cargas específicas.</td>
-                            <td>Interruptor-seccionador con fusibles.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>De Medida (TC y TP)</strong></td>
-                            <td>Contienen transformadores de medida para monitorización.</td>
-                            <td>Adquisición de datos para relés y medidores.</td>
-                            <td>AIS o GIS.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Aislada en Aire (AIS)</strong></td>
-                            <td>Utiliza aire ambiente como medio aislante.</td>
-                            <td>Subestaciones en exteriores o grandes espacios.</td>
-                            <td>Aire ambiente.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Aislada en Gas (GIS)</strong></td>
-                            <td>Utiliza gas SF$_6$ para un diseño extremadamente compacto.</td>
-                            <td>Áreas urbanas densas, subestaciones subterráneas.</td>
-                            <td>Gas Hexafluoruro de Azufre (SF$_6$).</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Híbrida</strong></td>
-                            <td>Combina componentes GIS y AIS.</td>
-                            <td>Remodelación o expansión de subestaciones existentes.</td>
-                            <td>SF$_6$ y Aire ambiente.</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h2><i class="fas fa-chart-line"></i> Tipos de Celdas: Primarias vs. Secundarias</h2>
+            <p>La clasificación principal se basa en la función y la posición de la celda dentro de la subestación. Cada tipo está diseñado para un rol específico, optimizando la capacidad y el costo.</p>
+            
+            <h3>Celdas Primarias <i class="fas fa-arrow-alt-circle-right"></i></h3>
+            <p>
+                Diseñadas para manejar altas corrientes y tensiones nominales. Son el punto de interconexión principal en una subestación.
+                <ul>
+                    <li><strong>Función:</strong> Actúan como el punto de acometida principal desde la línea de distribución o como alimentadores a grandes cargas. Son la primera línea de defensa contra fallas.</li>
+                    <li><strong>Capacidad:</strong> Cuentan con interruptores de potencia con alta capacidad de interrupción para soportar cortocircuitos masivos.</li>
+                    <li><strong>Uso Típico:</strong> Se encuentran en grandes subestaciones de distribución, centrales eléctricas, y en puntos de alimentación de grandes complejos industriales o urbanos.</li>
+                    <li><strong>Tecnología:</strong> Utilizan interruptores de vacío o gas SF$_6$ para una interrupción de alta velocidad y un mantenimiento reducido.</li>
+                </ul>
+            </p>
+
+            <h3>Celdas Secundarias <i class="fas fa-arrow-alt-circle-down"></i></h3>
+            <p>
+                Utilizadas para la distribución de energía a cargas más pequeñas y para protección de ramales específicos.
+                <ul>
+                    <li><strong>Función:</strong> Operan como unidades de maniobra y protección en la red de distribución secundaria, protegiendo cargas como transformadores de distribución o circuitos de alumbrado público.</li>
+                    <li><strong>Capacidad:</strong> Cuentan con una capacidad de interrupción menor en comparación con las primarias. A menudo, utilizan un seccionador-interruptor-fusible combinado.</li>
+                    <li><strong>Uso Típico:</strong> Comunes en centros de transformación (CT) urbanos, parques eólicos y solares, y en la alimentación de edificios comerciales y residenciales.</li>
+                    <li><strong>Tecnología:</strong> Son más compactas y de menor costo. A menudo usan seccionadores de carga con fusibles integrados.</li>
+                </ul>
+            </p>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-city"></i> Aplicaciones Típicas y Casos de Uso</h2>
+            <div class="grid">
+                <div class="component-card">
+                    <h3>Subestaciones de Distribución</h3>
+                    <p>Las celdas de MT son el corazón de las subestaciones, conectando la red de transmisión de AT con la red de distribución de MT y protegiendo los transformadores de potencia.</p>
+                </div>
+                <div class="component-card">
+                    <h3>Industrias y Edificios</h3>
+                    <p>Grandes fábricas, hospitales, centros de datos y rascacielos utilizan celdas de MT para recibir y distribuir energía de manera segura, protegiendo sus equipos críticos de sobrecargas y cortocircuitos.</p>
+                </div>
+                <div class="component-card">
+                    <h3>Parques de Energía Renovable</h3>
+                    <p>Las celdas son cruciales en parques solares y eólicos para recoger la energía generada por los paneles o aerogeneradores y transportarla a la red principal de forma protegida.</p>
+                </div>
             </div>
         </section>
 
