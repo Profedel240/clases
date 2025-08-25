@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas de Puesta a Tierra: Una Guía Integral</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f9;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .dropdown-menu {
+            transition: max-height 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .dropdown-menu.active {
+            max-height: 2000px; /* Aumentado para contener más texto */
+            transition: max-height 0.5s ease-in;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .card-bg {
+            background-color: #fff;
+        }
+        .icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none; /* Oculto por defecto */
+            background-color: #3b82f6;
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .scroll-to-top:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 py-4 px-6 header-bg text-white shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-bold">Sistemas de Puesta a Tierra ⚡</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#introduccion" class="hover:text-gray-300 transition-colors">Introducción</a>
+                <a href="#parametros" class="hover:text-gray-300 transition-colors">Parámetros</a>
+                <a href="#aplicaciones" class="hover:text-gray-300 transition-colors">Aplicaciones</a>
+                <a href="#sistemas-de-red" class="hover:text-gray-300 transition-colors">Sistemas de Red</a>
+                <a href="#mantenimiento" class="hover:text-gray-300 transition-colors">Mantenimiento</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto py-8 md:py-16 px-4">
+
+        <!-- Sección de Introducción -->
+        <section id="introduccion" class="mb-16">
+            <div class="header-bg text-white rounded-xl p-8 shadow-xl">
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Análisis Integral de los Sistemas de Puesta a Tierra (SPT)</h2>
+                <p class="text-lg md:text-xl leading-relaxed">
+                    Los SPT son una disciplina fundamental en la ingeniería eléctrica. Más que un simple accesorio, su correcto diseño e implementación son críticos para la <strong class="text-yellow-300">seguridad de las personas</strong>, la integridad de las instalaciones y la continuidad del servicio eléctrico. La conexión intencional de un sistema o equipo eléctrico a una masa conductora principal, como la tierra (el planeta), permite establecer un potencial de referencia cero. Este enlace funcional persigue múltiples objetivos técnicos y normativos.
+                </p>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="flex items-center mb-2">
+                            <span class="text-blue-500 font-bold text-xl mr-2">1.</span>
+                            <span class="font-semibold">Protección Humana</span>
+                        </div>
+                        <p class="text-sm">Un SPT eficaz desvía las corrientes de fuga o falla a tierra, creando un camino de baja impedancia que minimiza la tensión de contacto y de paso, previniendo así choques eléctricos potencialmente fatales.</p>
+                    </div>
+                    <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="flex items-center mb-2">
+                            <span class="text-blue-500 font-bold text-xl mr-2">2.</span>
+                            <span class="font-semibold">Disipación de Corrientes de Falla</span>
+                        </div>
+                        <p class="text-sm">En caso de cortocircuito a tierra, el SPT debe ser capaz de conducir la alta corriente de falla de manera segura, disipándola eficientemente en el suelo hasta que las protecciones actúen. Una baja resistencia de tierra es vital para que esta disipación sea rápida y efectiva.</p>
+                    </div>
+                    <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="flex items-center mb-2">
+                            <span class="text-blue-500 font-bold text-xl mr-2">3.</span>
+                            <span class="font-semibold">Activación de Protecciones</span>
+                        </div>
+                        <p class="text-sm">El SPT facilita el cierre de los circuitos de falla, asegurando que las protecciones automáticas (fusibles, interruptores termomagnéticos, y especialmente los disyuntores diferenciales) actúen rápidamente para desconectar el suministro eléctrico defectuoso.</p>
+                    </div>
+                    <div class="bg-white text-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <div class="flex items-center mb-2">
+                            <span class="text-blue-500 font-bold text-xl mr-2">4.</span>
+                            <span class="font-semibold">Estabilización de Tensiones</span>
+                        </div>
+                        <p class="text-sm">Mantiene el potencial de los conductores en un rango seguro y predecible con respecto a la tierra. Esto es crucial para el correcto funcionamiento de equipos sensibles y para la prevención de sobretensiones transitorias, como las causadas por descargas atmosféricas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Parámetros de Diseño Clave -->
+        <section id="parametros" class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">Parámetros Críticos y Tecnologías de Puesta a Tierra 🌍</h2>
+            <p class="text-lg text-center text-gray-600 mb-10">La elección de la tecnología y el diseño dependen de parámetros técnicos específicos del suelo.</p>
+            
+            <div class="space-y-8">
+                <!-- Parámetro 1: Resistividad del Suelo -->
+                <div class="card-bg rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border-l-4 border-blue-500">
+                    <h3 class="font-bold text-2xl text-blue-600 mb-2">Resistividad del Suelo (ρ)</h3>
+                    <p class="text-md text-gray-700 leading-relaxed mb-4">
+                        La resistividad del suelo es el parámetro más importante en el diseño de un SPT. Es una propiedad del material del suelo que mide su capacidad para resistir el flujo de corriente eléctrica. Se mide en ohmios-metro (Ω·m). Factores como la humedad, la temperatura, la compactación y la composición química afectan drásticamente este valor. Un suelo con alta resistividad requiere sistemas de SPT más complejos y extensos para lograr una resistencia de tierra adecuada.
+                    </p>
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Método de Medición:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                        <li><strong>Método de Wenner:</strong> Es el más utilizado. Consiste en inyectar una corriente conocida entre dos electrodos exteriores y medir la caída de potencial entre dos electrodos interiores, todos separados por una distancia igual (a). La fórmula de resistividad aparente es <code class="bg-gray-100 px-2 py-1 rounded">ρ = 2πa (V / I)</code>.</li>
+                    </ul>
+                </div>
+
+                <!-- Parámetro 2: Tensiones de Paso y de Contacto -->
+                <div class="card-bg rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow border-l-4 border-orange-500">
+                    <h3 class="font-bold text-2xl text-orange-600 mb-2">Tensiones de Paso (V<sub>p</sub>) y de Contacto (V<sub>c</sub>)</h3>
+                    <p class="text-md text-gray-700 leading-relaxed mb-4">
+                        Estas tensiones son cruciales para la seguridad. Se generan cuando una corriente de falla fluye hacia el suelo a través de un electrodo de tierra.
+                    </p>
+                    <h4 class="font-bold text-lg text-gray-800 mb-2">Definiciones:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                        <li><strong>Tensión de Paso (V<sub>p</sub>):</strong> Diferencia de potencial entre dos puntos en la superficie del suelo separados por una distancia de un paso (generalmente 1 metro).</li>
+                        <li><strong>Tensión de Contacto (V<sub>c</sub>):</strong> Diferencia de potencial entre una mano (tocando una estructura metálica conectada a tierra) y los pies de una persona.</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 mt-4">
+                        El diseño de las mallas de tierra en subestaciones y grandes instalaciones busca minimizar estas tensiones para que no superen los límites de seguridad establecidos por normas como IEEE 80 o la AEA.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tecnologías -->
+            <div class="mt-12">
+                <h3 class="font-bold text-2xl text-gray-900 mb-6 text-center">Tecnologías de Electrodos de Tierra</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Tarjeta: Varilla Copperweld -->
+                    <div class="card-bg rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow">
+                        <h4 class="font-bold text-xl text-blue-600 mb-2">Varilla Copperweld</h4>
+                        <p class="text-sm text-gray-500 mb-4">Ideal para instalaciones simples. Su longitud es un factor clave en la reducción de la resistencia.</p>
+                        <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                            <li><strong>Descripción:</strong> Núcleo de acero de alta resistencia recubierto de cobre. El cobre proporciona excelente conductividad y resistencia a la corrosión.</li>
+                            <li><strong>Resistencia de Tierra (R<sub>T</sub>):</strong> La fórmula aproximada para una varilla es <code class="bg-gray-100 px-2 py-1 rounded">R<sub>T</sub> = (ρ / 2πL) · ln(4L / d)</code>, donde L es la longitud y d es el diámetro.</li>
+                        </ul>
+                    </div>
+                    <!-- Tarjeta: Malla o Anillo -->
+                    <div class="card-bg rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow">
+                        <h4 class="font-bold text-xl text-blue-600 mb-2">Malla o Anillo de Tierra</h4>
+                        <p class="text-sm text-gray-500 mb-4">Solución robusta para grandes instalaciones que requiere un diseño cuidadoso para controlar los potenciales.</p>
+                        <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                            <li><strong>Descripción:</strong> Red de conductores de cobre enterrados que forma una superficie equipotencial. Se utiliza para disminuir la resistencia global y minimizar las tensiones de paso y de contacto en grandes áreas.</li>
+                            <li><strong>Función:</strong> Controlar los gradientes de potencial en el suelo durante una falla, limitando así los riesgos para el personal.</li>
+                        </ul>
+                    </div>
+                    <!-- Tarjeta: Pozos a Tierra -->
+                    <div class="card-bg rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow">
+                        <h4 class="font-bold text-xl text-blue-600 mb-2">Pozos a Tierra</h4>
+                        <p class="text-sm text-gray-500 mb-4">Para terrenos difíciles con alta resistividad. Es una solución vertical de alta eficiencia.</p>
+                        <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                            <li><strong>Descripción:</strong> Perforación vertical con un electrodo y un compuesto químico (generalmente bentonita, un mineral de arcilla que se expande con la humedad) para mejorar la conductividad y el contacto con el suelo.</li>
+                            <li><strong>Ventajas:</strong> Solución ideal en áreas con rocas o suelos con alta resistividad en la superficie, ya que se pueden alcanzar capas más profundas y conductivas.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Aplicaciones -->
+        <section id="aplicaciones" class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">Aplicaciones Específicas en Distribución y Hogar 🏡⚡</h2>
+            <p class="text-lg text-center text-gray-600 mb-10">El diseño de los SPT varía drásticamente según el tipo de instalación y la tensión de servicio.</p>
+            
+            <!-- Acordeón para Aplicaciones -->
+            <div class="space-y-4">
+                
+                <!-- Ítem 1: Residencias y Comercios -->
+                <div class="accordion-item card-bg rounded-xl shadow-lg p-6 cursor-pointer" onclick="toggleAccordion('content1', 'icon1')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-xl text-gray-800">1. Puestas a Tierra Residenciales y Comerciales (Baja Tensión)</h3>
+                        <svg class="icon accordion-icon transform transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="icon1">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div id="content1" class="dropdown-menu">
+                        <div class="mt-4 text-sm text-gray-700">
+                            <p class="mb-2">En el ámbito de la baja tensión, la puesta a tierra tiene dos funciones vitales: la protección contra choques eléctricos indirectos y la disipación de corrientes de falla. La solución más común es la <strong>varilla de cobre</strong>, que es económica y cumple con los requisitos de seguridad para cargas bajas.</p>
+                            <h4 class="font-bold mt-4">Puntos Clave:</h4>
+                            <ul class="list-disc list-inside ml-4 space-y-1">
+                                <li><strong>Componente principal:</strong> Varilla de cobre o sistema de anillo.</li>
+                                <li><strong>Conductor de Protección (PE):</strong> La varilla se conecta al conductor de protección de la instalación, que a su vez se une a las carcasas metálicas de los equipos y a los tomacorrientes con polo a tierra.</li>
+                                <li><strong>Rol del Disyuntor Diferencial (RCD/GFCI):</strong> Este dispositivo monitorea la diferencia entre la corriente que entra y sale de un circuito. Si detecta una fuga (por ejemplo, a través de una persona que toca una carcasa electrificada), desconecta el circuito en milisegundos. La baja resistencia del SPT es fundamental para que la corriente de fuga sea lo suficientemente alta para activar el diferencial rápidamente.</li>
+                            </ul>
+                            <div class="mt-6 p-4 bg-yellow-100 rounded-lg border-l-4 border-yellow-500">
+                                <h4 class="font-bold text-yellow-800">⚠️ Nota Importante:</h4>
+                                <p class="text-sm mt-1">El SPT y el disyuntor diferencial son protecciones complementarias. El SPT por sí solo no garantiza la seguridad si el valor de resistencia es demasiado alto.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ítem 2: Subestaciones de Media a Baja Tensión -->
+                <div class="accordion-item card-bg rounded-xl shadow-lg p-6 cursor-pointer" onclick="toggleAccordion('content2', 'icon2')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-xl text-gray-800">2. Puestas a Tierra en Subestaciones (Media y Baja Tensión)</h3>
+                        <svg class="icon accordion-icon transform transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="icon2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div id="content2" class="dropdown-menu">
+                        <div class="mt-4 text-sm text-gray-700">
+                            <p class="mb-2">En estas instalaciones, la puesta a tierra es crítica para la confiabilidad. Cada subestación debe tener un SPT integral e independiente, diseñado para manejar grandes corrientes de falla de forma segura.</p>
+                            <h4 class="font-bold mt-4">Aspectos Fundamentales:</h4>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li><strong>Transformadores de Distribución:</strong> El neutro del secundario debe estar sólidamente conectado a tierra para estabilizar las tensiones y permitir la operación de los dispositivos de protección. Las carcasas metálicas de los transformadores deben estar unidas a la malla de tierra para prevenir potenciales peligrosos.</li>
+                                <li><strong>Subestaciones Compactas:</strong> Se usan pozos químicos de alta eficiencia y varillas para maximizar la disipación en espacios reducidos, crucial para zonas urbanas donde el espacio es limitado.</li>
+                                <li><strong>Subestaciones Rurales:</strong> Se enfrentan a suelos de alta resistividad. El diseño incluye pozos profundos y electrodos horizontales para alcanzar capas de suelo más conductivas y aumentar la superficie de disipación, compensando la mala calidad del terreno superficial.</li>
+                            </ul>
+                            <div class="mt-6 p-4 bg-gray-100 rounded-lg border-l-4 border-blue-500">
+                                <h4 class="font-bold text-blue-800">💡 Objetivo Central:</h4>
+                                <p class="text-sm mt-1">Mantener una <strong class="text-blue-600">baja resistencia de tierra (R<sub>T</sub>)</strong> para:</p>
+                                <ul class="list-disc list-inside ml-4 mt-2">
+                                    <li>Limitar las tensiones de paso y de contacto a valores seguros para las personas y el personal de mantenimiento.</li>
+                                    <li>Proteger los equipos sensibles de las sobretensiones.</li>
+                                    <li>Facilitar la operación de las protecciones y asegurar la continuidad del servicio.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ítem 3: Industrias y Plantas Grandes -->
+                <div class="accordion-item card-bg rounded-xl shadow-lg p-6 cursor-pointer" onclick="toggleAccordion('content3', 'icon3')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-xl text-gray-800">3. Puestas a Tierra en Industrias y Plantas Grandes</h3>
+                        <svg class="icon accordion-icon transform transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="icon3">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div id="content3" class="dropdown-menu">
+                        <div class="mt-4 text-sm text-gray-700">
+                            <p class="mb-2">La magnitud de las corrientes de falla y la necesidad de máxima seguridad hacen de las mallas de tierra la solución estándar. A menudo se complementan con pozos químicos en puntos estratégicos para garantizar una baja resistencia y un control estricto sobre los gradientes de potencial. También se aplican sistemas de SPT para proteger los pararrayos y otros elementos de protección contra rayos.</p>
+                            <h4 class="font-bold mt-4">Características:</h4>
+                            <ul class="list-disc list-inside ml-4 space-y-1">
+                                <li><strong>Tecnología principal:</strong> Mallas de tierra extensas.</li>
+                                <li><strong>Objetivo:</strong> Máxima seguridad y disipación de corrientes de falla muy altas y de descargas atmosféricas.</li>
+                                <li><strong>Complementos:</strong> Pozos químicos, varillas hincadas en los vértices y refuerzos en los puntos de conexión de equipos de alta potencia.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Sección de Sistemas de Red -->
+        <section id="sistemas-de-red" class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">Sistemas de Conexión a Tierra de la Red (TT, TN, IT)</h2>
+            <p class="text-lg text-center text-gray-600 mb-10">La forma en que se conecta el neutro del transformador a tierra define el tipo de sistema de red y la estrategia de protección.</p>
+            
+            <div class="space-y-4">
+                <!-- TT System -->
+                <div class="card-bg rounded-xl shadow-lg p-6 cursor-pointer" onclick="toggleAccordion('tt-system', 'tt-icon')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-xl text-gray-800">Sistema TT (Tierra-Tierra)</h3>
+                        <svg class="icon accordion-icon transform transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="tt-icon">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div id="tt-system" class="dropdown-menu">
+                        <div class="mt-4 text-sm text-gray-700">
+                            <p class="mb-2">En un sistema TT, el neutro del transformador y las carcasas metálicas de los equipos de la instalación del usuario tienen puestas a tierra separadas e independientes. Esto significa que la resistencia de la tierra de la instalación del usuario es clave para el funcionamiento de las protecciones. Un diferencial es obligatorio en este sistema para asegurar la desconexión rápida en caso de falla a tierra.</p>
+                            <h4 class="font-bold mt-4">Ventajas y Desventajas:</h4>
+                            <ul class="list-disc list-inside ml-4 space-y-1">
+                                <li><strong>Ventaja:</strong> Las fallas a tierra no afectan al sistema principal de la red.</li>
+                                <li><strong>Desventaja:</strong> La seguridad depende de la calidad de la puesta a tierra del usuario, lo que puede ser un problema si la resistencia es alta.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TN System -->
+                <div class="card-bg rounded-xl shadow-lg p-6 cursor-pointer" onclick="toggleAccordion('tn-system', 'tn-icon')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-xl text-gray-800">Sistema TN (Tierra-Neutro)</h3>
+                        <svg class="icon accordion-icon transform transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="tn-icon">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div id="tn-system" class="dropdown-menu">
+                        <div class="mt-4 text-sm text-gray-700">
+                            <p class="mb-2">En este sistema, el neutro del transformador de distribución está conectado a tierra. El conductor de protección de la instalación del usuario (PE) está conectado al conductor neutro de la red. Existen tres sub-variantes:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2 mt-2">
+                                <li><strong>TN-C (Combinado):</strong> El conductor neutro y el de protección se combinan en un solo conductor (PEN). No es permitido en instalaciones residenciales.</li>
+                                <li><strong>TN-S (Separado):</strong> El conductor neutro y el de protección son independientes desde el transformador hasta el usuario. Es el más seguro y común en instalaciones modernas.</li>
+                                <li><strong>TN-C-S:</strong> El conductor combinado (PEN) se usa en la red de distribución y se separa en neutro y protección en el punto de entrada de la instalación del usuario.</li>
+                            </ul>
+                            <h4 class="font-bold mt-4">Ventajas:</h4>
+                            <ul class="list-disc list-inside ml-4 space-y-1">
+                                <li>La baja impedancia del circuito de falla asegura que las protecciones por sobrecorriente (fusibles, térmicos) actúen rápidamente.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IT System -->
+                <div class="card-bg rounded-xl shadow-lg p-6 cursor-pointer" onclick="toggleAccordion('it-system', 'it-icon')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-xl text-gray-800">Sistema IT (Aislado)</h3>
+                        <svg class="icon accordion-icon transform transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="it-icon">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div id="it-system" class="dropdown-menu">
+                        <div class="mt-4 text-sm text-gray-700">
+                            <p class="mb-2">El sistema IT aísla la fuente de energía de la tierra, o la conecta a tierra a través de una impedancia muy alta. Esto significa que una primera falla a tierra no interrumpe el servicio. Se utiliza en entornos donde la continuidad del servicio es crítica, como quirófanos de hospitales o centros de datos.</p>
+                            <h4 class="font-bold mt-4">Ventajas y Desventajas:</h4>
+                            <ul class="list-disc list-inside ml-4 space-y-1">
+                                <li><strong>Ventaja:</strong> Altísima fiabilidad. Una sola falla no causa una desconexión.</li>
+                                <li><strong>Desventaja:</strong> Requiere un monitoreo constante del aislamiento y es más complejo. Una segunda falla en otra fase puede ser peligrosa.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Mantenimiento y Verificación -->
+        <section id="mantenimiento" class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">Mantenimiento y Buenas Prácticas 🛠️</h2>
+            <p class="text-lg text-center text-gray-600 mb-10">La instalación es solo el primer paso. Un programa de verificación es crucial para el funcionamiento a largo plazo de los SPT.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Cuadro de Medición -->
+                <div class="card-bg rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+                    <h3 class="font-bold text-xl mb-2 text-green-700">Medición Periódica</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">
+                        Se recomienda medir la resistencia de tierra al menos una vez al año utilizando un <strong>telurómetro</strong>. Las mediciones en condiciones de humedad variables (lluvia y sequía) son esenciales para entender el comportamiento del sistema. El método más común para grandes sistemas es el de la caída de potencial (Fall-of-Potential Method), que requiere inyectar corriente y medir el potencial en tres puntos distintos para obtener un valor preciso y confiable de la resistencia.
+                    </p>
+                </div>
+
+                <!-- Cuadro de Diseño -->
+                <div class="card-bg rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
+                    <h3 class="font-bold text-xl mb-2 text-orange-700">Diseño Personalizado</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">
+                        El diseño debe basarse en parámetros específicos del sitio, como la resistividad del suelo y las corrientes de falla esperadas. No se debe usar una solución genérica. Es vital considerar las tensiones de paso y contacto máximas permisibles para asegurar que el sistema sea seguro en el peor de los casos.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Cuadro de Complementariedad y Documentación -->
+            <div class="mt-8 card-bg rounded-xl shadow-lg p-6">
+                <h3 class="font-bold text-xl mb-4 text-gray-800">Complementariedad y Documentación</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-600">Complementariedad de Tecnologías</h4>
+                        <ul class="list-disc list-inside ml-4 text-sm text-gray-700 mt-2">
+                            <li>Combina diferentes tecnologías para optimizar la disipación.</li>
+                            <li>Ejemplo: Una malla reforzada con varillas hincadas o un pozo químico como punto principal de un anillo de tierra.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-600">Registro y Documentación</h4>
+                        <ul class="list-disc list-inside ml-4 text-sm text-gray-700 mt-2">
+                            <li>Mantén un registro detallado de mediciones, materiales e intervenciones.</li>
+                            <li>Crucial para la trazabilidad y la evaluación del sistema a lo largo del tiempo.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Botón para subir al inicio -->
+        <button onclick="scrollToTop()" class="scroll-to-top">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+        </button>
+
+    </div> <!-- Cierre del container principal -->
+
+    <script>
+        function toggleAccordion(contentId, iconId) {
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(iconId);
+            const parentItem = content.closest('.accordion-item');
+            
+            // Cierra todos los demás acordeones
+            document.querySelectorAll('.dropdown-menu').forEach(item => {
+                if (item.id !== contentId && item.classList.contains('active')) {
+                    item.classList.remove('active');
+                    item.closest('.accordion-item').classList.remove('active');
+                    item.previousElementSibling.querySelector('.accordion-icon').classList.remove('active');
+                }
+            });
+
+            // Alterna el acordeón actual
+            content.classList.toggle('active');
+            parentItem.classList.toggle('active');
+            icon.closest('.accordion-item').querySelector('.accordion-icon').classList.toggle('active');
+        }
+
+        window.onscroll = function() {
+            const button = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
