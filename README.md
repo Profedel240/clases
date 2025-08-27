@@ -47,7 +47,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 
 1.  [Grupos-organizaciones-empresas](https://profedel240.github.io/clases/clase1gad.html)
 2.  [Modulo 1 GAD](https://profedel240.github.io/clases/modulo1gad.html)
-3.  [Título de la Clase 3 aquí](https://profedel240.github.io/clases/modulo2.html)
+3.  [Modulo 2 GAD](https://profedel240.github.io/clases/modulo2.html)
 4.  [Título de la Clase 4 aquí](https://link-de-tu-infografia-4-aqui.github.io/clase_gestion_4.html)
 5.  [Título de la Clase 5 aquí](https://link-de-tu-infografia-5-aqui.github.io/clase_gestion_5.html)
 6.  [Título de la Clase 6 aquí](https://link-de-tu-infografia-6-aqui.github.io/clase_gestion_6.html)
