@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Gestión de Ámbitos de Desempeño</title>
+    <!-- Incluye Tailwind CSS para un diseño moderno y responsive -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .bg-gradient-blue {
+            background-image: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+        /* Estilo para los menús desplegables */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-content.active {
+            max-height: 2000px; /* Ajustado para el contenido más extenso */
+        }
+        .accordion-header .icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .accordion-header.active .icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <!-- Encabezado Principal -->
+        <header class="text-center py-10 rounded-xl mb-8 shadow-lg bg-gradient-blue text-white">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">Gestión de los Ámbitos de Desempeño</h1>
+            <p class="text-xl md:text-2xl font-light">Planificación, Matriz FODA, Presupuestos y Análisis de Costos</p>
+        </header>
+
+        <!-- Contenedor de la Infografía con diseño horizontal y menús desplegables -->
+        <main class="space-y-6">
+            
+            <!-- Sección: El Proceso de Planificación -->
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <button class="accordion-header flex justify-between items-center w-full focus:outline-none text-blue-600">
+                    <div class="flex items-center">
+                        <svg class="w-10 h-10 mr-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 12l-5-5 1.41-1.41L9 11.17l5.59-5.59L16 7l-7 7z"></path></svg>
+                        <h2 class="text-2xl font-bold">El Proceso de Planificación</h2>
+                    </div>
+                    <svg class="icon w-6 h-6 transform rotate-0 transition-transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <p class="mb-4 mt-4">
+                        La planificación es la etapa inicial y más crucial del proceso de gestión. Es una actividad sistemática que se implementa en todos los niveles de una organización para definir metas, delinear estrategias y asignar recursos de manera eficiente. Su propósito es establecer un camino claro para alcanzar los objetivos deseados.
+                    </p>
+                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <h3 class="font-semibold text-lg text-gray-700">Fases Clave del Proceso de Planificación</h3>
+                        <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2">
+                            <li><strong>Identificación de metas y objetivos:</strong> Es el punto de partida, donde se define qué se quiere lograr. Estas metas deben ser específicas, medibles, alcanzables, relevantes y con plazos definidos (SMART). <br><em class="text-sm text-gray-500">Ejemplo: Una empresa tecnológica se propone "aumentar su cuota de mercado en un 15% en la región de Buenos Aires durante los próximos 12 meses".</em></li>
+                            <li><strong>Identificación de las acciones:</strong> Se establecen las actividades y estrategias que permitirán alcanzar las metas. Este paso detalla el "cómo" se ejecutarán los planes. <br><em class="text-sm text-gray-500">Ejemplo: Para lograr la meta de cuota de mercado, se lanzará una agresiva campaña de marketing digital, se abrirán dos nuevos puntos de venta y se mejorará el servicio postventa.</em></li>
+                            <li><strong>Identificación de contingencias:</strong> Se anticipan posibles eventos inesperados que podrían afectar el plan. Esto implica crear planes de contingencia para mitigar riesgos. <br><em class="text-sm text-gray-500">Ejemplo: "Si la campaña de marketing no genera el 10% de ventas proyectadas en los primeros 3 meses, se redirigirá el 50% del presupuesto publicitario a anuncios en televisión."</em></li>
+                            <li><strong>Establecimiento de métodos de control y medición:</strong> Se definen indicadores clave de rendimiento (KPIs) para monitorear y medir el avance hacia los objetivos. <br><em class="text-sm text-gray-500">Ejemplo: "Se revisarán los reportes de ventas semanalmente, se medirán las impresiones de los anuncios y se realizarán encuestas de satisfacción del cliente cada trimestre."</em></li>
+                            <li><strong>Determinación de recursos:</strong> Se identifican todos los recursos necesarios (humanos, financieros, materiales, tecnológicos) para llevar a cabo el plan. <br><em class="text-sm text-gray-500">Ejemplo: "La campaña requerirá una inversión de $50,000, la contratación de un especialista en marketing digital y la compra de un nuevo software de CRM."</em></li>
+                            <li><strong>Definición de responsables:</strong> Se asignan roles y responsabilidades claras a personas o equipos. <br><em class="text-sm text-gray-500">Ejemplo: "El equipo de marketing será responsable de la ejecución de la campaña digital, y el Gerente de Operaciones supervisará la apertura de los nuevos puntos de venta."</em></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Matriz FODA -->
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <button class="accordion-header flex justify-between items-center w-full focus:outline-none text-red-600">
+                    <div class="flex items-center">
+                        <svg class="w-10 h-10 mr-4 text-red-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 12l-5-5 1.41-1.41L9 11.17l5.59-5.59L16 7l-7 7z"></path></svg>
+                        <h2 class="text-2xl font-bold">Análisis FODA</h2>
+                    </div>
+                    <svg class="icon w-6 h-6 transform rotate-0 transition-transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <p class="mb-4 mt-4">
+                        El Análisis FODA (Fortalezas, Oportunidades, Debilidades, Amenazas) es una herramienta de planificación estratégica esencial. Permite a una organización o proyecto evaluar su situación actual, identificando factores internos y externos que pueden influir en el logro de sus objetivos.
+                    </p>
+                    <table class="w-full text-left border-collapse mt-4">
+                        <thead>
+                            <tr>
+                                <th class="p-2 border border-gray-300 bg-gray-200">Factores Internos (Controlables)</th>
+                                <th class="p-2 border border-gray-300 bg-gray-200">Factores Externos (Incontrolables)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-2 border border-gray-300 bg-white">
+                                    <h4 class="font-bold text-lg text-green-700">F - Fortalezas</h4>
+                                    <p class="text-sm">Son los atributos o recursos internos positivos que la organización tiene y que le dan una ventaja competitiva. Son aspectos sobre los que se puede construir el éxito. </p>
+                                    <em class="text-xs text-gray-500">Ejemplo: Una empresa de desarrollo de software tiene un equipo de ingenieros altamente calificado, un producto innovador con patentes y una sólida reputación en el mercado.</em>
+                                    <h4 class="font-bold text-lg text-red-700 mt-4">D - Debilidades</h4>
+                                    <p class="text-sm">Son los aspectos internos negativos que limitan o perjudican el desempeño de la organización. Son áreas que requieren mejora para alcanzar los objetivos.</p>
+                                    <em class="text-xs text-gray-500">Ejemplo: La empresa de software tiene una falta de capital para expandirse, sus procesos de marketing son obsoletos y su servicio al cliente es lento.</em>
+                                </td>
+                                <td class="p-2 border border-gray-300 bg-white">
+                                    <h4 class="font-bold text-lg text-yellow-700">O - Oportunidades</h4>
+                                    <p class="text-sm">Son los factores externos que la organización puede aprovechar para mejorar su posición. Son tendencias o situaciones del entorno que benefician el negocio.</p>
+                                    <em class="text-xs text-gray-500">Ejemplo: Un nuevo mercado emergente en Latinoamérica muestra un gran interés por el tipo de software de la empresa, y las políticas gubernamentales ofrecen exenciones fiscales para la innovación tecnológica.</em>
+                                    <h4 class="font-bold text-lg text-gray-700 mt-4">A - Amenazas</h4>
+                                    <p class="text-sm">Son los factores externos que pueden perjudicar a la organización o poner en riesgo su sostenibilidad. Son situaciones que escapan a su control.</p>
+                                    <em class="text-xs text-gray-500">Ejemplo: Un competidor global muy fuerte entra en el mercado con precios más bajos, y hay un cambio abrupto en las regulaciones de protección de datos que la empresa no cumple.</em>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección: Análisis de Costos, Rentabilidad y Beneficios -->
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <button class="accordion-header flex justify-between items-center w-full focus:outline-none text-green-600">
+                    <div class="flex items-center">
+                        <svg class="w-10 h-10 mr-4 text-green-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 0116 0A8 8 0 012 10zm-1 0a9 9 0 1118 0 9 9 0 01-18 0zM8 9a1 1 0 100 2h4a1 1 0 100-2H8z"></path></svg>
+                        <h2 class="text-2xl font-bold">Análisis de Costos, Rentabilidad y Beneficios</h2>
+                    </div>
+                    <svg class="icon w-6 h-6 transform rotate-0 transition-transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <p class="mb-4 mt-4">
+                        El análisis de costos es una de las herramientas más poderosas de la gestión financiera. Permite a las organizaciones comprender la estructura de sus gastos, determinar la viabilidad de sus operaciones y maximizar sus ganancias.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-700">Costos Fijos vs. Variables</h3>
+                            <p class="mt-2 text-gray-600">
+                                <strong>Costos Fijos:</strong> Son aquellos que permanecen constantes en un período determinado, independientemente del volumen de producción o ventas. Estos costos se incurren incluso si la empresa no produce nada. <br><em class="text-sm text-gray-500">Ejemplo de uso: Para una fábrica de sillas, los costos fijos incluyen el alquiler del local ($5,000/mes), los salarios de la gerencia ($3,000/mes) y los seguros, los cuales se pagan sin importar cuántas sillas se produzcan.</em>
+                            </p>
+                            <p class="mt-2 text-gray-600">
+                                <strong>Costos Variables:</strong> Son aquellos que cambian en proporción directa al volumen de producción o actividad. Si la producción aumenta, los costos variables también lo hacen. <br><em class="text-sm text-gray-500">Ejemplo de uso: En la misma fábrica de sillas, los costos variables incluyen la madera, los tornillos y el pegamento. Si producir una silla cuesta $15 en materiales, producir 100 sillas costará $1,500 en costos variables.</em>
+                            </p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-700">Punto de Equilibrio</h3>
+                            <p class="mt-2 text-gray-600">
+                                Es el nivel de producción o ventas en el que los ingresos totales son iguales a los costos totales. En este punto, la empresa no tiene ganancias ni pérdidas; simplemente cubre todos sus gastos. Comprender el punto de equilibrio es vital para establecer precios, planificar la producción y fijar objetivos de ventas.
+                                <br>
+                                <strong class="text-sm mt-2 block">Fórmula:</strong>
+                                <span class="block mt-1 bg-gray-200 p-2 rounded text-sm">Punto de Equilibrio = Costos Fijos Totales / (Precio de Venta por Unidad - Costo Variable por Unidad)</span>
+                                <em class="text-xs text-gray-500 mt-2 block">Ejemplo de uso: Si nuestra fábrica de sillas tiene costos fijos de $8,000, vende cada silla a $50 y el costo variable por silla es de $15, el punto de equilibrio es: $8,000 / ($50 - $15) = $8,000 / $35 ≈ 229 sillas. La empresa necesita vender 229 sillas para no perder dinero.</em>
+                            </p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-700">Rentabilidad y Beneficios</h3>
+                            <p class="mt-2 text-gray-600">
+                                <strong>Beneficio:</strong> Es la diferencia entre los ingresos totales y los costos totales. Es la ganancia neta que obtiene la empresa. <br><br>
+                                <strong class="text-sm mt-2 block">Fórmula:</strong>
+                                <span class="block mt-1 bg-gray-200 p-2 rounded text-sm">Beneficio = Ingresos Totales - Costos Totales</span>
+                                <br><em class="text-xs text-gray-500 mt-2 block">Ejemplo de uso: Si la fábrica vendió 400 sillas a $50 ($20,000 de ingresos), y sus costos totales fueron $8,000 (fijos) + 400 * $15 (variables) = $14,000. El beneficio sería $20,000 - $14,000 = $6,000.</em>
+                            </p>
+                            <p class="mt-4 text-gray-600">
+                                <strong>Rentabilidad:</strong> Mide la eficiencia con la que la empresa genera beneficios a partir de su inversión. Se expresa como un porcentaje y es un indicador clave de la salud financiera.
+                                <br>
+                                <strong class="text-sm mt-2 block">Fórmula:</strong>
+                                <span class="block mt-1 bg-gray-200 p-2 rounded text-sm">Rentabilidad = (Beneficio Neto / Inversión Inicial) * 100</span>
+                                <br><em class="text-xs text-gray-500 mt-2 block">Ejemplo de uso: Con un beneficio de $6,000 y una inversión inicial de $25,000, la rentabilidad es ($6,000 / $25,000) * 100 = 24%. Esto indica que la inversión inicial genera un 24% de retorno.</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Riesgos de Inversión -->
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <button class="accordion-header flex justify-between items-center w-full focus:outline-none text-orange-600">
+                    <div class="flex items-center">
+                        <svg class="w-10 h-10 mr-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 12l-5-5 1.41-1.41L9 11.17l5.59-5.59L16 7l-7 7z"></path></svg>
+                        <h2 class="text-2xl font-bold">Riesgos de Inversión</h2>
+                    </div>
+                    <svg class="icon w-6 h-6 transform rotate-0 transition-transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <p class="mb-4 mt-4">
+                        Toda inversión conlleva riesgos, que son la posibilidad de que el rendimiento real de una inversión sea diferente al esperado. Conocer estos riesgos es crucial para tomar decisiones informadas y proteger el capital.
+                    </p>
+                    <table class="w-full text-left border-collapse mt-4">
+                        <thead>
+                            <tr>
+                                <th class="p-2 border border-gray-300 bg-gray-200">Tipo de Riesgo</th>
+                                <th class="p-2 border border-gray-300 bg-gray-200">Descripción y Ejemplo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-2 border border-gray-300 bg-white">
+                                    <h4 class="font-bold text-lg text-red-700">Riesgo de Mercado</h4>
+                                </td>
+                                <td class="p-2 border border-gray-300 bg-white">
+                                    <p class="text-sm">Se refiere a las fluctuaciones en el mercado (precios, tasas de interés, tipo de cambio) que pueden afectar el valor de una inversión. Es un riesgo sistémico que impacta a todo el mercado.</p>
+                                    <em class="text-xs text-gray-500">Ejemplo: Invertiste en acciones de una empresa tecnológica, pero una recesión global hace que el valor de las acciones en todo el sector caiga significativamente.</em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 border border-gray-300 bg-white">
+                                    <h4 class="font-bold text-lg text-yellow-700">Riesgo de Liquidez</h4>
+                                </td>
+                                <td class="p-2 border border-gray-300 bg-white">
+                                    <p class="text-sm">Es la dificultad de vender un activo rápidamente y a su precio justo en el mercado. Si no hay suficientes compradores, es posible que tengas que vender con una pérdida.</p>
+                                    <em class="text-xs text-gray-500">Ejemplo: Posees un terreno en una zona rural. Aunque su valor es alto, la falta de interesados en la zona hace que sea casi imposible venderlo rápidamente si necesitas el dinero de forma urgente.</em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 border border-gray-300 bg-white">
+                                    <h4 class="font-bold text-lg text-green-700">Riesgo de Crédito</h4>
+                                </td>
+                                <td class="p-2 border border-gray-300 bg-white">
+                                    <p class="text-sm">Es la posibilidad de que un prestatario (como una empresa o un gobierno) no cumpla con sus obligaciones de pago de deuda, como los intereses o el capital, lo que resulta en una pérdida para el inversor.</p>
+                                    <em class="text-xs text-gray-500">Ejemplo: Compraste bonos de una empresa. El riesgo de crédito se materializa si esa empresa se declara en quiebra y no puede pagarte el dinero que te debe.</em>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección: Tipos de Presupuestos -->
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <button class="accordion-header flex justify-between items-center w-full focus:outline-none text-purple-600">
+                    <div class="flex items-center">
+                        <svg class="w-10 h-10 mr-4 text-purple-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 12l-5-5 1.41-1.41L9 11.17l5.59-5.59L16 7l-7 7z"></path></svg>
+                        <h2 class="text-2xl font-bold">Tipos de Presupuestos</h2>
+                    </div>
+                    <svg class="icon w-6 h-6 transform rotate-0 transition-transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <p class="mb-4 mt-4">
+                        Los presupuestos son planes financieros que estiman los ingresos y gastos futuros. Su clasificación ayuda a los gerentes a elegir la herramienta adecuada para sus necesidades.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-700">Presupuesto Rígido vs. Flexible</h3>
+                            <p class="mt-2 text-gray-600">
+                                <strong>Presupuesto Rígido:</strong> También conocido como presupuesto estático, se elabora para un único nivel de actividad. Es ideal para empresas con operaciones estables y predecibles. Su desventaja principal es que pierde su utilidad si el volumen de producción real difiere del plan. <br><em class="text-sm text-gray-500">Ejemplo: Una empresa que fabrica 5,000 unidades al mes crea un presupuesto rígido asumiendo ese volumen. Si la producción cae a 3,000 unidades, el presupuesto original ya no es una base de comparación válida.</em>
+                            </p>
+                            <p class="mt-2 text-gray-600">
+                                <strong>Presupuesto Flexible:</strong> Es un instrumento dinámico que se adapta a diferentes niveles de actividad. Se elabora para varios volúmenes de operación, lo que permite a la gerencia entender cómo los costos y los ingresos reaccionarán ante cambios en la producción. Es especialmente útil en entornos de negocio volátiles. <br><em class="text-sm text-gray-500">Ejemplo: Una empresa de software crea un presupuesto flexible con proyecciones para 100, 200 y 300 nuevos clientes, lo que le permite planificar sus gastos en servidores y personal de soporte de acuerdo al crecimiento real.</em>
+                            </p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-700">Corto vs. Largo Plazo</h3>
+                            <p class="mt-2 text-gray-600">
+                                <strong>Presupuesto a Corto Plazo:</strong> Se realizan para cubrir la planificación de la organización en un ciclo de operaciones de un año o menos. Son detallados y se adaptan mejor a economías inflacionarias, permitiendo un ajuste constante. <br><em class="text-sm text-gray-500">Ejemplo: El presupuesto anual de gastos operativos de un hospital, detallando gastos de salarios, suministros médicos y mantenimiento.</em>
+                            </p>
+                            <p class="mt-2 text-gray-600">
+                                <strong>Presupuesto a Largo Plazo:</strong> Corresponden a planes de desarrollo de varios años (generalmente de 2 a 5 años). Son menos precisos y se enfocan en objetivos estratégicos a gran escala, como la expansión de la empresa o la introducción de nuevas tecnologías. <br><em class="text-sm text-gray-500">Ejemplo: Un plan de inversión a 5 años para construir una nueva planta de producción en otro país.</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nueva Sección: Métodos de Estimación de la Rentabilidad -->
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <button class="accordion-header flex justify-between items-center w-full focus:outline-none text-indigo-600">
+                    <div class="flex items-center">
+                        <svg class="w-10 h-10 mr-4 text-indigo-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 12l-5-5 1.41-1.41L9 11.17l5.59-5.59L16 7l-7 7z"></path></svg>
+                        <h2 class="text-2xl font-bold">Métodos de Estimación de la Rentabilidad</h2>
+                    </div>
+                    <svg class="icon w-6 h-6 transform rotate-0 transition-transform" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <p class="mb-4 mt-4">
+                        Para evaluar si un proyecto de inversión es viable y rentable, se utilizan diferentes métodos. Cada uno ofrece una perspectiva distinta sobre el rendimiento y el riesgo.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-700">Tasa de Retorno sobre la Inversión Original (iROI)</h3>
+                            <p class="mt-2 text-gray-600">
+                                Es una medida simple de rentabilidad que compara el beneficio neto anual de un proyecto con su inversión inicial. Es fácil de calcular pero no considera el valor del dinero en el tiempo.
+                            </p>
+                            <strong class="text-sm mt-2 block">Fórmula:</strong>
+                            <span class="block mt-1 bg-gray-200 p-2 rounded text-sm">iROI = (Beneficio Neto Anual / Inversión Inicial) * 100</span>
+                            <em class="text-xs text-gray-500 mt-2 block">Ejemplo de uso: Si inviertes $50,000 en un proyecto que genera un beneficio neto de $10,000 por año, el iROI es ($10,000 / $50,000) * 100 = 20%.</em>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-700">Tasa de Retorno sobre la Inversión Promedio (iRIP)</h3>
+                            <p class="mt-2 text-gray-600">
+                                Similar al iROI, pero utiliza la inversión promedio del proyecto en lugar de la inversión inicial. La inversión promedio se calcula como el valor de la inversión al inicio más el valor al final, dividido por dos.
+                            </p>
+                            <strong class="text-sm mt-2 block">Fórmula:</strong>
+                            <span class="block mt-1 bg-gray-200 p-2 rounded text-sm">iRIP = (Beneficio Neto Promedio / Inversión Promedio) * 100</span>
+                            <em class="text-xs text-gray-500 mt-2 block">Ejemplo de uso: Con una inversión inicial de $50,000 y un valor de $10,000 al final, la inversión promedio es de $30,000. Si el beneficio neto promedio es de $8,000, el iRIP es ($8,000 / $30,000) * 100 ≈ 26.67%.</em>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-700">Valor Presente (VP)</h3>
+                            <p class="mt-2 text-gray-600">
+                                El Valor Presente, o Valor Neto Actual (VNA), calcula el valor actual de todos los flujos de caja futuros de un proyecto, descontándolos a una tasa de interés determinada. Un VP positivo indica que el proyecto es rentable, ya que su valor es mayor que el de la inversión.
+                            </p>
+                            <strong class="text-sm mt-2 block">Concepto:</strong>
+                            <span class="block mt-1 bg-gray-200 p-2 rounded text-sm">Un VP > 0 significa que el proyecto generará ganancias por encima de la tasa de descuento. Un VP = 0 indica que el proyecto cubre la inversión y la rentabilidad esperada.</span>
+                            <em class="text-xs text-gray-500 mt-2 block">Ejemplo de uso: Si un proyecto con una inversión de $100,000 genera flujos de caja anuales de $30,000 por 5 años, y la tasa de descuento es del 10%, el VP se calcula sumando el valor presente de cada flujo de caja. Si el resultado es $13,000, el proyecto es rentable y deseable.</em>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-700">Tasa Interna de Retorno (TIR o r)</h3>
+                            <p class="mt-2 text-gray-600">
+                                La TIR es la tasa de interés que hace que el Valor Presente (VP) de un proyecto sea igual a cero. En otras palabras, es la tasa de rentabilidad máxima que un proyecto puede alcanzar. Si la TIR es mayor que la tasa de descuento requerida, el proyecto es viable.
+                            </p>
+                            <strong class="text-sm mt-2 block">Concepto:</strong>
+                            <span class="block mt-1 bg-gray-200 p-2 rounded text-sm">Si TIR > Costo de Capital, el proyecto es aceptable. Si TIR < Costo de Capital, el proyecto se debe rechazar.</span>
+                            <em class="text-xs text-gray-500 mt-2 block">Ejemplo de uso: Un proyecto tiene una TIR del 18%. Si el costo de capital de la empresa es del 12%, el proyecto es atractivo porque genera un rendimiento superior al costo de financiación.</em>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-700">Tiempo de Repago (nR)</h3>
+                            <p class="mt-2 text-gray-600">
+                                Este método mide el tiempo necesario para recuperar la inversión inicial. Es un indicador de riesgo y liquidez. Un tiempo de repago más corto se considera menos riesgoso.
+                            </p>
+                            <strong class="text-sm mt-2 block">Fórmula (para flujos de caja constantes):</strong>
+                            <span class="block mt-1 bg-gray-200 p-2 rounded text-sm">nR = Inversión Inicial / Flujo de Caja Anual Neto</span>
+                            <em class="text-xs text-gray-500 mt-2 block">Ejemplo de uso: Si un proyecto requiere una inversión de $15,000 y genera un flujo de caja anual de $5,000, el tiempo de repago es de $15,000 / $5,000 = 3 años. Esto significa que la inversión se recupera en 3 años.</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordions = document.querySelectorAll('.accordion-header');
+            accordions.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const isActive = header.classList.contains('active');
+                    
+                    // Cierra todos los acordeones
+                    document.querySelectorAll('.accordion-header').forEach(h => {
+                        h.classList.remove('active');
+                    });
+                    document.querySelectorAll('.accordion-content').forEach(c => {
+                        c.classList.remove('active');
+                    });
+
+                    // Si no está activo, abre el acordeón actual
+                    if (!isActive) {
+                        header.classList.add('active');
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
