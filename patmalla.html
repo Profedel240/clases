@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño de Mallas de Puesta a Tierra</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 1024px;
+            margin: auto;
+            padding: 2rem;
+        }
+        .section {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+        }
+        .collapsible-content {
+            padding: 1rem;
+            background-color: #f9fafb;
+            border-radius: 0.75rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+        .icon {
+            width: 2rem;
+            height: 2rem;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+        .equation {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container">
+        <header class="text-center py-8">
+            <h1 class="text-4xl font-extrabold text-blue-800 leading-tight">Mallas de Puesta a Tierra en Subestaciones</h1>
+            <p class="mt-2 text-xl text-gray-600">Diseño, Materiales y Seguridad Eléctrica</p>
+        </header>
+
+        <!-- Sección 1: Papel Crítico de la Puesta a Tierra -->
+        <section class="section">
+            <div class="collapsible-header" onclick="toggleCollapse('section1')">
+                <h2 class="text-2xl font-bold text-gray-800">1. El Papel Crítico en la Seguridad Eléctrica</h2>
+                <span id="icon-section1" class="text-2xl">&#x2b;</span>
+            </div>
+            <div id="section1" class="collapsible-content">
+                <p class="text-gray-700 leading-relaxed">
+                    Un sistema de puesta a tierra es una de las infraestructuras de seguridad más fundamentales en cualquier subestación eléctrica. Su objetivo principal no es solo la continuidad de la operación, sino la protección de la vida humana y de los equipos frente a los peligrosos efectos de las corrientes de falla a tierra. Cuando ocurre un cortocircuito, una corriente masiva se desvía hacia el suelo, creando un aumento de potencial eléctrico en el terreno que, si no se controla, puede ser letal.
+                </p>
+            </div>
+        </section>
+
+        <!-- Sección 2: Las Tensiones de Riesgo -->
+        <section class="section">
+            <div class="collapsible-header" onclick="toggleCollapse('section2')">
+                <h2 class="text-2xl font-bold text-gray-800">2. Las Tensiones de Riesgo: Enfoque en la Fisiología Humana</h2>
+                <span id="icon-section2" class="text-2xl">&#x2b;</span>
+            </div>
+            <div id="section2" class="collapsible-content">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Para comprender por qué diseñamos mallas de tierra, debemos entender los riesgos que intentamos mitigar. Estos riesgos se manifiestan como voltajes peligrosos que pueden causar un flujo de corriente a través del cuerpo humano.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong class="text-blue-600">Tensión de Paso (Step Voltage):</strong> Es la diferencia de potencial entre los pies de una persona, separados por un metro.</li>
+                    <li><strong class="text-blue-600">Tensión de Contacto (Touch Voltage):</strong> Es la diferencia de potencial entre una parte del cuerpo que toca un objeto metálico conectado a la falla y los pies de la persona en el suelo. Es el más peligroso, ya que la corriente fluye a través de una trayectoria que incluye el corazón. </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección 3: Guía de Seguridad IEEE 80 -->
+        <section class="section">
+            <div class="collapsible-header" onclick="toggleCollapse('section3')">
+                <h2 class="text-2xl font-bold text-gray-800">3. La Guía de Seguridad IEEE 80</h2>
+                <span id="icon-section3" class="text-2xl">&#x2b;</span>
+            </div>
+            <div id="section3" class="collapsible-content">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    La IEEE 80 no es un reglamento rígido, sino una guía de ingeniería que proporciona las fórmulas y los principios para calcular las tensiones máximas que una persona puede tolerar de forma segura sin riesgo de fibrilación ventricular.
+                </p>
+                <div class="bg-gray-200 p-4 rounded-lg mb-4 equation">
+                    <h4 class="font-semibold text-lg text-gray-800 mb-2">Cálculo de Tensiones Tolerables:</h4>
+                    <p class="text-gray-700">
+                        $$E_{touch-tolerable} = \frac{1000 + 1.5 C_s \rho_s}{t_s}$$
+                        $$E_{step-tolerable} = \frac{1000 + 6 C_s \rho_s}{t_s}$$
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Metodología de Diseño -->
+        <section class="section">
+            <div class="collapsible-header" onclick="toggleCollapse('section4')">
+                <h2 class="text-2xl font-bold text-gray-800">4. Metodología de Diseño: Proceso Detallado</h2>
+                <span id="icon-section4" class="text-2xl">&#x2b;</span>
+            </div>
+            <div id="section4" class="collapsible-content">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    El diseño de una malla de tierra es un proceso estructurado en varias etapas. 
+                </p>
+                <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                    <li><strong class="text-blue-600">Medición de la Resistividad del Suelo:</strong> Usando el método de Wenner.</li>
+                    <li><strong class="text-blue-600">Determinación de la Corriente de Falla:</strong> Cálculo de la máxima corriente que puede ser inyectada.</li>
+                    <li><strong class="text-blue-600">Diseño Preliminar de la Malla:</strong> Creación de una configuración inicial con un bucle perimetral y una red de conductores.</li>
+                    <li><strong class="text-blue-600">Elección del Material Conductor:</strong> Selección de materiales como cobre o acero.</li>
+                    <li><strong class="text-blue-600">Cálculo y Verificación:</strong> Simulación y comparación de los potenciales de paso y contacto con los límites tolerables.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Sección 5: Materiales -->
+        <section class="section">
+            <div class="collapsible-header" onclick="toggleCollapse('section5')">
+                <h2 class="text-2xl font-bold text-gray-800">5. Materiales para la Malla de Tierra: Cobre vs. Acero</h2>
+                <span id="icon-section5" class="text-2xl">&#x2b;</span>
+            </div>
+            <div id="section5" class="collapsible-content">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    La elección del material es un punto de debate constante en la industria. Ambos tienen ventajas y desventajas que deben sopesarse cuidadosamente.
+                </p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Característica</th>
+                                <th>Cobre</th>
+                                <th>Acero (Galvanizado/Inoxidable)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="icon">&#x26a1;</span> Conductividad Eléctrica</td>
+                                <td>Superior: Baja resistividad, ideal para diseños eficientes.</td>
+                                <td>Inferior: Mayor resistividad, requiere mayor área o malla más densa.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="icon">&#x1f9f0;</span> Resistencia a la Corrosión</td>
+                                <td>Excelente: Forma una capa protectora natural de óxido.</td>
+                                <td>Crítica: Susceptible a la corrosión.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="icon">&#x1f4b0;</span> Costo del Material</td>
+                                <td>Alto: Es un metal más caro y escaso.</td>
+                                <td>Bajo: Considerablemente más barato que el cobre.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="icon">&#x1f4aa;</span> Resistencia Mecánica</td>
+                                <td>Baja: Metal dúctil y relativamente blando.</td>
+                                <td>Superior: Fuerte y rígido, resistente a daños mecánicos.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="icon">&#x1f5d2;</span> Vida Útil</td>
+                                <td>Muy Larga: Más de 40 años.</td>
+                                <td>Variable: De 8 a 20 años para galvanizado; comparable al cobre para inoxidable.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 6: Conclusiones -->
+        <section class="section">
+            <div class="collapsible-header" onclick="toggleCollapse('section6')">
+                <h2 class="text-2xl font-bold text-gray-800">6. Conclusiones y Consideraciones</h2>
+                <span id="icon-section6" class="text-2xl">&#x2b;</span>
+            </div>
+            <div id="section6" class="collapsible-content">
+                <p class="text-gray-700 leading-relaxed">
+                    La decisión de usar cobre o acero para una malla de tierra no es una simple elección, sino un balance de ingeniería entre la conductividad, la durabilidad y el costo. En proyectos de gran envergadura o con presupuestos ajustados, el acero bien protegido ofrece una solución robusta y económicamente viable. En entornos donde se busca la máxima longevidad sin considerar el costo, el cobre sigue siendo el material de referencia.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        function toggleCollapse(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(`icon-${id}`);
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                icon.innerHTML = "&#x2b;";
+            } else {
+                content.style.display = "block";
+                icon.innerHTML = "&#x2212;";
+            }
+        }
+    </script>
+</body>
+</html>
