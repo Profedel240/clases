@@ -12,7 +12,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 2.  [Ley 24.065](https://profedel240.github.io/clases/clase2orf.html)
 3.  [Celdas MT](https://profedel240.github.io/clases/celdasmt.html)
 4.  [sistemas de puesta a tierra](https://profedel240.github.io/clases/spt.html)
-5.  [Título de la Clase 5 aquí](https://link-de-tu-infografia-5-aqui.github.io/apunte_5.html)
+5.  [sistema de puesta a tierra malla](https://profedel240.github.io/clases/patmalla.html)
 6.  [Título de la Clase 6 aquí](https://link-de-tu-infografia-6-aqui.github.io/apunte_6.html)
 7.  [Título de la Clase 7 aquí](https://link-de-tu-infografia-7-aqui.github.io/apunte_7.html)
 8.  [Título de la Clase 8 aquí](https://link-de-tu-infografia-8-aqui.github.io/apunte_8.html)
