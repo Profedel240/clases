@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subestaciones con Aislamiento de Gas (SIG/GIS)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section-title {
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+        .dropdown-menu {
+            transition: max-height 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .dropdown-menu.active {
+            max-height: 500px;
+        }
+        .grid-img {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            place-items: center;
+        }
+        @media (min-width: 768px) {
+            .grid-img {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+
+    <div class="container rounded-2xl bg-white shadow-xl p-8 md:p-12 mt-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-800 leading-tight">Subestaciones con Aislamiento de Gas (SIG/GIS)</h1>
+            <p class="text-gray-600 mt-4 text-lg">La cúspide de la tecnología en infraestructuras de alta y muy alta tensión.</p>
+        </header>
+
+        <!-- Sección de Introducción -->
+        <section class="mb-12">
+            <h2 class="section-title text-blue-700">1. Introducción: La Evolución de las Subestaciones Eléctricas</h2>
+            <p class="text-gray-700 leading-relaxed text-lg">Las <strong>subestaciones con aislamiento de gas (SIG)</strong>, del inglés Gas-Insulated Substations (GIS), representan la cúspide de la tecnología en el diseño y construcción de infraestructuras de alta y muy alta tensión. A diferencia de las subestaciones tradicionales con aislamiento de aire (AIG/AIS), las SIG encapsulan la totalidad de sus componentes conductivos en un entorno presurizado y sellado, utilizando un gas de alto rendimiento como medio aislante y extintor de arco. Esta innovación ha permitido superar las limitaciones de espacio, seguridad y fiabilidad que las subestaciones convencionales enfrentan, especialmente en entornos urbanos y con condiciones ambientales adversas.</p>
+            <p class="text-gray-700 leading-relaxed text-lg mt-4">El desarrollo de la tecnología SIG se basa en las excepcionales propiedades del <strong>hexafluoruro de azufre (SF6)</strong>. Este gas, incoloro, inodoro y no tóxico, es químicamente inerte y no combustible. Su característica más notable es su rigidez dieléctrica, que es aproximadamente 2-3 veces superior a la del aire a la misma presión. Además, su capacidad para extinguir arcos eléctricos es cerca de 100 veces mayor que la del aire, lo que lo convierte en el medio ideal para aplicaciones de conmutación de alta tensión.</p>
+        </section>
+        
+        <hr class="border-t-2 border-blue-200 my-8">
+
+        <!-- Sección de Partes Constitutivas y Funcionamiento -->
+        <section class="mb-12">
+            <h2 class="section-title text-blue-700">2. Principios de Funcionamiento y Componentes Clave</h2>
+            <p class="text-gray-700 leading-relaxed mb-6">El principio fundamental de una subestación SIG es el encapsulamiento. Todos los componentes principales, como interruptores, seccionadores, barras colectoras y transformadores de medida, se alojan dentro de envolventes metálicas de acero o aluminio que son herméticas y están rellenas de gas SF6.</p>
+            
+            <div class="grid-img mb-6">
+                <!-- Imagen 1 de subestacion SIG -->
+                <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-md">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiqgR0UmMEG5f5y8RzlEnTwa7YuB1IwT7hTSzo9QJL0vS30C03wftIVKk7qPlZKcyk8fjMLrKs_WltRN7QLLxfJnpi-caieUUXE2IjExgoMZHQjzGyPKxQpLFvVugS-reSQS3awk3_eQk/s1600/ScreenHunter_08+Jun.+07+12.21.gif" alt="Diagrama de subestación Switchgear con partes enumeradas." class="rounded-lg shadow-sm w-full h-auto cursor-pointer" onclick="openModal(this)">
+                    <p class="text-sm text-gray-500 mt-2">Esquema interno de una subestación de tipo Switchgear.</p>
+                </div>
+                <!-- Imagen 2 de subestacion SIG -->
+                <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-md">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEix2_nuwf4KQPftViI6NklYr1VTb8rRmG-i8MA4QEziDTUQ0Tgk1WfWDqXQ9wxkGmgZEAlYrAsa3T_dx_5My8bseWo1tzgTxFg7ihZ12pX5ZrMPWLZ5AwiFrXDJv1DKHg0wTDxYahaWozU/s1600/ScreenHunter_09+Jun.+04+09.24.gif" alt="Componentes de un módulo Switchgear." class="rounded-lg shadow-sm w-full h-auto cursor-pointer" onclick="openModal(this)">
+                    <p class="text-sm text-gray-500 mt-2">Detalle de un módulo típico de Switchgear.</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 w-full">
+                <!-- Dropdown para El Rol del Gas -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('rol-gas-content')">
+                        <span>2.1. El Rol del Gas SF6</span>
+                        <span id="rol-gas-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="rol-gas-content" class="dropdown-menu bg-white p-4">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li><strong>Aislamiento Dieléctrico:</strong> Su alta rigidez dieléctrica permite distancias de aislamiento mucho menores, contribuyendo a la extrema compactación.</li>
+                            <li><strong>Extinción de Arco:</strong> Sus moléculas absorben electrones libres, restaurando rápidamente la rigidez dieléctrica del medio en milisegundos durante la interrupción de la corriente.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Dropdown para Interruptor de Potencia -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('interruptor-content')">
+                        <span>2.2. Interruptor de Potencia (Circuit Breaker)</span>
+                        <span id="interruptor-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="interruptor-content" class="dropdown-menu bg-white p-4">
+                        <p class="text-gray-700 text-sm">Son el corazón operativo de la subestación. Utilizan el gas SF6 para la interrupción de la corriente de carga y, más críticamente, las altas corrientes de cortocircuito.</p>
+                    </div>
+                </div>
+                <!-- Dropdown para Seccionador -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('seccionador-content')">
+                        <span>2.3. Seccionador (Disconnector) y Seccionador de Puesta a Tierra</span>
+                        <span id="seccionador-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="seccionador-content" class="dropdown-menu bg-white p-4">
+                        <p class="text-gray-700 text-sm">Estos dispositivos mecánicos permiten aislar eléctricamente un tramo de la barra o un circuito. Se utilizan para trabajos de mantenimiento y reparación, ya que garantizan que no hay tensión en la sección aislada. Los seccionadores de puesta a tierra aseguran que una sección desenergizada no pueda energizarse accidentalmente.</p>
+                    </div>
+                </div>
+                <!-- Dropdown para Barras (Busbars) -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('barras-content')">
+                        <span>2.4. Barras Colectoras (Busbars)</span>
+                        <span id="barras-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="barras-content" class="dropdown-menu bg-white p-4">
+                        <p class="text-gray-700 text-sm">Son los "autobuses" que distribuyen la energía a los diferentes circuitos. En las SIG, las barras son conductos cilíndricos aislados con SF6 para evitar la corrosión y garantizar un aislamiento superior.</p>
+                    </div>
+                </div>
+                <!-- Dropdown para Transformadores de Medida -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('transformadores-content')">
+                        <span>2.5. Transformadores de Medida (TC y TP)</span>
+                        <span id="transformadores-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="transformadores-content" class="dropdown-menu bg-white p-4">
+                        <p class="text-gray-700 text-sm">Son esenciales para la medición de corriente y voltaje. En las SIG, estos transformadores están miniaturizados y encapsulados junto con el resto de los componentes, garantizando mediciones precisas y seguras para los sistemas de protección.</p>
+                    </div>
+                </div>
+                <!-- Dropdown para Pararrayos -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('pararrayos-content')">
+                        <span>2.6. Pararrayos de Óxido de Zinc (ZnO)</span>
+                        <span id="pararrayos-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="pararrayos-content" class="dropdown-menu bg-white p-4">
+                        <p class="text-gray-700 text-sm">Estos dispositivos, también encapsulados, se conectan a la red para proteger el equipo contra sobretensiones transitorias causadas por descargas atmosféricas o maniobras en la red. Absorben la energía de la sobretensión y la disipan a tierra.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-t-2 border-blue-200 my-8">
+
+        <!-- Sección de Configuraciones -->
+        <section class="mb-12">
+            <h2 class="section-title text-blue-700">3. Configuraciones y Módulos de Componentes</h2>
+            <p class="text-gray-700 leading-relaxed mb-6">El diseño modular de las SIG permite la creación de diversas configuraciones para adaptarse a los requisitos específicos de cada subestación, optimizando la fiabilidad, la redundancia y el costo.</p>
+            <div class="space-y-4 w-full">
+                <!-- Dropdown para Configuración de Simple Barra -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('simple-barra-content')">
+                        <span>3.1. Configuración de Simple Barra</span>
+                        <span id="simple-barra-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="simple-barra-content" class="dropdown-menu bg-white p-4">
+                        <p class="text-gray-700 text-sm">Es la configuración más simple y económica. Consiste en una única barra colectora a la que se conectan los interruptores de los distintos circuitos. Su principal desventaja es la falta de redundancia: una falla en la barra colectora o en el interruptor principal puede dejar fuera de servicio a toda la subestación.</p>
+                    </div>
+                </div>
+                <!-- Dropdown para Configuración de Doble Barra -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('doble-barra-content')">
+                        <span>3.2. Configuración de Doble Barra</span>
+                        <span id="doble-barra-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="doble-barra-content" class="dropdown-menu bg-white p-4">
+                        <p class="text-gray-700 text-sm">En esta configuración, existen dos barras colectoras paralelas. Cada circuito puede ser conectado a cualquiera de las dos barras mediante un seccionador de barra. Esto aumenta la fiabilidad, ya que si una barra falla o requiere mantenimiento, la subestación puede seguir operando a través de la otra barra.</p>
+                    </div>
+                </div>
+                <!-- Dropdown para Configuración de Interruptor y Medio -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('interruptor-medio-content')">
+                        <span>3.3. Configuración de Interruptor y Medio</span>
+                        <span id="interruptor-medio-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="interruptor-medio-content" class="dropdown-menu bg-white p-4">
+                        <p class="text-gray-700 text-sm">Considerada una de las configuraciones más fiables y flexibles. Se utilizan tres interruptores por cada dos circuitos. Los circuitos se conectan a los puntos intermedios entre los interruptores. Esto permite que cualquier interruptor pueda ser aislado para mantenimiento sin interrumpir el servicio. Una falla en un circuito solo desconecta un interruptor, mientras que los otros dos mantienen la alimentación de la red.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-t-2 border-blue-200 my-8">
+
+        <!-- Sección de Ventajas y Desventajas -->
+        <section class="mb-12">
+            <h2 class="section-title text-blue-700">4. Ventajas y Desafíos de las Subestaciones SIG</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-4">Ventajas Clave <span class="text-2xl ml-2">✔️</span></h3>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-center p-3 bg-blue-50 rounded-lg shadow-sm">
+                            <span class="mr-2 text-blue-500 text-xl">✅</span>
+                            <div>
+                                <strong>Compactación Extrema:</strong> Reducen el espacio requerido en un 90% en comparación con las subestaciones convencionales, lo que las hace ideales para zonas urbanas.
+                            </div>
+                        </li>
+                        <li class="flex items-center p-3 bg-blue-50 rounded-lg shadow-sm">
+                            <span class="mr-2 text-blue-500 text-xl">✅</span>
+                            <div>
+                                <strong>Alta Fiabilidad y Menor Mantenimiento:</strong> El diseño sellado las protege de factores ambientales como la lluvia, el polvo y la contaminación.
+                            </div>
+                        </li>
+                        <li class="flex items-center p-3 bg-blue-50 rounded-lg shadow-sm">
+                            <span class="mr-2 text-blue-500 text-xl">✅</span>
+                            <div>
+                                <strong>Seguridad Superior:</strong> Al no haber partes energizadas expuestas, el riesgo de electrocución para el personal operativo y el público es prácticamente nulo.
+                            </div>
+                        </li>
+                        <li class="flex items-center p-3 bg-blue-50 rounded-lg shadow-sm">
+                            <span class="mr-2 text-blue-500 text-xl">✅</span>
+                            <div>
+                                <strong>Baja Contaminación Sonora:</strong> El encapsulamiento reduce los niveles de ruido de los interruptores y otros equipos.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-4">Desafíos y Consideraciones Ambientales <span class="text-2xl ml-2">❌</span></h3>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-center p-3 bg-red-50 rounded-lg shadow-sm">
+                            <span class="mr-2 text-red-500 text-xl">⚠️</span>
+                            <div>
+                                <strong>Costo Inicial:</strong> Su fabricación es más compleja y costosa que la de las subestaciones convencionales.
+                            </div>
+                        </li>
+                        <li class="flex items-center p-3 bg-red-50 rounded-lg shadow-sm">
+                            <span class="mr-2 text-red-500 text-xl">⚠️</span>
+                            <div>
+                                <strong>Mantenimiento:</strong> Aunque menos frecuente, es más complejo y requiere personal especializado y herramientas específicas para trabajar con el gas SF6.
+                            </div>
+                        </li>
+                        <li class="flex items-center p-3 bg-red-50 rounded-lg shadow-sm">
+                            <span class="mr-2 text-red-500 text-xl">⚠️</span>
+                            <div>
+                                <strong>Impacto Ambiental:</strong> El gas SF6 es un potente gas de efecto invernadero. Las fugas, aunque raras, pueden ser perjudiciales.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="border-t-2 border-blue-200 my-8">
+
+        <!-- Sección de Mantenimiento y Diagnóstico -->
+        <section class="mb-12">
+            <h2 class="section-title text-blue-700">5. Mantenimiento y Diagnóstico</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">El mantenimiento de una subestación SIG es principalmente preventivo y se enfoca en el monitoreo del gas SF6 y el funcionamiento de los componentes.</p>
+            <div class="space-y-4 w-full">
+                <!-- Dropdown para Mantenimiento Preventivo -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('mantenimiento-preventivo-content')">
+                        <span>5.1. Mantenimiento Preventivo</span>
+                        <span id="mantenimiento-preventivo-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="mantenimiento-preventivo-content" class="dropdown-menu bg-white p-4">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li><strong>Monitoreo del Gas SF6:</strong> Se monitorea la presión, temperatura y densidad del gas en cada compartimento.</li>
+                            <li><strong>Inspecciones Termográficas:</strong> Permiten detectar puntos calientes anómalos que podrían indicar una conexión interna floja.</li>
+                            <li><strong>Pruebas Eléctricas Periódicas:</strong> Se realizan pruebas como la de resistencia de aislamiento para verificar la integridad del sistema.</li>
+                            <li><strong>Análisis del Gas:</strong> Se toman muestras de gas para analizar su pureza y detectar productos de descomposición que pueden ser corrosivos o indicar fallas internas.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Dropdown para Mantenimiento Correctivo -->
+                <div class="border border-blue-300 rounded-xl overflow-hidden shadow-sm">
+                    <button class="flex items-center justify-between w-full p-4 bg-blue-100 text-blue-800 font-semibold text-left focus:outline-none" onclick="toggleDropdown('mantenimiento-correctivo-content')">
+                        <span>5.2. Mantenimiento Correctivo</span>
+                        <span id="mantenimiento-correctivo-icon" class="text-xl transform transition-transform duration-300">+</span>
+                    </button>
+                    <div id="mantenimiento-correctivo-content" class="dropdown-menu bg-white p-4">
+                        <p class="text-gray-700 text-sm">Las reparaciones de las SIG son menos frecuentes, pero más complejas. Si se detecta un problema, se debe aislar el compartimento defectuoso, recuperar el gas SF6 en un sistema cerrado y luego abrir la envolvente para realizar la reparación.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-t-2 border-blue-200 my-8">
+
+        <!-- Sección de Aplicaciones en Argentina -->
+        <section class="mb-12">
+            <h2 class="section-title text-blue-700">6. Aplicaciones y Casos de Uso en Argentina</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">En Argentina, la tecnología SIG ha sido adoptada principalmente en entornos donde la optimización del espacio y la seguridad son cruciales.</p>
+            <ul class="list-disc list-inside space-y-3 pl-4 text-gray-700">
+                <li><strong class="font-semibold text-blue-700">Área Metropolitana de Buenos Aires (AMBA):</strong> Es el principal foco de aplicación. Empresas como Edesur y Edenor han instalado subestaciones SIG en zonas densamente pobladas para modernizar la red y alimentar la creciente demanda.</li>
+                <li><strong class="font-semibold text-blue-700">Subestaciones en Edificios:</strong> Para alimentar grandes edificios de oficinas, centros de datos o centros comerciales, se utilizan subestaciones SIG que pueden ser instaladas en sótanos o en el interior del edificio, como por ejemplo en el barrio de Puerto Madero.</li>
+                <li><strong class="font-semibold text-blue-700">Industrias y Nodos de Distribución:</strong> Las SIG se han convertido en una solución para alimentar grandes fábricas y centros logísticos, donde el espacio y la seguridad operacional son fundamentales.</li>
+            </ul>
+        </section>
+        
+        <hr class="border-t-2 border-blue-200 my-8">
+
+        <!-- Tabla de Comparación -->
+        <section class="mb-12">
+            <h2 class="section-title text-blue-700">7. Tabla Resumen: SIG vs. AIG</h2>
+            <div class="overflow-x-auto rounded-lg shadow-md">
+                <table class="min-w-full bg-white rounded-lg">
+                    <thead class="bg-blue-600 text-white">
+                        <tr>
+                            <th class="py-3 px-4 text-left font-semibold">Característica</th>
+                            <th class="py-3 px-4 text-left font-semibold">Subestación SIG (GIS)</th>
+                            <th class="py-3 px-4 text-left font-semibold">Subestación AIG (AIS)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">Medio Aislante</td>
+                            <td class="py-3 px-4">Gas (SF6)</td>
+                            <td class="py-3 px-4">Aire</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="py-3 px-4">Espacio Requerido</td>
+                            <td class="py-3 px-4">Muy bajo (aprox. 10% de AIS)</td>
+                            <td class="py-3 px-4">Alto (estándar)</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">Costo de Inversión</td>
+                            <td class="py-3 px-4">Alto</td>
+                            <td class="py-3 px-4">Bajo</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="py-3 px-4">Mantenimiento</td>
+                            <td class="py-3 px-4">Muy bajo (sistema sellado)</td>
+                            <td class="py-3 px-4">Estándar (componentes expuestos)</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">Impacto Ambiental</td>
+                            <td class="py-3 px-4">Alto (potencial de efecto invernadero del SF6)</td>
+                            <td class="py-3 px-4">Bajo</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="py-3 px-4">Seguridad</td>
+                            <td class="py-3 px-4">Muy alta (sin partes expuestas)</td>
+                            <td class="py-3 px-4">Estándar (con distancias de seguridad)</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">Aplicaciones Típicas</td>
+                            <td class="py-3 px-4">Áreas urbanas, edificios de oficinas, grandes industrias</td>
+                            <td class="py-3 px-4">Zonas rurales, industrias de mediana escala</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+    
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        function toggleDropdown(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id.replace('-content', '-icon'));
+            content.classList.toggle('active');
+            if (content.classList.contains('active')) {
+                icon.textContent = '-';
+            } else {
+                icon.textContent = '+';
+            }
+        }
+
+        function openModal(imageElement) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            modal.style.display = "flex";
+            modalImg.src = imageElement.src;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
