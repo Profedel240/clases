@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción a CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .sub-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #4f46e5;
+            padding-left: 1rem;
+        }
+        .accordion-header {
+            background-color: #4f46e5;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        .accordion-header:hover {
+            background-color: #4338ca;
+        }
+        .accordion-content {
+            background-color: #f3f4f6;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            display: none;
+            overflow: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+        .accordion-content.open {
+            display: block;
+        }
+        .code-block {
+            background-color: #1f2937;
+            color: #f3f4f6;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-top: 1rem;
+            font-family: monospace;
+            white-space: pre;
+        }
+        .bullet {
+            background-color: #4f46e5;
+            color: white;
+            border-radius: 50%;
+            width: 1.5rem;
+            height: 1.5rem;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            margin-right: 0.75rem;
+        }
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            color: #4f46e5;
+        }
+        .grid-container {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+    <div class="container bg-white rounded-lg shadow-lg">
+        <h1 class="section-title text-indigo-700 mt-8 mb-4">
+            <span class="text-indigo-500">
+                &lt;/&gt;
+            </span> Introducción a CSS: Estilizando tu Web
+        </h1>
+        <p class="text-center text-gray-600 mb-8">
+            ¡Bienvenidos a la primera clase de CSS! Después de conocer HTML para estructurar, ahora aprenderemos a dar estilo.
+        </p>
+
+        <!-- Sección 1: ¿Qué es CSS? -->
+        <h2 class="sub-title">1. ¿Qué es CSS? <span class="text-gray-400 text-lg">Hojas de Estilo en Cascada</span></h2>
+        <div class="card p-6">
+            <p><strong>CSS</strong>, o <strong>Cascading Style Sheets</strong>, es un lenguaje de diseño gráfico que se utiliza para definir la presentación y el estilo de los documentos HTML. Mientras que HTML proporciona la <strong>estructura</strong> y el <strong>contenido</strong> de una página, CSS se encarga del <strong>diseño</strong>, los <strong>colores</strong>, las <strong>fuentes</strong>, la <strong>disposición</strong> y otros aspectos visuales. Piensa en HTML como la "esqueleto" de tu página y en CSS como la "ropa" y el "maquillaje". </p>
+            <p class="mt-4">Su propósito fundamental es separar el contenido de la presentación, lo que facilita la gestión y el mantenimiento de sitios web grandes. Esto permite a los desarrolladores modificar el diseño de múltiples páginas con un solo cambio en un archivo CSS, lo que ahorra tiempo y esfuerzo.</p>
+        </div>
+
+        <!-- Sección 2: Sintaxis de CSS - Un vistazo a la estructura -->
+        <h2 class="sub-title">2. La anatomía de una regla CSS</h2>
+        <div class="card p-6">
+            <p>Una regla de CSS es la unidad básica del lenguaje y consta de dos partes principales:</p>
+            <ul class="list-none mt-4 space-y-4">
+                <li>
+                    <span class="bullet">1</span> <strong>Selector:</strong> El selector apunta a los elementos HTML a los que deseas aplicar el estilo. Puede ser el nombre de una etiqueta (<code>h1</code>, <code>p</code>, <code>div</code>), una clase (<code>.mi-clase</code>) o un ID (<code>#mi-id</code>).
+                </li>
+                <li>
+                    <span class="bullet">2</span> <strong>Declaración:</strong> La declaración define las propiedades y los valores de estilo. Está compuesta por la propiedad (por ejemplo, <code>color</code>, <code>font-size</code>) y su valor (por ejemplo, <code>blue</code>, <code>24px</code>).
+                </li>
+            </ul>
+            <div class="code-block mt-4">
+                <pre>
+h1 {
+    color: blue;
+    font-size: 24px;
+}</pre>
+            </div>
+            <p class="mt-4">En este ejemplo, el <strong>selector</strong> es <code>h1</code>, y las <strong>declaraciones</strong> son <code>color: blue;</code> y <code>font-size: 24px;</code>.</p>
+        </div>
+
+        <!-- Sección 3: Formas de incluir CSS en HTML -->
+        <h2 class="sub-title">3. ¿Cómo vinculamos CSS y HTML?</h2>
+        <div class="grid-container mt-8">
+            <div class="card">
+                <h3 class="text-lg font-semibold text-indigo-600">
+                    <span class="icon">&#128279;</span> 1. CSS Externo
+                </h3>
+                <p class="mt-2">Es la forma más profesional y recomendada. Se crea un archivo <code>.css</code> por separado (por ejemplo, <code>style.css</code>) y se enlaza a la página HTML usando la etiqueta <code>&lt;link&gt;</code> en la sección <code>&lt;head&gt;</code>.</p>
+                <div class="code-block mt-2">
+                    <pre>
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</pre>
+                </div>
+                <p class="mt-2 text-gray-500 text-sm">Ideal para sitios web grandes. ¡Un cambio en un archivo afecta a todas las páginas!</p>
+            </div>
+
+            <div class="card">
+                <h3 class="text-lg font-semibold text-indigo-600">
+                    <span class="icon">&#128196;</span> 2. CSS Interno
+                </h3>
+                <p class="mt-2">Se utiliza la etiqueta <code>&lt;style&gt;</code> dentro de la sección <code>&lt;head&gt;</code> de un documento HTML. Las reglas CSS se escriben directamente dentro de esta etiqueta.</p>
+                <div class="code-block mt-2">
+                    <pre>
+&lt;head&gt;
+    &lt;style&gt;
+        body {
+            background-color: lightblue;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;</pre>
+                </div>
+                <p class="mt-2 text-gray-500 text-sm">Útil para estilos específicos de una sola página, pero no escalable.</p>
+            </div>
+
+            <div class="card">
+                <h3 class="text-lg font-semibold text-indigo-600">
+                    <span class="icon">&#128221;</span> 3. CSS en Línea (Inline)
+                </h3>
+                <p class="mt-2">Se aplican estilos directamente a un elemento HTML usando el atributo <code>style</code>. Esto tiene la mayor <strong>especificidad</strong> y prevalece sobre los otros métodos.</p>
+                <div class="code-block mt-2">
+                    <pre>
+&lt;p style="color: red; font-size: 16px;"&gt;
+    ¡Hola Mundo!
+&lt;/p&gt;</pre>
+                </div>
+                <p class="mt-2 text-gray-500 text-sm">No se recomienda. Mezcla el contenido con la presentación y hace el código difícil de leer y mantener.</p>
+            </div>
+        </div>
+
+        <!-- Sección 4: Selectores - El GPS de CSS -->
+        <h2 class="sub-title">4. Selectores CSS: ¡Dominando a tus elementos!</h2>
+        <p class="mt-4">Los selectores son la clave para controlar qué elementos HTML reciben qué estilos. Hay muchos tipos, pero estos son los más comunes para empezar:</p>
+
+        <div class="mt-4 space-y-4">
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    Selector de Tipo o Etiqueta <span class="text-gray-300">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Selecciona todos los elementos con una etiqueta específica (<code>h1</code>, <code>p</code>, <code>ul</code>, <code>li</code>, etc.).</p>
+                    <div class="code-block mt-2">
+                        <pre>
+/* Selecciona todos los párrafos */
+p {
+    line-height: 1.6;
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    Selector de Clase <span class="text-gray-300">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Selecciona todos los elementos que tienen un atributo <code>class</code> específico. Se usa un punto (<code>.</code>) antes del nombre de la clase.</p>
+                    <div class="code-block mt-2">
+                        <pre>
+/* En HTML */
+&lt;h2 class="titulo-destacado"&gt;¡Atención!&lt;/h2&gt;
+/* En CSS */
+.titulo-destacado {
+    color: red;
+    font-weight: bold;
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    Selector de ID <span class="text-gray-300">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Selecciona un elemento único con un atributo <code>id</code>. Se usa un numeral (<code>#</code>) antes del nombre del ID. Un ID debe ser único por página.</p>
+                    <div class="code-block mt-2">
+                        <pre>
+/* En HTML */
+&lt;div id="menu-principal"&gt;...&lt;/div&gt;
+/* En CSS */
+#menu-principal {
+    background-color: #333;
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    Selector de Descendientes <span class="text-gray-300">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Selecciona un elemento que es descendiente de otro. Por ejemplo, <code>ul li</code> selecciona todos los <code>li</code> que están dentro de un <code>ul</code>.</p>
+                    <div class="code-block mt-2">
+                        <pre>
+ul li {
+    list-style-type: none;
+    color: #4f46e5;
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 5: Conceptos Clave -->
+        <h2 class="sub-title">5. Conceptos avanzados que debes conocer</h2>
+        <div class="mt-4 space-y-6">
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-indigo-600">
+                    <span class="icon">&#128221;</span> El Modelo de Caja (Box Model)
+                </h3>
+                <p class="mt-2">Cada elemento en HTML es una caja rectangular. El modelo de caja describe cómo se estructuran y se dimensionan estas cajas, considerando:
+                    <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><strong>Contenido:</strong> El área donde se muestra el texto o las imágenes.</li>
+                        <li><strong>Padding (Relleno):</strong> El espacio entre el borde y el contenido.</li>
+                        <li><strong>Border (Borde):</strong> La línea alrededor del relleno.</li>
+                        <li><strong>Margin (Margen):</strong> El espacio alrededor del borde, que separa la caja de otros elementos.</li>
+                    </ul>
+                </p>
+                <p class="mt-2">Comprender este modelo es crucial para alinear elementos y crear diseños complejos.</p>
+                <div class="code-block mt-2">
+                    <pre>
+.caja {
+    width: 200px;
+    height: 100px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 10px;
+}</pre>
+                </div>
+            </div>
+
+            <div class="card p-6">
+                <h3 class="text-lg font-semibold text-indigo-600">
+                    <span class="icon">&#128203;</span> Herencia y Especificidad
+                </h3>
+                <ul class="list-none space-y-4 mt-2">
+                    <li>
+                        <span class="bullet">1</span> <strong>Herencia:</strong> Algunas propiedades CSS, como <code>color</code> y <code>font-family</code>, se heredan automáticamente de un elemento padre a sus hijos. Por ejemplo, si estableces un color para el <code>body</code>, todos los párrafos dentro de él lo heredarán.
+                    </li>
+                    <li>
+                        <span class="bullet">2</span> <strong>Especificidad:</strong> Este es el sistema de jerarquía que determina qué regla de estilo se aplica a un elemento cuando hay múltiples reglas que lo seleccionan. Las reglas con mayor especificidad "ganan". La jerarquía es: <strong>ID > Clase > Etiqueta</strong>. El estilo en línea tiene la máxima especificidad.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sección 6: Propiedades y Valores Comunes -->
+        <h2 class="sub-title">6. Propiedades y valores básicos</h2>
+        <div class="mt-4 space-y-4">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="p-3 border-b-2 border-gray-300">Propiedad</th>
+                        <th class="p-3 border-b-2 border-gray-300">Descripción</th>
+                        <th class="p-3 border-b-2 border-gray-300">Valores de ejemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white">
+                        <td class="p-3 border-b border-gray-200"><code>color</code></td>
+                        <td class="p-3 border-b border-gray-200">Define el color del texto.</td>
+                        <td class="p-3 border-b border-gray-200"><code>red</code>, <code>#ff5733</code>, <code>rgb(255, 87, 51)</code></td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                        <td class="p-3 border-b border-gray-200"><code>font-size</code></td>
+                        <td class="p-3 border-b border-gray-200">Establece el tamaño de la fuente.</td>
+                        <td class="p-3 border-b border-gray-200"><code>16px</code>, <code>1.2em</code>, <code>medium</code></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="p-3 border-b border-gray-200"><code>background-color</code></td>
+                        <td class="p-3 border-b border-gray-200">Define el color de fondo de un elemento.</td>
+                        <td class="p-3 border-b border-gray-200"><code>lightblue</code>, <code>#ccc</code>, <code>rgba(0,0,0,0.5)</code></td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                        <td class="p-3 border-b border-gray-200"><code>border</code></td>
+                        <td class="p-3 border-b border-gray-200">Aplica un borde.</td>
+                        <td class="p-3 border-b border-gray-200"><code>1px solid black</code>, <code>2px dashed red</code></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="p-3 border-b border-gray-200"><code>text-align</code></td>
+                        <td class="p-3 border-b border-gray-200">Alinear el texto dentro de un elemento.</td>
+                        <td class="p-3 border-b border-gray-200"><code>left</code>, <code>right</code>, <code>center</code>, <code>justify</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Nueva sección para el glosario -->
+        <h2 class="sub-title">7. Glosario de Términos Clave</h2>
+        <div class="card p-6 mt-4">
+            <p><strong>Selector:</strong> Es la "dirección" o el "objetivo" que le dice al navegador qué elemento(s) HTML debe(n) ser estilizado(s). Puede ser una etiqueta, una clase, un ID, etc.</p>
+            <p class="mt-4"><strong>Declaración:</strong> Es la "instrucción" de estilo completa. Se encuentra dentro de las llaves <code>{}</code> e incluye tanto la propiedad (lo que quieres cambiar, ej. <code>color</code>) como su valor (cómo quieres cambiarlo, ej. <code>blue</code>).</p>
+            <p class="mt-4"><strong>Etiqueta:</strong> También conocido como "selector de tipo", es el nombre de un elemento HTML (como <code>p</code>, <code>h1</code>, <code>div</code>). Al usar un selector de etiqueta, aplicas estilos a todos los elementos de ese tipo en la página.</p>
+            <p class="mt-4"><strong>Clases (class):</strong> Es un atributo que puedes asignar a uno o más elementos HTML. Permite agrupar elementos y aplicarles el mismo estilo CSS, incluso si son de diferentes tipos de etiquetas. En CSS, se representa con un punto (<code>.</code>) antes del nombre.</p>
+        </div>
+
+        <!-- Sección de la tabla de referencia -->
+        <h2 class="sub-title">8. Tabla de Referencia Rápida</h2>
+        <div class="mt-4 space-y-4">
+            <table class="w-full text-left border-collapse rounded-lg overflow-hidden shadow-md">
+                <thead>
+                    <tr class="bg-indigo-600 text-white">
+                        <th class="p-4">Concepto/Comando</th>
+                        <th class="p-4">Estructura/Sintaxis</th>
+                        <th class="p-4">Explicación</th>
+                        <th class="p-4">Ejemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-gray-100">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Regla CSS</td>
+                        <td class="p-4 border-b border-gray-300"><code>selector { propiedad: valor; }</code></td>
+                        <td class="p-4 border-b border-gray-300">Es la unidad fundamental de CSS. Consiste en un <strong>selector</strong> que apunta al elemento HTML a estilizar y una o más <strong>declaraciones</strong> (pares <code>propiedad: valor</code>) que definen el estilo.</td>
+                        <td class="p-4 border-b border-gray-300"><code>p { font-size: 16px; color: #333; }</code></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td colspan="4" class="p-2 border-b-2 border-gray-300"></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Selector de Etiqueta</td>
+                        <td class="p-4 border-b border-gray-300"><code>etiqueta { ... }</code></td>
+                        <td class="p-4 border-b border-gray-300">Selecciona todos los elementos HTML que coincidan con el nombre de la etiqueta. Es la forma más básica de selección.</td>
+                        <td class="p-4 border-b border-gray-300"><code>h1 { text-align: center; }</code></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Selector de Clase</td>
+                        <td class="p-4 border-b border-gray-300"><code>.nombre-clase { ... }</code></td>
+                        <td class="p-4 border-b border-gray-300">Selecciona todos los elementos que tengan el atributo <code>class</code> con el valor especificado. Permite aplicar el mismo estilo a múltiples elementos no relacionados.</td>
+                        <td class="p-4 border-b border-gray-300"><code>/* HTML: &lt;div class="card"&gt;...&lt;/div&gt; */ .card { border-radius: 10px; }</code></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Selector de ID</td>
+                        <td class="p-4 border-b border-gray-300"><code>#nombre-id { ... }</code></td>
+                        <td class="p-4 border-b border-gray-300">Selecciona un único elemento HTML con el atributo <code>id</code> especificado. Los IDs deben ser únicos en una página para funcionar correctamente.</td>
+                        <td class="p-4 border-b border-gray-300"><code>/* HTML: &lt;main id="contenido-principal"&gt;... &lt;/main&gt; */ #contenido-principal { max-width: 960px; }</code></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Selector de Descendiente</td>
+                        <td class="p-4 border-b border-gray-300"><code>selector-padre selector-hijo { ... }</code></td>
+                        <td class="p-4 border-b border-gray-300">Selecciona todos los elementos hijos que están contenidos dentro de un elemento padre específico. Útil para aplicar estilos contextuales.</td>
+                        <td class="p-4 border-b border-gray-300"><code>ul li { list-style-type: none; }</code></td>
+                    </tr>
+                     <tr class="bg-white">
+                        <td colspan="4" class="p-2 border-b-2 border-gray-300"></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-4 border-b border-gray-300 font-semibold">El Modelo de Caja</td>
+                        <td class="p-4 border-b border-gray-300"><code>width</code>, <code>height</code>, <code>padding</code>, <code>border</code>, <code>margin</code></td>
+                        <td class="p-4 border-b border-gray-300">Describe cómo se renderiza cada elemento HTML como una caja rectangular con capas de contenido, relleno, borde y margen. Comprenderlo es crucial para el layout.</td>
+                        <td class="p-4 border-b border-gray-300"><code>div { padding: 15px; border: 2px solid black; margin: 10px; }</code></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Herencia</td>
+                        <td class="p-4 border-b border-gray-300">(automática para ciertas propiedades)</td>
+                        <td class="p-4 border-b border-gray-300">Ciertas propiedades CSS (como <code>color</code> y <code>font-family</code>) se heredan automáticamente de un elemento padre a sus descendientes. Esto simplifica la aplicación de estilos.</td>
+                        <td class="p-4 border-b border-gray-300"><code>body { font-family: 'Arial'; }</code> <br> (Todos los elementos hijos heredarán esta fuente)</td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Especificidad</td>
+                        <td class="p-4 border-b border-gray-300">(jerarquía de selectores)</td>
+                        <td class="p-4 border-b border-gray-300">Es el sistema de puntuación que determina qué regla CSS prevalece cuando hay múltiples reglas que se aplican al mismo elemento. La especificidad va de menor a mayor: <strong>ID > Clase > Etiqueta</strong>. El estilo `inline` tiene la mayor especificidad.</td>
+                        <td class="p-4 border-b border-gray-300"><code>#menu-principal</code> es más específico que <code>.menu</code></td>
+                    </tr>
+                     <tr class="bg-white">
+                        <td colspan="4" class="p-2 border-b-2 border-gray-300"></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Propiedad: <code>color</code></td>
+                        <td class="p-4 border-b border-gray-300"><code>color: valor;</code></td>
+                        <td class="p-4 border-b border-gray-300">Define el color del texto de un elemento. Los valores pueden ser nombres de colores, códigos hexadecimales (hex) o valores RGB/RGBA.</td>
+                        <td class="p-4 border-b border-gray-300"><code>p { color: red; }</code> <br> <code>h2 { color: #4f46e5; }</code></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Propiedad: <code>font-size</code></td>
+                        <td class="p-4 border-b border-gray-300"><code>font-size: valor;</code></td>
+                        <td class="p-4 border-b border-gray-300">Establece el tamaño de la fuente. Se pueden usar diferentes unidades, como píxeles (<code>px</code>), ems (<code>em</code>) o rems (<code>rem</code>).</td>
+                        <td class="p-4 border-b border-gray-300"><code>p { font-size: 16px; }</code> <br> <code>h1 { font-size: 2.5rem; }</code></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Propiedad: <code>background-color</code></td>
+                        <td class="p-4 border-b border-gray-300"><code>background-color: valor;</code></td>
+                        <td class="p-4 border-b border-gray-300">Define el color de fondo de un elemento. Útil para crear contrastes y secciones visualmente distintas.</td>
+                        <td class="p-4 border-b border-gray-300"><code>.card { background-color: #f3f4f6; }</code></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Propiedad: <code>border</code></td>
+                        <td class="p-4 border-b border-gray-300"><code>border: ancho tipo color;</code></td>
+                        <td class="p-4 border-b border-gray-300">Aplica un borde alrededor de un elemento. Se define con el ancho, el tipo de línea (sólido, punteado, etc.) y el color.</td>
+                        <td class="p-4 border-b border-gray-300"><code>div { border: 2px solid black; }</code></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Propiedad: <code>text-align</code></td>
+                        <td class="p-4 border-b border-gray-300"><code>text-align: valor;</code></td>
+                        <td class="p-4 border-b border-gray-300">Alinear el texto dentro de un elemento. Los valores más comunes son <code>left</code>, <code>right</code>, <code>center</code> y <code>justify</code>.</td>
+                        <td class="p-4 border-b border-gray-300"><code>h1 { text-align: center; }</code></td>
+                    </tr>
+                     <tr class="bg-white">
+                        <td colspan="4" class="p-2 border-b-2 border-gray-300"></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Enlace Externo</td>
+                        <td class="p-4 border-b border-gray-300"><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></td>
+                        <td class="p-4 border-b border-gray-300">Enlaza un archivo CSS externo. Es la práctica recomendada para mantener el código limpio y fácil de mantener. Se coloca en la sección <code>&lt;head&gt;</code>.</td>
+                        <td class="p-4 border-b border-gray-300"></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Estilo Interno</td>
+                        <td class="p-4 border-b border-gray-300"><code>&lt;style&gt;...&lt;/style&gt;</code></td>
+                        <td class="p-4 border-b border-gray-300">Permite escribir reglas CSS directamente dentro de la sección <code>&lt;head&gt;</code> de un documento HTML. Útil para estilos específicos de una sola página.</td>
+                        <td class="p-4 border-b border-gray-300"></td>
+                    </tr>
+                    <tr class="bg-gray-100">
+                        <td class="p-4 border-b border-gray-300 font-semibold">Estilo en Línea</td>
+                        <td class="p-4 border-b border-gray-300"><code>&lt;p style="..."&gt;...&lt;/p&gt;</code></td>
+                        <td class="p-4 border-b border-gray-300">Aplica estilos directamente en el atributo <code>style</code> de un elemento HTML. No se recomienda por su baja reusabilidad y alta especificidad.</td>
+                        <td class="p-4 border-b border-gray-300"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('span');
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                icon.innerHTML = '&#9660;'; // Flecha hacia abajo
+            } else {
+                content.style.display = 'block';
+                icon.innerHTML = '&#9650;'; // Flecha hacia arriba
+            }
+        }
+    </script>
+</body>
+</html>
