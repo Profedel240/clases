@@ -86,7 +86,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 2.  [consultas en php loguin](https://profedel240.github.io/clases/consultasphp.html)
 3.  [Guia de php y html](https://profedel240.github.io/clases/guiaphphtml.html)
 4.  [codigos explicaicon de php y html](https://profedel240.github.io/clases/codigosphphtml.html)
-5.  [Título de la Clase 5 aquí](https://link-de-tu-infografia-5-aqui.github.io/clase_bd_5.html)
+5.  [Introducción en CSS](https://profedel240.github.io/clases/intrcss.html)
 6.  [Título de la Clase 6 aquí](https://link-de-tu-infografia-6-aqui.github.io/clase_bd_6.html)
 7.  [Título de la Clase 7 aquí](https://link-de-tu-infografia-7-aqui.github.io/clase_bd_7.html)
 8.  [Título de la Clase 8 aquí](https://link-de-tu-infografia-8-aqui.github.io/clase_bd_8.html)
