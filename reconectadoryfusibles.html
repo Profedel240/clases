@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Técnica: Reconectadores y Fusibles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .section-title {
+            color: #1c64f2;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        .subsection-title {
+            color: #374151;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .icon {
+            color: #4b5563;
+        }
+        .accordion-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .accordion-content {
+            padding: 1.5rem;
+            display: none;
+        }
+        /* Nueva regla para mostrar el contenido cuando el acordeón está activo */
+        .accordion-item.active .accordion-content {
+            display: block;
+        }
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #f9fafb;
+        }
+        .hover-effect:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease-in-out;
+        }
+        .flowchart-node {
+            background-color: #d1fae5;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 2px solid #34d399;
+            font-weight: 600;
+            text-align: center;
+        }
+        .flowchart-arrow {
+            color: #34d399;
+            font-size: 1.5rem;
+        }
+        .highlight {
+            background-color: #fde68a;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="p-8">
+
+    <header class="text-center mb-10">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-700">Infografía Técnica: Reconectadores y Fusibles</h1>
+        <p class="text-lg mt-2 text-gray-600">Un Análisis Detallado para Estudiantes Universitarios</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto">
+        <!-- Sección 1: El Reconectador -->
+        <div class="card hover-effect">
+            <h2 class="subsection-title text-blue-600"><i class="fa-solid fa-bolt icon mr-2"></i>1. El Reconectador: Un Guardián de la Continuidad</h2>
+            <p class="mt-4 text-lg">El <span class="highlight">reconectador</span> es un dispositivo de conmutación de alta velocidad en sistemas de media y baja tensión (1kV < V < 35kV). Su misión es restaurar el servicio eléctrico de forma autónoma ante <span class="highlight">fallas temporales</span> y aislar selectivamente las <span class="highlight">fallas permanentes</span>. Esto minimiza interrupciones prolongadas y costosas. .</p>
+            
+            <div class="mt-8">
+                <h3 class="text-xl font-bold mb-4">Tipos de Fallas Frecuentes</h3>
+                <ul class="list-disc list-inside space-y-2 text-lg">
+                    <li><i class="fa-solid fa-tree text-green-500 mr-2"></i><span class="font-bold">Contacto arbóreo:</span> Ramas que tocan las líneas.</li>
+                    <li><i class="fa-solid fa-parachute-box text-blue-500 mr-2"></i><span class="font-bold">Interferencia de objetos:</span> Cometas o globos enredados.</li>
+                    <li><i class="fa-solid fa-crow text-gray-500 mr-2"></i><span class="font-bold">Fauna:</span> Aves que provocan cortocircuitos.</li>
+                    <li><i class="fa-solid fa-cloud-bolt text-yellow-500 mr-2"></i><span class="font-bold">Sobretensiones atmosféricas:</span> Descargas eléctricas.</li>
+                </ul>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="text-xl font-bold mb-4">Secuencia de Operación Lógica: El Ciclo de Reconexión</h3>
+                <div class="space-y-4">
+                    <div class="accordion-item rounded-lg border border-gray-200">
+                        <div class="accordion-header bg-blue-50 rounded-t-lg">
+                            <span class="font-semibold text-lg">Paso 1: Disparo Rápido (Apertura Veloz)</span>
+                            <i class="fa-solid fa-chevron-down text-blue-500"></i>
+                        </div>
+                        <div class="accordion-content bg-white rounded-b-lg">
+                            <p>El reconectador detecta una sobrecorriente, abre el circuito y lo cierra en aproximadamente <span class="highlight">300ms</span>. Este tiempo es inferior al de un fusible, permitiendo la auto-extinción del arco eléctrico. Si la falla es transitoria, el servicio se restablece.</p>
+                            <div class="mt-4 text-center">
+                                <div class="flowchart-node">Falla Transitoria</div>
+                                <i class="fa-solid fa-arrow-down flowchart-arrow my-2"></i>
+                                <div class="flowchart-node">Apertura Rápida</div>
+                                <i class="fa-solid fa-arrow-down flowchart-arrow my-2"></i>
+                                <div class="flowchart-node">Cierre Rápido</div>
+                                <i class="fa-solid fa-arrow-down flowchart-arrow my-2"></i>
+                                <div class="flowchart-node">Servicio Restaurado</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item rounded-lg border border-gray-200">
+                        <div class="accordion-header bg-blue-50 rounded-t-lg">
+                            <span class="font-semibold text-lg">Paso 2 y 3: Disparos Retardados (Apertura con Retraso)</span>
+                            <i class="fa-solid fa-chevron-down text-blue-500"></i>
+                        </div>
+                        <div class="accordion-content bg-white rounded-b-lg">
+                            <p>Si la falla persiste, el reconectador vuelve a abrir el circuito y espera un tiempo más largo (1-2s) antes de cerrar. Este retardo es mayor que el del fusible, permitiendo que este último actúe y aísle la sección dañada.</p>
+                            <div class="mt-4 text-center">
+                                <div class="flowchart-node">Falla Persistente</div>
+                                <i class="fa-solid fa-arrow-down flowchart-arrow my-2"></i>
+                                <div class="flowchart-node">Apertura con Retardo</div>
+                                <i class="fa-solid fa-arrow-down flowchart-arrow my-2"></i>
+                                <div class="flowchart-node">Espera Prolongada</div>
+                                <i class="fa-solid fa-arrow-down flowchart-arrow my-2"></i>
+                                <div class="flowchart-node">Cierre (si fusible no actuó)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item rounded-lg border border-gray-200">
+                        <div class="accordion-header bg-blue-50 rounded-t-lg">
+                            <span class="font-semibold text-lg">Paso 4: Disparo Definitivo (Apertura Permanente)</span>
+                            <i class="fa-solid fa-chevron-down text-blue-500"></i>
+                        </div>
+                        <div class="accordion-content bg-white rounded-b-lg">
+                            <p>Si la falla aún está activa, el reconectador se abre y se mantiene así, confirmando una falla permanente. Se envía una señal de alerta para la intervención de una cuadrilla de mantenimiento.</p>
+                            <div class="mt-4 text-center">
+                                <div class="flowchart-node">Falla Permanente</div>
+                                <i class="fa-solid fa-arrow-down flowchart-arrow my-2"></i>
+                                <div class="flowchart-node">Apertura Definitiva</div>
+                                <i class="fa-solid fa-arrow-down flowchart-arrow my-2"></i>
+                                <div class="flowchart-node">Intervención Manual</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 2: Fusibles -->
+        <div class="card hover-effect">
+            <h2 class="subsection-title text-green-600"><i class="fa-solid fa-fire-extinguisher icon mr-2"></i>2. Fusibles: Primera Línea de Defensa</h2>
+            <p class="mt-4 text-lg">Los fusibles son dispositivos pasivos que operan bajo el principio del <span class="highlight">efecto Joule</span>. Un conductor se calienta y se funde al superar su corriente nominal, interrumpiendo el circuito. Su papel es crucial para proteger equipos de sobrecargas y cortocircuitos. .</p>
+            
+            <div class="mt-8">
+                <h3 class="text-xl font-bold mb-4">Tipos de Fusibles y sus Características</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left table-striped">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="py-3 px-6 text-sm font-medium text-gray-900">Tipo de Fusible</th>
+                                <th class="py-3 px-6 text-sm font-medium text-gray-900">Aplicación</th>
+                                <th class="py-3 px-6 text-sm font-medium text-gray-900">Capacidad de Interrupción</th>
+                                <th class="py-3 px-6 text-sm font-medium text-gray-900">Mecanismo de Extinción del Arco</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-4 px-6"><span class="font-bold">Cortacircuitos Fusibles</span></td>
+                                <td class="py-4 px-6">Media tensión (2.4-34.5kV)</td>
+                                <td class="py-4 px-6">Baja (hasta 8kA)</td>
+                                <td class="py-4 px-6">Generación de gases dieléctricos al fundirse la envoltura de papel impregnado con fenol.</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6"><span class="font-bold">Tipo NH</span></td>
+                                <td class="py-4 px-6">Baja tensión, salida de transformadores</td>
+                                <td class="py-4 px-6">Alta (hasta 200kA)</td>
+                                <td class="py-4 px-6">Relleno de arena de cuarzo que se convierte en fulgurita para apagar el arco.</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6"><span class="font-bold">Tipo DIAZED</span></td>
+                                <td class="py-4 px-6">Baja tensión</td>
+                                <td class="py-4 px-6">Considerable (hasta 70kA)</td>
+                                <td class="py-4 px-6">Relleno de arena de cuarzo que se convierte en fulgurita para apagar el arco.</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6"><span class="font-bold">Tipo XS10</span></td>
+                                <td class="py-4 px-6">Complemento de seccionadores de cuchillas en transformadores o líneas de media tensión.</td>
+                                <td class="py-4 px-6">Alta (diseñado para operar en conjunto con seccionadores de alta capacidad).</td>
+                                <td class="py-4 px-6">Fusión de un hilo calibrado en un cuerpo de porcelana. Al fundirse, el elemento fusible libera un percutor o señal mecánica que provoca la apertura del seccionador de cuchillas asociado.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección 3: Selectividad -->
+        <div class="card hover-effect">
+            <h2 class="subsection-title text-purple-600"><i class="fa-solid fa-arrows-split-up-and-merge icon mr-2"></i>3. Selectividad: Principio de Coordinación</h2>
+            <p class="mt-4 text-lg">La <span class="highlight">selectividad</span> es el concepto que asegura que solo el dispositivo de protección más cercano a la falla actúe. El reconectador y el fusible trabajan en un sistema coordinado para lograrlo:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+                <div class="bg-gray-100 p-6 rounded-xl text-center hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-hourglass-start text-5xl text-blue-500 mb-4"></i>
+                    <p class="font-bold text-lg">Reconectador</p>
+                    <p>Actúa más rápido para fallas transitorias.</p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-hand-fist text-5xl text-red-500 mb-4"></i>
+                    <p class="font-bold text-lg">Fusible</p>
+                    <p>Actúa más lento, para aislar fallas permanentes.</p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center hover:bg-gray-200 transition-colors">
+                    <i class="fa-solid fa-check-circle text-5xl text-green-500 mb-4"></i>
+                    <p class="font-bold text-lg">Resultado</p>
+                    <p>Interrupción del servicio minimizada y localizada.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = item.querySelector('i');
+
+                if (header) {
+                    header.addEventListener('click', () => {
+                        const isExpanded = item.classList.contains('active');
+
+                        // Cierra todos los demás acordeones
+                        accordionItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                                const otherIcon = otherItem.querySelector('i');
+                                if (otherIcon) {
+                                    otherIcon.classList.remove('fa-chevron-up');
+                                    otherIcon.classList.add('fa-chevron-down');
+                                }
+                            }
+                        });
+
+                        // Alterna el acordeón que fue clickado
+                        item.classList.toggle('active');
+
+                        // Alterna el ícono del acordeón clickado
+                        if (icon) {
+                            if (isExpanded) {
+                                icon.classList.remove('fa-chevron-up');
+                                icon.classList.add('fa-chevron-down');
+                            } else {
+                                icon.classList.remove('fa-chevron-down');
+                                icon.classList.add('fa-chevron-up');
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
