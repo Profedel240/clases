@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Gestión de los Ámbitos de Desempeño</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section-title {
+            color: #1a3a5f;
+        }
+        .accordion-item {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .accordion-header {
+            background-color: #e2e8f0;
+            cursor: pointer;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-body {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            display: none;
+        }
+        .icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+        .icon-rotated {
+            transform: rotate(180deg);
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        th {
+            background-color: #cbd5e1;
+            font-weight: 600;
+            color: #1a3a5f;
+        }
+        /* Custom image styles to fit the layout */
+        .page-image {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            margin: 1rem auto;
+            display: block;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        /* Estilos para el modal de la imagen */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            display: block;
+            margin: auto;
+        }
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-6 shadow-lg">
+        <div class="container flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-400" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L1 21h22L12 2zm0 15a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3zm-1-7h2v6h-2v-6z"/>
+                </svg>
+                <div>
+                    <h1 class="text-3xl font-bold">Gestión de los Ámbitos de Desempeño</h1>
+                    <p class="text-sm text-gray-300 mt-1">Módulo Teórico 3</p>
+                </div>
+            </div>
+            <p class="mt-4 md:mt-0 text-right italic text-sm">Material didáctico para estudiantes de nivel técnico y universitario</p>
+        </div>
+    </header>
+
+    <main class="container py-8">
+        <!-- New Introduction Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold section-title mb-4">Introducción</h2>
+            <p class="text-gray-600 leading-relaxed">
+                Todas las técnicas analíticas tienen como misión fundamental el obtener la información necesaria para que, a partir de esa información, podamos conocer: ¿qué ha ocurrido? o ¿qué puede ocurrir?, ¿de qué forma ha ocurrido?, o ¿de qué forma puede ocurrir? y qué consecuencias se derivan o se pueden derivar. Las soluciones a estas preguntas llevan a situaciones o bien del pasado o bien del futuro, en ambos casos necesarias e imprescindibles para poder hacer prevención.
+                <br><br>
+                La técnica que busca respuesta a hechos sucedidos (del pasado reciente) es la <strong>Investigación de accidentes/incidentes</strong>.
+                <br><br>
+                La investigación de accidentes es una “técnica analítica” “a posteriori” que tiene como finalidad obtener la información más completa y precisa sobre las causas y circunstancias del accidente, mientras que el objetivo último es:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-gray-700 mt-4">
+                <li>Evitar que sucedan en el futuro accidentes similares.</li>
+                <li>Descubrir nuevos peligros donde existan.</li>
+                <li>Conducir a la implantación de medidas correctoras.</li>
+            </ul>
+            <p class="text-gray-600 leading-relaxed mt-4">
+                La implantación de las medidas correctoras no se deben basar únicamente en una corrección puntual de los hechos próximos que han dado lugar a ese accidente. Se debe ir más allá y se deberá revisar el sistema de gestión de la prevención de riesgos laborales implantado, pues la existencia del accidente equivaldría a una no conformidad en el mismo, lo que daría origen a una revisión del sistema para detectar sus deficiencias y posibles orígenes de otros accidentes.
+            </p>
+        </div>
+
+        <!-- Accordion Section for detailed topics -->
+        <div class="space-y-4">
+            <!-- Sección 1: Investigación de Accidentes -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3 class="text-xl font-medium section-title">1. Investigación de Accidentes Laborales</h3>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="accordion-body">
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Etapas para Acciones Eficaces</h4>
+                        <p class="leading-relaxed mb-2">Para conseguir acciones eficaces y seguras se debe pasar obligatoriamente por cuatro etapas:</p>
+                        <ul class="list-decimal list-inside space-y-1 text-gray-700">
+                            <li>La etapa de <strong>información</strong>.</li>
+                            <li>La etapa de <strong>selección</strong> de lo informado.</li>
+                            <li>La etapa de <strong>ejecución</strong> de lo seleccionado.</li>
+                            <li>La etapa de <strong>control</strong> de lo ejecutado.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Qué Accidentes se Deben Investigar</h4>
+                        <p class="leading-relaxed mb-4">
+                            La obligación legal del empresario se extiende a la investigación de todos aquellos accidentes laborales con consecuencias lesivas para las personas. Desde un criterio preventivo, la investigación debe extenderse a todos los accidentes laborales que, independientemente de sus consecuencias, tengan un potencial lesivo, ya que las consecuencias pueden ser fruto del azar.
+                        </p>
+                        <p class="font-medium text-gray-700 mb-2">La OIT considera que se deben investigar los accidentes que:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>Ocasionen muerte o lesiones graves.</li>
+                            <li>Provocando lesiones menores, se repiten, revelando situaciones o prácticas de trabajo peligrosas.</li>
+                            <li>Los agentes de prevención de la empresa (Servicio de Prevención, Comité de Seguridad y Salud, Delegados de Prevención) o la administración consideren necesario investigar por sus características especiales, sean accidentes o sucesos peligrosos.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Cómo Obtener Buena Información</h4>
+                        <ol class="list-decimal list-inside space-y-4 text-gray-700">
+                            <li><strong>Solamente considerar "HECHOS REALES".</strong> No se deben hacer interpretaciones o juicios de valor.
+                                <div class="mt-2 text-sm italic">
+                                    <p class="mb-1"><strong>Ejemplo de Interpretación:</strong></p>
+                                    <p class="mb-2"><strong>Incorrecto:</strong> "Formación deficiente..."</p>
+                                    <p><strong>Correcto:</strong> "El trabajador no recibió la capacitación en el manejo del equipo. Esto no es una interpretación, es un hecho comprobable."</p>
+                                </div>
+                                <div class="mt-4 text-sm italic">
+                                    <p class="mb-1"><strong>Ejemplo de Juicio de Valor:</strong></p>
+                                    <p class="mb-2"><strong>Incorrecto:</strong> "El trabajador debía estar usando el EPP."</p>
+                                    <p><strong>Correcto:</strong> "El trabajador no tenía puesto el casco en el momento del impacto. Su posición era..."</p>
+                                </div>
+                            </li>
+                            <li><strong>No buscar culpables en la investigación de accidentes.</strong> La misión del investigador es determinar las causas para poderlas corregir.</li>
+                            <li><strong>No solamente buscar el cumplimiento de la normativa.</strong> El objetivo es ir más allá y mejorar el sistema de gestión de riesgos.</li>
+                        </ol>
+                    </div>
+
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Métodos de Investigación de Accidentes</h4>
+                        <p class="leading-relaxed mb-4">A continuación, se describen los principales métodos utilizados para la investigación de accidentes laborales:</p>
+                        
+                        <!-- Método de Análisis de la Cadena Causal -->
+                        <div class="mb-6 border-b border-gray-300 pb-4">
+                            <h5 class="font-semibold text-base mb-2">Método de Análisis de la Cadena Causal</h5>
+                            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                                Este método, también conocido como "Método de la Cadena de Sucesos", se centra en identificar la secuencia de eventos que condujeron al accidente.
+                            </p>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmafPUUHJBbowzQf8iFbdqJsbkBVR5HAI6HA&s" alt="Diagrama de la cadena causal" class="page-image">
+                        </div>
+
+                        <!-- Método SCRA -->
+                        <div class="mb-6 border-b border-gray-300 pb-4">
+                            <h5 class="font-semibold text-base mb-2">Método SCRA: Síntoma-Causa-Remedio-Acción</h5>
+                            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                                El método SCRA es una herramienta para el análisis de problemas que ayuda a estructurar el proceso de investigación.
+                            </p>
+                            <img src="https://moodlevirtual.sanmateovirtual.edu.co/RecursosISST/Investigacion%20de%20ATEL/UNI2/UV_GR_PAW_ATEL%20_U02_2892_V01/images/art04_4.png" alt="Diagrama SCRA" class="page-image">
+                        </div>
+
+                        <!-- Método del Diagrama de Ishikawa -->
+                        <div class="mb-6 border-b border-gray-300 pb-4">
+                            <h5 class="font-semibold text-base mb-2">Método del Diagrama de Ishikawa</h5>
+                            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                                Conocido como "Diagrama de Espina de Pescado", este método gráfico permite identificar y categorizar las causas de un problema (el accidente).
+                            </p>
+                            <img src="https://think-productivity.com/wp-content/uploads/2017/07/Diagrama-Ishikawa3.png" alt="Diagrama de Ishikawa" class="page-image">
+                        </div>
+                        
+                        <!-- Método del Árbol de Causas -->
+                        <div class="mb-6 border-b border-gray-300 pb-4">
+                            <h5 class="font-semibold text-base mb-2">Método del Árbol de Causas</h5>
+                            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                                Es una metodología para identificar las causas de un accidente a partir de los hechos sucedidos, reconstruyendo la secuencia lógica de eventos que llevaron al mismo.
+                            </p>
+                            <img src="https://informacionprevencion.com/wp-content/uploads/Do-things-at-your-own-pace.-Lifes-not-a-race.-2.jpg" alt="Diagrama del árbol de causas" class="page-image">
+                        </div>
+                        
+                        <!-- Método del Árbol de Fallos y Errores -->
+                        <div class="mb-6 pb-4">
+                            <h5 class="font-semibold text-base mb-2">Método del Árbol de Fallos y Errores</h5>
+                            <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                                El FTA (Fault Tree Analysis) es una técnica deductiva que permite analizar la probabilidad de que un evento no deseado ocurra.
+                            </p>
+                            <img src="https://software.aeromarine.es/wp-content/uploads/2021/07/fta-1024x576.jpg" alt="Diagrama del árbol de fallos" class="page-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 2: Análisis de Riesgos -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3 class="text-xl font-medium section-title">2. Análisis de Riesgos</h3>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="accordion-body">
+                    <p class="mb-4 leading-relaxed">
+                        El análisis de riesgos distingue dos conceptos fundamentales para la prevención en cualquier entorno laboral.
+                    </p>
+                    <div class="flex justify-center mt-4">
+                         <img src="https://scontent.fepa1-1.fna.fbcdn.net/v/t39.30808-6/492365029_1261348292663671_8190939892496901190_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xcmbUjPGIsQQ7kNvwEMiJmL&_nc_oc=Adlq5B8U9t6j4QWUfo5bMH9S1YbfTlunUJk0ZLy5yXVQRUl_pYAUNBGs5ijM8PhbpgI&_nc_zt=23&_nc_ht=scontent.fepa1-1.fna&_nc_gid=3wKr6g_3DBNkEZd0yG2bbA&oh=00_AfZr1Q92JAGj9cYW8tm6HgIuZPao9E5rYs0szptmXzP30A&oe=68CFAB53" alt="Imagen de peligro y riesgo laboral" class="page-image">
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mt-4">
+                        Es necesario realizar un listado de todos los peligros y riesgos inherentes, evaluando sus probabilidades y consecuencias, así como establecer medidas de control. Una herramienta que puede ser utilizada para este fin es la **matriz IPER: Identificación de Peligros y Evaluación de Riesgos**.
+                    </p>
+                    <div class="flex justify-center mt-6">
+                        <img src="https://safetyculture.com/_next/image/?url=https%3A%2F%2Fwp-website.safetyculture.com%2Fwp-content%2Fuploads%2Fsites%2F3%2F2023%2F12%2FEjemplo-de-matriz-de-riesgo-5%C3%975.png&w=1920&q=75" alt="Matriz IPER" class="visual-element">
+                    </div>
+                    <div class="mt-8">
+                        <button class="accordion-button" onclick="toggleAccordion(this)">
+                            Usos de la Matriz IPER
+                            <svg class="accordion-icon w-5 h-5" viewBox="0 0 0 0" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div id="usos" class="accordion-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Sirve para la planificación de la capacitación y entrenamiento.</li>
+                                <li>Sirve para planificar el cumplimiento de los requerimientos legales y/o normativos.</li>
+                                <li>En la gestión de inspecciones.</li>
+                                <li>En la planificación de trabajos, para asignar recursos y actividades.</li>
+                                <li>Para confeccionar procedimientos que incluyan los controles ligados a los riesgos.</li>
+                            </ul>
+                        </div>
+                        <button class="accordion-button mt-4" onclick="toggleAccordion(this)">
+                            Niveles de Riesgo
+                            <svg class="accordion-icon w-5 h-5" viewBox="0 0 0 0" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div id="niveles" class="accordion-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><b>Riesgo Intolerable:</b> El trabajo debe paralizarse de inmediato.</li>
+                                <li><b>Riesgo Importante:</b> El trabajo no puede reanudarse hasta su reducción.</li>
+                                <li><b>Riesgo Moderado:</b> Requiere controles permanentes.</li>
+                                <li><b>Riesgo Tolerable:</b> No requiere mejoras, pero sí comprobaciones periódicas.</li>
+                                <li><b>Riesgo Trivial:</b> Aceptable sin necesidad de acción.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 3: Riesgos Laborales -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3 class="text-xl font-medium section-title">3. Riesgos Laborales</h3>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="accordion-body">
+                    <p class="mb-4 leading-relaxed">
+                        A continuación se presenta una clasificación y descripción de los principales riesgos que pueden encontrarse en el entorno laboral.
+                    </p>
+
+                    <!-- Riesgos Físicos -->
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Riesgos Físicos</h4>
+                        <p class="mb-2">Son producidos por el intercambio de energía entre el trabajador y el ambiente.</p>
+                        <ul class="list-disc list-inside space-y-3 text-gray-700">
+                            <li><strong>Sonido / Ruido:</strong> Perturbación mecánica en un medio elástico.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Ruido de maquinaria pesada.</span></li>
+                            <li><strong>Vibraciones:</strong> Transmitidas por máquinas o herramientas.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Uso de taladros percutores o martillos neumáticos.</span></li>
+                            <li><strong>Iluminación:</strong> Un tratamiento adecuado del ambiente visual.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Deslumbramiento por exceso de luz o fatiga visual.</span></li>
+                            <li><strong>Carga Térmica:</strong> Agentes externos que influyen en la sensación térmica.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Trabajar cerca de un horno de fundición.</span></li>
+                            <li><strong>Estrés por Frío:</strong> Exposición que puede generar hipotermia.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Operar en cámaras frigoríficas.</span></li>
+                            <li><strong>Radiaciones Ionizantes:</strong> Rayos X, rayos gamma y espectros ultravioleta altos.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Exposición en laboratorios de investigación.</span></li>
+                            <li><strong>Radiaciones no Ionizantes:</strong> Radiación ultravioleta, luz visible, etc.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Exposición a rayos UVA en soldaduras.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Riesgos Químicos -->
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Riesgos Químicos</h4>
+                        <p class="mb-2">Producidos por la exposición no controlada a agentes químicos.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Vías de Entrada:</strong> Inhalatoria, ingestión y dérmica.</li>
+                            <li><strong>CMP:</strong> Concentración Máxima Permisible.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Riesgos Mecánicos -->
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Riesgos Mecánicos</h4>
+                        <p class="mb-2">Factores físicos que pueden causar lesiones por la acción mecánica de elementos de máquinas o herramientas.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Peligro de Atrapamientos o Arrastres:</strong> Por zonas con objetos que se mueven juntos.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Una mano atrapada en engranajes.</span></li>
+                            <li><strong>Proyecciones de Sólidos:</strong> Partículas lanzadas a gran velocidad por máquinas.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Una viruta de metal que sale disparada.</span></li>
+                            <li><strong>Proyecciones de Líquidos:</strong> Fluidos a presión.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Un escape de aceite hidráulico.</span></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Riesgos Eléctricos -->
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Riesgos Eléctricos</h4>
+                        <p class="mb-2">Producidos por instalaciones o dispositivos eléctricos bajo tensión.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Choque eléctrico:</strong> Por contacto directo o indirecto.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Un trabajador que toca un cable pelado.</span></li>
+                            <li><strong>Quemaduras:</strong> Por choque o arco eléctrico.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Quemaduras por la corriente eléctrica.</span></li>
+                            <li><strong>Caídas o golpes:</strong> Consecuencia del choque eléctrico.
+                                <span class="italic text-sm text-gray-600 ml-4">Ej: Caída de una escalera al recibir un choque.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Riesgos Ergonómicos -->
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Riesgos Ergonómicos</h4>
+                        <p class="mb-2">Se trata de adecuar la relación del ser humano con su entorno.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Malas Posturas:</strong> Trabajar en una silla de oficina no ergonómica.</li>
+                            <li><strong>Movimientos Repetitivos:</strong> Un operario que realiza la misma acción una y otra vez.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Riesgos Psicosociales -->
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Riesgos Psicosociales</h4>
+                        <p class="mb-2">Derivados de la interacción entre el trabajo, su medio ambiente y la organización.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Estrés Laboral:</strong> Sobrecarga de trabajo o plazos ajustados.</li>
+                            <li><strong>Violencia y Acoso:</strong> Agresiones verbales o físicas.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Riesgos de Incendios -->
+                    <div class="bg-gray-100 p-4 rounded-md mb-4">
+                        <h4 class="font-semibold text-lg mb-2">Riesgos de Incendios</h4>
+                        <p class="mb-2">Presencia de fuego incontrolado con potencial de propagación.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Fuentes de Ignición:</strong> Cortocircuitos, chispas de soldadura, equipos sobrecalentados.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Riesgos Biológicos -->
+                    <div class="bg-gray-100 p-4 rounded-md">
+                        <h4 class="font-semibold text-lg mb-2">Riesgos Biológicos</h4>
+                        <p class="mb-2">Exposición a microorganismos o sustancias de un organismo que suponen una amenaza para la salud.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Exposición:</strong> Trabajadores de la salud expuestos a virus y bacterias.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 4: Jerarquía de los Controles -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3 class="text-xl font-medium section-title">4. Jerarquía de Controles</h3>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="accordion-body">
+                    <p class="mb-4 leading-relaxed">
+                        La jerarquía de controles es un método sistemático para controlar y mitigar los riesgos en el lugar de trabajo. Los controles se organizan en una pirámide invertida, donde las medidas más efectivas se encuentran en la parte superior y las menos efectivas en la parte inferior.
+                    </p>
+                    <div class="bg-gray-100 p-6 rounded-lg mb-6">
+                        <h4 class="font-semibold text-lg mb-4 text-center">Pirámide de Controles Operacionales</h4>
+                        <div class="flex justify-center items-center my-4">
+                            <img src="https://twind.io/es/wp-content/uploads/2024/12/jerarquia-control-riesgos-iso-45001-piramide.webp" alt="Diagrama de la pirámide de la Jerarquía de Controles Operacionales" class="page-image">
+                        </div>
+                    </div>
+                    
+                    <div class="table-container mb-4">
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th>Categoría</th>
+                                    <th>Barreras</th>
+                                    <th>Descripción</th>
+                                    <th>Efecto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Eliminación</td>
+                                    <td>Duras</td>
+                                    <td>Eliminar el peligro completamente.</td>
+                                    <td>Disminuye o elimina la consecuencia y la probabilidad.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sustitución</td>
+                                    <td>Duras</td>
+                                    <td>Reemplazar el peligro con uno menos peligroso.</td>
+                                    <td>Disminuye o elimina la consecuencia y la probabilidad.</td>
+                                </tr>
+                                <tr>
+                                    <td>Controles de Ingeniería</td>
+                                    <td>Duras</td>
+                                    <td>Aislar a las personas del peligro o rediseñar el equipo/proceso.</td>
+                                    <td>Disminuye o elimina la consecuencia y la probabilidad.</td>
+                                </tr>
+                                <tr>
+                                    <td>Controles Administrativos</td>
+                                    <td>Blandas</td>
+                                    <td>Cambios en la forma de trabajar.</td>
+                                    <td>Disminuye solo la probabilidad.</td>
+                                </tr>
+                                <tr>
+                                    <td>EPP (Equipo de Protección Personal)</td>
+                                    <td>Blandas</td>
+                                    <td>Proteger al trabajador con equipo específico.</td>
+                                    <td>Disminuye solo la probabilidad.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 5: Hoja de Seguridad (HDS) -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3 class="text-xl font-medium section-title">5. Hoja de Seguridad (HDS)</h3>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="accordion-body">
+                    <p class="text-gray-700 leading-relaxed">
+                        Una <b>Hoja de Seguridad (HDS)</b> es un documento crucial que proporciona información detallada sobre una sustancia química o material. Su propósito es guiar en el uso seguro, manejo adecuado y respuesta a emergencias.
+                    </p>
+                    <div class="table-container mt-4">
+                        <table class="mt-4">
+                            <thead>
+                                <tr>
+                                    <th>Sección</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><b>1.</b> Identificación del Fabricante y de la Sustancia Química</td><td>Información sobre el producto y el proveedor.</td></tr>
+                                <tr><td><b>2.</b> Composición, Información sobre Ingredientes</td><td>Detalles sobre los componentes químicos.</td></tr>
+                                <tr><td><b>3.</b> Identificación de Riesgos</td><td>Clasificación de los peligros de la sustancia.</td></tr>
+                                <tr><td><b>4.</b> Primeros Auxilios</td><td>Instrucciones en caso de contacto o ingestión.</td></tr>
+                                <tr><td><b>5.</b> Combate de Incendios</td><td>Medidas y equipos para apagar fuegos.</td></tr>
+                                <tr><td><b>6.</b> Liberaciones Accidentales</td><td>Procedimientos para derrames o fugas.</td></tr>
+                                <tr><td><b>7.</b> Manejo y Almacenaje</td><td>Recomendaciones para la manipulación segura.</td></tr>
+                                <tr><td><b>8.</b> Controles de Exposición, Protección Personal</td><td>EPIs y medidas de control necesarias.</td></tr>
+                                <tr><td><b>9.</b> Propiedades Físicas y Químicas</td><td>Datos sobre el estado, punto de ebullición, etc.</td></tr>
+                                <tr><td><b>10.</b> Estabilidad y Reactividad</td><td>Condiciones a evitar para prevenir reacciones peligrosas.</td></tr>
+                                <tr><td><b>11.</b> Información Toxicológica</td><td>Efectos sobre la salud.</td></tr>
+                                <tr><td><b>12.</b> Información Ecológica</td><td>Impacto en el medio ambiente.</td></tr>
+                                <tr><td><b>13.</b> Consideraciones sobre la Disposición</td><td>Cómo desechar el material de forma segura.</td></tr>
+                                <tr><td><b>14.</b> Información sobre el Transporte</td><td>Requisitos para el traslado de la sustancia.</td></tr>
+                                <tr><td><b>15.</b> Información sobre Reglamentación</td><td>Normativas aplicables.</td></tr>
+                                <tr><td><b>16.</b> Otra Información</td><td>Datos adicionales relevantes.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-200 text-gray-600 py-4 text-center text-sm mt-8">
+        <p>Infografía didáctica elaborada con fines académicos.</p>
+        <p>&copy; Instituto Superior de Formación Técnica</p>
+    </footer>
+
+    <!-- Modal para agrandar la imagen -->
+    <div id="image-modal" class="modal">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
+    <script>
+        // JavaScript for accordion functionality
+        function toggleAccordion(header) {
+            const body = header.nextElementSibling;
+            const icon = header.querySelector('.icon');
+            const isOpen = body.style.display === 'block';
+
+            if (isOpen) {
+                body.style.display = 'none';
+                icon.classList.remove('icon-rotated');
+            } else {
+                body.style.display = 'block';
+                icon.classList.add('icon-rotated');
+            }
+        }
+
+        // --- Lógica para el modal de imágenes ---
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-image');
+        const images = document.querySelectorAll('.page-image');
+
+        // Función para abrir el modal
+        function openModal(imageSrc) {
+            modal.style.display = 'flex';
+            modalImg.src = imageSrc;
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Añadir el evento de clic a cada imagen
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                openModal(img.src);
+            });
+        });
+
+        // Cerrar el modal al hacer clic fuera de la imagen
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

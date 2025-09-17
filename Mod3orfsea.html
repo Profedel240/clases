@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa: Regulación y Funcionamiento del Subsector Eléctrico</title>
+    <!-- Inclusión de Font Awesome para iconos y Google Fonts para tipografía -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos CSS embebidos en el HTML -->
+    <style>
+        /* Estilos generales y paleta de colores profesional */
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+
+        /* Contenedor principal de la infografía */
+        .infographic-container {
+            max-width: 1300px;
+            margin: 25px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            text-align: justify;
+        }
+
+        /* Título principal de la infografía */
+        h1, h2 {
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            color: #34495e;
+            margin-top: 0;
+        }
+        
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 0.5em;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 10px;
+            margin-top: 2.5em;
+            margin-bottom: 1.5em;
+        }
+
+        /* Estilos para el botón del acordeón (menú desplegable) */
+        .accordion {
+            background-color: #f1f3f5;
+            color: #34495e;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: background-color 0.4s ease;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2em;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* Efecto al pasar el mouse y al estar activo */
+        .accordion:hover, .accordion.active {
+            background-color: #cfd8dc;
+        }
+        
+        .accordion:hover {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contenido del panel desplegable */
+        .panel {
+            padding: 0 18px;
+            background-color: #ffffff;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            border-left: 3px solid #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        /* Panel activo: establece una altura máxima grande para permitir la expansión */
+        .panel.active {
+            max-height: 2000px; /* Suficientemente grande para cualquier contenido */
+            padding: 18px; /* Restaura el padding para que el contenido se vea bien */
+            transition: max-height 0.5s ease-in, padding 0.5s ease-in;
+        }
+
+        /* Iconos de flecha */
+        .accordion .fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.active .fa-chevron-down {
+            transform: rotate(-180deg);
+        }
+
+        /* Estilos para las viñetas y listas */
+        .panel ul, .panel ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+
+        .panel li {
+            margin-bottom: 10px;
+        }
+
+        .panel p {
+            margin: 15px 0;
+        }
+        
+        /* Estilos para cuadros y tablas */
+        .panel table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .panel th, .panel td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .panel th {
+            background-color: #e74c3c;
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .panel tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Estilos para secciones de submenú */
+        .submenu-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+
+        /* Estilos para cuadros de "entidades" o roles clave */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .entity {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .entity:hover {
+            transform: translateY(-5px);
+        }
+
+        .entity h4 {
+            font-family: 'Oswald', sans-serif;
+            color: #2c3e50;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .entity h4 i {
+            font-size: 1.5em;
+            color: #3498db;
+            margin-right: 10px;
+        }
+
+        /* Animación para el icono de la barra de carga */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-icon {
+            animation: pulse 1.5s infinite ease-in-out;
+            color: #27ae60;
+        }
+
+        /* Estilos para el pie de página o la sección de créditos */
+        .footer {
+            text-align: center;
+            padding-top: 30px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+            margin-top: 30px;
+        }
+
+        /* Estilos para el gráfico de barras */
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fdfdfd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .chart-bar {
+            background-color: #3498db;
+            height: 25px;
+            line-height: 25px;
+            color: white;
+            text-align: right;
+            padding-right: 10px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            transition: width 1s ease-in-out;
+        }
+
+        .chart-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 2px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="infographic-container">
+        <h1>Guía de Estudio: Organización, Regulación y Funcionamiento del Subsector Eléctrico</h1>
+        <p style="text-align: center; font-style: italic; color: #7f8c8d;">Un recurso didáctico para comprender la compleja red que ilumina nuestro país.</p>
+
+        <p>El subsector eléctrico es una red de ingeniería y economía sumamente compleja. Esta infografía interactiva tiene como objetivo desglosar sus componentes, roles y mecanismos fundamentales, facilitando la comprensión de cómo la electricidad llega de la fuente de generación hasta el consumidor final. Utilice los menús desplegables para explorar cada sección en profundidad.</p>
+        
+        <button class="accordion"><i class="fas fa-plug"></i> Introducción al Equilibrio de la Demanda y la Generación Eléctrica <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <p>El sector eléctrico es una red compleja y dinámica cuyo objetivo primordial es mantener un equilibrio constante entre la energía que se genera y la que se consume. A diferencia de otros bienes, la electricidad no se puede almacenar fácilmente a gran escala, lo que obliga a que la generación sea en tiempo real, adaptándose a las fluctuaciones de la demanda. Este delicado balance se gestiona a través de una serie de mecanismos y protocolos que garantizan la estabilidad, fiabilidad y calidad del suministro.</p>
+            <p>En el corazón de esta gestión se encuentran los conceptos de reserva del sistema eléctrico y la regulación de frecuencia. Estos mecanismos son vitales para responder de manera inmediata a los cambios inesperados en la red, ya sean por la desconexión de una central generadora, la entrada en servicio de un gran consumidor o cualquier otra contingencia que pueda alterar el equilibrio. Una desviación en este balance puede provocar variaciones en la frecuencia del sistema, un indicador crítico de su salud. Si la frecuencia se desvía demasiado de su valor nominal (generalmente 50 Hz o 60 Hz), puede causar daños graves en los equipos y, en casos extremos, llevar a un colapso total del sistema, conocido como blackout.</p>
+            <p>Este documento se sumerge en la estructura y el funcionamiento de estos mecanismos de seguridad, detallando la secuencia de operación de las reservas y el papel crucial de la regulación primaria de frecuencia en la salvaguarda del sistema eléctrico.</p>
+        </div>
+
+        <button class="accordion"><i class="fas fa-bolt"></i> Fundamentos del Sistema Eléctrico de Potencia <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <p>El sistema eléctrico de potencia se compone de la interconexión de centrales de generación, líneas de transmisión y redes de distribución, cuyo fin es suministrar energía eléctrica de manera eficiente y segura. La operación de este sistema se basa en principios físicos y de ingeniería complejos que garantizan su estabilidad.</p>
+            <p class="submenu-title">Equilibrio de Potencia Activa:</p>
+            <p>La estabilidad de un sistema eléctrico depende de un balance perfecto, en tiempo real, entre la potencia eléctrica que se genera y la que se consume. Si la generación es mayor a la demanda, la frecuencia del sistema aumenta; si es menor, la frecuencia disminuye. Mantener la frecuencia en su valor nominal (50 Hz o 60 Hz) es crucial para la integridad de la red y el correcto funcionamiento de los equipos.</p>
+            <div class="chart-container">
+                <div class="chart-label">Generación vs. Demanda (Ejemplo)</div>
+                <div class="chart-bar" style="width: 85%;">Generación</div>
+                <div class="chart-bar" style="width: 80%; background-color: #e74c3c;">Demanda</div>
+            </div>
+            <p class="submenu-title">Potencia Reactiva y Voltaje:</p>
+            <p>Además del balance de potencia activa, es fundamental gestionar el balance de potencia reactiva, que es necesaria para crear los campos magnéticos en los equipos (transformadores, motores). El manejo adecuado de la potencia reactiva es lo que permite mantener los niveles de voltaje dentro de los rangos de operación seguros y fiables, evitando así sobrecalentamiento y daños en los equipos.</p>
+        </div>
+
+        <button class="accordion"><i class="fas fa-chart-line"></i> Secuencia y Tipos de Reservas del Sistema Eléctrico <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <p>Para asegurar la disponibilidad de potencia en todo momento, el sistema eléctrico opera con diferentes tipos de reserva. Estos recursos de generación están listos para entrar en acción en distintos plazos, desde milisegundos hasta varias horas, y se activan en una secuencia predefinida para optimizar la respuesta ante cualquier desequilibrio. A continuación, se detalla la secuencia de activación y los tipos de reservas.</p>
+            
+            <button class="accordion"><i class="fas fa-sync-alt pulse-icon"></i> Reserva Rodante (Spinning Reserve) <i class="fas fa-chevron-down"></i></button>
+            <div class="panel">
+                <p>La reserva rodante es la primera línea de defensa del sistema. Está compuesta por unidades generadoras que ya están en operación y, por lo tanto, sincronizadas con la red. Estas unidades no están generando a su máxima capacidad, sino que tienen una capacidad ociosa que pueden liberar de manera casi instantánea para inyectar más potencia al sistema.</p>
+                <ul>
+                    <li><strong>¿Qué es?:</strong> Capacidad de generación disponible en generadores que ya están en línea y girando (de ahí el nombre “rodante”). Esta reserva se activa de forma automática y muy rápida.</li>
+                    <li><strong>Implementación:</strong> La reserva rodante se implementa configurando las unidades generadoras para que operen por debajo de su potencia máxima. Por ejemplo, una turbina de 100 MW puede estar generando solo 80 MW, dejando 20 MW de reserva rodante disponible. Esta potencia extra se puede liberar en cuestión de segundos, simplemente ajustando el punto de operación de la turbina. La respuesta es proporcional a la caída de frecuencia: a mayor caída, mayor será la potencia inyectada.</li>
+                    <li><strong>Ejemplo:</strong> Un sistema eléctrico tiene una demanda de 5,000 MW y está siendo abastecido por varias centrales. Una de las centrales, con una capacidad de 500 MW, falla repentinamente y se desconecta. La frecuencia del sistema comienza a caer. Las centrales que tienen reserva rodante (por ejemplo, operando al 85% de su capacidad) detectan la caída de frecuencia y automáticamente aumentan su producción al 100% para compensar la pérdida de los 500 MW. Este proceso es casi instantáneo y previene una caída de frecuencia más severa.</li>
+                </ul>
+            </div>
+            
+            <button class="accordion"><i class="fas fa-sliders-h"></i> Reserva de Regulación (Regulating Reserve) <i class="fas fa-chevron-down"></i></button>
+            <div class="panel">
+                <p>La reserva de regulación es similar a la reserva rodante en el sentido de que también está compuesta por unidades en operación. Sin embargo, su función principal no es compensar grandes contingencias, sino gestionar las pequeñas y constantes fluctuaciones de la demanda a lo largo del día.</p>
+                <ul>
+                    <li><strong>¿Qué es?:</strong> Capacidad de generación de respuesta rápida, generalmente de unidades que pueden aumentar o disminuir su potencia de forma continua para seguir las variaciones de la demanda en tiempo real.</li>
+                    <li><strong>Implementación:</strong> Se implementa a través de un control automático de generación (AGC) que monitorea la frecuencia del sistema y envía señales de ajuste a las unidades designadas. Estas unidades responden con pequeños incrementos o decrementos de potencia para mantener la frecuencia lo más cerca posible de su valor nominal.</li>
+                    <li><strong>Ejemplo:</strong> En una ciudad, miles de usuarios encienden sus aires acondicionados casi al mismo tiempo. Esto provoca un pequeño pero rápido aumento en la demanda total. El AGC detecta esta subida y las unidades con reserva de regulación aumentan su potencia en un 1% o 2% para satisfacer la nueva demanda, evitando que la frecuencia se desvíe perceptiblemente.</li>
+                </ul>
+            </div>
+            
+            <button class="accordion"><i class="fas fa-tachometer-alt"></i> Reserva de Arranque Rápido (Quick-Start Reserve) <i class="fas fa-chevron-down"></i></button>
+            <div class="panel">
+                <p>Cuando la reserva rodante y la de regulación no son suficientes para compensar una gran contingencia, se activan las reservas de arranque rápido. Estas son unidades que no están en línea, pero que pueden sincronizarse y comenzar a inyectar potencia en un plazo de 10 a 30 minutos.</p>
+                <ul>
+                    <li><strong>¿Qué es?:</strong> Unidades generadoras que están apagadas pero pueden ser encendidas y puestas en operación en un corto período de tiempo. Ejemplos comunes son las turbinas a gas o las unidades de ciclo combinado.</li>
+                    <li><strong>Implementación:</strong> La implementación de estas reservas implica tener el equipamiento listo para un encendido rápido. Los operadores del sistema, al ver que una contingencia mayor no puede ser manejada por la reserva rodante, envían la orden para que estas unidades comiencen su secuencia de arranque.</li>
+                    <li><strong>Ejemplo:</strong> El sistema eléctrico sufrió una pérdida de 1,000 MW de capacidad de generación. La reserva rodante cubrió inicialmente 500 MW, pero la frecuencia sigue baja. El operador del sistema ordena el arranque de varias turbinas a gas, que pueden encenderse en menos de 15 minutos, para inyectar los 500 MW restantes y restaurar el equilibrio.</li>
+                </ul>
+            </div>
+            
+            <button class="accordion"><i class="fas fa-snowflake"></i> Reserva Fría (Non-spinning Reserve) <i class="fas fa-chevron-down"></i></button>
+            <div class="panel">
+                <p>La reserva fría es la última línea de defensa. Son unidades generadoras que no están en línea ni listas para un arranque rápido, pero pueden ser puestas en servicio en un plazo más largo, generalmente de 1 a 12 horas.</p>
+                <ul>
+                    <li><strong>¿Qué es?:</strong> Unidades de generación que requieren una preparación más larga para ser puestas en línea. Estas unidades se utilizan para contingencias prolongadas o para cubrir picos de demanda previstos con antelación.</li>
+                    <li><strong>Implementación:</strong> La reserva fría se programa con anticipación, y los operadores del sistema la utilizan para reforzar la capacidad de generación a mediano y largo plazo. Esto puede incluir centrales térmicas de carbón o nucleares que no son adecuadas para un arranque rápido.</li>
+                    <li><strong>Ejemplo:</strong> Durante una ola de calor, se prevé un aumento de la demanda que excederá la capacidad de las reservas activas. Con 24 horas de antelación, el operador del sistema ordena el arranque de una central de ciclo combinado de gran capacidad para que esté en línea y lista para el día siguiente, asegurando que habrá suficiente potencia para cubrir el pico de demanda.</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="accordion"><i class="fas fa-gear"></i> Regulación Primaria de Frecuencia <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <p>La regulación primaria de frecuencia es la primera respuesta automática y autónoma del sistema a los desequilibrios entre la generación y la demanda. Su objetivo es detener la desviación de la frecuencia en los primeros segundos de una contingencia. Es un mecanismo de control de bucle cerrado que opera de forma local en cada unidad de generación, sin intervención del operador.</p>
+            
+            <button class="accordion"><i class="fas fa-wave-square"></i> ¿Qué es la Regulación Primaria de Frecuencia? <i class="fas fa-chevron-down"></i></button>
+            <div class="panel">
+                <ul>
+                    <li><strong>Concepto:</strong> Es la respuesta inmediata y automática de los generadores a las variaciones en la frecuencia del sistema. Su función es frenar la caída o el aumento de la frecuencia y estabilizarla en un nuevo valor, aunque no necesariamente el nominal de 50 Hz.</li>
+                    <li><strong>Funcionamiento:</strong> Cada unidad generadora (turbina, motor, etc.) está equipada con un sistema de control de velocidad (regulador) que monitorea la frecuencia de la red. Si la frecuencia baja (indicando un exceso de demanda sobre la generación), el regulador detecta esta caída y abre las válvulas de vapor, gas o agua (dependiendo de la tecnología) para que la turbina reciba más energía y aumente su potencia de salida, contrarrestando la caída de frecuencia. Si la frecuencia sube (exceso de generación), el regulador hace lo contrario, cerrando las válvulas para reducir la potencia.</li>
+                </ul>
+            </div>
+            
+            <button class="accordion"><i class="fas fa-tools"></i> Implementación y Características Clave <i class="fas fa-chevron-down"></i></button>
+            <div class="panel">
+                <p>La implementación de la regulación primaria de frecuencia se basa en un concepto conocido como "droop" o "estabilidad de lazo abierto", que se puede describir como la relación entre la variación de la frecuencia y la variación de la potencia de salida del generador.</p>
+                <ul>
+                    <li><strong>Droop (o Estatismo):</strong> Es un parámetro intrínseco de los reguladores de velocidad. Se define como el porcentaje de caída de frecuencia que causa que el generador aumente su potencia desde cero hasta su máxima capacidad. Un droop típico es del 5%, lo que significa que una caída del 5% en la frecuencia resultará en un 100% de aumento en la potencia del generador. Esta característica asegura que múltiples generadores en un sistema compartan la carga de la regulación de manera proporcional, evitando que una sola unidad intente compensar todo el desequilibrio.</li>
+                    <li><strong>Tiempo de Respuesta:</strong> La regulación primaria es un proceso extremadamente rápido, completando su acción en cuestión de 10 a 20 segundos. Su principal objetivo es evitar un colapso en cascada del sistema.</li>
+                </ul>
+            </div>
+            
+            <button class="accordion"><i class="fas fa-exclamation-triangle"></i> Ejemplo Práctico de la Regulación Primaria de Frecuencia <i class="fas fa-chevron-down"></i></button>
+            <div class="panel">
+                <p>Imaginemos un sistema eléctrico con una frecuencia nominal de 50 Hz. Se produce una falla grave en una línea de transmisión, lo que provoca la desconexión de una gran central generadora.</p>
+                <ul>
+                    <li><strong>Caída de Frecuencia:</strong> La generación ahora es menor que la demanda, por lo que la frecuencia del sistema comienza a caer rápidamente. Por ejemplo, de 50.0 Hz a 49.8 Hz en cuestión de segundos.</li>
+                    <li><strong>Activación de la Regulación Primaria:</strong> Todas las unidades generadoras en servicio detectan esta caída de frecuencia. Sus reguladores de velocidad actúan automáticamente.</li>
+                    <li><strong>Aumento de Potencia:</strong> Los reguladores, basados en su ajuste de droop, abren las válvulas para que las turbinas aumenten su potencia. Por ejemplo, una central de 200 MW que operaba a 150 MW podría aumentar su potencia a 170 MW en segundos.</li>
+                    <li><strong>Estabilización en un Nuevo Valor:</strong> El esfuerzo combinado de todos los generadores que participan en la regulación primaria detiene la caída de frecuencia y la estabiliza en un nuevo valor, por ejemplo, 49.85 Hz. A pesar de que la frecuencia no ha vuelto a 50 Hz, el sistema se ha estabilizado y la situación de emergencia inicial se ha contenido.</li>
+                </ul>
+            </div>
+        </div>
+        
+
+        <h2><i class="fas fa-lightbulb"></i> El Sector Eléctrico Argentino</h2>
+        <p>El subsector eléctrico en Argentina se rige por un marco regulatorio que se establece para garantizar la prestación de un servicio eficiente, seguro y equitativo. Los principales componentes son la Generación, el Transporte y la Distribución, cada uno con sus actores y roles bien definidos.</p>
+
+        <button class="accordion"><i class="fas fa-industry"></i> Generación <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <p>La generación es la etapa inicial donde se transforma la energía primaria (hidráulica, nuclear, térmica, eólica, solar) en energía eléctrica. Se da en un mercado competitivo, donde las empresas compiten para vender su energía. Su objetivo es producir la energía necesaria para cubrir la demanda y las pérdidas del sistema.</p>
+            <p><strong>Actores Principales:</strong></p>
+            <ul>
+                <li><strong>Empresas Generadoras:</strong> Son las dueñas de las centrales. La mayoría son empresas privadas, tanto nacionales como extranjeras, aunque hay algunas públicas.</li>
+                <li><strong>Mercado Eléctrico Mayorista (MEM):</strong> Es el ámbito donde los generadores venden su energía. Las transacciones se realizan en el Mercado Spot, que define los precios horarios en función del costo marginal, y en contratos de largo plazo.</li>
+            </ul>
+        </div>
+        
+        <button class="accordion"><i class="fas fa-share-alt"></i> Transporte <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <p>La etapa de transporte consiste en llevar la energía generada desde las centrales hasta los puntos de consumo masivo (grandes ciudades o centros industriales) a través de redes de alta y extra-alta tensión (más de 132 kV). Es un eslabón vital, ya que permite mover grandes volúmenes de energía a largas distancias con las mínimas pérdidas posibles.</p>
+            <p><strong>Actores Principales:</strong></p>
+            <ul>
+                <li><strong>Empresas Transportistas:</strong> Son las dueñas y operadoras de las redes de transporte. Se les concede una zona de operación en exclusiva y están reguladas para asegurar la neutralidad en el acceso a la red.</li>
+                <li><strong>Compañía Administradora del Mercado Mayorista Eléctrico (CAMMESA):</strong> En su rol de administradora del Sistema de Transporte de Energía Eléctrica en Alta Tensión (STAT), es responsable de la operación y el despacho de la energía.</li>
+            </ul>
+        </div>
+
+        <button class="accordion"><i class="fas fa-home"></i> Distribución <i class="fas fa-chevron-down"></i></button>
+        <div class="panel">
+            <p>La distribución es la última etapa del sistema, donde la energía se reduce de alta tensión a media y baja tensión (entre 33 kV y 220 V) para ser entregada a los consumidores finales. Este eslabón es un monopolio natural en cada área geográfica, ya que no es eficiente tener múltiples redes de distribución en la misma zona.</p>
+            <p><strong>Actores Principales:</strong></p>
+            <div class="roles-grid">
+                 <div class="entity">
+                    <h4><i class="fas fa-building"></i>Empresas Reguladoras</h4>
+                    <p><strong>ENRE y OCEBA</strong>. Son organismos estatales que regulan a los transportistas y distribuidores (ENRE a nivel nacional, OCEBA a nivel provincial). Su función es controlar que se cumplan las leyes y el contrato de concesión para proteger a los usuarios.</p>
+                </div>
+                 <div class="entity">
+                    <h4><i class="fas fa-broadcast-tower"></i>Distribución Zonal</h4>
+                    <p><strong>EDEN, EDES, EDEA</strong>. Son grandes empresas privadas que tienen la concesión de zonas geográficas específicas (Norte, Sur, y Costa Atlántica respectivamente) para la distribución y comercialización de energía a usuarios finales.</p>
+                </div>
+                 <div class="entity">
+                    <h4><i class="fas fa-users"></i>Cooperativas</h4>
+                    <p>Desempeñan un rol fundamental en la distribución en gran parte del interior de la provincia. Son entidades sin fines de lucro, propiedad de sus usuarios, que prestan el servicio eléctrico en ciudades y zonas rurales no cubiertas por las grandes distribuidoras.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                // Alterna la clase 'active' en el panel para controlar la visibilidad y expansión.
+                panel.classList.toggle("active");
+            });
+        }
+    </script>
+
+</body>
+</html>
