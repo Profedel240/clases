@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Riesgos Laborales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .sidebar {
+            width: 280px;
+            transform: translateX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar.collapsed {
+            transform: translateX(-100%);
+        }
+        .content {
+            transition: margin-left 0.3s ease-in-out;
+        }
+        .content.shifted {
+            margin-left: 280px;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+        }
+        .accordion-content.expanded {
+            max-height: 1000px; /* A large value to allow content to expand */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .toggle-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+        .modal {
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+        .modal.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar fixed top-0 left-0 h-full bg-slate-900 text-white p-6 shadow-2xl z-50 overflow-y-auto">
+        <h2 class="text-3xl font-bold mb-6 text-indigo-400">Menú</h2>
+        <nav>
+            <ul>
+                <li class="mb-4">
+                    <a href="#intro" class="flex items-center p-3 rounded-lg hover:bg-slate-700 transition duration-300">
+                        <span class="mr-3 text-indigo-300">💡</span>
+                        <span class="text-lg">Introducción</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <button class="w-full text-left flex items-center p-3 rounded-lg hover:bg-slate-700 transition duration-300" onclick="toggleAccordion('riesgos-accordion')">
+                        <span class="mr-3 text-indigo-300">⚠️</span>
+                        <span class="text-lg flex-grow">Clasificación de Riesgos</span>
+                        <span id="riesgos-icon" class="toggle-icon text-white">▼</span>
+                    </button>
+                    <ul id="riesgos-accordion" class="accordion-content pl-6">
+                        <li class="mt-2"><a href="#fisicos" class="block p-2 rounded-lg hover:bg-slate-700 transition duration-300">Físicos</a></li>
+                        <li class="mt-2"><a href="#quimicos" class="block p-2 rounded-lg hover:bg-slate-700 transition duration-300">Químicos</a></li>
+                        <li class="mt-2"><a href="#mecanicos" class="block p-2 rounded-lg hover:bg-slate-700 transition duration-300">Mecánicos</a></li>
+                        <li class="mt-2"><a href="#electricos" class="block p-2 rounded-lg hover:bg-slate-700 transition duration-300">Eléctricos</a></li>
+                        <li class="mt-2"><a href="#ergonomicos" class="block p-2 rounded-lg hover:bg-slate-700 transition duration-300">Ergonómicos</a></li>
+                        <li class="mt-2"><a href="#psicosociales" class="block p-2 rounded-lg hover:bg-slate-700 transition duration-300">Psicosociales</a></li>
+                        <li class="mt-2"><a href="#otros" class="block p-2 rounded-lg hover:bg-slate-700 transition duration-300">Otros Riesgos</a></li>
+                    </ul>
+                </li>
+                <li class="mb-4">
+                    <button class="w-full text-left flex items-center p-3 rounded-lg hover:bg-slate-700 transition duration-300" onclick="toggleAccordion('herramientas-accordion')">
+                        <span class="mr-3 text-indigo-300">🛠️</span>
+                        <span class="text-lg flex-grow">Herramientas de Gestión</span>
+                        <span id="herramientas-icon" class="toggle-icon text-white">▼</span>
+                    </button>
+                    <ul id="herramientas-accordion" class="accordion-content pl-6">
+                        <li class="mt-2"><a href="#hds" class="block p-2 rounded-lg hover:bg-slate-700 transition duration-300">Hoja de Seguridad (HDS)</a></li>
+                        <li class="mt-2"><a href="#iper" class="block p-2 rounded-lg hover:bg-slate-700 transition duration-300">Matriz IPER</a></li>
+                    </ul>
+                </li>
+                <li class="mb-4">
+                    <a href="#jerarquia" class="flex items-center p-3 rounded-lg hover:bg-slate-700 transition duration-300">
+                        <span class="mr-3 text-indigo-300">📈</span>
+                        <span class="text-lg">Jerarquía de Controles</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content" class="content flex-grow p-4 md:p-8 ml-0 md:ml-72 bg-gray-100">
+        <button id="sidebar-toggle" class="fixed top-4 left-4 bg-slate-900 text-white p-2 rounded-full shadow-lg md:hidden z-50">☰</button>
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-800 mb-2">Gestión de Riesgos Laborales</h1>
+            <p class="text-xl text-slate-600">Apuntes Universitarios: Módulo 3</p>
+        </header>
+
+        <section id="intro" class="bg-white p-8 rounded-2xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold text-slate-700 mb-4">Introducción</h2>
+            <p class="text-lg leading-relaxed text-gray-700">La seguridad y la salud en el trabajo constituyen pilares fundamentales para el desarrollo de cualquier actividad productiva. Una gestión eficaz de los riesgos laborales no solo es una exigencia legal ineludible, sino una estrategia inteligente que integra la prevención en todos los procesos de una organización. El objetivo primordial es crear un entorno de trabajo seguro que garantice la integridad física, mental y social de cada trabajador, minimizando las pérdidas humanas y materiales y fomentando una cultura de la prevención. Este apunte se adentra en la clasificación, análisis y control de los diversos riesgos presentes en el ámbito laboral, proporcionando las herramientas conceptuales necesarias para su correcta gestión.</p>
+        </section>
+
+        <section id="clasificacion" class="bg-white p-8 rounded-2xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold text-slate-700 mb-6">1. Clasificación General de Riesgos Laborales</h2>
+            <p class="text-lg leading-relaxed text-gray-700 mb-8">Para gestionar eficazmente los riesgos, primero debemos identificarlos y clasificarlos. Cada categoría agrupa peligros con características similares, lo que facilita su análisis y la implementación de medidas de control.</p>
+
+            <!-- Physical Risks Section -->
+            <div id="fisicos" class="bg-indigo-50 p-6 rounded-xl mb-6 shadow-sm">
+                <button class="w-full text-left flex items-center justify-between font-bold text-xl text-indigo-700" onclick="toggleAccordion('fisicos-content')">
+                    1.1. Riesgos Físicos
+                    <span id="fisicos-icon" class="toggle-icon text-indigo-700">▼</span>
+                </button>
+                <div id="fisicos-content" class="accordion-content">
+                    <p class="text-gray-700 mt-4">Estos riesgos se originan por un intercambio de energía entre el trabajador y el ambiente a una velocidad o intensidad que el cuerpo humano no puede soportar. Una exposición prolongada o intensa puede derivar en una enfermedad profesional.</p>
+                    <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
+                        <li>
+                            <strong class="text-indigo-600">Ruido:</strong> Exposición a altos niveles de presión sonora.
+                            <ul class="list-circle list-inside ml-6 mt-1">
+                                <li>Enfermedades y Lesiones Comunes: Hipoacusia inducida por ruido, acúfenos, fatiga, estrés.</li>
+                                <li>Ejemplo: Un operario de carpintería utilizando una sierra circular sin protección auditiva.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong class="text-indigo-600">Vibraciones:</strong> Transmisión de energía mecánica al cuerpo.
+                            <ul class="list-circle list-inside ml-6 mt-1">
+                                <li>Enfermedades y Lesiones Comunes: Síndrome del dedo blanco, lesiones musculoesqueléticas, lumbalgias.</li>
+                                <li>Ejemplo: Un trabajador de la construcción que utiliza un martillo neumático.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong class="text-indigo-600">Iluminación:</strong> Iluminación deficiente o excesiva (deslumbramiento).
+                            <ul class="list-circle list-inside ml-6 mt-1">
+                                <li>Enfermedades y Lesiones Comunes: Fatiga visual, picor en los ojos, dolores de cabeza.</li>
+                                <li>Ejemplo: Un técnico de control de calidad que fuerza la vista para revisar piezas pequeñas.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <button class="text-sm text-indigo-500 font-semibold mt-4" onclick="showMessage('Se muestra un mensaje de alerta.', 'Alerta')">Ver más ejemplos</button>
+                </div>
+            </div>
+
+            <!-- Chemical Risks Section -->
+            <div id="quimicos" class="bg-red-50 p-6 rounded-xl mb-6 shadow-sm">
+                <button class="w-full text-left flex items-center justify-between font-bold text-xl text-red-700" onclick="toggleAccordion('quimicos-content')">
+                    1.2. Riesgos Químicos
+                    <span id="quimicos-icon" class="toggle-icon text-red-700">▼</span>
+                </button>
+                <div id="quimicos-content" class="accordion-content">
+                    <p class="text-gray-700 mt-4">Exposición no controlada a agentes químicos que pueden causar intoxicaciones, enfermedades crónicas, quemaduras o alergias.</p>
+                    <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
+                        <li>
+                            <strong class="text-red-600">Enfermedades y Lesiones Comunes:</strong>
+                            <ul class="list-circle list-inside ml-6 mt-1">
+                                <li>Agudas: Intoxicación, asfixia, narcosis, irritación de ojos y vías respiratorias.</li>
+                                <li>Crónicas: Dermatitis alérgica, asma ocupacional, daño hepático o renal, cáncer profesional.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong class="text-red-600">Ejemplo:</strong> Un pintor que inhala vapores de solventes en un espacio cerrado puede sufrir mareos y náuseas (efecto agudo) y con los años, daño neurológico (efecto crónico).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mechanical Risks Section -->
+            <div id="mecanicos" class="bg-yellow-50 p-6 rounded-xl mb-6 shadow-sm">
+                <button class="w-full text-left flex items-center justify-between font-bold text-xl text-yellow-700" onclick="toggleAccordion('mecanicos-content')">
+                    1.3. Riesgos Mecánicos
+                    <span id="mecanicos-icon" class="toggle-icon text-yellow-700">▼</span>
+                </button>
+                <div id="mecanicos-content" class="accordion-content">
+                    <p class="text-gray-700 mt-4">Lesiones por la acción mecánica de máquinas, herramientas o materiales.</p>
+                    <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
+                        <li>
+                            <strong class="text-yellow-600">Enfermedades y Lesiones Comunes:</strong> Cortes, laceraciones, punciones, contusiones, fracturas, aplastamientos y amputaciones de miembros.
+                        </li>
+                        <li>
+                            <strong class="text-yellow-600">Ejemplo:</strong> Un operario de una prensa cuyo brazo queda atrapado, sufriendo un aplastamiento.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Electrical Risks Section -->
+            <div id="electricos" class="bg-blue-50 p-6 rounded-xl mb-6 shadow-sm">
+                <button class="w-full text-left flex items-center justify-between font-bold text-xl text-blue-700" onclick="toggleAccordion('electricos-content')">
+                    1.4. Riesgos Eléctricos
+                    <span id="electricos-icon" class="toggle-icon text-blue-700">▼</span>
+                </button>
+                <div id="electricos-content" class="accordion-content">
+                    <p class="text-gray-700 mt-4">Lesiones producidas por el paso de la corriente eléctrica a través del cuerpo.</p>
+                    <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
+                        <li>
+                            <strong class="text-blue-600">Enfermedades y Lesiones Comunes:</strong> Fibrilación ventricular, paro cardiorrespiratorio, tetanización muscular, quemaduras eléctricas.
+                        </li>
+                        <li>
+                            <strong class="text-blue-600">Ejemplo:</strong> Un electricista que toca un conductor con tensión y la corriente atraviesa su tórax.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ergonomic Risks Section -->
+            <div id="ergonomicos" class="bg-green-50 p-6 rounded-xl mb-6 shadow-sm">
+                <button class="w-full text-left flex items-center justify-between font-bold text-xl text-green-700" onclick="toggleAccordion('ergonomicos-content')">
+                    1.5. Riesgos Ergonómicos
+                    <span id="ergonomicos-icon" class="toggle-icon text-green-700">▼</span>
+                </button>
+                <div id="ergonomicos-content" class="accordion-content">
+                    <p class="text-gray-700 mt-4">Lesiones derivadas de un mal diseño del puesto de trabajo, que obliga a realizar posturas forzadas, movimientos repetitivos o manejo manual de cargas de forma incorrecta.</p>
+                    <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
+                        <li>
+                            <strong class="text-green-600">Enfermedades y Lesiones Comunes:</strong> Trastornos musculoesqueléticos (TME) como tendinitis, síndrome del túnel carpiano, lumbalgias.
+                        </li>
+                        <li>
+                            <strong class="text-green-600">Ejemplo:</strong> Un trabajador en una línea de envasado que realiza el mismo giro de muñeca miles de veces al día, desarrollando el síndrome del túnel carpiano.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Psychosocial Risks Section -->
+            <div id="psicosociales" class="bg-purple-50 p-6 rounded-xl mb-6 shadow-sm">
+                <button class="w-full text-left flex items-center justify-between font-bold text-xl text-purple-700" onclick="toggleAccordion('psicosociales-content')">
+                    1.6. Riesgos Psicosociales
+                    <span id="psicosociales-icon" class="toggle-icon text-purple-700">▼</span>
+                </button>
+                <div id="psicosociales-content" class="accordion-content">
+                    <p class="text-gray-700 mt-4">Afectan la salud mental y el bienestar del trabajador.</p>
+                    <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
+                        <li>
+                            <strong class="text-purple-600">Enfermedades y Lesiones Comunes:</strong> Estrés crónico, síndrome de burnout, trastornos de ansiedad, depresión, trastornos del sueño.
+                        </li>
+                        <li>
+                            <strong class="text-purple-600">Ejemplo:</strong> Un analista de sistemas sometido a una carga de trabajo excesiva y plazos de entrega poco realistas.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Other Risks Section -->
+            <div id="otros" class="bg-gray-50 p-6 rounded-xl mb-6 shadow-sm">
+                <button class="w-full text-left flex items-center justify-between font-bold text-xl text-gray-700" onclick="toggleAccordion('otros-content')">
+                    1.7. Otros Riesgos
+                    <span id="otros-icon" class="toggle-icon text-gray-700">▼</span>
+                </button>
+                <div id="otros-content" class="accordion-content">
+                    <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
+                        <li>
+                            <strong class="text-gray-600">Riesgos de Incendio y Explosión:</strong> Quemaduras, asfixia y envenenamiento por inhalación de humo y gases tóxicos.
+                        </li>
+                        <li>
+                            <strong class="text-gray-600">Riesgos Biológicos:</strong> Enfermedades infecciosas por contagio, reacciones alérgicas.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="herramientas" class="bg-white p-8 rounded-2xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold text-slate-700 mb-6">2. Herramientas de Gestión</h2>
+            
+            <div id="hds" class="bg-gray-50 p-6 rounded-xl mb-6 shadow-sm">
+                <h3 class="text-2xl font-semibold text-slate-700 mb-4">2.1. Hoja de Seguridad (HDS - MSDS)</h3>
+                <p class="text-gray-700 mb-4">Es un documento crucial que proporciona información detallada sobre una sustancia química. Contiene 16 secciones estandarizadas que cubren desde la identificación del producto hasta las medidas de primeros auxilios y control de derrames. Una parte fundamental son los pictogramas del Sistema Globalmente Armonizado (SGA), que comunican los peligros de forma visual.</p>
+                <table class="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
+                    <thead class="bg-gray-200">
+                        <tr>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-700">Pictograma</th>
+                            <th class="py-2 px-4 border-b text-center text-sm font-semibold text-gray-700">Peligro</th>
+                            <th class="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Significado y Riesgo Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-3 px-4 text-center">💣</td>
+                            <td class="py-3 px-4 text-center">Explosivo</td>
+                            <td class="py-3 px-4">Riesgo de explosión, proyección o incendio.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-3 px-4 text-center">🔥</td>
+                            <td class="py-3 px-4 text-center">Inflamable</td>
+                            <td class="py-3 px-4">Sustancias que pueden inflamarse fácilmente.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-3 px-4 text-center">🔥⭕</td>
+                            <td class="py-3 px-4 text-center">Comburente</td>
+                            <td class="py-3 px-4">Puede provocar o agravar un incendio; puede causar explosión.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-3 px-4 text-center"> цилиндр</td>
+                            <td class="py-3 px-4 text-center">Gas a Presión</td>
+                            <td class="py-3 px-4">Contiene gas a presión; peligro de explosión si se calienta.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-3 px-4 text-center">☣️</td>
+                            <td class="py-3 px-4 text-center">Corrosivo</td>
+                            <td class="py-3 px-4">Causa quemaduras graves en la piel y lesiones oculares; corroe metales.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-3 px-4 text-center">💀</td>
+                            <td class="py-3 px-4 text-center">Tóxico Agudo (Grave)</td>
+                            <td class="py-3 px-4">Mortal o muy tóxico en caso de ingestión, contacto o inhalación.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-3 px-4 text-center">❗</td>
+                            <td class="py-3 px-4 text-center">Peligro Moderado</td>
+                            <td class="py-3 px-4">Irritante cutáneo/ocular, sensibilizante cutáneo, toxicidad aguda moderada.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-3 px-4 text-center">⚠️</td>
+                            <td class="py-3 px-4 text-center">Peligro Grave para la Salud</td>
+                            <td class="py-3 px-4">Carcinógeno, mutágeno, tóxico para la reproducción, sensibilizante respiratorio.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="py-3 px-4 text-center">🌎</td>
+                            <td class="py-3 px-4 text-center">Peligroso para el Medio Ambiente</td>
+                            <td class="py-3 px-4">Causa efectos nocivos en los organismos acuáticos.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-sm italic text-gray-500 mt-4">Nota: Los pictogramas mostrados son representaciones simplificadas.</p>
+            </div>
+            
+            <div id="iper" class="bg-gray-50 p-6 rounded-xl mb-6 shadow-sm">
+                <h3 class="text-2xl font-semibold text-slate-700 mb-4">2.2. Matriz IPER (Identificación de Peligros y Evaluación de Riesgos)</h3>
+                <p class="text-gray-700 mb-4">Es la herramienta central para la gestión de la seguridad. Permite de forma sistemática: <strong>1. Identificar los Peligros:</strong> Reconocer todo aquello que tiene el potencial de causar daño en cada tarea o proceso. <strong>2. Evaluar los Riesgos:</strong> Estimar la probabilidad de que el peligro se materialice y la severidad de las consecuencias. A menudo se utiliza la fórmula <strong class="text-indigo-600">Riesgo = Probabilidad x Severidad</strong>.</p>
+                <p class="text-gray-700 mb-4">Esta matriz es un documento vivo que sirve para priorizar acciones (los riesgos intolerables primero), planificar capacitaciones y diseñar procedimientos de trabajo seguro.</p>
+                
+                <div class="overflow-x-auto w-full flex justify-center mb-8">
+                     <img src="https://safetyculture.com/_next/image/?url=https%3A%2F%2Fwp-website.safetyculture.com%2Fwp-content%2Fuploads%2Fsites%2F3%2F2023%2F12%2FEjemplo-de-matriz-de-riesgo-5%C3%975.png&w=1920&q=75" alt="Matriz IPER">
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th class="py-2 px-2 border-b text-center text-sm font-semibold text-gray-700">Severidad</th>
+                                <th class="py-2 px-2 border-b text-center text-sm font-semibold text-gray-700" colspan="5">Probabilidad por Potencial de Daño</th>
+                            </tr>
+                            <tr>
+                                <th class="py-2 px-2 border-b text-center text-sm font-semibold text-gray-700"></th>
+                                <th class="py-2 px-2 border-b text-center text-xs font-semibold text-gray-700">1<br>Improbable</th>
+                                <th class="py-2 px-2 border-b text-center text-xs font-semibold text-gray-700">2<br>Poco probable</th>
+                                <th class="py-2 px-2 border-b text-center text-xs font-semibold text-gray-700">3<br>Posible</th>
+                                <th class="py-2 px-2 border-b text-center text-xs font-semibold text-gray-700">4<br>Probable</th>
+                                <th class="py-2 px-2 border-b text-center text-xs font-semibold text-gray-700">5<br>Muy probable</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-3 px-2 font-bold text-center text-sm bg-gray-100">1<br>Leve</td>
+                                <td class="py-3 px-2 text-center">1</td>
+                                <td class="py-3 px-2 text-center">2</td>
+                                <td class="py-3 px-2 text-center">3</td>
+                                <td class="py-3 px-2 text-center">4</td>
+                                <td class="py-3 px-2 text-center">5</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-3 px-2 font-bold text-center text-sm bg-gray-100">2<br>Menor</td>
+                                <td class="py-3 px-2 text-center">2</td>
+                                <td class="py-3 px-2 text-center">4</td>
+                                <td class="py-3 px-2 text-center">6</td>
+                                <td class="py-3 px-2 text-center">8</td>
+                                <td class="py-3 px-2 text-center">10</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-3 px-2 font-bold text-center text-sm bg-gray-100">3<br>Medio</td>
+                                <td class="py-3 px-2 text-center">3</td>
+                                <td class="py-3 px-2 text-center">6</td>
+                                <td class="py-3 px-2 text-center">9</td>
+                                <td class="py-3 px-2 text-center">12</td>
+                                <td class="py-3 px-2 text-center">15</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-3 px-2 font-bold text-center text-sm bg-gray-100">4<br>Mayor</td>
+                                <td class="py-3 px-2 text-center">4</td>
+                                <td class="py-3 px-2 text-center">8</td>
+                                <td class="py-3 px-2 text-center">12</td>
+                                <td class="py-3 px-2 text-center">16</td>
+                                <td class="py-3 px-2 text-center">20</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-3 px-2 font-bold text-center text-sm bg-gray-100">5<br>Catastrófico</td>
+                                <td class="py-3 px-2 text-center">5</td>
+                                <td class="py-3 px-2 text-center">10</td>
+                                <td class="py-3 px-2 text-center">15</td>
+                                <td class="py-3 px-2 text-center">20</td>
+                                <td class="py-3 px-2 text-center">25</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="jerarquia" class="bg-white p-8 rounded-2xl shadow-lg mb-8">
+            <h2 class="text-3xl font-bold text-slate-700 mb-6">3. Jerarquía de Controles</h2>
+            <p class="text-lg leading-relaxed text-gray-700 mb-6">Establece un orden de prioridad para implementar medidas de control, desde la más eficaz a la menos eficaz.</p>
+
+            <div class="w-full flex justify-center mb-8">
+                 <img src="https://twind.io/es/wp-content/uploads/2024/12/jerarquia-control-riesgos-iso-45001-piramide.webp" alt="Gráfico de Jerarquía de Controles">
+            </div>
+
+            <ol class="list-decimal list-inside space-y-4 text-gray-700 text-lg">
+                <li><strong class="text-indigo-600">Eliminación:</strong> Suprimir el peligro por completo. <span class="text-sm italic">(La más efectiva)</span></li>
+                <li><strong class="text-indigo-600">Sustitución:</strong> Reemplazar el peligro por algo menos peligroso.</li>
+                <li><strong class="text-indigo-600">Controles de Ingeniería:</strong> Aislar a las personas del peligro.</li>
+                <li><strong class="text-indigo-600">Controles Administrativos y Señalización:</strong> Cambiar la forma en que las personas trabajan.</li>
+                <li><strong class="text-indigo-600">Equipo de Protección Personal (EPP):</strong> Proteger al trabajador con una barrera. <span class="text-sm italic">(La menos efectiva)</span></li>
+            </ol>
+        </section>
+
+        <!-- Message Box Modal -->
+        <div id="message-modal" class="modal fixed inset-0 items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full">
+                <h3 id="message-title" class="text-xl font-bold mb-4 text-slate-800"></h3>
+                <p id="message-body" class="text-gray-700 mb-6"></p>
+                <div class="flex justify-end">
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full transition duration-300" onclick="hideMessage()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // JavaScript for interactivity
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const messageModal = document.getElementById('message-modal');
+        const messageTitle = document.getElementById('message-title');
+        const messageBody = document.getElementById('message-body');
+
+        // Toggle sidebar on mobile
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('shifted');
+        });
+
+        // Hide sidebar by default on mobile
+        if (window.innerWidth < 768) {
+            sidebar.classList.add('collapsed');
+        } else {
+            mainContent.classList.add('shifted');
+        }
+
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const iconId = id.replace('-content', '-icon');
+            const icon = document.getElementById(iconId);
+            const parentButton = content.previousElementSibling;
+
+            // Close other accordions
+            const allAccordions = document.querySelectorAll('.accordion-content.expanded');
+            allAccordions.forEach(item => {
+                if (item.id !== id) {
+                    item.classList.remove('expanded');
+                    document.getElementById(item.id.replace('-content', '-icon')).classList.remove('rotated');
+                }
+            });
+
+            // Toggle current accordion
+            content.classList.toggle('expanded');
+            icon.classList.toggle('rotated');
+        }
+        
+        function showMessage(message, title = 'Mensaje') {
+            messageTitle.textContent = title;
+            messageBody.textContent = message;
+            messageModal.classList.add('show');
+        }
+
+        function hideMessage() {
+            messageModal.classList.remove('show');
+        }
+    </script>
+
+</body>
+</html>
