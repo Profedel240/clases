@@ -50,7 +50,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 3.  [Modulo 2 GAD](https://profedel240.github.io/clases/modulo2.html)
 4.  [2°parte modulo 2](https://profedel240.github.io/clases/2modulo2gad.html)
 5.  [Modulo 3 a](https://profedel240.github.io/clases/mod3gada.html)
-6.  [Título de la Clase 6 aquí](https://link-de-tu-infografia-6-aqui.github.io/clase_gestion_6.html)
+6.  [Tipos Riesgo Laboral](https://profedel240.github.io/clases/riesgolaboral.html)
 7.  [Título de la Clase 7 aquí](https://link-de-tu-infografia-7-aqui.github.io/clase_gestion_7.html)
 8.  [Título de la Clase 8 aquí](https://link-de-tu-infografia-8-aqui.github.io/clase_gestion_8.html)
 9.  [Título de la Clase 9 aquí](https://link-de-tu-infografia-9-aqui.github.io/clase_gestion_9.html)
