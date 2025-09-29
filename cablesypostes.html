@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apunte Técnico Integral: Conductores y Postes</title>
+    <!-- Carga de Tailwind CSS para un diseño moderno y responsive -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos personalizados para mejorar la estética universitaria y técnica */
+        :root {
+            --primary: #1e3a8a; /* Azul oscuro corporativo */
+            --secondary: #3b82f6; /* Azul brillante para acentos */
+            --background: #f8fafc; /* Fondo muy claro */
+            --text-color: #1f2937; /* Gris oscuro para el texto */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-color);
+        }
+        /* Estilo para el acordeón (Menús Desplegables) */
+        .accordion-header {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--secondary);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background-color: #ffffff;
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+        .accordion-content.active {
+            max-height: 3000px; /* Incrementado para nuevo contenido */
+            padding-bottom: 1.5rem;
+        }
+        /* Estilos para tablas */
+        .technical-table th, .technical-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .technical-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        .technical-table tr:nth-child(even) {
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Encabezado Principal y Resumen -->
+        <header class="mb-10 p-6 bg-white shadow-xl rounded-xl border-t-8 border-indigo-600">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-2">
+                Recurso Didáctico: Ingeniería de Redes Eléctricas
+            </h1>
+            <p class="text-xl text-indigo-700 font-semibold mb-4">
+                Conductores y Postes en Redes de Distribución de BT y MT
+            </p>
+            <p class="text-gray-600">
+                Este apunte técnico integral, basado en normativas IRAM y AEA, detalla los <span class="font-bold">criterios de selección, nomenclatura, capacidad de corriente (I<sub>z</sub>) y función mecánica</span> de los elementos troncales en la infraestructura de distribución de Baja Tensión (BT) y Media Tensión (MT).
+            </p>
+        </header>
+
+        <!-- Contenido Modular (Menús Desplegables) -->
+        <section id="modulos" class="space-y-6">
+
+            <!-- MÓDULO I: CONDUCTORES -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="accordion-header p-5 flex justify-between items-center bg-gray-100 hover:bg-gray-200 transition" onclick="toggleAccordion(1)">
+                    <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-bolt mr-3 text-secondary"></i>
+                        I. Conductores: Materiales, Nomenclaturas y Capacidad de Corriente (I<sub>z</sub>)
+                    </h2>
+                    <i id="icon-1" class="fas fa-chevron-down text-secondary transition-transform duration-300"></i>
+                </div>
+                <div id="content-1" class="accordion-content">
+                    <div class="p-6">
+                        <p class="mb-4 text-lg font-medium text-primary">
+                            La correcta elección del conductor está determinada por la <span class="font-bold">eficiencia eléctrica y la resistencia mecánica</span> bajo las normativas IRAM y AEA.
+                        </p>
+
+                        <!-- Sub-módulo 1.1: Materiales -->
+                        <h3 class="text-xl font-semibold mt-6 mb-3 border-b pb-1 flex items-center">
+                            <i class="fas fa-atom mr-2 text-red-500"></i> 1.1 Materiales de Conducción Prioritarios
+                        </h3>
+                        <table class="technical-table w-full mb-6 text-sm">
+                            <thead>
+                                <tr>
+                                    <th>Material</th>
+                                    <th>Propiedad Clave (Técnica)</th>
+                                    <th>Uso Principal en Distribución BT/MT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Cobre (Cu)</td>
+                                    <td>Máxima conductividad (100% IACS) y resistencia a la corrosión.</td>
+                                    <td>Cable Preensamblado de BT, acometidas subterráneas, cableado interno (Tipo K IRAM 247).</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Aluminio (Al)</td>
+                                    <td>Ligero y económico (aprox. 61% de conductividad del Cu por volumen).</td>
+                                    <td>Líneas Troncales Aéreas de MT (13,2/33 kV). Uso generalizado en redes urbanas.</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Aluminio Reforzado c/ Acero (ACSR)</td>
+                                    <td>Núcleo de acero para <span class="font-bold">máxima resistencia a la tracción</span>.</td>
+                                    <td>Líneas troncales de Media Tensión que requieren largos vanos o alta tensión mecánica.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <!-- Sub-módulo 1.2: Aislamiento XLPE (Cuadro Técnico) -->
+                        <h3 class="text-xl font-semibold mt-6 mb-3 border-b pb-1 flex items-center">
+                             <i class="fas fa-thermometer-half mr-2 text-green-600"></i> 1.2 XLPE: El Aislamiento Clave en MT y BT
+                        </h3>
+                        <ul class="list-disc list-inside space-y-2 p-3 bg-indigo-50 rounded-lg border border-indigo-200 mb-6">
+                            <li class="font-medium text-gray-700"><span class="font-bold">Polietileno Reticulado (XLPE)</span> es el estándar moderno, superando al PVC.</li>
+                            <li class="ml-4"><span class="font-semibold">Rendimiento Térmico:</span> Soporta operación continua de 90&deg;C (vs. 70&deg;C del PVC), lo que incrementa la I<sub>z</sub>.</li>
+                            <li class="ml-4"><span class="font-semibold">Resistencia a Cortocircuitos:</span> Resiste hasta 250&deg;C durante fallas, ideal para líneas de alta densidad.</li>
+                            <li class="ml-4"><span class="font-semibold">Aplicación:</span> Cubierta en cables <span class="font-bold">Preensamblados de BT</span> y cables <span class="font-bold">Subterráneos de MT</span>.</li>
+                        </ul>
+
+                        <!-- Sub-módulo 1.3: Capacidad de Corriente (Iz) -->
+                        <h3 class="text-xl font-semibold mt-6 mb-3 border-b pb-1 flex items-center">
+                            <i class="fas fa-chart-line mr-2 text-secondary"></i> 1.3 Capacidad de Corriente Admisible (I<sub>z</sub>)
+                        </h3>
+                        <p class="text-sm italic mb-4">
+                            La capacidad (I<sub>z</sub> en Amperes) depende de la sección y del método de instalación (disipación térmica).
+                        </p>
+                        
+                        <!-- CUADRO COMPARATIVO: Cobre vs. Aluminio (APROXIMACIÓN CORREGIDA) -->
+                        <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-700">1.3.1 Comparativa I<sub>z</sub>: Cu vs. Al (Aislado, 0,6/1 kV)</h4>
+                        <p class="text-xs italic mb-4">
+                            Los valores son aproximados para cables aislados de BT (XLPE, en bandeja o ducto), demostrando la diferencia de conductividad.
+                        </p>
+                        <table class="technical-table w-full mb-6 text-sm">
+                            <thead>
+                                <tr>
+                                    <th>Sección Nominal (mm²)</th>
+                                    <th>I<sub>z</sub> Cobre (A)</th>
+                                    <th>I<sub>z</sub> Aluminio (A)</th>
+                                    <th>Relación Cu/Al</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>25</td><td>110</td><td>86</td><td>≈ 1.28</td></tr>
+                                <tr><td>50</td><td>152</td><td>120</td><td>≈ 1.27</td></tr>
+                                <tr><td>95</td><td>224</td><td>178</td><td>≈ 1.26</td></tr>
+                                <tr><td>150</td><td>295</td><td>235</td><td>≈ 1.25</td></tr>
+                            </tbody>
+                        </table>
+
+                        <!-- TABLA: AWG vs. mm² (EXPANDIDA Y CORREGIDA) -->
+                        <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-700">1.3.2 Conversión AWG a Sistema Métrico (mm²)</h4>
+                        <p class="text-xs italic mb-4">
+                            AWG (American Wire Gauge) es común en normativas internacionales y equipamiento importado.
+                        </p>
+                        <table class="technical-table w-full mb-6 text-sm">
+                            <thead>
+                                <tr>
+                                    <th>Calibre AWG/MCM</th>
+                                    <th>Sección Equivalente (mm²)</th>
+                                    <th>Uso Típico</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>10 AWG</td><td>5.26</td><td>Circuitos de control o derivadores de baja capacidad.</td></tr>
+                                <tr><td>6 AWG</td><td>13.3</td><td>Acometidas domiciliarias estándar.</td></tr>
+                                <tr><td>2 AWG</td><td>33.6</td><td>Alimentadores internos o acometidas pequeñas.</td></tr>
+                                <tr><td>1/0 AWG</td><td>53.5</td><td>Conductor Neutro en Preensamblado de BT o troncales BT.</td></tr>
+                                <tr><td>3/0 AWG</td><td>85.0</td><td>Troncales de BT de alta capacidad.</td></tr>
+                                <tr><td>4/0 AWG</td><td>107.2</td><td>Troncales de Media Tensión (MT).</td></tr>
+                                <tr><td>250 MCM</td><td>126.7</td><td>Alimentadores industriales o de grandes edificios.</td></tr>
+                                <tr><td>350 MCM</td><td>177.3</td><td>Cables de gran capacidad y subestaciones.</td></tr>
+                                <tr><td>500 MCM</td><td>253.4</td><td>Grandes alimentadores de subestaciones.</td></tr>
+                            </tbody>
+                        </table>
+                        
+                        <!-- Cuadros originales de I_z, ahora reubicados y simplificados -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
+                            <div class="border rounded-lg shadow-sm">
+                                <p class="p-3 bg-yellow-100 font-bold text-yellow-800 text-center rounded-t-lg">Distribución Aérea (Referencia I<sub>z</sub>)</p>
+                                <table class="technical-table w-full text-sm">
+                                    <thead>
+                                        <tr><th>Material</th><th>Sección (mm²)</th><th>I<sub>z</sub> Aprox. (A)</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>AAC (Preensamblado)</td><td>50</td><td>150 (Aislado)</td></tr>
+                                        <tr><td>ACSR</td><td>110</td><td>320 (Desnudo)</td></tr>
+                                        <tr><td>ACSR</td><td>175</td><td>420 (Desnudo)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="border rounded-lg shadow-sm">
+                                <p class="p-3 bg-blue-100 font-bold text-blue-800 text-center rounded-t-lg">Distribución Subterránea (Referencia I<sub>z</sub>)</p>
+                                <table class="technical-table w-full text-sm">
+                                    <thead>
+                                        <tr><th>Material</th><th>Sección (mm²)</th><th>I<sub>z</sub> Aprox. (A)</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Cobre</td><td>16</td><td>78</td></tr>
+                                        <tr><td>Cobre</td><td>70</td><td>210</td></tr>
+                                        <tr><td>Aluminio</td><td>240</td><td>360</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- MÓDULO II: POSTES -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="accordion-header p-5 flex justify-between items-center bg-gray-100 hover:bg-gray-200 transition" onclick="toggleAccordion(2)">
+                    <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-tower-cell mr-3 text-secondary"></i>
+                        II. Postes: Materiales, Clasificación y Función Mecánica
+                    </h2>
+                    <i id="icon-2" class="fas fa-chevron-down text-secondary transition-transform duration-300"></i>
+                </div>
+                <div id="content-2" class="accordion-content">
+                    <div class="p-6">
+                        <p class="mb-4 text-lg font-medium text-primary">
+                            La infraestructura de soporte garantiza la <span class="font-bold">seguridad y la estabilidad de la línea</span>, absorbiendo la tensión longitudinal y las cargas de viento.
+                        </p>
+
+                        <!-- Sub-módulo 2.1: Materiales de Postes -->
+                        <h3 class="text-xl font-semibold mt-6 mb-3 border-b pb-1 flex items-center">
+                            <i class="fas fa-layer-group mr-2 text-red-500"></i> 2.1 Postes: Hormigón, Madera y Acero
+                        </h3>
+                        <table class="technical-table w-full mb-6 text-sm">
+                            <thead>
+                                <tr>
+                                    <th>Material</th>
+                                    <th>Uso Principal en Argentina</th>
+                                    <th>Ventajas Clave</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Hormigón Armado Centrifugado (HAC)</td>
+                                    <td>Estándar en BT y MT urbana/suburbana.</td>
+                                    <td>Larga vida útil (+50 años), bajo mantenimiento, alta resistencia al fuego.</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Madera (Impregnada)</td>
+                                    <td>Redes de MT rurales o zonas de difícil acceso.</td>
+                                    <td>Liviano, bajo costo inicial, buen aislante eléctrico natural.</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Acero (Torres Reticuladas)</td>
+                                    <td>Cruces de grandes vanos y sub-transmisión (33 kV o más).</td>
+                                    <td>Máxima relación Resistencia/Peso.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <!-- NUEVO SUB-MÓDULO: PRFV -->
+                        <h3 class="text-xl font-semibold mt-6 mb-3 border-b pb-1 flex items-center">
+                            <i class="fas fa-fan mr-2 text-blue-500"></i> 2.2 Polímero Reforzado con Fibra de Vidrio (PRFV)
+                        </h3>
+                        <ul class="list-disc list-inside space-y-2 p-3 bg-green-50 rounded-lg border border-green-200 mb-6">
+                            <li class="font-medium text-gray-700"><span class="font-bold">Definición:</span> Material compuesto que ofrece una alternativa ligera y resistente a la corrosión.</li>
+                            <li class="ml-4"><span class="font-semibold">Ventajas Dieléctricas:</span> Alto aislamiento eléctrico inherente, reduciendo el riesgo de accidentes por contacto.</li>
+                            <li class="ml-4"><span class="font-semibold">Mantenimiento:</span> Inmune a la corrosión, el óxido y los insectos. Ideal para ambientes costeros o húmedos.</li>
+                            <li class="ml-4"><span class="font-semibold">Instalación:</span> Son mucho más livianos que los postes HAC, facilitando el transporte y la instalación en terrenos difíciles.</li>
+                            <li class="ml-4"><span class="font-semibold">Aplicación:</span> Usado en sistemas de MT (13,2 kV) donde se requiere **bajo peso y alta seguridad eléctrica** (zonas de alto riesgo o difícil acceso).</li>
+                        </ul>
+
+                        <!-- Sub-módulo 2.3: Clasificación Normativa AEA (H y R) -->
+                        <h3 class="text-xl font-semibold mt-6 mb-3 border-b pb-1 flex items-center">
+                             <i class="fas fa-ruler-vertical mr-2 text-green-600"></i> 2.3 Clasificación Normativa AEA: Altura (H) y Resistencia (R)
+                        </h3>
+                        <p class="text-sm italic mb-4">
+                            La capacidad estructural se define por la Altura Útil (H) y la Resistencia Nominal (R en daN).
+                        </p>
+                        <table class="technical-table w-full mb-6 text-sm">
+                            <thead>
+                                <tr>
+                                    <th>Clasificación (H/R)</th>
+                                    <th>Altura Útil (H)</th>
+                                    <th>Resistencia Nominal (R)</th>
+                                    <th>Aplicación Típica</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>7,5/200</td><td>7,5 m</td><td>200 daN</td><td>Postes intermedios de BT (Suspensión).</td></tr>
+                                <tr><td>10/400</td><td>10 m</td><td>400 daN</td><td>Postes de MT (13,2 kV) de suspensión estándar.</td></tr>
+                                <tr><td>12/800</td><td>12 m</td><td>800 daN</td><td>Postes de MT (33 kV) de retención o anclaje.</td></tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="p-3 bg-red-50 rounded-lg border border-red-200">
+                             <p class="font-semibold text-red-800 flex items-center">
+                                 <i class="fas fa-exclamation-triangle mr-2"></i> Consideración Clave: Empotramiento
+                             </p>
+                             <p class="text-sm mt-1">
+                                 La profundidad mínima de empotramiento es típicamente <span class="font-bold">1/6 de la Altura Total del Poste</span>. Un poste de 10 m requiere $\approx$ 1,67 m de empotramiento.
+                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MÓDULO III: GLOSARIO ESTRUCTURAL -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="accordion-header p-5 flex justify-between items-center bg-gray-100 hover:bg-gray-200 transition" onclick="toggleAccordion(3)">
+                    <h2 class="text-2xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-book-open mr-3 text-secondary"></i>
+                        III. Glosario de Siglas y Terminología Técnica (AEA/IRAM)
+                    </h2>
+                    <i id="icon-3" class="fas fa-chevron-down text-secondary transition-transform duration-300"></i>
+                </div>
+                <div id="content-3" class="accordion-content">
+                    <div class="p-6">
+                        <table class="technical-table w-full mb-6 text-sm">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/4">Sigla</th>
+                                    <th class="w-1/3">Significado</th>
+                                    <th class="w-auto">Contexto Técnico</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="font-semibold">AEA</td><td>Asociación Electrotécnica Argentina</td><td>Organismo normativo que rige la seguridad eléctrica.</td></tr>
+                                <tr><td class="font-semibold">IRAM</td><td>Instituto Argentino de Normalización y Certificación</td><td>Desarrolla las normas de producto (cables, materiales).</td></tr>
+                                <tr><td class="font-semibold">BT / MT</td><td>Baja Tensión ($\le$ 1 kV) / Media Tensión (13,2 kV a 33 kV)</td><td>Clasificación de las redes de distribución.</td></tr>
+                                <tr><td class="font-semibold">ACSR</td><td>Aluminio Conductor Reforzado con Acero</td><td>Cable desnudo de alta resistencia para líneas aéreas de MT.</td></tr>
+                                <tr><td class="font-semibold">XLPE</td><td>Polietileno Reticulado</td><td>Aislante termoestable de alta performance (90&deg;C).</td></tr>
+                                <tr><td class="font-semibold">PRFV</td><td>Polímero Reforzado con Fibra de Vidrio</td><td>Material compuesto para postes de bajo peso.</td></tr>
+                                <tr><td class="font-semibold">AWG</td><td>American Wire Gauge</td><td>Sistema de medida de sección de conductores (inverso al métrico).</td></tr>
+                                <tr><td class="font-semibold">I<sub>z</sub></td><td>Corriente Admisible</td><td>Máxima corriente que el conductor puede soportar sin sobrepasar su temperatura límite de operación.</td></tr>
+                                <tr><td class="font-semibold">R / H</td><td>Resistencia Nominal / Altura Útil</td><td>Clasificación de postes (R en daN).</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Footer / Notas Finales -->
+        <footer class="mt-10 p-4 bg-white rounded-xl shadow-md text-center text-gray-500 text-sm">
+            <p>Recurso elaborado con base en el Apunte Técnico Integral: Conductores y Postes. Rev. 1.4.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Función de JavaScript para manejar los menús desplegables (Acordeones)
+        function toggleAccordion(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            // Toggle active class and adjust max-height
+            content.classList.toggle('active');
+            
+            // Rotate the icon
+            if (content.classList.contains('active')) {
+                icon.classList.add('rotate-180');
+                // Asegurar que el contenido desplegado sea visible en pantalla
+                setTimeout(() => {
+                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 450); // Pequeña demora para que la animación se complete
+            } else {
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Abrir el primer módulo por defecto al cargar la página para dar contexto
+        window.onload = function() {
+            // Utilizamos el id 1 para el primer módulo (Conductores)
+            const content1 = document.getElementById('content-1');
+            const icon1 = document.getElementById('icon-1');
+
+            if (content1 && icon1) {
+                content1.classList.add('active');
+                icon1.classList.add('rotate-180');
+            }
+        };
+    </script>
+
+</body>
+</html>
