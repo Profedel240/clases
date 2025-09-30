@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organización y Precios del Subsector Eléctrico Argentino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <!-- Script de MathJax para renderizar LaTeX (fórmulas) -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        details > summary:hover {
+            background-color: #f9fafb;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        details[open] > summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background-color: #f3f4f6;
+        }
+        .content-card {
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-top: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+        .summary-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        details[open] .summary-icon {
+            transform: rotate(180deg);
+        }
+        .icon-style {
+            width: 28px;
+            height: 28px;
+            color: #1e3a8a;
+        }
+        .table-custom th, .table-custom td {
+            padding: 1rem 1.25rem;
+            border: 1px solid #e5e7eb;
+        }
+        .table-custom th {
+            background-color: #eef2ff;
+        }
+        .table-custom tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        .highlight-box {
+            background-color: #eef2ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0.25rem;
+        }
+        /* Estilo para las fórmulas LaTeX */
+        .formula-box {
+            background-color: #fffbeb; /* Amarillo muy claro */
+            border: 1px solid #fde047; /* Amarillo */
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        /* Estilos del Modal (Zoom de Imagen) */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Posición fija */
+            z-index: 1000; /* Alto z-index para estar sobre otros elementos */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Habilita scroll si es necesario */
+            background-color: rgba(0,0,0,0.9); /* Fondo negro con opacidad */
+            padding-top: 60px;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 0.5rem;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+        /* Animación para el modal */
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="text-center mb-10 p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+            <h1 class="text-4xl md:text-5xl font-bold text-blue-900 mb-4">Organización y Precios del Subsector Eléctrico Argentino</h1>
+            <p class="text-lg text-gray-600 max-w-4xl mx-auto">Una guía detallada para comprender el funcionamiento del subsector eléctrico, desde la formación de precios en el <strong>Mercado Eléctrico Mayorista (MEM)</strong> hasta la organización y regulación en la Provincia de Buenos Aires.</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="space-y-8">
+
+            <!-- Parte 1: Formación de Precios en el MEM -->
+            <details class="group" open>
+                <summary>
+                    <div class="flex items-center space-x-4">
+                        <i data-lucide="bar-chart-2" class="icon-style"></i>
+                        <h2 class="text-2xl font-bold text-blue-800">Parte 1: Formación de Precios en el <strong>Mercado Eléctrico Mayorista (MEM)</strong></h2>
+                    </div>
+                    <i data-lucide="chevron-down" class="summary-icon"></i>
+                </summary>
+                <div class="content-card space-y-8">
+                    <p class="text-base">El <strong>MEM</strong> es donde se comercializa la energía en grandes bloques. <strong>CAMMESA</strong> (Compañía Administradora del Mercado Mayorista Eléctrico S.A.) es el <strong>Organismo Encargado del Despacho (OED)</strong>, y su función es coordinar la operación para satisfacer la demanda al mínimo costo posible.</p>
+                    
+                    <!-- 1.1 Conceptos Remunerados -->
+                    <details class="group">
+                        <summary>
+                            <h3 class="text-xl font-semibold text-gray-700">1.1. Conceptos Remunerados en el <strong>MEM</strong></h3>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card">
+                            <p class="mb-6">La tarifa eléctrica no solo paga por la energía consumida. Se compone de varios conceptos que remuneran distintas partes del sistema.</p>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left table-custom">
+                                    <thead class="text-gray-700 uppercase">
+                                        <tr><th>Concepto</th><th>Descripción Detallada</th><th>Actores</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td><i data-lucide="zap" class="inline-block mr-2"></i><strong>Energía</strong></td><td>Costo del <strong>MWh</strong> efectivamente generado y consumido. Se valoriza distinto según el periodo: <strong>Punta</strong> (mayor costo), <strong>Valle</strong> (menor costo) y <strong>Resto</strong>.</td><td>Generadores</td></tr>
+                                        <tr><td><i data-lucide="battery-charging" class="inline-block mr-2"></i><strong>Potencia</strong></td><td>Remunera la <strong>capacidad de generación disponible</strong>, independientemente de si se está generando o no. Asegura que haya suficientes "máquinas" listas para cubrir la demanda máxima.</td><td>Generadores</td></tr>
+                                        <tr><td><i data-lucide="settings-2" class="inline-block mr-2"></i><strong>Servicios Auxiliares</strong></td><td>Indispensables para la <strong>estabilidad y seguridad</strong> del <strong>Sistema Argentino de Interconexión (SADI)</strong>. Incluyen regulación de frecuencia, tensión y reserva de potencia.</td><td>Generadores</td></tr>
+                                        <tr><td><i data-lucide="waypoints" class="inline-block mr-2"></i><strong>Transporte</strong></td><td>Remunera el uso de las <strong>redes de alta tensión</strong>. Incluye capacidad de líneas, costos de conexión, pérdidas y cánones por ampliaciones.</td><td>Transportistas (ej. <strong>TRANSENER</strong>)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <!-- 1.2 Tipos de Costos -->
+                     <details class="group">
+                        <summary>
+                            <h3 class="text-xl font-semibold text-gray-700">1.2. Tipos de Costos Económicos</h3>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card">
+                           <div class="overflow-x-auto">
+                                <table class="w-full text-left table-custom">
+                                    <thead class="text-gray-700 uppercase">
+                                        <tr><th>Tipo de Costo</th><th>Horizonte Temporal</th><th>Descripción</th><th>Ejemplos</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td><i data-lucide="timer" class="inline-block mr-2"></i><strong>Costos Variables</strong></td><td>Corto Plazo</td><td>Asociados a la operación diaria. Fluctúan directamente con la energía generada.</td><td>Costo de combustibles (gas, fuel oil), fletes, costos de <strong>Operación y Mantenimiento (OyM)</strong>.</td></tr>
+                                        <tr><td><i data-lucide="calendar" class="inline-block mr-2"></i><strong>Costos Fijos</strong></td><td>Largo Plazo</td><td>Relacionados con la <strong>inversión y expansión</strong>. Representan el costo de nueva infraestructura.</td><td>Capacidad de generación, cargos por conexión, costos de transformación.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <!-- 1.3 Teoría de Costos Marginales -->
+                    <details class="group">
+                        <summary>
+                            <h3 class="text-xl font-semibold text-gray-700">1.3. La Teoría de los <strong>Costos Marginales</strong></h3>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card">
+                            <div class="highlight-box">
+                                <p class="font-semibold text-blue-800">Definición Clave: El <strong>Costo Marginal (CMg)</strong> es el costo de suministrar un <strong>Megavatio-hora (MWh)</strong> adicional al sistema. En la práctica, es el costo de producción de la <strong>última central (la más cara)</strong> convocada para cubrir la demanda de esa hora.</p>
+                            </div>
+                            <h4 class="font-semibold mt-6 mb-4">Factores que influyen en el <strong>Costo Marginal</strong>:</h4>
+                             <ul class="space-y-2">
+                                <li><i data-lucide="cloud-drizzle" class="inline-block mr-2 text-blue-600"></i><strong>Hidrología:</strong> En sequía, se usa más generación térmica (cara), aumentando el <strong>CMg</strong>.</li>
+                                <li><i data-lucide="flame" class="inline-block mr-2 text-red-600"></i><strong>Costo de Combustibles:</strong> El precio del gas, fuel oil y gasoil impacta directamente.</li>
+                                <li><i data-lucide="thermometer-sun" class="inline-block mr-2 text-orange-500"></i><strong>Clima:</strong> Temperaturas extremas disparan la demanda y obligan a usar unidades más costosas.</li>
+                                <li><i data-lucide="wrench" class="inline-block mr-2 text-gray-600"></i><strong>Disponibilidad del Parque:</strong> Mantenimientos o fallas pueden sacar de servicio centrales eficientes.</li>
+                            </ul>
+                        </div>
+                    </details>
+                    
+                    <!-- 1.4 Despacho Económico -->
+                    <details class="group">
+                        <summary>
+                            <h3 class="text-xl font-semibold text-gray-700">1.4. El Despacho Económico por <strong>CAMMESA</strong></h3>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card">
+                            <p><strong>CAMMESA</strong> realiza un despacho técnicamente seguro y económicamente óptimo, despachando las centrales en orden ascendente de sus <strong>Costos Variables de Producción (CVP)</strong>.</p>
+                            <h4 class="font-semibold mt-6 mb-4">Proceso de Programación del Despacho:</h4>
+                            <ol class="list-decimal list-inside space-y-2">
+                                <li><strong>Programación Estacional (Largo Plazo):</strong> Planificación con meses de antelación (pronósticos de demanda, hidrología).</li>
+                                <li><strong>Programación Semanal (Mediano Plazo):</strong> Ajusta la estacional. Generadores informan disponibilidad y costos.</li>
+                                <li><strong>Programación Diaria y Despacho Horario (Corto Plazo):</strong> Para el día siguiente, hora por hora, se "apilan" las centrales de más barata a más cara.</li>
+                            </ol>
+                            <div class="highlight-box mt-6">
+                                <p class="font-bold text-blue-900">¡Principio Clave! La última central que ingresa para satisfacer la demanda fija el precio que cobrarán <strong>TODAS</strong> las centrales que generaron en esa hora.</p>
+                            </div>
+                            
+                            <!-- Se utiliza texto plano para MW y $/MWh -->
+                            <h4 class="font-semibold mt-8 mb-4 text-lg">Ejemplo Práctico de Despacho y <strong>Costo Marginal</strong> (Demanda: <strong>18.500 MW</strong>)</h4>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left table-custom">
+                                    <thead class="text-gray-700 uppercase">
+                                        <tr><th>Orden</th><th>Tipo de Central</th><th>Pot. Disponible (MW)</th><th>Costo Variable ($/MWh$)</th><th>Demanda Acumulada (MW)</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>1</td><td>Hidráulica de Pasada</td><td>4.000</td><td>2</td><td>4.000</td></tr>
+                                        <tr><td>2</td><td>Nuclear</td><td>1.500</td><td>15</td><td>5.500</td></tr>
+                                        <tr><td>3</td><td>Hidráulica con Embalse</td><td>5.000</td><td>20</td><td>10.500</td></tr>
+                                        <tr><td>4</td><td>Ciclo Combinado (Gas)</td><td>6.000</td><td>50</td><td>16.500</td></tr>
+                                        <tr class="bg-blue-100 font-bold"><td>5</td><td>Turbina de Vapor (Gas)</td><td>2.500</td><td>80</td><td>19.000</td></tr>
+                                        <tr><td>6</td><td>Turbina de Gas (Gasoil)</td><td>3.000</td><td>150</td><td>-</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-6 p-4 border rounded-lg">
+                                <h5 class="font-semibold">Análisis y Resultado:</h5>
+                                <ol class="list-decimal list-inside mt-2 space-y-1">
+                                    <li>Se despachan las centrales 1, 2 y 3, cubriendo <strong>10.500 MW</strong>.</li>
+                                    <li>Se despacha la central 4 (Ciclo Combinado), cubriendo <strong>6.000 MW</strong> adicionales (Total: <strong>16.500 MW</strong>).</li>
+                                    <li>Faltan <strong>2.000 MW</strong>. Se recurre a la central 5 (Turbina de Vapor) y se le pide que genere <strong>2.000 MW</strong>.</li>
+                                    <li>Se cubren los <strong>18.500 MW</strong> de demanda.</li>
+                                </ol>
+                                <p class="mt-4 font-bold text-green-700">Resultado: La Turbina de Vapor fue la última en despachar. Por lo tanto, el <strong>Costo Marginal (CMg)</strong> se fija en <strong>$80</strong> por <strong>MWh</strong>. <strong>TODAS</strong> las centrales (de la 1 a la 5) cobrarán <strong>$80</strong> por cada <strong>MWh</strong> generado.</p>
+                            </div>
+                             <div class="mt-8">
+                                <h4 class="font-semibold text-lg mb-2">Curva de Demanda Típica y Generación </h4>
+                                <!-- IMAGEN CON FUNCIONALIDAD DE ZOOM -->
+                                <a href="javascript:void(0)" onclick="openModal('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDUSmNYLr_3nb-OzzwMoSu1fvv8wrL1v_G4w&s')">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDUSmNYLr_3nb-OzzwMoSu1fvv8wrL1v_G4w&s" 
+                                        alt="Curva de demanda y estratificación de la generación eléctrica" 
+                                        class="w-full max-w-2xl mx-auto rounded-lg shadow-md cursor-pointer hover:shadow-xl transition-shadow duration-300"
+                                        onerror="this.onerror=null; this.src='https://placehold.co/400x200/cccccc/333333?text=Imagen+No+Disponible'; this.parentElement.onclick=null;">
+                                </a>
+                                <p class="text-sm text-center mt-2 text-gray-600">La base es cubierta por la generación más barata. Los picos de demanda requieren las centrales más costosas. (Haga clic para ampliar)</p>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </details>
+
+            <!-- Parte 2: Organización en Provincia de Buenos Aires -->
+            <details class="group" open>
+                <summary>
+                    <div class="flex items-center space-x-4">
+                        <i data-lucide="building-2" class="icon-style"></i>
+                        <h2 class="text-2xl font-bold text-blue-800">Parte 2: Organización del Sector Eléctrico en la Provincia de Buenos Aires</h2>
+                    </div>
+                    <i data-lucide="chevron-down" class="summary-icon"></i>
+                </summary>
+                <div class="content-card space-y-8">
+                    <p>La Ley provincial <strong>11.769</strong>, sancionada en 1996, adaptó la estructura del sector eléctrico bonaerense a la transformación del marco nacional.</p>
+
+                    <!-- 2.1 Áreas de Concesión -->
+                    <details class="group">
+                        <summary>
+                            <h3 class="text-xl font-semibold text-gray-700">2.1. Áreas de Concesión y Actores</h3>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card">
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left table-custom">
+                                    <thead class="text-gray-700 uppercase">
+                                        <tr><th>Área de Concesión</th><th>Concesionario Provincial</th><th>N° de Cooperativas</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Atlántica</td><td><strong>EDEA S.A.</strong></td><td>37</td></tr>
+                                        <tr><td>Norte</td><td><strong>EDEN S.A.</strong></td><td>115</td></tr>
+                                        <tr><td>Sur</td><td><strong>EDES S.A.</strong></td><td>43</td></tr>
+                                        <tr><td>Río de La Plata</td><td><strong>EDELAP S.A.</strong></td><td>5</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+                    
+                     <!-- 2.2 Ley 11.769 -->
+                    <details class="group">
+                        <summary>
+                            <h3 class="text-xl font-semibold text-gray-700">2.2. Marco Regulatorio: La Ley <strong>11.769</strong></h3>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card">
+                            <p class="mb-4">Esta ley es la columna vertebral del sistema eléctrico provincial. Sus acciones principales fueron:</p>
+                             <ul class="space-y-2">
+                                <li><i data-lucide="gavel" class="inline-block mr-2 text-blue-600"></i><strong>Regulación de Actividades:</strong> Generación (interés general), Transporte y Distribución (Servicio Público).</li>
+                                <li><i data-lucide="landmark" class="inline-block mr-2 text-blue-600"></i><strong>Creación de Organismos:</strong> Define la Autoridad de Aplicación y crea el <strong>Organismo de Control de Energía Eléctrica de la Provincia de Buenos Aires (OCEBA)</strong>.</li>
+                                <li><i data-lucide="book-user" class="inline-block mr-2 text-blue-600"></i><strong>Derechos y Obligaciones:</strong> Establece reglas para usuarios y prestadores.</li>
+                                <li><i data-lucide="dollar-sign" class="inline-block mr-2 text-blue-600"></i><strong>Tarifas:</strong> Fija los criterios para su determinación.</li>
+                            </ul>
+                        </div>
+                    </details>
+                    
+                    <!-- 2.3 Jerarquía Regulatoria -->
+                    <details class="group">
+                        <summary>
+                            <h3 class="text-xl font-semibold text-gray-700">2.3. La Jerarquía Regulatoria: Nación y Provincia</h3>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card grid md:grid-cols-2 gap-8">
+                            <div class="p-4 border rounded-lg bg-gray-50">
+                                <h4 class="font-bold text-lg mb-2">Secretaría de Energía de la Nación</h4>
+                                <p class="text-sm mb-3">Máxima autoridad a nivel nacional. Diseña y ejecuta la <strong>política energética</strong>.</p>
+                                <ul class="list-disc list-inside text-sm space-y-1">
+                                    <li>Fija políticas de <strong>precios mayoristas</strong> y subsidios.</li>
+                                    <li>Supervisa a <strong>CAMMESA</strong> y al <strong>Ente Nacional Regulador de la Electricidad (ENRE)</strong>.</li>
+                                    <li>Planifica la expansión del <strong>sistema nacional</strong>.</li>
+                                    <li>Dicta las resoluciones del <strong>MEM</strong>.</li>
+                                </ul>
+                            </div>
+                            <div class="p-4 border rounded-lg bg-gray-50">
+                                <h4 class="font-bold text-lg mb-2">Autoridad de Aplicación Provincial</h4>
+                                 <p class="text-sm mb-3">En Buenos Aires, es el <strong>Ministerio de Infraestructura y Servicios Públicos</strong>.</p>
+                                <ul class="list-disc list-inside text-sm space-y-1">
+                                    <li>Aplica la <strong>política energética</strong> en la provincia.</li>
+                                    <li>Aprueba las <strong>tarifas de distribución</strong>.</li>
+                                    <li>Otorga las concesiones provinciales.</li>
+                                    <li>Dicta reglamentos técnicos locales.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <!-- 2.4 OCEBA -->
+                    <details class="group" open>
+                         <summary>
+                            <div class="flex items-center space-x-4">
+                                <i data-lucide="shield-check" class="inline-block mr-1 text-red-700"></i>
+                                <h3 class="text-xl font-bold text-red-700">2.4. El <strong>Organismo de Control (OCEBA)</strong>: Fiscalización Técnica y Económica</h3>
+                            </div>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card space-y-4">
+                            <!-- Corrección 1: Enfatizar calidad y seguridad -->
+                            <p>El <strong>Organismo de Control de Energía Eléctrica de la Provincia de Buenos Aires (OCEBA)</strong> es el ente autárquico que garantiza el cumplimiento de los Contratos de Concesión y la Ley <strong>11.769</strong>, protegiendo los derechos de los usuarios y promoviendo la <strong>calidad y seguridad</strong> del servicio.</p>
+                            
+                            <h4 class="font-semibold text-lg border-b pb-1">Funciones Estratégicas y Aplicación del <strong>OCEBA</strong></h4>
+                            <ul class="space-y-3 list-disc list-inside ml-4">
+                                <li><i data-lucide="banknote" class="inline-block mr-2 text-green-700"></i><strong>Control Económico-Financiero:</strong> Fiscaliza que las distribuidoras (<strong>EDEN</strong>, <strong>EDES</strong>, <strong>EDEA</strong>, <strong>EDELAP</strong>, Cooperativas) apliquen correctamente los cuadros tarifarios aprobados y que las <strong>inversiones</strong> prometidas se ejecuten.</li>
+                                <li><i data-lucide="line-chart" class="inline-block mr-2 text-blue-700"></i><strong>Evaluación de Calidad de Producto:</strong> Verifica que la <strong>tensión y frecuencia</strong> de la energía entregada se mantengan dentro de los rangos reglamentarios (ej. <strong>50 Hz</strong> <strong>&plusmn;0.5%</strong> ). La <strong>mala calidad de producto</strong> puede dañar equipos de los usuarios.</li>
+                                <li><i data-lucide="gantt-chart" class="inline-block mr-2 text-orange-700"></i><strong>Control de Calidad de Servicio:</strong> Es la función más visible. Utiliza los indicadores <strong>SAIFI</strong> y <strong>SAIDI</strong> para medir la <strong>frecuencia y duración</strong> de las interrupciones del servicio a nivel global y zonal.</li>
+                                <li><i data-lucide="scroll-text" class="inline-block mr-2 text-red-700"></i><strong>Régimen de Sanciones:</strong> Aplica <strong>multas</strong> a las distribuidoras cuando los valores de <strong>SAIFI</strong> y <strong>SAIDI</strong> superan los límites de tolerancia fijados en los Contratos de Concesión, garantizando la indemnización a los usuarios afectados.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- 2.5 Calidad de Servicio -->
+                     <details class="group" open>
+                        <summary>
+                            <div class="flex items-center space-x-4">
+                                <i data-lucide="activity" class="inline-block mr-1 text-orange-700"></i>
+                                <h3 class="text-xl font-bold text-orange-700">2.5. <strong>SAIDI</strong> y <strong>SAIFI</strong>: Indicadores de Calidad de Servicio</h3>
+                            </div>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card space-y-6">
+                            <p>Estos indicadores técnicos son la <strong>base para evaluar el desempeño</strong> de las distribuidoras y aplicar las sanciones correspondientes. El límite máximo de interrupciones se define por contrato.</p>
+
+                            <h4 class="font-semibold text-lg flex items-center mb-2"><i data-lucide="alert-triangle" class="mr-2 text-red-600"></i><strong>SAIFI: Frecuencia Promedio de Interrupción del Sistema</strong> (System Average Interruption Frequency Index)</h4>
+                            <div class="highlight-box">
+                                Mide: El <strong>número promedio de veces</strong> que un usuario se interrumpió el servicio en un periodo (generalmente un año).
+                            </div>
+                            <div class="formula-box">
+                                <!-- FÓRMULA DE SAIFI (SÍ usa LaTeX) -->
+                                $$\text{SAIFI} = \frac{\sum(\text{Número de Clientes Afectados por interrupción } i)}{\text{Total de Clientes Servidos}}$$
+                            </div>
+                            <p class="text-sm italic">Un <strong>SAIFI</strong> de <strong>4.5</strong> significa que, en promedio, cada cliente experimentó 4 a 5 cortes de servicio durante el año.</p>
+
+                            <h4 class="font-semibold text-lg flex items-center mb-2"><i data-lucide="clock" class="mr-2 text-orange-600"></i><strong>SAIDI: Duración Promedio de Interrupción del Sistema</strong> (System Average Interruption Duration Index)</h4>
+                            <div class="highlight-box">
+                                Mide: La <strong>duración total promedio</strong> de las interrupciones que un usuario experimentó en un periodo (expresado en horas).
+                            </div>
+                            <div class="formula-box">
+                                <!-- FÓRMULA DE SAIDI (SÍ usa LaTeX) -->
+                                $$\text{SAIDI} = \frac{\sum(\text{Duración de la Interrupción } i \times \text{Número de Clientes Afectados por } i)}{\text{Total de Clientes Servidos}}$$
+                            </div>
+                            <p class="text-sm italic">Un <strong>SAIDI</strong> de <strong>12.3</strong> horas significa que, en promedio, cada cliente estuvo un total de 12 horas y 18 minutos sin servicio durante el año.</p>
+                        </div>
+                    </details>
+                    
+                    <!-- 2.6 EJEMPLOS APLICABLES -->
+                    <details class="group" open>
+                        <summary>
+                             <div class="flex items-center space-x-4">
+                                <i data-lucide="cpu" class="inline-block mr-1 text-blue-900"></i>
+                                <h3 class="text-xl font-bold text-blue-900">2.6. Ejemplos Aplicables: Caso de Incumplimiento y Sanción</h3>
+                            </div>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card space-y-4">
+                            
+                            <h5 class="font-bold text-lg text-blue-800">Escenario: Evaluación Anual de una Distribuidora</h5>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left table-custom">
+                                    <thead class="text-gray-700 uppercase">
+                                        <tr><th>Parámetro</th><th>Límite Máximo Contractual (Target)</th><th>Resultado Real de la Distribuidora</th><th>Estado</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Total Clientes</td><td colspan="3">150.000</td></tr>
+                                        <tr><td><strong>SAIFI</strong> (Frecuencia)</td><td>4.0 cortes/año</td><td>5.5 cortes/año</td><td class="bg-red-200 font-bold text-red-800">INCUMPLE</td></tr>
+                                        <tr><td><strong>SAIDI</strong> (Duración)</td><td>10.0 horas/año</td><td>8.5 horas/año</td><td class="bg-green-200 font-bold text-green-800">CUMPLE</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h5 class="font-bold text-lg text-blue-800 mt-6">Caso de Cálculo de <strong>SAIDI</strong> y Aplicación de Sanción</h5>
+                            
+                            <div class="p-4 border border-gray-300 rounded-lg">
+                                <h6 class="font-semibold text-gray-700">Datos de la Interrupción (Evento Aislado):</h6>
+                                <ul class="list-disc list-inside text-sm ml-4 mt-2">
+                                    <li>Interrupción por <strong>2 horas</strong>.</li>
+                                    <li><strong>10.000 clientes</strong> afectados.</li>
+                                </ul>
+
+                                <h6 class="font-semibold text-gray-700 mt-4">Aplicación de la Fórmula <strong>SAIDI</strong> (Contribución al Índice):</h6>
+                                <div class="formula-box">
+                                    $$\text{Contribución SAIDI} = \frac{(\text{2 horas}) \times (\text{10.000 clientes})}{\text{150.000 clientes}} = \text{0.133 horas}$$
+                                </div>
+                                <p class="text-sm mt-2">Cada cliente en la concesión sumó <strong>0.133 horas</strong> de interrupción por este evento específico.</p>
+                            </div>
+                            
+                            <h5 class="font-bold text-lg text-blue-800 mt-6">Conclusión del <strong>OCEBA</strong>:</h5>
+                            <p>Dado que el valor real de <strong>SAIFI</strong> (<strong>5.5</strong>) superó el límite contractual (<strong>4.0</strong>), el <strong>OCEBA</strong> inicia un proceso sancionatorio. La multa no solo es un castigo a la empresa, sino que parte de ese monto se destina a resarcir a los usuarios que sufrieron interrupciones por encima de la media tolerada, promoviendo la mejora continua de la red.</p>
+                        </div>
+                    </details>
+
+
+                    <!-- 2.7 Agentes Clave -->
+                     <details class="group">
+                        <summary>
+                            <h3 class="text-xl font-semibold text-gray-700">2.7. Agentes Clave del Mercado y sus Roles</h3>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-lg">Distribuidores</h4>
+                                <p>Compran energía al por mayor en el <strong>MEM</strong> para distribuirla y venderla al por menor a <strong>usuarios residenciales y pequeños comercios</strong> a una tarifa regulada. Su ganancia principal es el <strong>Valor Agregado de Distribución (VAD)</strong>.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg">Grandes Usuarios (<strong>GU</strong>)</h4>
+                                <p>Consumidores con demanda elevada que pueden comprar su energía directamente en el <strong>MEM</strong>, pagando a la distribuidora solo un "peaje" por el uso de sus redes.</p>
+                                <div class="overflow-x-auto mt-4">
+                                     <table class="w-full text-left table-custom">
+                                        <thead class="text-gray-700 uppercase">
+                                            <tr><th>Tipo</th><th>Sigla</th><th>Demanda</th><th>Característica Principal</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>Gran Usuario Mayor</td><td><strong>GUME</strong></td><td>$\ge$ <strong>1 MW</strong> (1000 kW)</td><td>Puede comprar energía directamente en el <strong>MEM</strong>, firmando contratos con generadores.</td></tr>
+                                            <tr><td>Gran Usuario Menor</td><td><strong>GUMA</strong></td><td>Entre <strong>30 kW</strong> y <strong>1 MW</strong></td><td>Compra en el <strong>MEM</strong>, usualmente a través de una empresa Comercializadora.</td></tr>
+                                            <tr><td>Gran Usuario con Tarifa de Dist.</td><td><strong>GUDI</strong></td><td>$\ge$ <strong>30 kW</strong></td><td>Podría ser <strong>GUME</strong> o <strong>GUMA</strong> pero elige seguir siendo cliente de la distribuidora.</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <!-- 2.8. SECCIÓN: MERCADO SPOT -->
+                     <details class="group" open>
+                        <summary>
+                            <div class="flex items-center space-x-4">
+                                <i data-lucide="sigma" class="inline-block mr-1 text-purple-700"></i>
+                                <h3 class="text-xl font-bold text-purple-700">2.8. El <strong>Mercado Spot (PME)</strong>: Precios Monómicos y Volatilidad</h3>
+                            </div>
+                            <i data-lucide="chevron-down" class="summary-icon"></i>
+                        </summary>
+                        <div class="content-card space-y-6">
+                            
+                            <h4 class="font-semibold text-lg border-b pb-1 flex items-center"><i data-lucide="layers" class="mr-2 text-purple-600 w-5 h-5"></i>¿Qué es el <strong>Mercado Spot</strong> y el <strong>PME</strong>?</h4>
+                            <p>El <strong>Mercado Spot</strong> es el mercado de corto plazo donde se valúa la energía eléctrica hora a hora basándose en el <strong>Costo Marginal (CMg)</strong> determinado por el despacho económico de <strong>CAMMESA</strong>. El resultado es el <strong>Precio Monómico de la Energía (PME)</strong>.</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2 text-sm">
+                                <li><strong>Es el precio de referencia:</strong> Refleja el <strong>costo real e instantáneo</strong> de generar el último <strong>MWh</strong> requerido.</li>
+                                <li><strong>Monómico:</strong> El precio es único para todos los agentes compradores y vendedores del <strong>MEM</strong> en esa hora, siguiendo la <strong>Teoría de Costos Marginales</strong>.</li>
+                                <li><strong>Componentes:</strong> Está compuesto principalmente por el <strong>costo del combustible</strong> (gas, fuel-oil) y los <strong>costos variables</strong> de operación de las centrales.</li>
+                            </ul>
+                            
+                            <h4 class="font-semibold text-lg border-b pb-1 flex items-center mt-6"><i data-lucide="trending-up" class="mr-2 text-purple-600 w-5 h-5"></i>Funcionamiento: <strong>Volatilidad Extrema</strong></h4>
+                            <p>El <strong>PME</strong> es inherentemente volátil porque está directamente ligado a variables operativas que cambian constantemente:</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="p-3 border border-red-300 bg-red-50 rounded-lg">
+                                    <p class="font-semibold text-red-700">Precio Alto (<strong>Pico</strong>)</p>
+                                    <ul class="list-disc list-inside text-xs mt-1 ml-2">
+                                        <li><strong>Alta demanda</strong> (calor o frío extremo).</li>
+                                        <li><strong>Falla</strong> o indisponibilidad de centrales eficientes.</li>
+                                        <li><strong>Baja hidrología</strong> (se usa más combustible).</li>
+                                    </ul>
+                                </div>
+                                <div class="p-3 border border-green-300 bg-green-50 rounded-lg">
+                                    <p class="font-semibold text-green-700">Precio Bajo (<strong>Valle</strong>)</p>
+                                    <ul class="list-disc list-inside text-xs mt-1 ml-2">
+                                        <li><strong>Madrugada</strong> o fin de semana (<strong>baja demanda</strong>).</li>
+                                        <li><strong>Alta generación</strong> hidroeléctrica o eólica.</li>
+                                        <li><strong>Abundancia de gas</strong> a bajo costo.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <h4 class="font-semibold text-lg border-b pb-1 flex items-center mt-6"><i data-lucide="target" class="mr-2 text-purple-600 w-5 h-5"></i>Aplicación y Gestión de Riesgo para <strong>GUME/GUMA</strong></h4>
+                            <p>Para los <strong>Grandes Usuarios (GU)</strong>, el <strong>Mercado Spot</strong> es el lugar donde liquidan su energía <strong>no contratada</strong>. La reglamentación del <strong>MEM</strong> exige que estos agentes cubran la mayor parte de su demanda con contratos a término (<strong>CAE</strong>) para mitigar el <strong>riesgo sistémico</strong>, pero permiten una exposición limitada al <strong>Spot</strong> para fomentar la competencia y la gestión activa.</p>
+                            
+                             <div class="overflow-x-auto mt-4">
+                                 <table class="w-full text-left table-custom">
+                                    <thead class="text-gray-700 uppercase">
+                                        <tr><th><strong>GU</strong></th><th>Límite de Exposición Spot (Compra al <strong>PME</strong>)</th><th>Riesgo Principal</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td><strong>GUME</strong></td><td>Máximo <strong>10%</strong> de su demanda.</td><td>Riesgo de <strong>Pico de Precio</strong> no cubierto.</td></tr>
+                                        <tr><td><strong>GUMA</strong></td><td>Máximo <strong>50%</strong> de su demanda.</td><td>Riesgo de <strong>Alta Volatilidad</strong> por mayor exposición.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                             <div class="highlight-box mt-4 bg-yellow-100 border-yellow-500 text-yellow-800">
+                                <p class="font-semibold">Conclusión Financiera:</p>
+                                <p class="text-sm mt-1">La decisión de un <strong>GUME</strong> o <strong>GUMA</strong> de comprar el porcentaje permitido en el <strong>Spot</strong> (en lugar de contratarlo) es una <strong>apuesta de riesgo/recompensa</strong>. Si el <strong>PME</strong> es bajo, ahorran dinero. Si el <strong>PME</strong> se dispara (ej. por una ola de calor), asumen el <strong>costo total del pico</strong>.</p>
+                            </div>
+                            
+                        </div>
+                    </details>
+                </div>
+            </details>
+            
+            <!-- Resumen Final -->
+            <details class="group">
+                <summary>
+                    <div class="flex items-center space-x-4">
+                         <i data-lucide="check-circle-2" class="icon-style text-green-600"></i>
+                        <h2 class="text-2xl font-bold text-green-800">Resumen Final</h2>
+                    </div>
+                    <i data-lucide="chevron-down" class="summary-icon"></i>
+                </summary>
+                <div class="content-card">
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-lucide="dollar-sign" class="w-6 h-6 mr-3 mt-1 text-green-700"></i>
+                            <div><strong>Precio de la Energía:</strong> En el <strong>mercado mayorista</strong>, el precio es <strong>marginalista</strong>. La <strong>última central</strong> (la más cara) en ser despachada para cubrir la <strong>demanda horaria</strong> fija el precio para todas las demás.</div>
+                        </li>
+                        <li class="flex items-start">
+                             <i data-lucide="scale" class="w-6 h-6 mr-3 mt-1 text-green-700"></i>
+                            <div><strong>Jerarquía Regulatoria:</strong> La <strong>Secretaría de Energía de la Nación</strong> define la política nacional y las reglas del <strong>MEM</strong>. Las Autoridades Provinciales y entes como <strong>OCEBA</strong> regulan y controlan la distribución en su jurisdicción.</div>
+                        </li>
+                        <li class="flex items-start">
+                             <i data-lucide="users-2" class="w-6 h-6 mr-3 mt-1 text-green-700"></i>
+                            <div><strong>Agentes del Mercado:</strong> Los <strong>Distribuidores</strong> abastecen a la <strong>demanda cautiva</strong> (hogares, comercios). Los <strong>Grandes Usuarios</strong> (<strong>GUME</strong> y <strong>GUMA</strong>) pueden comprar su propia energía en el <strong>MEM</strong>.</div>
+                        </li>
+                         <li class="flex items-start">
+                             <i data-lucide="clipboard-list" class="w-6 h-6 mr-3 mt-1 text-green-700"></i>
+                            <!-- Corrección 1: Enfatizar calidad y seguridad en el resumen -->
+                            <div><strong>Calidad y Seguridad:</strong> La <strong>calidad del servicio</strong> se mide con indicadores precisos (<strong>SAIFI</strong> y <strong>SAIDI</strong>) que permiten a <strong>OCEBA</strong> controlar, comparar y sancionar a las distribuidoras de manera objetiva.</div>
+                        </li>
+                         <li class="flex items-start">
+                             <i data-lucide="sigma" class="w-6 h-6 mr-3 mt-1 text-purple-700"></i>
+                            <div><strong>Mercado Spot:</strong> Determina el <strong>Precio Monómico de la Energía (PME)</strong> hora a hora. Los <strong>Grandes Usuarios (GU)</strong> tienen un límite de exposición a este precio para gestionar el <strong>riesgo de la volatilidad</strong> del mercado de corto plazo.</div>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+
+        </main>
+        
+        <!-- Modal para el Zoom de Imagen -->
+        <div id="imageModal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="modalImage">
+        </div>
+
+        
+        <!-- Footer -->
+        <footer class="text-center mt-12 py-6 border-t">
+            <p class="text-gray-500">Recurso didáctico basado en el material "Organización y Precios del Subsector Eléctrico Argentino".</p>
+        </footer>
+    </div>
+    
+    <script>
+        lucide.createIcons();
+        
+        // --- Lógica del Modal (Zoom) ---
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+
+        /**
+         * Abre el modal y muestra la imagen en grande.
+         * @param {string} src - URL de la imagen a mostrar.
+         */
+        function openModal(src) {
+            modal.style.display = "block";
+            modalImg.src = src;
+        }
+
+        /**
+         * Cierra el modal.
+         */
+        function closeModal() {
+            modal.style.display = "none";
+        }
+        
+        // Cierra el modal si el usuario hace clic fuera de la imagen
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Cierra el modal si se presiona la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && modal.style.display === "block") {
+                closeModal();
+            }
+        });
+        
+    </script>
+</body>
+</html>
