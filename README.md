@@ -20,7 +20,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 10. [Reconectadores y fúsibles](https://profedel240.github.io/clases/reconectadoryfusibles.html)
 11. [Modulo 3 a](https://profedel240.github.io/clases/Mod3orfsea.html)
 12. [Cables y Postes](https://profedel240.github.io/clases/cablesypostes.html)
-13. [Título de la Clase 13 aquí](https://link-de-tu-infografia-13-aqui.github.io/apunte_13.html)
+13. [Modulo 3 B](https://profedel240.github.io/clases/orfsemod3b.html)
 14. [Título de la Clase 14 aquí](https://link-de-tu-infografia-14-aqui.github.io/apunte_14.html)
 15. [Título de la Clase 15 aquí](https://link-de-tu-infografia-15-aqui.github.io/apunte_15.html)
 16. [Título de la Clase 16 aquí](https://link-de-tu-infografia-16-aqui.github.io/apunte_16.html)
