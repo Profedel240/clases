@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Equilibrio y Reservas del Sistema Eléctrico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .accordion-button.active + .accordion-content {
+            max-height: 1000px; /* Adjust as needed */
+        }
+        .balance-beam {
+            transition: transform 0.5s ease-in-out;
+        }
+        .freq-display {
+            transition: color 0.5s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        .card {
+            background-color: #2d3748;
+            border: 1px solid #4a5568;
+        }
+        .accordion-button:hover {
+            background-color: #4a5568;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-sky-400 mb-2">Equilibrio y Reservas del Sistema Eléctrico Argentino</h1>
+            <p class="text-lg text-slate-300">Una guía interactiva para conceptos avanzados</p>
+        </header>
+
+        <!-- Section 1: The Balance -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-300 border-b-2 border-sky-500 pb-2">1. El Delicado Equilibrio: Generación vs. Demanda</h2>
+            <div class="flex flex-col lg:flex-row items-center justify-around gap-8">
+                
+                <div class="lg:w-1/3 text-center lg:text-left">
+                    <p class="mb-4">La electricidad no puede almacenarse a gran escala, por lo que debe existir un <strong>balance perfecto y continuo</strong> entre la energía generada y la consumida.</p>
+                    <p class="font-semibold text-amber-300">El indicador clave de este equilibrio es la <span class="font-bold text-2xl">Frecuencia del Sistema</span>.</p>
+                </div>
+
+                <div class="lg:w-1/2 w-full flex flex-col items-center">
+                    <!-- Dynamic Balance SVG -->
+                    <div class="w-full max-w-md">
+                        <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Base -->
+                            <polygon points="140,140 160,140 150,120" fill="#718096"/>
+                            <!-- Beam -->
+                            <g id="balance-beam" class="balance-beam" style="transform-origin: 150px 120px;">
+                                <rect x="50" y="115" width="200" height="10" rx="5" fill="#a0aec0"/>
+                                <!-- Generation Side -->
+                                <circle cx="70" cy="100" r="15" fill="#4299e1"/>
+                                <path d="M 65 105 L 65 95 L 75 95 L 75 105 Z M 70 95 L 70 85" stroke="white" stroke-width="2" fill="none"/>
+                                <text x="70" y="75" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Generación</text>
+                                <!-- Demand Side -->
+                                <circle cx="230" cy="100" r="15" fill="#f56565"/>
+                                <path d="M 225 95 H 235 V 105 H 225 V 95 M 228 95 L 228 102 H 232 L 232 95" stroke="white" stroke-width="2" fill="none"/>
+                                <text x="230" y="75" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Demanda</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div id="freq-display" class="freq-display text-5xl font-bold my-4 text-emerald-400">50.00 Hz</div>
+
+                    <!-- Interactive Buttons -->
+                    <div class="flex gap-4 mt-4">
+                        <button id="increase-demand" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">
+                            <i class="ph ph-arrow-circle-up mr-2"></i>Aumentar Demanda
+                        </button>
+                        <button id="decrease-demand" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-transform transform hover:scale-105">
+                            <i class="ph ph-arrow-circle-down mr-2"></i></i>Disminuir Demanda
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Types of Reserves -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-300 border-b-2 border-sky-500 pb-2">2. Tipos de Reservas del Sistema Eléctrico</h2>
+            <div id="accordion-container" class="space-y-4">
+                <!-- Accordion Items will be injected here by JS -->
+            </div>
+        </section>
+        
+        <!-- Section 3: Glossary -->
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-8 text-sky-300 border-b-2 border-sky-500 pb-2">3. Glosario de Siglas</h2>
+            <div class="card rounded-lg">
+                <button class="accordion-button w-full text-left p-4 rounded-lg transition duration-300">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-semibold flex items-center"><i class="ph-fill ph-book-open mr-3 text-2xl text-amber-300"></i>Ver/Ocultar Glosario</span>
+                        <i class="ph ph-caret-down text-2xl transition-transform duration-300"></i>
+                    </div>
+                </button>
+                <div class="accordion-content p-4 border-t border-slate-600">
+                    <ul class="list-disc list-inside grid grid-cols-2 md:grid-cols-3 gap-2">
+                        <li><strong>CAMMESA:</strong> Compañía Administradora del Mercado Mayorista Eléctrico S.A.</li>
+                        <li><strong>CC:</strong> Ciclo Combinado.</li>
+                        <li><strong>EAC:</strong> Esquema de Alivio de Carga.</li>
+                        <li><strong>Hz:</strong> Hertz.</li>
+                        <li><strong>MEM:</strong> Mercado Eléctrico Mayorista.</li>
+                        <li><strong>OED:</strong> Organismo Encargado de Despacho.</li>
+                        <li><strong>RPF:</strong> Regulación Primaria de Frecuencia.</li>
+                        <li><strong>RSF:</strong> Regulación Secundaria de Frecuencia.</li>
+                        <li><strong>TG:</strong> Turbo Gas.</li>
+                        <li><strong>TV:</strong> Turbo Vapor.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const reservesData = [
+            {
+                title: "Reserva Instantánea",
+                icon: "ph-fill ph-lightning",
+                color: "text-red-400",
+                plazo: "Corto Plazo",
+                objetivo: "Evitar el colapso del sistema (pérdida de sincronismo) ante un déficit brusco de generación o fallas graves.",
+                funcionamiento: "Aportada por la <strong>demanda</strong>. Opera mediante <strong>Relés de Alivio de Carga (EAC)</strong> que desconectan circuitos de forma automática y escalonada.",
+                respuesta: "Instantánea",
+                ejemplo: "Una central nuclear de 700 MW sale de servicio súbitamente. La frecuencia cae en picada. El EAC detecta la caída y desconecta automáticamente circuitos industriales y residenciales predefinidos para reducir la 'carga' y frenar la caída, salvando al resto del sistema del colapso."
+            },
+            {
+                title: "Regulación Primaria de Frecuencia (RPF)",
+                icon: "ph-fill ph-gauge",
+                color: "text-green-400",
+                plazo: "Corto Plazo",
+                objetivo: "Equilibrar los pequeños y rápidos desvíos de la demanda en operación normal. Es la primera línea de defensa.",
+                funcionamiento: "Acción <strong>automática</strong> y continua de los reguladores de velocidad de las máquinas en servicio. Modifica la admisión de combustible/vapor/agua.",
+                respuesta: "< 30 segundos",
+                ejemplo: "Termina un partido de fútbol muy visto y millones de personas encienden luces y otros aparatos. La RPF de cientos de generadores responde al instante, aumentando levemente su producción para compensar ese pico y mantener la frecuencia estable."
+            },
+            {
+                title: "Regulación Secundaria de Frecuencia (RSF)",
+                icon: "ph-fill ph-crosshair",
+                color: "text-green-400",
+                plazo: "Corto Plazo",
+                objetivo: "Corregir el error de frecuencia residual que dejó la RPF y absorber las variaciones de la demanda vs. la pronosticada.",
+                funcionamiento: "Acción <strong>manual o automática</strong> desde el centro de control del OED. Se designan ciertas máquinas para que ajusten su generación y lleven la frecuencia de vuelta a exactamente 50.00 Hz.",
+                respuesta: "Varios minutos",
+                ejemplo: "Después de la RPF del ejemplo anterior, la frecuencia se estabilizó en 49.95 Hz. El OED instruye a una central hidroeléctrica a que aumente su generación durante 5 minutos para restaurar el valor nominal de 50.00 Hz."
+            },
+            {
+                title: "Reserva Operativa de (5) Minutos",
+                icon: "ph-fill ph-timer",
+                color: "text-yellow-400",
+                plazo: "Corto Plazo",
+                objetivo: "Complementar la regulación y cubrir la salida imprevista de un generador de tamaño mediano.",
+                funcionamiento: "Máquinas paradas (térmicas o hidráulicas) que demuestran capacidad de arrancar y entregar carga rápidamente. Deben poder mantenerse por 1 hora.",
+                respuesta: "≤ 5 minutos",
+                ejemplo: "Una turbina de gas de 150 MW sufre una falla y se desconecta. El OED ordena el arranque de otra unidad similar que estaba parada y ofertando esta reserva para reemplazar la potencia perdida."
+            },
+            {
+                title: "Reserva de (10) Minutos",
+                icon: "ph-fill ph-clock-countdown",
+                color: "text-yellow-400",
+                plazo: "Corto Plazo",
+                objetivo: "Cubrir apartamientos de mayor duración o la salida de una unidad generadora más grande.",
+                funcionamiento: "Capacidad de generación de máquinas paradas y/o <strong>demanda interrumpible</strong> (grandes industrias que aceptan cortar su consumo).",
+                respuesta: "≤ 10 minutos",
+                ejemplo: "Una central térmica de 300 MW debe salir de servicio. El OED solicita el arranque de unidades en reserva y, al mismo tiempo, pide a una planta de aluminio que reduzca su consumo para equilibrar el sistema."
+            },
+             {
+                title: "Reserva Fría de (20) Minutos",
+                icon: "ph-fill ph-snowflake",
+                color: "text-cyan-400",
+                plazo: "Corto Plazo",
+                objetivo: "Cubrir apartamientos prolongados por contingencias o errores importantes en el pronóstico de la demanda.",
+                funcionamiento: "Máquinas térmicas de punta (Turbogás) paradas y/o <strong>Grandes Usuarios Interrumpibles</strong>. Deben poder mantenerse por 5 horas.",
+                respuesta: "≤ 20 minutos",
+                ejemplo: "Una ola de calor imprevista dispara la demanda. El OED activa estas turbinas de gas de arranque rápido para cubrir ese consumo no planificado y evitar cortes."
+            },
+            {
+                title: "Reserva Térmica de (4) Horas",
+                icon: "ph-fill ph-hourglass-high",
+                color: "text-orange-400",
+                plazo: "Corto Plazo",
+                objetivo: "Asegurar la cobertura en horas de punta ante contingencias conocidas con anticipación (ej. mantenimiento).",
+                funcionamiento: "Máquinas térmicas paradas, a las que se les notifica con antelación para que estén listas para el pico de demanda.",
+                respuesta: "4 horas de preaviso",
+                ejemplo: "El pronóstico indica una demanda muy alta a las 20:00 hs. A las 16:00 hs, el OED ordena a una central de ciclo combinado que inicie su arranque para que esté disponible y sincronizada a las 20:00 hs."
+            },
+            {
+                title: "Reserva de Confiabilidad",
+                icon: "ph-fill ph-shield-check",
+                color: "text-purple-400",
+                plazo: "Mediano Plazo",
+                objetivo: "Garantizar que la potencia instalada total sea suficiente para cubrir la demanda máxima esperada en un período.",
+                funcionamiento: "Se contrata mensualmente la disponibilidad de generación. No es una reserva operativa diaria, sino una <strong>garantía de capacidad</strong>.",
+                respuesta: "Planificación Mensual/Estacional",
+                ejemplo: "Durante la planificación para el invierno, el OED calcula la demanda pico y se asegura de que haya un margen de sobra (la reserva) para cubrir ese pico incluso si la central más grande del país estuviera indisponible."
+            }
+        ];
+
+        const accordionContainer = document.getElementById('accordion-container');
+        reservesData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card rounded-lg';
+            card.innerHTML = `
+                <button class="accordion-button w-full text-left p-4 rounded-lg transition duration-300">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="${item.icon} ${item.color} text-4xl mr-4"></i>
+                            <div>
+                                <span class="text-xl font-semibold">${item.title}</span>
+                                <span class="text-sm text-slate-400 block">${item.plazo}</span>
+                            </div>
+                        </div>
+                        <i class="ph ph-caret-down text-2xl transition-transform duration-300"></i>
+                    </div>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-4 border-t border-slate-600 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2 text-sky-300">🎯 Objetivo Principal</h4>
+                            <p>${item.objetivo}</p>
+                        </div>
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2 text-sky-300">⚙️ Funcionamiento</h4>
+                            <p>${item.funcionamiento}</p>
+                        </div>
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2 text-sky-300">⏱️ Tiempo de Respuesta</h4>
+                            <p class="text-2xl font-bold text-amber-300">${item.respuesta}</p>
+                        </div>
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2 text-sky-300">💡 Ejemplo Práctico</h4>
+                            <p>${item.ejemplo}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            accordionContainer.appendChild(card);
+        });
+        
+        // Accordion Logic
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                button.classList.toggle('active');
+                const icon = button.querySelector('.ph-caret-down');
+                icon.style.transform = button.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+
+        // Balance Logic
+        const beam = document.getElementById('balance-beam');
+        const freqDisplay = document.getElementById('freq-display');
+        const increaseBtn = document.getElementById('increase-demand');
+        const decreaseBtn = document.getElementById('decrease-demand');
+        let currentRotation = 0;
+        
+        function resetState() {
+            beam.style.transform = `rotate(0deg)`;
+            freqDisplay.textContent = '50.00 Hz';
+            freqDisplay.className = 'freq-display text-5xl font-bold my-4 text-emerald-400';
+            currentRotation = 0;
+        }
+
+        increaseBtn.addEventListener('click', () => {
+            beam.style.transform = `rotate(10deg)`;
+            freqDisplay.textContent = '49.85 Hz 📉';
+            freqDisplay.className = 'freq-display text-5xl font-bold my-4 text-red-400';
+            setTimeout(resetState, 2000);
+        });
+
+        decreaseBtn.addEventListener('click', () => {
+            beam.style.transform = `rotate(-10deg)`;
+            freqDisplay.textContent = '50.15 Hz 📈';
+            freqDisplay.className = 'freq-display text-5xl font-bold my-4 text-sky-400';
+            setTimeout(resetState, 2000);
+        });
+    </script>
+</body>
+</html>
