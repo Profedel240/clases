@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Unificada: Tarifa Eléctrica</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de MathJax (necesaria para las páginas 1 y 2) -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type"text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+    
+    <!-- ESTILOS GLOBALES Y DE NAVEGACIÓN -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        /* Estilo base para el contenedor principal */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb; /* Un gris claro para el fondo general */
+        }
+
+        /* Estilos para la navegación por pestañas */
+        .tab-nav {
+            background-color: #1f2937; /* Barra de navegación oscura */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-bottom: 4px solid #3b82f6;
+        }
+        .tab-button {
+            padding: 1rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #d1d5db; /* Texto de pestaña inactiva */
+            background-color: transparent;
+            border: none;
+            border-bottom: 4px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .tab-button:hover {
+            background-color: #374151;
+            color: #ffffff;
+        }
+        .tab-button.active {
+            color: #ffffff;
+            font-weight: 700;
+            border-bottom-color: #60a5fa; /* Azul para pestaña activa */
+        }
+
+        /* Contenedor de página: por defecto oculto */
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: block;
+        }
+
+        /* --- ESTILOS AISLADOS PARA PÁGINA 1 (mfinal1.html) --- */
+        /* Se prefijan todos los selectores con #page1 para aislarlos */
+        #page1 {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Fondo oscuro (Dark Mode) */
+            color: #e6e6e6;
+            min-height: 100vh;
+        }
+        #page1 .sidebar {
+            background-color: #161b22;
+        }
+        #page1 .header {
+            background-color: #1f6feb; /* Azul vibrante */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+        #page1 .accordion-header {
+            background-color: #21262d;
+            border-bottom: 1px solid #30363d;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #page1 .accordion-header:hover {
+            background-color: #30363d;
+        }
+        #page1 .accordion-content {
+            background-color: #1f2328;
+            padding: 1rem;
+            border-left: 4px solid #38bdf8;
+        }
+        #page1 .section-title {
+            border-left: 6px solid #f97316; /* Naranja */
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        #page1 .sub-title {
+            color: #38bdf8; /* Azul claro */
+            font-weight: 600;
+        }
+
+        /* --- ESTILOS AISLADOS PARA PÁGINA 2 (mfinal2.html) --- */
+        /* Se prefijan todos los selectores con #page2 */
+        #page2 {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Fondo oscuro */
+            color: #e6e6e6;
+            min-height: 100vh;
+        }
+        #page2 .sidebar {
+            background-color: #161b22;
+        }
+        #page2 .header {
+            background-color: #3b82f6; /* Azul vibrante (Regulación) */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+        #page2 .section-title {
+            border-left: 6px solid #f97316; /* Naranja */
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        #page2 .sub-title {
+            color: #4ade80; /* Verde/aqua */
+            font-weight: 600;
+        }
+        #page2 .cost-card {
+            background-color: #1f2328;
+            border-top: 4px solid #3b82f6;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        #page2 .cost-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -2px rgba(59, 130, 246, 0.05);
+        }
+        #page2 .ami-feature {
+            background-color: #2c323a;
+            border-left: 4px solid #4ade80;
+        }
+
+        /* --- ESTILOS AISLADOS PARA PÁGINA 3 (mfinal3.html) --- */
+        /* Se prefijan todos los selectores con #page3 */
+        #page3 {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f9; /* Fondo muy claro */
+            color: #1f2937; /* Texto oscuro */
+            padding: 2.5rem 1rem; /* Padding para centrar el card */
+        }
+        #page3 .container-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            /* Importante: max-w-5xl y mx-auto ya están en el div de contenido */
+        }
+        #page3 .section-title {
+            border-left: 6px solid #3b82f6; /* Azul Regulación */
+            padding-left: 1rem;
+            color: #1f2937;
+        }
+        #page3 .subsection-title {
+            color: #1e40af; /* Azul oscuro */
+            font-weight: 700;
+        }
+        #page3 .component-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: #f0f3ff;
+            border-left: 4px solid;
+        }
+        #page3 .component-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(59, 130, 246, 0.2);
+        }
+        #page3 .table-header {
+            background-color: #eff6ff;
+            color: #1e40af;
+        }
+        #page3 .tech-card {
+            border: 1px solid #d1d5db;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÚ DE NAVEGACIÓN POR PESTAÑAS -->
+    <nav class="tab-nav flex items-center justify-center sticky top-0 z-50">
+        <button id="btn-page1" class="tab-button active">
+            1. Estructura de Costos (VAD y Pérdidas)
+        </button>
+        <button id="btn-page2" class="tab-button">
+            2. Regulación y Medición (RI y AMI)
+        </button>
+        <button id="btn-page3" class="tab-button">
+            3. Análisis Detallado (Consolidado)
+        </button>
+    </nav>
+
+    <!-- CONTENEDOR PARA LAS PÁGINAS -->
+    <div id="content-wrapper">
+
+        <!-- ====================================================== -->
+        <!-- PÁGINA 1 (Contenido de mfinal1.html)                    -->
+        <!-- ====================================================== -->
+        <div id="page1" class="page-content active">
+            <!-- Se pega el CONTENIDO DEL BODY de mfinal1.html aquí -->
+            <div class="flex min-h-screen">
+                <!-- Sidebar de Navegación Fija -->
+                <div class="sidebar w-64 p-6 fixed h-full overflow-y-auto hidden lg:block rounded-r-lg shadow-2xl">
+                    <h2 class="text-xl font-bold mb-6 text-gray-100 border-b pb-3 border-gray-700">Índice Técnico</h2>
+                    <nav>
+                        <ul id="sidebar-menu-1">
+                            <li><a href="#introduccion" class="block py-2 px-3 rounded-md transition duration-150 hover:bg-gray-700 text-sm font-medium">Introducción</a></li>
+                            <li class="mt-2"><a href="#clasificacion-fundamental" class="block py-2 px-3 rounded-md transition duration-150 hover:bg-gray-700 text-sm font-medium">I. Clasificación Fundamental</a></li>
+                            <li class="mt-2"><span class="text-xs uppercase tracking-wider text-gray-400">II. Componentes Detallados</span></li>
+                            <li><a href="#costos-abastecimiento" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-sm">1. C. Abastecimiento</a></li>
+                            <li><a href="#costos-capital" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-sm">2. C. Capital</a></li>
+                            <li><a href="#costos-oym" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-sm">3. C. O&M</a></li>
+                            <li><a href="#costos-comercializacion" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-sm">4. C. Comercialización</a></li>
+                            <li><a href="#costos-administracion" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-sm">5. C. Administración</a></li>
+                            <li class="mt-4"><a href="#conclusion" class="block py-2 px-3 rounded-md transition duration-150 hover:bg-gray-700 text-sm font-medium">III. Conclusión</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Contenido Principal -->
+                <main class="flex-1 lg:ml-64 p-4 md:p-8">
+                    <header class="header text-white p-6 rounded-xl mb-8 shadow-xl">
+                        <h1 class="text-3xl md:text-4xl font-extrabold">Estructura de Costos de la Tarifa Eléctrica</h1>
+                        <p class="text-lg mt-2 font-light">Un Análisis Detallado para la Distribución (Tecnicatura en Electricidad)</p>
+                        <p class="text-sm mt-4 italic">El mayor componente que gestiona la distribuidora se deriva del Costo de Abastecimiento y el Valor Agregado de Distribución (VAD).</p>
+                    </header>
+                    <section id="introduccion" class="mb-12">
+                        <div class="section-title">
+                            <h2 class="text-2xl font-bold text-gray-100">Introducción y Marco Conceptual</h2>
+                        </div>
+                        <p class="mb-4 text-gray-300">
+                            La tarifa final que paga un usuario de energía eléctrica es la suma de los costos incurridos en las tres etapas principales del sector eléctrico: <span class="text-yellow-400">Generación, Transporte y Distribución</span>. Es fundamental para el estudiante comprender el desglose técnico y riguroso de los costos que componen la estructura tarifaria de la empresa distribuidora.
+                        </p>
+                        <div class="p-4 bg-yellow-900/40 border-l-4 border-yellow-500 rounded-lg">
+                            <p class="font-semibold text-yellow-300">Concepto Clave:</p>
+                            <p class="text-sm">La distribuidora gestiona el costo que se deriva de dos grandes grupos: el <span class="font-semibold">Costo de Abastecimiento</span> (energía comprada) y el <span class="font-semibold">Valor Agregado de Distribución (VAD)</span> (costos propios de la operación).</p>
+                        </div>
+                    </section>
+                    <section id="clasificacion-fundamental" class="mb-12">
+                        <div class="section-title">
+                            <h2 class="text-2xl font-bold text-gray-100">I. Clasificación Fundamental de los Costos de Distribución</h2>
+                        </div>
+                        <p class="mb-6 text-gray-300">
+                            Todos los costos incurridos por la distribuidora para asegurar la prestación del servicio de manera sustentable se clasifican de acuerdo a su naturaleza y nivel de gerenciabilidad.
+                        </p>
+                        <div class="overflow-x-auto rounded-lg shadow-lg">
+                            <table class="min-w-full divide-y divide-gray-700">
+                                <thead class="bg-gray-700">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Categoría de Costo</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Naturaleza del Costo</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Gerenciabilidad</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Descripción General</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-gray-800 divide-y divide-gray-700">
+                                    <tr class="hover:bg-gray-700">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-400">Costo de Abastecimiento</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">No Gerenciable</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">Baja</td>
+                                        <td class="px-6 py-4 text-sm text-gray-300">Costo de la energía y potencia adquirida en el Mercado Eléctrico Mayorista (MEM) y las pérdidas asociadas, hasta el punto de suministro al usuario.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-700">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-400">Valor Agregado de Distribución (VAD)</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">Gerenciable</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">Alta</td>
+                                        <td class="px-6 py-4 text-sm text-gray-300">Suma de los costos propios de la operación, que incluyen la inversión en infraestructura, el mantenimiento, la operación y la gestión comercial/administrativa.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3 class="text-xl font-semibold mt-8 mb-4 sub-title">Componentes Clave del Valor Agregado de Distribución (VAD)</h3>
+                        <div id="vad-accordion-1" class="space-y-3">
+                            <div class="accordion-item rounded-lg overflow-hidden shadow-md">
+                                <div class="accordion-header p-4 flex justify-between items-center text-lg font-medium">
+                                    <span class="flex items-center"><span class="text-2xl mr-3 text-yellow-400">💰</span> 1. Costos de Capital</span>
+                                    <span class="accordion-icon transition-transform transform rotate-0">+</span>
+                                </div>
+                                <div class="accordion-content hidden text-sm">
+                                    <p><strong>Función Principal:</strong> Reconoce el costo de tener inmovilizado el capital necesario para construir y mantener la red eléctrica. Es la retribución de la inversión.</p>
+                                    <p class="mt-2 text-yellow-300"><strong>Detalle Técnico:</strong> Inversiones en redes, subestaciones y equipos, incluyendo la depreciación y la rentabilidad exigida al capital inmovilizado. Se calcula sobre la Base de Capital (valor económico de la red).</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item rounded-lg overflow-hidden shadow-md">
+                                <div class="accordion-header p-4 flex justify-between items-center text-lg font-medium">
+                                    <span class="flex items-center"><span class="text-2xl mr-3 text-blue-400">🛠️</span> 2. Costos de Operación y Mantenimiento (O&M)</span>
+                                    <span class="accordion-icon transition-transform transform rotate-0">+</span>
+                                </div>
+                                <div class="accordion-content hidden text-sm">
+                                    <p><strong>Función Principal:</strong> Derivados de las tareas de explotación diaria, mantenimiento preventivo, predictivo y correctivo de toda la infraestructura de la red.</p>
+                                    <p class="mt-2 text-blue-300"><strong>Detalle Técnico:</strong> Son esenciales para que la red funcione correctamente 24/7. Incluyen maniobras, despacho de cuadrillas y reposición de fusibles, además del mantenimiento programado.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item rounded-lg overflow-hidden shadow-md">
+                                <div class="accordion-header p-4 flex justify-between items-center text-lg font-medium">
+                                    <span class="flex items-center"><span class="text-2xl mr-3 text-green-400">🧾</span> 3. Costos de Comercialización</span>
+                                    <span class="accordion-icon transition-transform transform rotate-0">+</span>
+                                </div>
+                                <div class="accordion-content hidden text-sm">
+                                    <p><strong>Función Principal:</strong> Tareas relacionadas con la gestión del cliente, desde la medición hasta la cobranza.</p>
+                                    <p class="mt-2 text-green-300"><strong>Detalle Técnico:</strong> Lectura de medidores, facturación, envío de boletas, gestión de cobranza y control de fraudes. Involucra la relación directa con el usuario final.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item rounded-lg overflow-hidden shadow-md">
+                                <div class="accordion-header p-4 flex justify-between items-center text-lg font-medium">
+                                    <span class="flex items-center"><span class="text-2xl mr-3 text-purple-400">👨‍💼</span> 4. Costos de Administración</span>
+                                    <span class="accordion-icon transition-transform transform rotate-0">+</span>
+                                </div>
+                                <div class="accordion-content hidden text-sm">
+                                    <p><strong>Función Principal:</strong> Gastos de soporte que permiten que toda la estructura de la empresa funcione legal y corporativamente.</p>
+                                    <p class="mt-2 text-purple-300"><strong>Detalle Técnico:</strong> Gerenciamiento general, Recursos Humanos, Contabilidad, Asesoría Legal, Auditoría, infraestructura de oficinas y Tributos No Trasladables.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mb-12">
+                        <div class="section-title">
+                            <h2 class="text-2xl font-bold text-gray-100">II. Desarrollo Detallado de los Componentes del Costo</h2>
+                        </div>
+                        <article id="costos-abastecimiento" class="mb-10 p-6 bg-gray-800 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-4 sub-title flex items-center"><span class="text-3xl mr-3 text-red-500">⚡</span> 1. Costos de Abastecimiento (Costo de Compra de Energía)</h3>
+                            <p class="mb-4 text-gray-300">
+                                Este es el costo más significativo de la estructura tarifaria. Representa lo que la empresa distribuidora paga para tener energía y potencia disponible en sus puntos de vinculación con la red de transporte o directamente con la generación.
+                            </p>
+                            <h4 class="font-semibold text-lg text-red-400 mt-6 mb-3">El Desafío de las Pérdidas</h4>
+                            <div class="p-4 bg-red-900/40 border-l-4 border-red-500 rounded-lg mb-4">
+                                <p class="text-sm italic">
+                                    Los costos de abastecimiento incluyen el costo de las <span class="font-semibold">Pérdidas de Energía y Potencia</span>. La distribuidora debe comprar una cantidad extra para cubrir la que se pierde desde el punto de compra hasta el medidor del usuario final.
+                                </p>
+                            </div>
+                            <div class="accordion-item rounded-lg overflow-hidden my-3 shadow-md">
+                                <div class="accordion-header p-4 flex justify-between items-center font-medium text-gray-200">
+                                    <span class="flex items-center"><span class="text-xl mr-2">📉</span> A. Pérdidas Técnicas (Físicas) - Inevitables, Minimizables</span>
+                                    <span class="accordion-icon transition-transform transform rotate-0">+</span>
+                                </div>
+                                <div class="accordion-content hidden text-sm">
+                                    <p class="mb-2">Son aquellas inherentes a los principios físicos del sistema eléctrico y a la imperfección de los componentes.</p>
+                                    <div class="mt-4 overflow-x-auto">
+                                        <table class="min-w-full divide-y divide-gray-700">
+                                            <thead class="bg-gray-700">
+                                                <tr>
+                                                    <th class="px-3 py-2 text-left text-xs font-medium text-gray-300 uppercase">Causa</th>
+                                                    <th class="px-3 py-2 text-left text-xs font-medium text-gray-300 uppercase">Descripción y Ejemplo Técnico</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="bg-gray-800 divide-y divide-gray-700">
+                                                <tr>
+                                                    <td class="px-3 py-2 text-sm text-yellow-400">Pérdidas en Carga (Efecto Joule)</td>
+                                                    <td class="px-3 py-2 text-sm">Pérdidas por el calor disipado al circular la corriente ($I$) por la resistencia ($R$) de los conductores. Fórmula: $\text{P}_{\text{perdida}} = I^2 \cdot R$. Mitigación: uso de conductores de mayor sección (menor $R$).</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-3 py-2 text-sm text-yellow-400">Pérdidas en Vacío (Núcleo)</td>
+                                                    <td class="px-3 py-2 text-sm">Ocurren principalmente en los transformadores y son independientes de la carga. Relacionadas con la magnetización del núcleo y la histéresis. Ejemplo: un transformador de 500 kVA consume potencia incluso sin consumo en el barrio.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-3 py-2 text-sm text-yellow-400">Factor de Potencia Bajo</td>
+                                                    <td class="px-3 py-2 text-sm">Potencia reactiva excesiva circulando por la red, lo que aumenta las pérdidas $I^2 \cdot R$. La distribuidora debe transportar más corriente aparente ($S$) para entregar la misma potencia activa ($P$).</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item rounded-lg overflow-hidden my-3 shadow-md">
+                                <div class="accordion-header p-4 flex justify-between items-center font-medium text-gray-200">
+                                    <span class="flex items-center"><span class="text-xl mr-2">🚨</span> B. Pérdidas No Técnicas - Totalmente Gerenciables</span>
+                                    <span class="accordion-icon transition-transform transform rotate-0">+</span>
+                                </div>
+                                <div class="accordion-content hidden text-sm">
+                                    <p class="mb-2">Son producto de fallas en la gestión, la medición o, lo más grave, el fraude. Su reducción es un objetivo clave de la eficiencia.</p>
+                                    <div class="mt-4 overflow-x-auto">
+                                        <table class="min-w-full divide-y divide-gray-700">
+                                            <thead class="bg-gray-700">
+                                                <tr>
+                                                    <th class="px-3 py-2 text-left text-xs font-medium text-gray-300 uppercase">Causa</th>
+                                                    <th class="px-3 py-2 text-left text-xs font-medium text-gray-300 uppercase">Clasificación</th>
+                                                    <th class="px-3 py-2 text-left text-xs font-medium text-gray-300 uppercase">Ejemplo Práctico</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="bg-gray-800 divide-y divide-gray-700">
+                                                <tr>
+                                                    <td class="px-3 py-2 text-sm text-red-400">Fraude/Hurto de Energía</td>
+                                                    <td class="px-3 py-2 text-sm">Fraudulenta</td>
+                                                    <td class="px-3 py-2 text-sm">Conexiones clandestinas ("ganchos") o manipulación física de medidores (puenteo, inversión del disco).</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-3 py-2 text-sm text-yellow-400">Error de Lectura/Medición</td>
+                                                    <td class="px-3 py-2 text-sm">Administrativa / Operación Deficiente</td>
+                                                    <td class="px-3 py-2 text-sm">Un operario toma mal el estado del medidor o el medidor está descalibrado o defectuoso y registra un consumo menor.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-3 py-2 text-sm text-yellow-400">Facturación o Gestión Deficiente</td>
+                                                    <td class="px-3 py-2 text-sm">Administrativa</td>
+                                                    <td class="px-3 py-2 text-sm">Error al cargar la tarifa asignada al cliente o retraso en la facturación y el cobro.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-3 py-2 text-sm text-yellow-400">Morosidad</td>
+                                                    <td class="px-3 py-2 text-sm">Administrativa</td>
+                                                    <td class="px-3 py-2 text-sm">Clientes que consumen la energía, pero no pagan la factura dentro del plazo establecido. Genera necesidad de capital de trabajo.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="p-3 mt-4 bg-gray-900 rounded-lg">
+                                        <p class="text-xs text-gray-400">
+                                            **Nota Técnica:** El combate a las pérdidas no técnicas es crucial porque, por cada kWh perdido por fraude, la distribuidora <span class="font-semibold">deja de ingresar el monto y, además, debe pagar por ese kWh en el Mercado Eléctrico Mayorista</span>, duplicando el impacto económico.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article id="costos-capital" class="mb-10 p-6 bg-gray-800 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-4 sub-title flex items-center"><span class="text-3xl mr-3 text-yellow-500">🏗️</span> 2. Costos de Capital (Inversión en Infraestructura)</h3>
+                            <p class="mb-4 text-gray-300">
+                                Este componente del VAD reconoce el costo de tener inmovilizado el capital necesario para construir y mantener la red eléctrica. Es, en esencia, la <span class="font-semibold">retribución de la inversión</span>.
+                            </p>
+                            <h4 class="font-semibold text-lg text-yellow-400 mt-6 mb-3">Elementos y Cálculo</h4>
+                            <ul class="list-disc list-inside space-y-2 ml-4 text-sm text-gray-300">
+                                <li>Se calcula sobre una <span class="font-semibold">Base de Capital</span> (el valor económico de la red, subestaciones y equipos).</li>
+                                <li>Incluye una <span class="font-semibold">Tasa de Rentabilidad</span> que debe ser atractiva para el inversor.</li>
+                                <li><span class="font-semibold">Elementos de la Base:</span> Subestaciones transformadoras (SET), líneas de media tensión (LMT) y baja tensión (LBT), centros de transformación (CT), y equipos de protección y maniobra.</li>
+                                <li><span class="font-semibold">Vida Útil:</span> El cálculo de la depreciación de estos activos (e.g., transformador o cable) es fundamental para asegurar su reposición futura sin afectar la calidad del servicio.</li>
+                            </ul>
+                            <div class="p-3 mt-4 bg-yellow-900/40 border-l-4 border-yellow-500 rounded-lg">
+                                <p class="text-xs text-yellow-300"><span class="font-semibold">Ejemplo Práctico de Implicancia:</span> Cuando una ciudad crece rápidamente y la distribuidora construye una nueva subestación y LMT, el costo de esa inversión se incorpora a la Base de Capital, justificando un incremento en la porción de Costo de Capital del VAD.</p>
+                            </div>
+                        </article>
+                        <article id="costos-oym" class="mb-10 p-6 bg-gray-800 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-4 sub-title flex items-center"><span class="text-3xl mr-3 text-blue-500">⚙️</span> 3. Costos de Operación y Mantenimiento de Redes (O&M)</h3>
+                            <p class="mb-4 text-gray-300">
+                                Son los costos derivados de las tareas necesarias para que la red funcione correctamente, las 24 horas del día, 7 días a la semana. 
+                            </p>
+                            <div class="mt-4 overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-700">
+                                    <thead class="bg-gray-700">
+                                        <tr>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-300 uppercase">Tipo de Tarea</th>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-300 uppercase">Foco y Ejemplos de O&M</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-gray-800 divide-y divide-gray-700">
+                                        <tr>
+                                            <td class="px-3 py-2 text-sm font-semibold text-blue-400">Operación</td>
+                                            <td class="px-3 py-2 text-sm">Tareas diarias para asegurar el suministro. Ejemplos: Maniobras de la red (apertura y cierre de seccionadores o interruptores), reconfiguración ante fallas, despacho de cuadrillas de emergencia.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 text-sm font-semibold text-green-400">Mantenimiento Preventivo</td>
+                                            <td class="px-3 py-2 text-sm">Tareas programadas para evitar fallas. Ejemplos: Poda de árboles cercanos a LMT (para evitar cortocircuitos), termografiado de empalmes y bornes en subestaciones (para detectar puntos calientes).</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 text-sm font-semibold text-red-400">Mantenimiento Correctivo</td>
+                                            <td class="px-3 py-2 text-sm">Tareas no programadas para reparar fallas. Ejemplos: Reemplazo de un transformador que falló por sobrecarga, reparación de postes caídos por tormentas, o arreglo de cables subterráneos dañados.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="p-3 mt-4 bg-blue-900/40 border-l-4 border-blue-500 rounded-lg">
+                                <p class="text-xs text-blue-300">**Ejemplo Práctico de Implicancia:** En una zona rural con grandes extensiones de líneas aéreas, los costos de O&M (mantenimiento de la traza y logística) serán significativamente mayores por unidad de potencia distribuida que en una zona urbana densa.</p>
+                            </div>
+                        </article>
+                        <article id="costos-comercializacion" class="mb-10 p-6 bg-gray-800 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-4 sub-title flex items-center"><span class="text-3xl mr-3 text-green-500">💳</span> 4. Costos de Comercialización</h3>
+                            <p class="mb-4 text-gray-300">
+                                Estos costos derivan de la <span class="font-semibold">relación directa con el usuario final</span>, abarcando todas las actividades desde la medición hasta la cobranza.
+                            </p>
+                            <h4 class="font-semibold text-lg text-green-400 mt-6 mb-3">Tareas Clave (Uso de Viñetas Estilizadas):</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <span class="text-xl text-green-400 mr-3 mt-1">✓</span>
+                                    <p class="text-sm text-gray-300"><strong class="text-green-300">Toma de Estado (Lectura):</strong> Relevamiento periódico del consumo (kWh) y la máxima potencia demandada (kW, kVA) por cada usuario.</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-xl text-green-400 mr-3 mt-1">✓</span>
+                                    <p class="text-sm text-gray-300"><strong class="text-green-300">Facturación y Emisión:</strong> Procesamiento de datos de lectura, aplicación de la estructura tarifaria correcta y envío de la boleta.</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-xl text-green-400 mr-3 mt-1">✓</span>
+                                    <p class="text-sm text-gray-300"><strong class="text-green-300">Gestión de Cobranza y Morosidad:</strong> Tareas administrativas y operativas para recaudar pagos, incluyendo avisos de deuda y, en última instancia, la ejecución de cortes y reconexiones.</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-xl text-green-400 mr-3 mt-1">✓</span>
+                                    <p class="text-sm text-gray-300"><strong class="text-green-300">Atención al Cliente:</strong> Soporte para reclamos técnicos (cortes, fallas) y comerciales (errores de facturación), presencial, telefónica o digital.</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="text-xl text-green-400 mr-3 mt-1">✓</span>
+                                    <p class="text-sm text-gray-300"><strong class="text-green-300">Control de Pérdidas No Técnicas:</strong> Inspecciones y auditorías de campo para detectar y sancionar el hurto de energía.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 mt-4 bg-green-900/40 border-l-4 border-green-500 rounded-lg">
+                                <p class="text-xs text-green-300">**Ejemplo Práctico de Implicancia:** La inversión en un sistema automatizado de atención (chatbots, IVR) o en la implementación de medidores inteligentes (lectura remota) permite a la distribuidora demostrar una reducción de los costos de comercialización en las revisiones tarifarias.</p>
+                            </div>
+                        </article>
+                        <article id="costos-administracion" class="mb-10 p-6 bg-gray-800 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-4 sub-title flex items-center"><span class="text-3xl mr-3 text-purple-500">🏢</span> 5. Costos de Administración (Gastos Generales)</h3>
+                            <p class="mb-4 text-gray-300">
+                                Son los <span class="font-semibold">costos de soporte</span> que permiten que toda la estructura de la empresa funcione. Son esenciales para la operación legal y corporativa, aunque no estén directamente relacionados con la red.
+                            </p>
+                            <h4 class="font-semibold text-lg text-purple-400 mt-6 mb-3">Tareas Clave de Soporte Corporativo:</h4>
+                            <ul class="list-disc list-inside space-y-2 ml-4 text-sm text-gray-300">
+                                <li><strong class="text-purple-300">Gerenciamiento General:</strong> Salarios del personal jerárquico y de dirección.</li>
+                                <li><strong class="text-purple-300">Soporte Corporativo:</strong> Áreas de Recursos Humanos, Contabilidad y Finanzas, Asesoría Legal y Auditoría.</li>
+                                <li><strong class="text-purple-300">Infraestructura General:</strong> Alquiler de oficinas corporativas, servicios básicos de las sedes administrativas y costos de sistemas informáticos (ERP, bases de datos).</li>
+                                <li><strong class="text-purple-300">Tributos No Trasladables:</strong> Impuestos, tasas y contribuciones que recaen sobre la actividad de la distribuidora y <span class="font-semibold">que no son cargados directamente al usuario</span>.</li>
+                            </ul>
+                        </article>
+                    </section>
+                    <section id="conclusion" class="mb-12 p-6 bg-indigo-900/50 rounded-xl shadow-2xl border-t-4 border-indigo-500">
+                        <div class="section-title border-l-4 border-white">
+                            <h2 class="text-2xl font-bold text-white flex items-center"><span class="text-3xl mr-3">☑️</span> III. Conclusión: La Composición de la Tarifa Final</h2>
+                        </div>
+                        <p class="mb-4 text-gray-100">
+                            La tarifa eléctrica que se factura a un usuario se compone de tres elementos principales.
+                        </p>
+                        <h4 class="text-xl font-semibold text-white mt-6 mb-4">Ecuación Fundamental de la Tarifa:</h4>
+                        <div class="bg-indigo-700/70 p-4 rounded-lg text-center overflow-x-auto">
+                            <p class="text-2xl font-mono text-yellow-300">
+                                $$\text{Tarifa Final} = (\text{Costo de Abastecimiento} + \text{VAD}) + \text{Impuestos Trasladables}$$
+                            </p>
+                        </div>
+                        <h4 class="text-xl font-semibold text-white mt-8 mb-4">Resumen de Componentes Tarifarios</h4>
+                        <div class="overflow-x-auto rounded-lg shadow-lg">
+                            <table class="min-w-full divide-y divide-gray-700">
+                                <thead class="bg-indigo-700">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Componente Tarifario</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Relación con los Costos</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Impacto en la Tarifa</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-gray-800 divide-y divide-gray-700">
+                                    <tr class="hover:bg-gray-700">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-300">Costo de la Energía (Costo de Abastecimiento)</td>
+                                        <td class="px-6 py-4 text-sm text-gray-300">Cubre la compra de la energía y el costo de las pérdidas (Técnicas y No Técnicas).</td>
+                                        <td class="px-6 py-4 text-sm text-gray-300">Es la porción más grande y variable de la factura.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-700">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-300">Costo de Distribución (VAD)</td>
+                                        <td class="px-6 py-4 text-sm text-gray-300">Cubre el Costo de Capital, O&M, Comercialización y Administración.</td>
+                                        <td class="px-6 py-4 text-sm text-gray-300">Refleja el costo de operar y mantener la red de manera segura y confiable.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-700">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-yellow-300">Impuestos, Tasas y Contribuciones</td>
+                                        <td class="px-6 py-4 text-sm text-gray-300">Son tributos de orden nacional, provincial o municipal trasladados directamente al usuario.</td>
+                                        <td class="px-6 py-4 text-sm text-gray-300">Varía drásticamente según la jurisdicción.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="p-4 mt-6 bg-gray-900 rounded-lg">
+                            <p class="text-base font-semibold text-white">Indicadores de Gestión Eficiente:</p>
+                            <ul class="list-disc list-inside space-y-1 ml-4 text-sm text-gray-400">
+                                <li>El <span class="font-semibold">control y la minimización de las Pérdidas No Técnicas</span>.</li>
+                                <li>La <span class="font-semibold">eficiencia en los Costos de O&M</span>.</li>
+                            </ul>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+
+        <!-- ====================================================== -->
+        <!-- PÁGINA 2 (Contenido de mfinal2.html)                    -->
+        <!-- ====================================================== -->
+        <div id="page2" class="page-content">
+            <!-- Se pega el CONTENIDO DEL BODY de mfinal2.html aquí -->
+            <div class="flex min-h-screen">
+                <!-- Sidebar de Navegación Fija -->
+                <div class="sidebar w-64 p-6 fixed h-full overflow-y-auto hidden lg:block rounded-r-lg shadow-2xl">
+                    <h2 class="text-xl font-bold mb-6 text-gray-100 border-b pb-3 border-gray-700">Índice del Apunte</h2>
+                    <nav>
+                        <ul id="sidebar-menu-2">
+                            <li><a href="#facturacion" class="block py-2 px-3 rounded-md transition duration-150 hover:bg-gray-700 text-sm font-medium">I. Estructura de la Factura</a></li>
+                            <li><a href="#costo-abastecimiento-2" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-xs">A. C. Abastecimiento</a></li>
+                            <li><a href="#vad-detallado-2" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-xs">B. VAD</a></li>
+                            <li class="mt-2"><span class="text-xs uppercase tracking-wider text-gray-400">II. Regulación: VAD y Fijación Tarifaria</span></li>
+                            <li><a href="#ri-y-base-capital" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-sm">1. Determinación del VAD (RI)</a></li>
+                            <li><a href="#cuadro-reg" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-sm">2. Comparativo de Regulación</a></li>
+                            <li><a href="#principios-regulacion" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-sm">3. Principios Tarifarios</a></li>
+                            <li class="mt-2"><span class="text-xs uppercase tracking-wider text-gray-400">III. Tecnología de Medición</span></li>
+                            <li><a href="#tipos-medidores" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-sm">1. Clasificación Extendida</a></li>
+                            <li><a href="#ami-calidad" class="block py-2 pl-6 rounded-md transition duration-150 hover:bg-gray-700 text-sm">2. AMI y Calidad</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Contenido Principal -->
+                <main class="flex-1 lg:ml-64 p-4 md:p-8">
+                    <header class="header text-white p-6 rounded-xl mb-8 shadow-xl">
+                        <h1 class="text-3xl md:text-4xl font-extrabold">Regulación, VAD y Tecnología de Medición</h1>
+                        <p class="text-lg mt-2 font-light">Análisis técnico de la estructura de costos de la tarifa y los sistemas de medición en el contexto argentino.</p>
+                    </header>
+                    <section id="facturacion" class="mb-12">
+                        <div class="section-title">
+                            <h2 class="text-2xl font-bold text-gray-100">I. Facturación: Componentes de la Tarifa Final</h2>
+                        </div>
+                        <p class="mb-4 text-gray-300">
+                            La fórmula tarifaria es una suma de costos que reflejan la cadena de valor completa (Generación, Transporte y Distribución), más los gravámenes fiscales.
+                        </p>
+                        <div class="mt-6 p-4 bg-gray-800 rounded-lg text-center overflow-x-auto mb-6">
+                            <p class="font-semibold text-lg text-blue-400">Fórmula Regulatoria (La Suma de los Costos):</p>
+                            <p class="text-base font-mono text-white mt-1">
+                                $$\text{Tarifa Final} = (\text{Costo de Abastecimiento} + \text{VAD}) + \text{Impuestos Trasladables}$$
+                            </p>
+                        </div>
+                        <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 mb-8">
+                            <div class="flex flex-col items-center p-3 w-full md:w-1/3 bg-red-800/20 rounded-lg border border-red-500 shadow-lg">
+                                <span class="text-lg font-bold text-red-300">Costo de Abastecimiento</span>
+                                <span class="text-xs text-gray-400 mt-1">(Energía + Potencia + Pérdidas)</span>
+                            </div>
+                            <svg class="w-8 h-8 text-white hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            <span class="text-2xl font-bold text-white block md:hidden">+</span>
+                            <div class="flex flex-col items-center p-3 w-full md:w-1/3 bg-green-800/20 rounded-lg border border-green-500 shadow-lg">
+                                <span class="text-lg font-bold text-green-300">VAD</span>
+                                <span class="text-xs text-gray-400 mt-1">(Capital + O&M + Comercialización)</span>
+                            </div>
+                            <svg class="w-8 h-8 text-white hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                            <span class="text-2xl font-bold text-white block md:hidden">+</span>
+                            <div class="flex flex-col items-center p-3 w-full md:w-1/3 bg-yellow-800/20 rounded-lg border border-yellow-500 shadow-lg">
+                                <span class="text-lg font-bold text-yellow-300">Impuestos Trasladables</span>
+                                <span class="text-xs text-gray-400 mt-1">(IVA, Tasas Provinciales/Municipales)</span>
+                            </div>
+                        </div>
+                        <div class="text-center text-sm italic text-gray-500 mb-6">
+                            Representación esquemática de los tres grandes componentes que definen el total de la tarifa.
+                        </div>
+                        <div class="space-y-6">
+                            <article id="costo-abastecimiento-2" class="cost-card p-6 rounded-xl shadow-md border-t-4 border-red-500">
+                                <h3 class="text-xl font-bold text-red-400 mb-2 flex items-center"><span class="text-2xl mr-2">💡</span> A. Costo de Abastecimiento (No Gerenciable)</h3>
+                                <p class="text-sm text-gray-300 mb-3">
+                                    Cubre la compra de <span class="font-bold">Energía y Potencia</span> en el Mercado Eléctrico Mayorista (MEM), así como el costo de las pérdidas asociadas (Técnicas y No Técnicas) hasta el punto de suministro al usuario.
+                                </p>
+                                <div class="p-3 bg-red-900/20 rounded-md">
+                                    <span class="font-semibold text-red-300 text-sm">Clave:</span>
+                                    <p class="text-xs text-gray-400">Es la porción más grande y variable de la factura, y su naturaleza es <span class="font-bold">No Gerenciable</span> por la distribuidora.</p>
+                                </div>
+                            </article>
+                            <article id="vad-detallado-2" class="cost-card p-6 rounded-xl shadow-md border-t-4 border-green-500">
+                                <h3 class="text-xl font-bold text-green-400 mb-2 flex items-center"><span class="text-2xl mr-2">⚙️</span> B. Valor Agregado de Distribución (VAD) (Gerenciable)</h3>
+                                <p class="text-sm text-gray-300 mb-3">
+                                    El VAD es la porción de la tarifa que remunera a la distribuidora por sus tareas propias. Refleja el costo de operar y mantener la red de manera segura y confiable. Este es un costo <span class="font-bold">Gerenciable</span>.
+                                </p>
+                                <h4 class="font-semibold text-blue-300 text-base mb-1">Componentes del VAD:</h4>
+                                <ul class="list-disc list-inside text-sm text-gray-400 ml-4">
+                                    <li><span class="font-semibold">Costo de Capital:</span> Amortizaciones y rentabilidad razonable sobre la Base de Capital.</li>
+                                    <li><span class="font-semibold">Costo de Operación y Mantenimiento (O&M):</span> Gastos de personal, reparaciones y conservación.</li>
+                                    <li><span class="font-semibold">Costo de Comercialización:</span> Facturación, lectura, atención al cliente.</li>
+                                    <li><span class="font-semibold">Costos de Administración:</span> Gastos generales.</li>
+                                </ul>
+                            </article>
+                            <article class="cost-card p-6 rounded-xl shadow-md border-t-4 border-yellow-500">
+                                <h3 class="text-xl font-bold text-yellow-400 mb-2 flex items-center"><span class="text-2xl mr-2">💰</span> C. Impuestos, Tasas y Contribuciones</h3>
+                                <p class="text-sm text-gray-300">
+                                    Son tributos de los tres niveles de gobierno que la distribuidora recauda y traslada <span class="font-bold">directamente</span> al usuario. 
+                                </p>
+                                <p class="text-xs italic text-gray-400 mt-2">La distribuidora actúa aquí solo como agente de retención.</p>
+                            </article>
+                        </div>
+                    </section>
+                    <section class="mb-12">
+                        <div class="section-title">
+                            <h2 class="text-2xl font-bold text-gray-100">II. Regulación: El Marco del VAD y Fijación Tarifaria</h2>
+                        </div>
+                        <article id="ri-y-base-capital" class="mb-10 p-6 bg-gray-800 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-6 sub-title flex items-center"><span class="text-3xl mr-3 text-red-500">📈</span> 1. ¿Qué es y Cómo se Determina el VAD?</h3>
+                            <p class="mb-4 text-gray-300">
+                                El VAD es el resultado de la aplicación del <span class="font-bold">Requerimiento de Ingreso (RI)</span>. El regulador calcula este RI para garantizar la sustentabilidad de la empresa.
+                            </p>
+                            <h4 class="font-semibold text-blue-300 text-base mb-1">Cálculo y Objetivo del RI:</h4>
+                            <div class="p-4 bg-blue-900/40 border-l-4 border-blue-500 rounded-lg">
+                                <p class="font-semibold text-blue-300 mb-2">RI = Cobertura de Costos Eficientes + Rentabilidad Razonable</p>
+                                <p class="text-sm text-gray-300">
+                                    El RI se determina para cubrir el <span class="font-bold">Costo de O&M eficiente</span> y el <span class="font-bold">Retorno Razonable</span> sobre la <span class="font-bold">Base de Capital</span>.
+                                </p>
+                            </div>
+                        </article>
+                        <article id="cuadro-reg" class="mb-10">
+                            <h3 class="text-xl font-semibold mb-6 sub-title flex items-center"><span class="text-3xl mr-3 text-blue-500">⚖️</span> 2. Cuadro Comparativo de Mecanismos de Fijación Tarifaria</h3>
+                            <p class="mb-6 text-gray-300">
+                                En Argentina, se utiliza una mezcla de ambos, pero con un fuerte componente de <span class="font-bold">Price Cap</span> en el período de Revisión Tarifaria Integral (RTI).
+                            </p>
+                            <div class="overflow-x-auto rounded-lg shadow-lg">
+                                <table class="min-w-full divide-y divide-gray-700">
+                                    <thead class="bg-gray-700">
+                                        <tr>
+                                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Criterio</th>
+                                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Price Cap (Techo de Precios)</th>
+                                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Rate of Return (Costo del Servicio)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-gray-800 divide-y divide-gray-700">
+                                        <tr class="hover:bg-gray-700">
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-blue-400">Objetivo</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Incentivar la <span class="font-bold">Eficiencia</span>.</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Garantizar una <span class="font-bold">Rentabilidad Fija</span>.</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-700">
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-blue-400">Riesgo (Empresa)</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300"><span class="font-bold">Alto</span>. Absorbe costos.</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300"><span class="font-bold">Bajo</span>. Traslada costos.</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-700">
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-blue-400">Incentivo Inversión</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Fuerte (mejora eficiencia).</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Bajo (Riesgo de sobreinversión).</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </article>
+                        <article id="principios-regulacion" class="mb-10">
+                            <h3 class="text-xl font-semibold mb-6 sub-title flex items-center"><span class="text-3xl mr-3 text-yellow-500">📜</span> 3. Principios de la Fijación Tarifaria (Ley 24.065)</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="cost-card p-5 rounded-xl shadow-md border-top-4 border-yellow-500">
+                                    <h4 class="text-lg font-bold text-yellow-300 mb-2">Suficiencia y Eficiencia</h4>
+                                    <p class="text-sm text-gray-300">
+                                        Las tarifas deben ser suficientes, pero solo se reconocerán costos de una empresa que opera con <span class="font-bold">prudencia y costo mínimo eficiente</span>.
+                                    </p>
+                                </div>
+                                <div class="cost-card p-5 rounded-xl shadow-md border-top-4 border-yellow-500">
+                                    <h4 class="text-lg font-bold text-yellow-300 mb-2">No Subsidios Cruzados</h4>
+                                    <p class="text-sm text-gray-300">
+                                        Cada categoría de consumidor (T1, T2, T3) debe pagar los <span class="font-bold">costos que ella misma ocasiona al sistema</span>.
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                    <section class="mb-12">
+                        <div class="section-title">
+                            <h2 class="text-2xl font-bold text-gray-100">III. Tecnología de Medición en Argentina</h2>
+                        </div>
+                        <article id="tipos-medidores" class="mb-10">
+                            <h3 class="text-xl font-semibold mb-6 sub-title flex items-center"><span class="text-3xl mr-3 text-green-500">📟</span> 1. Clasificación Extendida de Medidores</h3>
+                            <p class="mb-6 text-gray-300">
+                                Se han agregado medidores específicos que registran variables críticas.
+                            </p>
+                            <div class="overflow-x-auto rounded-lg shadow-lg">
+                                <table class="min-w-full divide-y divide-gray-700">
+                                    <thead class="bg-gray-700">
+                                        <tr>
+                                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Tipo de Medidor</th>
+                                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Variables Clave</th>
+                                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Aplicación Crítica</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-gray-800 divide-y divide-gray-700">
+                                        <tr class="hover:bg-gray-700">
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-yellow-400">Electromecánico</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Solo Energía Activa (kWh).</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Clientes T1 (Bajo consumo).</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-700">
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-blue-400">Electrónico (Digital)</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">kWh, kVARh, Máxima Demanda.</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Clientes T2 y T3.</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-700">
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-orange-400">Medidor de Reactiva (kVARh)</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Registra desfase (Penalidad).</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Industrias (T3) con Factor de Potencia bajo.</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-700">
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-green-400">Inteligente (AMI)</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Todo + Monitoreo de Calidad.</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Smart Grids, Generación Distribuida.</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-700">
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-red-400">Prepago</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Energía restante y consumo.</td>
+                                            <td class="px-4 py-4 text-sm text-gray-300">Gestión de morosidad.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </article>
+                        <article id="ami-calidad" class="mb-10 p-6 bg-gray-800 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-4 sub-title flex items-center"><span class="text-3xl mr-3 text-indigo-500">📊</span> 2. El Medidor AMI como Herramienta de Gestión de Calidad</h3>
+                            <p class="mb-4 text-gray-300">
+                                La capacidad del AMI para registrar variables con alta resolución lo convierte en el principal sensor de la red, crucial para el cumplimiento regulatorio de la calidad.
+                            </p>
+                            <div class="space-y-3">
+                                <div class="ami-feature p-3 rounded-lg">
+                                    <p class="font-semibold text-white">Función Regulatoria - Detección de Perturbaciones:</p>
+                                    <p class="text-sm text-gray-300">Permite a la distribuidora demostrar cumplimiento y evitar <span class="font-bold">sanciones regulatorias</span>. Las perturbaciones críticas registradas incluyen:</p>
+                                    <ul class="list-disc list-inside text-sm text-gray-300 ml-4 mt-2 space-y-1">
+                                        <li><span class="font-semibold">Huecos (Dips) de Tensión:</span> Detienen procesos industriales.</li>
+                                        <li><span class="font-semibold">Distorsión Armónica Total (THD):</span> Causan sobrecalentamiento.</li>
+                                        <li><span class="font-semibold">Desbalance de Tensiones:</span> Genera sobreesfuerzos en motores.</li>
+                                        <li><span class="font-semibold">Variación de Frecuencia / Flicker:</span> Afecta equipos sensibles y percepción lumínica.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                </main>
+            </div>
+        </div>
+
+        <!-- ====================================================== -->
+        <!-- PÁGINA 3 (Contenido de mfinal3.html)                    -->
+        <!-- ====================================================== -->
+        <div id="page3" class="page-content">
+            <!-- Se pega el CONTENIDO DEL BODY de mfinal3.html aquí -->
+            <!-- Este div simula el body de la página 3 -->
+            <div class="p-4 md:p-10">
+                <div class="max-w-5xl mx-auto container-card p-6 md:p-10">
+                    <header class="mb-10 text-center">
+                        <h1 class="text-3xl md:text-4xl font-extrabold text-[#1f2937] mb-2">Estructura, Regulación y Medición de la Tarifa Eléctrica</h1>
+                        <p class="text-lg text-gray-500">Un análisis exhaustivo del proceso tarifario y tecnológico en el sector de la Distribución.</p>
+                    </header>
+                    <section class="mb-12">
+                        <div class="section-title mb-8">
+                            <h2 class="text-2xl font-bold">I. Clasificación Fundamental de los Costos y la Tarifa</h2>
+                        </div>
+                        <p class="mb-6 text-gray-600">
+                            La tarifa final es la suma de los costos de la cadena de valor (Generación, Transporte y Distribución), y se desglosa en tres componentes principales.
+                        </p>
+                        <div class="mt-6 p-4 bg-gray-100 rounded-lg text-center overflow-x-auto mb-8 border border-gray-200">
+                            <p class="font-semibold text-xl text-blue-600">Fórmula de la Tarifa Final</p>
+                            <p class="text-lg font-mono text-gray-800 mt-2">
+                                $$\text{Tarifa Final} = (\text{Costo de Abastecimiento} + \text{VAD}) + \text{Impuestos Trasladables}$$
+                            </p>
+                        </div>
+                        <h3 class="subsection-title text-xl mb-4">A. Gerenciabilidad de los Costos</h3>
+                        <div class="overflow-x-auto rounded-lg shadow-lg border border-gray-200 mb-8">
+                            <table class="min-w-full divide-y divide-gray-300">
+                                <thead class="table-header">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Categoría de Costo</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Naturaleza</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Gerenciabilidad</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Descripción General</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-red-600">Costo de Abastecimiento</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">No Gerenciable</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Baja</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Energía, potencia adquirida en el MEM y pérdidas (Técnicas y No Técnicas) hasta el usuario.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-green-600">Valor Agregado de Distribución (VAD)</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Gerenciable</td>
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Alta</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Suma de los costos propios de la operación, mantenimiento, administración, comercialización y la rentabilidad razonable.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3 class="subsection-title text-xl mb-4">B. Desglose Detallado del Valor Agregado de Distribución (VAD)</h3>
+                        <p class="mb-4 text-gray-600">
+                            El VAD es el componente gerenciable de la distribuidora. Su estructura está diseñada para reconocer los costos operativos eficientes y garantizar la rentabilidad para la inversión.
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="component-card p-5 rounded-xl border-green-500">
+                                <h4 class="text-lg font-bold text-green-700 mb-2">Costos Operativos (O&M, Administración, Comercialización)</h4>
+                                <dl class="text-sm text-gray-700 ml-2 space-y-3">
+                                    <div>
+                                        <dt class="font-semibold text-green-800">O&M (Operación y Mantenimiento):</dt>
+                                        <dd class="pl-2">Gastos asociados directamente a mantener la infraestructura de la red en óptimas condiciones: personal técnico, reparación de líneas y subestaciones, y conservación de activos.</dd>
+                                    </div>
+                                    <div>
+                                        <dt class="font-semibold text-green-800">Comercialización:</dt>
+                                        <dd class="pl-2">Cubre todos los procesos relacionados con la gestión del cliente: lectura de medidores, procesamiento de datos, emisión y distribución de facturas, gestión de cobranzas y atención al usuario.</dd>
+                                    </div>
+                                    <div>
+                                        <dt class="font-semibold text-green-800">Administración:</dt>
+                                        <dd class="pl-2">Gastos generales de la empresa no ligados directamente a la operación de la red o la comercialización (ej. estructura gerencial, informática, legales).</dd>
+                                    </div>
+                                </dl>
+                            </div>
+                            <div class="component-card p-5 rounded-xl border-blue-500">
+                                <h4 class="text-lg font-bold text-blue-700 mb-2">Componente de Capital y Rentabilidad</h4>
+                                <dl class="text-sm text-gray-700 ml-2 space-y-3">
+                                    <div>
+                                        <dt class="font-semibold text-blue-800">Costo de Capital (Amortización):</dt>
+                                        <dd class="pl-2">Reconocimiento del desgaste (depreciación) y la recuperación de las inversiones realizadas en la red (líneas, transformadores, medidores, etc.).</dd>
+                                    </div>
+                                    <div>
+                                        <dt class="font-semibold text-blue-800">Rentabilidad Razonable:</dt>
+                                        <dd class="pl-2">Tasa de retorno sobre la **Base de Capital** (activos regulados) que el regulador permite obtener. Es fundamental para garantizar la sustentabilidad financiera y la capacidad de la empresa para realizar futuras inversiones.</dd>
+                                    </div>
+                                </dl>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mb-12">
+                        <div class="section-title mb-8">
+                            <h2 class="text-2xl font-bold">II. Regulación: El Requerimiento de Ingresos (RI) y Principios</h2>
+                        </div>
+                        <h3 class="subsection-title text-xl mb-4">A. Determinación del VAD a través del RI</h3>
+                        <div class="p-5 tech-card rounded-xl mb-6">
+                            <p class="text-gray-700 mb-3">
+                                El ente regulador determina el VAD calculando el <span class="font-bold text-blue-700">Requerimiento de Ingreso (RI)</span>, que es el ingreso máximo que la distribuidora debe obtener para ser sostenible.
+                            </p>
+                            <div class="bg-blue-50 p-3 rounded-md border-l-4 border-blue-400">
+                                <p class="text-sm font-semibold text-blue-800">RI = Cobertura de Costos Eficientes + Rentabilidad Razonable</p>
+                                <p class="text-xs text-gray-600 mt-1">
+                                    Solo se reconocen los costos de O&M bajo condiciones de eficiencia, incentivando a la empresa a operar al costo mínimo.
+                                </p>
+                            </div>
+                        </div>
+                        <h3 class="subsection-title text-xl mb-4">B. Principios de la Fijación Tarifaria (Marco Regulatorio)</h3>
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div class="component-card p-5 rounded-xl border-yellow-500">
+                                <h4 class="text-lg font-bold text-yellow-700 mb-2">Suficiencia y Eficiencia</h4>
+                                <p class="text-sm text-gray-700">
+                                    Las tarifas deben ser suficientes para cubrir costos y una rentabilidad, pero solo si el servicio se presta bajo condiciones de <span class="font-bold">prudencia y eficiencia</span> (costo mínimo).
+                                </p>
+                            </div>
+                            <div class="component-card p-5 rounded-xl border-yellow-500">
+                                <h4 class="text-lg font-bold text-yellow-700 mb-2">No Subsidios Cruzados</h4>
+                                <p class="text-sm text-gray-700">
+                                    Cada categoría de consumidor (ej. T1 Residencial, T3 Industrial) debe pagar los costos que <span class="font-bold">ella misma ocasiona al sistema</span>.
+                                </p>
+                            </div>
+                        </div>
+                        <h3 class="subsection-title text-xl mb-4">C. Mecanismos de Fijación Tarifaria</h3>
+                        <div class="overflow-x-auto rounded-lg shadow-lg border border-gray-200">
+                            <table class="min-w-full divide-y divide-gray-300">
+                                <thead class="table-header">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Mecanismo</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Incentivo Principal</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Riesgo Empresarial</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-blue-600">Price Cap (Techo de Precios)</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Fuerte a la **Eficiencia** y Reducción de Costos.</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Alto (la empresa absorbe el aumento de costos no previstos).</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-green-600">Rate of Return (Costo del Servicio)</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Garantizar una **Rentabilidad Fija** sobre el capital invertido.</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Bajo (los costos son reconocidos y trasladados a la tarifa).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="text-xs italic text-gray-500 mt-2">La RTI (Revisión Tarifaria Integral) en Argentina suele utilizar una metodología mixta con un fuerte componente de Price Cap.</p>
+                    </section>
+                    <section class="mb-12">
+                        <div class="section-title mb-8">
+                            <h2 class="text-2xl font-bold">III. Medición y Calidad del Servicio (AMI)</h2>
+                        </div>
+                        <p class="mb-6 text-gray-600">
+                            La tecnología de medición es fundamental para la facturación, el control de pérdidas y el monitoreo de la calidad de la energía y el cumplimiento regulatorio.
+                        </p>
+                        <h3 class="subsection-title text-xl mb-4">A. Clasificación Detallada de Medidores</h3>
+                        <div class="overflow-x-auto rounded-lg shadow-lg border border-gray-200 mb-8">
+                            <table class="min-w-full divide-y divide-gray-300">
+                                <thead class="bg-gray-700 text-white">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Tipo de Medidor</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Aplicación Típica</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Funcionalidad Clave</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Electromecánico</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Bajo consumo (Tarifas T1).</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Mide solo Energía Activa (kWh). Requiere lectura física en sitio.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-800">Electrónico</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Consumidores de mayor demanda (T2 y T3).</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Mide kWh, kVARh, Demanda Máxima e Intervalos de Carga.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-green-700">Inteligente (AMI)</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Pilotos de Smart Grids, Usuarios críticos.</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Todas las funcionalidades del Electrónico + Comunicación Bidireccional + Monitoreo de Calidad (Dips, THD).</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-blue-700">Bidireccional</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Generación Distribuida (ej. Paneles solares).</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Mide la energía consumida de la red y la energía inyectada a la red por el usuario (medición neta).</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-orange-700">Prepago</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Gestión de la demanda o alto índice de morosidad.</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Permite la entrega de una cantidad predeterminada de energía, midiendo el consumo de forma continua.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3 class="subsection-title text-xl mb-4">B. El Medidor AMI como Sensor de Calidad</h3>
+                        <p class="mb-4 text-gray-700">
+                            Los medidores inteligentes son esenciales para la gestión de la Calidad de la Energía al registrar variables con alta resolución, permitiendo a la distribuidora identificar y cuantificar perturbaciones, evitando así <span class="font-bold text-red-600">sanciones regulatorias</span>.
+                        </p>
+                        <div class="overflow-x-auto rounded-lg shadow-lg border border-gray-200">
+                            <table class="min-w-full divide-y divide-gray-300">
+                                <thead class="bg-gray-700 text-white">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Perturbación Detectable</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider">Efecto en el Sistema</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                     <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-purple-600">Variación de Frecuencia</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Desconexión de generadores, disparos de protecciones en equipos sensibles.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-blue-600">Flicker (Variación de Amplitud)</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Reducción del rendimiento y vida útil de equipos; oscilaciones rápidas en la intensidad luminosa.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-red-600">Huecos (Dips) de Tensión</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Detención de procesos industriales, daño a equipos electrónicos.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-orange-600">Distorsión Armónica (THD)</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Sobrecalentamiento en transformadores, corrientes elevadas por el neutro.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-yellow-600">Desbalance de Tensiones</td>
+                                        <td class="px-4 py-4 text-sm text-gray-600">Calentamiento desparejo de cables, sobreesfuerzos en motores trifásicos.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <footer class="mt-10 pt-6 border-t border-gray-300 text-center">
+                        <p class="text-base text-gray-700 font-semibold">
+                            La gestión eficiente de la distribuidora se centra en minimizar los costos gerenciables (VAD) y controlar las pérdidas, mientras utiliza la tecnología AMI para asegurar la calidad de servicio requerida por el regulador.
+                        </p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        
+    </div> <!-- Fin de #content-wrapper -->
+
+    <!-- SCRIPT DE NAVEGACIÓN Y SCRIPTS INTERNOS -->
+    <script>
+        // Lógica de Pestañas
+        const tabs = document.querySelectorAll('.tab-button');
+        const pages = document.querySelectorAll('.page-content');
+        
+        // Función para cambiar de pestaña
+        function switchTab(pageId) {
+            // Ocultar todas las páginas
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            // Quitar clase activa a todas las pestañas
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Mostrar la página seleccionada
+            const selectedPage = document.querySelector(`#page${pageId}`);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+            // Marcar la pestaña seleccionada como activa
+            const selectedTab = document.querySelector(`#btn-page${pageId}`);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+
+            // --- Re-inicializar scripts específicos de cada página ---
+            // (Es necesario porque los elementos se cargan pero sus scripts
+            // originales solo se ejecutan una vez)
+
+            if (pageId === 1) {
+                // Re-ejecutar scripts de mfinal1.html
+                initializePage1Scripts();
+            } else if (pageId === 2) {
+                // Re-ejecutar scripts de mfinal2.html
+                initializePage2Scripts();
+            }
+            
+            // Volver al inicio de la página
+            window.scrollTo(0, 0);
+            
+            // Recargar MathJax para la página activa
+            if (window.MathJax && window.MathJax.typeset) {
+                window.MathJax.typesetPromise([`#page${pageId}`]).catch(function (err) {
+                    console.error('Error al renderizar MathJax:', err);
+                });
+            }
+        }
+
+        // Asignar eventos a los botones
+        document.querySelector('#btn-page1').addEventListener('click', () => switchTab(1));
+        document.querySelector('#btn-page2').addEventListener('click', () => switchTab(2));
+        document.querySelector('#btn-page3').addEventListener('click', () => switchTab(3));
+
+        // --- LÓGICA EXTRAÍDA DE LAS PÁGINAS HIJAS ---
+
+        // Lógica de mfinal1.html
+        function initializePage1Scripts() {
+            // 1. Funcionalidad de Acordeón
+            const accordionItems = document.querySelectorAll('#page1 .accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = item.querySelector('.accordion-icon');
+                
+                // Evitar doble listener
+                if(header.dataset.listenerAttached) return;
+                header.dataset.listenerAttached = true;
+
+                header.addEventListener('click', () => {
+                    const isHidden = content.classList.contains('hidden');
+                    
+                    // Cierra otros en el mismo grupo (identificado por el ID del contenedor)
+                    const parentAccordion = header.closest('[id^="vad-accordion"]');
+                    if(parentAccordion){
+                        parentAccordion.querySelectorAll('.accordion-item').forEach(otherItem => {
+                            const otherContent = otherItem.querySelector('.accordion-content');
+                            const otherIcon = otherItem.querySelector('.accordion-icon');
+                            if (otherContent !== content && !otherContent.classList.contains('hidden')) {
+                                otherContent.classList.add('hidden');
+                                if(otherIcon) {
+                                    otherIcon.classList.remove('rotate-45');
+                                    otherIcon.textContent = '+';
+                                }
+                            }
+                        });
+                    }
+
+                    if (isHidden) {
+                        content.classList.remove('hidden');
+                        if(icon) {
+                            icon.classList.add('rotate-45');
+                            icon.textContent = '–';
+                        }
+                    } else {
+                        content.classList.add('hidden');
+                        if(icon) {
+                            icon.classList.remove('rotate-45');
+                            icon.textContent = '+';
+                        }
+                    }
+                });
+            });
+
+            // 2. Scroll Suave para Navegación Lateral
+            document.querySelectorAll('#page1 #sidebar-menu-1 a').forEach(anchor => {
+                // Evitar doble listener
+                if(anchor.dataset.listenerAttached) return;
+                anchor.dataset.listenerAttached = true;
+
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(`#page1 ${targetId}`);
+
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 30; 
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                        document.querySelectorAll('#page1 #sidebar-menu-1 a').forEach(a => a.classList.remove('bg-gray-600', 'font-bold'));
+                        this.classList.add('bg-gray-600', 'font-bold');
+                    }
+                });
+            });
+
+            // 3. Observador para actualizar el sidebar (simplificado)
+            // (La lógica completa del observador es compleja de re-instanciar, 
+            // nos quedamos con el clic por ahora para esta demo unificada)
+        }
+
+        // Lógica de mfinal2.html
+        function initializePage2Scripts() {
+            // Scroll Suave para Navegación Lateral
+            document.querySelectorAll('#page2 #sidebar-menu-2 a').forEach(anchor => {
+                // Evitar doble listener
+                if(anchor.dataset.listenerAttached) return;
+                anchor.dataset.listenerAttached = true;
+
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // El ID debe ser único, por eso renombramos algunos en el HTML de la página 2
+                    const targetId = this.getAttribute('href'); 
+                    const targetElement = document.querySelector(`#page2 ${targetId}`);
+
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 30; 
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                        document.querySelectorAll('#page2 #sidebar-menu-2 a').forEach(a => a.classList.remove('bg-gray-600', 'font-bold'));
+                        this.classList.add('bg-gray-600', 'font-bold');
+                    }
+                });
+            });
+        }
+
+        // Inicializar la primera pestaña al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            switchTab(1);
+        });
+
+    </script>
+</body>
+</html>
