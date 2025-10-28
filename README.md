@@ -22,7 +22,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 12. [Cables y Postes](https://profedel240.github.io/clases/cablesypostes.html)
 13. [Modulo 3 B](https://profedel240.github.io/clases/orfsemod3b.html)
 14. [Modulo 4](https://profedel240.github.io/clases/mod4orfse.html)
-15. [Título de la Clase 15 aquí](https://link-de-tu-infografia-15-aqui.github.io/apunte_15.html)
+15. [Reservas del SADI](https://profedel240.github.io/clases/reservasSADI.html)
 16. [Título de la Clase 16 aquí](https://link-de-tu-infografia-16-aqui.github.io/apunte_16.html)
 17. [Título de la Clase 17 aquí](https://link-de-tu-infografia-17-aqui.github.io/apunte_17.html)
 18. [Título de la Clase 18 aquí](https://link-de-tu-infografia-18-aqui.github.io/apunte_18.html)
