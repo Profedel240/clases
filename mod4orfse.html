@@ -6,19 +6,23 @@
     <title>Infografía Unificada: Tarifa Eléctrica</title>
     <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Carga de MathJax (necesaria para las páginas 1 y 2) -->
+    
+    <!-- Carga de MathJax (ACTUALIZADO) 
+         Se usa la configuración de tarifas.html que es más completa 
+         y soporta displayMath ($$ ... $$) -->
     <script>
         MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            },
-            svg: {
-                fontCache: 'global'
-            }
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          },
+          svg: {
+            fontCache: 'global'
+          }
         };
     </script>
-    <script type"text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    <script id="MathJax-script" async 
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
     
     <!-- ESTILOS GLOBALES Y DE NAVEGACIÓN -->
@@ -185,12 +189,42 @@
             border: 1px solid #d1d5db;
             background-color: #fafafa;
         }
+        
+        /* --- (NUEVO) ESTILOS AISLADOS PARA PÁGINA 4 (tarifas.html) --- */
+        /* Se prefijan todos los selectores con #page4 */
+        #page4 {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* Fondo suave */
+            color: #1f2937; /* Texto oscuro, en lugar del gris 800 */
+        }
+        #page4 .technical-text {
+            color: #1e3a8a; /* Azul oscuro para destacar términos */
+            font-weight: 600;
+        }
+        /* Estilo para los acordeones abiertos */
+        #page4 .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            padding: 0 1.5rem; /* Padding horizontal inicial */
+        }
+        #page4 .accordion-header.active + .accordion-content {
+            max-height: 1000px; /* Suficiente altura para el contenido */
+            padding: 1rem 1.5rem;
+        }
+        /* Estilo para las ecuaciones de MathJax */
+        #page4 .math-display {
+            display: block;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <!-- MENÚ DE NAVEGACIÓN POR PESTAÑAS -->
-    <nav class="tab-nav flex items-center justify-center sticky top-0 z-50">
+    <!-- MENÚ DE NAVEGACIÓN POR PESTAÑAS (ACTUALIZADO) -->
+    <nav class="tab-nav flex flex-wrap items-center justify-center sticky top-0 z-50">
         <button id="btn-page1" class="tab-button active">
             1. Estructura de Costos (VAD y Pérdidas)
         </button>
@@ -199,6 +233,10 @@
         </button>
         <button id="btn-page3" class="tab-button">
             3. Análisis Detallado (Consolidado)
+        </button>
+        <!-- BOTÓN NUEVO -->
+        <button id="btn-page4" class="tab-button">
+            4. Fundamentos Tarifarios
         </button>
     </nav>
 
@@ -1046,9 +1084,414 @@
             </div>
         </div>
         
+        <!-- ====================================================== -->
+        <!-- (NUEVO) PÁGINA 4 (Contenido de tarifas.html)            -->
+        <!-- ====================================================== -->
+        <div id="page4" class="page-content">
+            <!-- Se pega el CONTENIDO DEL BODY de tarifas.html aquí -->
+            <!-- (Se omite el <script> original de tarifas.html ya que se integra abajo) -->
+            <div class="container mx-auto p-4 lg:p-8 text-gray-800">
+                <!-- Encabezado y Título Principal -->
+                <header class="text-center mb-10 bg-white shadow-lg rounded-xl p-6">
+                    <h1 class="text-4xl lg:text-5xl font-extrabold text-blue-700 mb-2">
+                        <span class="inline-block align-middle mr-2">⚡</span> Fundamentos de la Regulación Tarifaria Eléctrica
+                    </h1>
+                    <p class="text-xl text-gray-600 font-medium">
+                        Apuntes Universitarios: Un análisis técnico y económico esencial
+                    </p>
+                </header>
+
+                <!-- Contenido Principal Organizado por Secciones (Tarjetas Robustas) -->
+                <main class="space-y-12">
+
+                    <!-- SECCIÓN 1: INTRODUCCIÓN Y OBJETIVOS -->
+                    <section id="introduccion-p4" class="bg-white p-6 lg:p-8 rounded-xl shadow-2xl border-t-4 border-blue-600">
+                        <h2 class="text-3xl font-bold text-blue-800 mb-6 flex items-center">
+                            <span class="mr-3 text-4xl">I.</span> Regulación Tarifaria: Definición y Propósito
+                        </h2>
+                        <p class="text-lg mb-6 leading-relaxed">
+                            El sector eléctrico, caracterizado como un <span class="technical-text">servicio público esencial</span> y un <span class="technical-text">monopolio natural</span> en la distribución, requiere la intervención estatal. La <span class="technical-text">Regulación Tarifaria</span> es el conjunto de normas y mecanismos técnicos y económicos que determinan el precio final que paga el usuario.
+                        </p>
+
+                        <!-- Acordeón para Objetivos Centrales -->
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-4 border-b pb-2">
+                                Objetivos Centrales de la Regulación <span class="inline-block ml-2 text-2xl">⚖️</span>
+                            </h3>
+                            
+                            <div class="bg-blue-50/70 rounded-lg overflow-hidden border border-blue-200">
+                                <!-- Acordeón Item: Protección al Usuario -->
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-blue-100 transition duration-300">
+                                    <span class="text-xl font-medium text-blue-700">1. Protección al Usuario (Equidad)</span>
+                                    <span class="text-2xl text-blue-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <p class="mb-2">Asegurar que el usuario final pague un <span class="technical-text">precio justo</span> ($P_{\text{justo}}$) que refleje los <span class="technical-text">costos eficientes de prestación</span> del servicio, previniendo abusos por la posición monopólica de la distribuidora.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50/70 rounded-lg overflow-hidden border border-blue-200">
+                                <!-- Acordeón Item: Viabilidad Económica -->
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-blue-100 transition duration-300">
+                                    <span class="text-xl font-medium text-blue-700">2. Viabilidad Económica (Sostenibilidad)</span>
+                                    <span class="text-2xl text-blue-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <p class="mb-2">Garantizar que las distribuidoras reciban <span class="technical-text">ingresos suficientes</span> para cubrir sus <span class="technical-text">Costos Operativos Eficientes</span>, las inversiones necesarias y una <span class="technical-text">tasa de retorno razonable</span> sobre el capital invertido.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50/70 rounded-lg overflow-hidden border border-blue-200">
+                                <!-- Acordeón Item: Señalización Económica -->
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-blue-100 transition duration-300">
+                                    <span class="text-xl font-medium text-blue-700">3. Señalización Económica (Eficiencia)</span>
+                                    <span class="text-2xl text-blue-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <p class="mb-2">Las tarifas deben enviar <span class="technical-text">"señales de precio"</span> al usuario (ej. costo más alto en horas pico) para incentivar la modificación de hábitos y la reducción del consumo en momentos críticos, mejorando el <span class="technical-text">Factor de Carga ($\text{FC}$)</span> del sistema.</p>
+                                    <div class="math-display">
+                                        $$ \text{Tarifa Final} = \text{Costo de Abastecimiento} + \text{Costo de Distribución} + \text{Impuestos} $$
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN 2: CLASIFICACIÓN TÉCNICA DE LOS USUARIOS -->
+                    <section id="clasificacion-p4" class="bg-white p-6 lg:p-8 rounded-xl shadow-2xl border-t-4 border-green-600">
+                        <h2 class="text-3xl font-bold text-green-800 mb-6 flex items-center">
+                            <span class="mr-3 text-4xl">II.</span> Clasificación Técnica y Estructura por Demanda
+                        </h2>
+                        <p class="text-lg mb-6 leading-relaxed border-l-4 border-green-300 pl-4 italic bg-green-50">
+                            La clasificación se basa en la <span class="technical-text">Demanda Máxima ($\text{DM}$)</span>, ya que esta determina la <span class="technical-text">reserva de capacidad</span> de la red y el nivel de detalle requerido para la medición ($\text{kW}$ vs. $\text{kWh}$).
+                        </p>
+
+                        <!-- TABLA: Factores Clave de Costo (con énfasis en viñetas) -->
+                        <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-4 border-b pb-2 flex items-center">
+                            Factores Clave que Condicionan el Costo <span class="inline-block ml-2 text-2xl">⚙️</span>
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            
+                            <!-- Tarjeta: Demanda de Potencia Máxima -->
+                            <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-orange-500">
+                                <p class="technical-text text-xl mb-2">Demanda de Potencia Máxima ($\text{DM}$)</p>
+                                <ul class="list-disc ml-5 text-gray-700 space-y-1">
+                                    <li><strong>Definición:</strong> Potencia máxima absorbida (usualmente promediada en $15 \text{ min}$).</li>
+                                    <li><strong>Impacto:</strong> Determina la <span class="technical-text">reserva de capacidad</span> de la red (transformadores, líneas).</li>
+                                    <li><strong>Cálculo T1:</strong> Se estima un valor potencia sustitutivo basado en coeficientes de asignación, de carga y simultaneidad.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Tarjeta: Factor de Carga y Simultaneidad -->
+                            <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-orange-500">
+                                <p class="technical-text text-xl mb-2">Factor de Carga ($\text{FC}$) y Simultaneidad ($f_s$)</p>
+                                <ul class="list-disc ml-5 text-gray-700 space-y-1">
+                                    <li><strong>FC:</strong> Refleja la eficiencia en el uso de la potencia contratada (Potencia media / Potencia máxima).</li>
+                                    <li><strong>$f_s$:</strong> Mide la probabilidad de uso simultáneo. En términos matemáticos:
+                                        <div class="math-display">
+                                            $$ f_{s} = \frac{\text{DM}_{\text{Total}}}{ \sum \text{DM}_{i} } $$
+                                        </div>
+                                    </li>
+                                    <li><strong>Función:</strong> Crucial para dimensionar infraestructura y asignar costos de potencia.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- TABLA: Las Tres Grandes Categorías Tarifarias (T1, T2, T3) -->
+                        <h3 class="text-2xl font-semibold text-gray-700 mt-8 mb-4 border-b pb-2">
+                            Estructura de Usuarios por Demanda (T1, T2, T3) <span class="inline-block ml-2 text-2xl">📊</span>
+                        </h3>
+                        <div class="overflow-x-auto shadow-lg rounded-lg">
+                            <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/12">Cat.</th>
+                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-3/12">Límite $\text{DM}$ Máxima</th>
+                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-4/12">Estructura de Cargos y Medición</th>
+                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-4/12">Comentarios Clave (Detalle de Costos)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-3 py-4 whitespace-nowrap technical-text text-lg">T1</td>
+                                        <td class="px-3 py-4 whitespace-nowrap technical-text">Hasta $10 \text{ kW}$</td>
+                                        <td class="px-3 py-4">
+                                            <strong>Medición:</strong> Solo Energía ($\text{kWh}$).
+                                            <br>Cargo Fijo + Cargo Variable.
+                                        </td>
+                                        <td class="px-3 py-4">
+                                            <strong>Cargos Fijos:</strong> Cubren Comercialización y parcialmente Costos de Potencia.
+                                            <br><strong>Cargos Variables:</strong> Cubren resto de Costo de Potencia, Energía y Pérdidas.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-4 whitespace-nowrap technical-text text-lg bg-green-50">T2</td>
+                                        <td class="px-3 py-4 whitespace-nowrap technical-text bg-green-50">$10 \text{ kW} \le \text{DM} < 50 \text{ kW}$</td>
+                                        <td class="px-3 py-4 bg-green-50">
+                                            <strong>Medición:</strong> Energía ($\text{kWh}$) y Potencia ($\text{kW}$).
+                                            <br>Cargo por Comercialización + Cargo por Potencia Contratada + $\text{kWh}$.
+                                        </td>
+                                        <td class="px-3 py-4 bg-green-50">
+                                            <strong>Discriminación Horaria:</strong> Los $\text{kWh}$ se discriminan en Pico, Resto y Valle.
+                                            <br>El uso final <em>no se discrimina</em>; la medición es suficiente.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-4 whitespace-nowrap technical-text text-lg">T3</td>
+                                        <td class="px-3 py-4 whitespace-nowrap technical-text">Mayor o igual a $50 \text{ kW}$</td>
+                                        <td class="px-3 py-4">
+                                            <strong>Medición:</strong> Máximo detalle.
+                                            <br>Cargos por uso de red (<strong>Peaje</strong>).
+                                        </td>
+                                        <td class="px-3 py-4">
+                                            <strong>Cargos:</strong> Sumatoria de Costos de Distribución, Pérdidas, y Gastos de Comercialización.
+                                            <br>Depende de la <strong>tensión de suministro</strong> y factores de utilización.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Acordeón para la Función Técnica de Transporte (Clientes Mayoristas) -->
+                        <h3 class="text-2xl font-semibold text-gray-700 mt-8 mb-4 border-b pb-2 flex items-center">
+                            Función Técnica de Transporte (Peaje) <span class="inline-block ml-2 text-2xl">🛣️</span>
+                        </h3>
+                        <div class="bg-gray-100 p-5 rounded-xl shadow-inner border-l-4 border-blue-500">
+                            <p class="text-lg font-medium text-gray-700 mb-2">
+                                Esta categoría engloba a los <span class="technical-text">Grandes Usuarios</span> (GUDI o clientes del MEM) que compran su energía ($\text{MWh}$) directamente en el Mercado Mayorista y solo contratan el servicio de la red de la distribuidora.
+                            </p>
+                            <ul class="list-disc ml-5 text-gray-700 space-y-1">
+                                <li><strong>Servicio Demandado:</strong> Solamente el <span class="technical-text">uso de las redes</span> (Distribución).</li>
+                                <li><strong>Estructura Tarifaria:</strong> Similar a T2/T3, basada en capacidades requeridas y sus factores de utilización.</li>
+                                <li><strong>Componentes del Cargo:</strong> Incluyen Peaje por uso de red, pérdidas de potencia ($\text{kW}$) y energía ($\text{kWh}$), costos de transporte, cánones de ampliación y gastos de comercialización. <em>No incluye los costos de energía y potencia del MEM</em> (ya que los compran por separado).</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN 3: ESTRUCTURA DE CARGOS Y DISCRIMINACIÓN HORARIA -->
+                    <section id="cargos-p4" class="bg-white p-6 lg:p-8 rounded-xl shadow-2xl border-t-4 border-purple-600">
+                        <h2 class="text-3xl font-bold text-purple-800 mb-6 flex items-center">
+                            <span class="mr-3 text-4xl">III.</span> Estructura de Cargos y Tramos Horarios
+                        </h2>
+
+                        <!-- Tarjetas para Componentes del Cargo Tarifario -->
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-purple-50 p-5 rounded-xl shadow-inner">
+                                <h3 class="technical-text text-xl mb-3 flex items-center">
+                                    <span class="text-2xl mr-2">🔒</span> 1. Cargos Fijos
+                                </h3>
+                                <p class="mb-2 text-gray-700">Son <strong>independientes del consumo</strong> de energía ($\text{kWh}$).</p>
+                                <ul class="list-disc ml-5 text-gray-600">
+                                    <li>Cubren <strong>Costos de Comercialización</strong> (facturación, atención al cliente, etc.).</li>
+                                    <li>Cubren una parte de los <strong>Costos de Potencia</strong> (reserva de infraestructura).</li>
+                                </ul>
+                            </div>
+                            <div class="bg-purple-50 p-5 rounded-xl shadow-inner">
+                                <h3 class="technical-text text-xl mb-3 flex items-center">
+                                    <span class="text-2xl mr-2">📈</span> 2. Cargos Variables
+                                </h3>
+                                <p class="mb-2 text-gray-700">Son <strong>proporcionales al consumo</strong> de energía medido en $\text{kWh}$.</p>
+                                <ul class="list-disc ml-5 text-gray-600">
+                                    <li>Costo de la <strong>Energía</strong> (compra del $\text{MWh}$ en el MEM).</li>
+                                    <li>Costo de las <strong>Pérdidas</strong> (técnicas y no técnicas en la red).</li>
+                                    <li>Resto del Costo de <strong>Potencia Mayorista</strong>.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Acordeón para Discriminación Horaria (T2 y T3) -->
+                        <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-4 border-b pb-2 flex items-center">
+                            Discriminación Horaria de Energía (Tramos Horarios) <span class="inline-block ml-2 text-2xl">🕰️</span>
+                        </h3>
+                        <div class="space-y-4">
+                            <!-- Acordeón Item: Pico -->
+                            <div class="bg-red-50/70 rounded-lg overflow-hidden border border-red-300">
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-red-100 transition duration-300">
+                                    <span class="text-xl font-medium text-red-700">🔴 Pico (P)</span>
+                                    <span class="text-2xl text-red-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <p class="mb-1"><strong>Característica:</strong> Período de máxima exigencia del sistema (ej. 18:00 a 23:00 en invierno).</p>
+                                    <p class="mb-1"><strong>Costo Relativo:</strong> Más Alto.</p>
+                                    <p><strong>Incentivo:</strong> Se <em>castiga el consumo</em> para incentivar su desplazamiento o reducción.</p>
+                                </div>
+                            </div>
+
+                            <!-- Acordeón Item: Resto -->
+                            <div class="bg-yellow-50/70 rounded-lg overflow-hidden border border-yellow-300">
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-yellow-100 transition duration-300">
+                                    <span class="text-xl font-medium text-yellow-700">🟡 Resto (R)</span>
+                                    <span class="text-2xl text-yellow-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <p class="mb-1"><strong>Característica:</strong> Horas intermedias de la jornada (ej. 5:00 a 18:00).</p>
+                                    <p class="mb-1"><strong>Costo Relativo:</strong> Medio.</p>
+                                    <p><strong>Incentivo:</strong> Consumo normal.</p>
+                                </div>
+                            </div>
+
+                            <!-- Acordeón Item: Valle -->
+                            <div class="bg-blue-50/70 rounded-lg overflow-hidden border border-blue-300">
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-blue-100 transition duration-300">
+                                    <span class="text-xl font-medium text-blue-700">🔵 Valle (V)</span>
+                                    <span class="text-2xl text-blue-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <p class="mb-1"><strong>Característica:</strong> Período de mínima exigencia, usualmente la madrugada (ej. 23:00 a 5:00).</p>
+                                    <p class="mb-1"><strong>Costo Relativo:</strong> Más Bajo.</p>
+                                    <p><strong>Incentivo:</strong> Se <em>promueve el consumo</em> para mejorar el Factor de Carga y optimizar el uso de las centrales base.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN 4: CATEGORÍAS ESPECÍFICAS PBA (T1-T6) -->
+                    <section id="pba-p4" class="bg-white p-6 lg:p-8 rounded-xl shadow-2xl border-t-4 border-pink-600">
+                        <h2 class="text-3xl font-bold text-pink-800 mb-6 flex items-center">
+                            <span class="mr-3 text-4xl">IV.</span> Categorías Tarifarias en PBA (T1 a T6)
+                        </h2>
+                        <p class="text-lg mb-6 leading-relaxed">
+                            La Provincia de Buenos Aires (<span class="technical-text">PBA</span>) subdivide las categorías generales para diferenciar aún más los usos y destinos, lo que impacta en la sensibilidad al precio y la necesidad de subsidio.
+                        </p>
+
+                        <!-- Acordeón para Subcategorías T1 (Pequeñas Demandas) -->
+                        <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-4 border-b pb-2 flex items-center">
+                            Subcategorías T1: Menores o Iguales a $10 \text{ kW}$ <span class="inline-block ml-2 text-2xl">🏠🏢</span>
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="bg-pink-50/70 rounded-lg overflow-hidden border border-pink-200">
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-pink-100 transition duration-300">
+                                    <span class="text-xl font-medium text-pink-700">T1R (Residencial) y T1RE (Estacional)</span>
+                                    <span class="text-2xl text-pink-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <p class="mb-2"><strong>T1R:</strong> Viviendas unifamiliares, departamentos. Es la tarifa más común, con <span class="technical-text">subsidios cruzados y diferenciación por bloques</span> de consumo.</p>
+                                    <p><strong>T1RE:</strong> Uso Residencial Estacional (ej. casas de veraneo). Se aplica una tarifa distinta por la <span class="technical-text">alta variabilidad</span> del consumo.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-pink-50/70 rounded-lg overflow-hidden border border-pink-200">
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-pink-100 transition duration-300">
+                                    <span class="text-xl font-medium text-pink-700">T1G (Servicio General)</span>
+                                    <span class="text-2xl text-pink-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <p>Aplica a establecimientos comerciales, fabriles pequeños, plantas transmisoras, etc. Cualquier uso <em>no residencial</em> que no exceda los $10 \text{ kW}$.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-pink-50/70 rounded-lg overflow-hidden border border-pink-200">
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-pink-100 transition duration-300">
+                                    <span class="text-xl font-medium text-pink-700">T1GEBP (Entidades de Bien Público) y T1AP (Alumbrado Público)</span>
+                                    <span class="text-2xl text-pink-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <p class="mb-2"><strong>T1GEBP:</strong> Asociaciones civiles, fundaciones, clubes de barrio. Criterios de elección de la mejor alternativa tarifaria para su beneficio.</p>
+                                    <p><strong>T1AP:</strong> Iluminación de calles, plazas, puentes. El usuario es usualmente el municipio o ente público.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tarjetas para Tarifas T4, T5 y T6 -->
+                        <h3 class="text-2xl font-semibold text-gray-700 mt-8 mb-4 border-b pb-2 flex items-center">
+                            Tarifas Rurales y de Peaje <span class="inline-block ml-2 text-2xl">🚜🛣️</span>
+                        </h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <!-- Tarjeta: T4 -->
+                            <div class="bg-gray-100 p-4 rounded-lg shadow-md border-b-4 border-gray-400">
+                                <p class="technical-text text-xl mb-2">T4 (Pequeñas Demandas Rurales)</p>
+                                <ul class="list-disc ml-4 text-gray-700 text-sm space-y-1">
+                                    <li><strong>Aplicabilidad:</strong> Clientes con $\text{DM} < 10 \text{ kW}$ servidos a través de líneas de <span class="technical-text">Media Tensión (MT)</span>.</li>
+                                    <li><strong>Nota Técnica:</strong> Refleja el <span class="technical-text">mayor costo de la infraestructura</span> en zonas rurales (mayor longitud de líneas por usuario).</li>
+                                </ul>
+                            </div>
+                            <!-- Tarjeta: T5 -->
+                            <div class="bg-gray-100 p-4 rounded-lg shadow-md border-b-4 border-gray-400">
+                                <p class="technical-text text-xl mb-2">T5 (Servicio de Peaje - Grandes Demandas)</p>
+                                <ul class="list-disc ml-4 text-gray-700 text-sm space-y-1">
+                                    <li><strong>Aplicabilidad:</strong> Grandes Demandas, Generadores y Distribuidores que <span class="technical-text">negocian su abastecimiento en el MEM</span>.</li>
+                                    <li><strong>Nota Técnica:</strong> Solo pagan por el <span class="technical-text">Uso de la Red (Peaje)</span> y las pérdidas.</li>
+                                </ul>
+                            </div>
+                            <!-- Tarjeta: T6 -->
+                            <div class="bg-gray-100 p-4 rounded-lg shadow-md border-b-4 border-gray-400">
+                                <p class="technical-text text-xl mb-2">T6 (Servicio de Peaje - Medianas Demandas)</p>
+                                <ul class="list-disc ml-4 text-gray-700 text-sm space-y-1">
+                                    <li><strong>Aplicabilidad:</strong> Medianas Demandas que negocian su abastecimiento en el MEM.</li>
+                                    <li><strong>Nota Técnica:</strong> Similar a T5, el cargo es únicamente por el <span class="technical-text">uso de la infraestructura de distribución</span>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN 5: LA TARIFA SOCIAL -->
+                    <section id="social-p4" class="bg-white p-6 lg:p-8 rounded-xl shadow-2xl border-t-4 border-red-600">
+                        <h2 class="text-3xl font-bold text-red-800 mb-6 flex items-center">
+                            <span class="mr-3 text-4xl">V.</span> La Tarifa Social: Mecanismo de Política Pública
+                        </h2>
+                        <p class="text-lg mb-6 leading-relaxed">
+                            La <span class="technical-text">Tarifa Social</span> es un mecanismo clave de <span class="technical-text">política pública</span> diseñado para proteger a usuarios con mayor vulnerabilidad socioeconómica, aplicando un <span class="technical-text">precio bonificado</span> por el servicio eléctrico esencial.
+                        </p>
+
+                        <!-- Acordeón para Evolución Histórica -->
+                        <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-4 border-b pb-2 flex items-center">
+                            Evolución Histórica de la Bonificación <span class="inline-block ml-2 text-2xl">📜</span>
+                        </h3>
+                        <div class="space-y-4">
+                            <!-- Acordeón Item: TEIS -->
+                            <div class="bg-red-50/70 rounded-lg overflow-hidden border border-red-300">
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-red-100 transition duration-300">
+                                    <span class="text-xl font-medium text-red-700">Tarifa Eléctrica de Interés Social (TEIS) - Hasta 2015</span>
+                                    <span class="text-2xl text-red-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <ul class="list-disc ml-5 text-gray-700 space-y-1">
+                                        <li><strong>Beneficiarios:</strong> Usuarios residenciales (TR1) imposibilitados de acceder al servicio mínimo.</li>
+                                        <li><strong>Beneficio:</strong> $150 \text{ kWh}$ mensuales a una tarifa un <em>40% inferior</em> a la regulada.</li>
+                                        <li><strong>Financiamiento:</strong> Era costeado por el <span class="technical-text">distribuidor</span> (disminución voluntaria de su ingreso).</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Acordeón Item: TS -->
+                            <div class="bg-red-50/70 rounded-lg overflow-hidden border border-red-300">
+                                <div class="accordion-header flex justify-between items-center p-4 cursor-pointer hover:bg-red-100 transition duration-300">
+                                    <span class="text-xl font-medium text-red-700">Tarifa Social (TS) - Implementada a partir de 2016</span>
+                                    <span class="text-2xl text-red-700 toggle-icon">+</span>
+                                </div>
+                                <div class="accordion-content bg-white">
+                                    <ul class="list-disc ml-5 text-gray-700 space-y-1">
+                                        <li><strong>Contexto:</strong> Creada por el Estado Nacional ante la reducción de subsidios, para proteger la capacidad de pago de los usuarios.</li>
+                                        <li><strong>Alcance:</strong> Nivel nacional con adhesión de PBA. Abarca el espíritu de la antigua TEIS.</li>
+                                        <li><strong>Mecanismo:</strong> La identificación de los beneficiarios se basa en <span class="technical-text">criterios socioeconómicos</span> (ej. no poseer múltiples inmuebles, bajo nivel de ingresos).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Simulación de Gráfico/Conclusiones -->
+                        <div class="mt-8 bg-gray-100 p-5 rounded-xl shadow-md border-l-4 border-gray-500">
+                            <h4 class="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                <span class="mr-2">📈</span> Cuadro Comparativo de Impacto (Ej. Mercado PBA - 2018)
+                            </h4>
+                            <p class="mb-2">El <span class="technical-text">usuario residencial (T1R)</span> constituye la <em>mayor parte de los clientes</em> (Composición por Usuarios).</p>
+                            <p class="mb-2">Las <span class="technical-text">Grandes Demandas (T3) y Medianas (T2)</span> representan una <em>parte mayor del consumo total</em> de energía ($\text{MWh}$), aunque son menos usuarios.</p>
+                        </div>
+                    </section>
+                </main>
+
+                <!-- Pie de página didáctico -->
+                <footer class="mt-12 text-center text-gray-500 text-sm p-4 border-t border-gray-300">
+                    &copy; Recursos Didácticos Universitarios - Programación Web para Material Técnico.
+                </footer>
+            </div>
+        </div>
+        
     </div> <!-- Fin de #content-wrapper -->
 
-    <!-- SCRIPT DE NAVEGACIÓN Y SCRIPTS INTERNOS -->
+    <!-- SCRIPT DE NAVEGACIÓN Y SCRIPTS INTERNOS (ACTUALIZADO) -->
     <script>
         // Lógica de Pestañas
         const tabs = document.querySelectorAll('.tab-button');
@@ -1077,15 +1520,12 @@
             }
 
             // --- Re-inicializar scripts específicos de cada página ---
-            // (Es necesario porque los elementos se cargan pero sus scripts
-            // originales solo se ejecutan una vez)
-
             if (pageId === 1) {
-                // Re-ejecutar scripts de mfinal1.html
                 initializePage1Scripts();
             } else if (pageId === 2) {
-                // Re-ejecutar scripts de mfinal2.html
                 initializePage2Scripts();
+            } else if (pageId === 4) { // NUEVO
+                initializePage4Scripts();
             }
             
             // Volver al inicio de la página
@@ -1093,16 +1533,18 @@
             
             // Recargar MathJax para la página activa
             if (window.MathJax && window.MathJax.typeset) {
+                // Se renderiza solo el contenedor de la página activa
                 window.MathJax.typesetPromise([`#page${pageId}`]).catch(function (err) {
                     console.error('Error al renderizar MathJax:', err);
                 });
             }
         }
 
-        // Asignar eventos a los botones
+        // Asignar eventos a los botones (ACTUALIZADO)
         document.querySelector('#btn-page1').addEventListener('click', () => switchTab(1));
         document.querySelector('#btn-page2').addEventListener('click', () => switchTab(2));
         document.querySelector('#btn-page3').addEventListener('click', () => switchTab(3));
+        document.querySelector('#btn-page4').addEventListener('click', () => switchTab(4)); // NUEVO
 
         // --- LÓGICA EXTRAÍDA DE LAS PÁGINAS HIJAS ---
 
@@ -1116,8 +1558,8 @@
                 const icon = item.querySelector('.accordion-icon');
                 
                 // Evitar doble listener
-                if(header.dataset.listenerAttached) return;
-                header.dataset.listenerAttached = true;
+                if(header.dataset.listenerAttachedP1) return;
+                header.dataset.listenerAttachedP1 = true;
 
                 header.addEventListener('click', () => {
                     const isHidden = content.classList.contains('hidden');
@@ -1157,8 +1599,8 @@
             // 2. Scroll Suave para Navegación Lateral
             document.querySelectorAll('#page1 #sidebar-menu-1 a').forEach(anchor => {
                 // Evitar doble listener
-                if(anchor.dataset.listenerAttached) return;
-                anchor.dataset.listenerAttached = true;
+                if(anchor.dataset.listenerAttachedP1) return;
+                anchor.dataset.listenerAttachedP1 = true;
 
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1176,10 +1618,6 @@
                     }
                 });
             });
-
-            // 3. Observador para actualizar el sidebar (simplificado)
-            // (La lógica completa del observador es compleja de re-instanciar, 
-            // nos quedamos con el clic por ahora para esta demo unificada)
         }
 
         // Lógica de mfinal2.html
@@ -1187,12 +1625,11 @@
             // Scroll Suave para Navegación Lateral
             document.querySelectorAll('#page2 #sidebar-menu-2 a').forEach(anchor => {
                 // Evitar doble listener
-                if(anchor.dataset.listenerAttached) return;
-                anchor.dataset.listenerAttached = true;
+                if(anchor.dataset.listenerAttachedP2) return;
+                anchor.dataset.listenerAttachedP2 = true;
 
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    // El ID debe ser único, por eso renombramos algunos en el HTML de la página 2
                     const targetId = this.getAttribute('href'); 
                     const targetElement = document.querySelector(`#page2 ${targetId}`);
 
@@ -1208,6 +1645,38 @@
                 });
             });
         }
+
+        // (NUEVO) Lógica de tarifas.html (Página 4)
+        function initializePage4Scripts() {
+            // Se buscan solo los acordeones dentro de #page4
+            const headers = document.querySelectorAll('#page4 .accordion-header');
+
+            headers.forEach(header => {
+                // Evitar doble listener con un flag único
+                if(header.dataset.listenerAttachedP4) return;
+                header.dataset.listenerAttachedP4 = true;
+                
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('.toggle-icon');
+
+                    // Toggle active class on header
+                    const isActive = header.classList.toggle('active');
+
+                    // Update content height and icon
+                    if (isActive) {
+                        icon.textContent = '-';
+                    } else {
+                        icon.textContent = '+';
+                    }
+                    
+                    // Nota: Esta versión del acordeón permite abrir múltiples items.
+                    // Si se quisiera cerrar los otros, se necesitaría una lógica
+                    // similar a la de initializePage1Scripts.
+                });
+            });
+        }
+
 
         // Inicializar la primera pestaña al cargar
         document.addEventListener('DOMContentLoaded', () => {
