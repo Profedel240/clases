@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMINAL ELECTRÓN: EL GÉNESIS (DETALLE TOTAL)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;700&display=swap');
+
+        :root {
+            --neon-cyan: #00f2ff;
+            --neon-magenta: #ff00e6;
+            --neon-yellow: #f4ea00;
+            --neon-green: #39ff14;
+            --bg-dark: #020202;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #d1d1d1;
+            font-family: 'Roboto Mono', monospace;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.03) 0%, transparent 60%),
+                linear-gradient(rgba(18, 18, 18, 0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(18, 18, 18, 0.4) 1px, transparent 1px);
+            background-size: 100% 100%, 25px 25px, 25px 25px;
+            line-height: 1.6;
+        }
+
+        .neon-text { text-shadow: 0 0 8px var(--neon-cyan); color: var(--neon-cyan); }
+        .neon-text-magenta { text-shadow: 0 0 8px var(--neon-magenta); color: var(--neon-magenta); }
+        .neon-text-green { text-shadow: 0 0 8px var(--neon-green); color: var(--neon-green); }
+        
+        .cyber-border {
+            border: 1px solid rgba(0, 242, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+            background: rgba(10, 10, 10, 0.9);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-border::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            animation: scan 3s infinite linear;
+        }
+
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .glitch-header {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 4px;
+        }
+
+        .data-table th {
+            color: var(--neon-yellow);
+            border-bottom: 2px solid var(--neon-yellow);
+            padding: 12px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+        }
+
+        .dossier-label {
+            background: var(--neon-cyan);
+            color: black;
+            padding: 2px 8px;
+            font-weight: bold;
+            font-size: 0.7rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .warning-box {
+            border-left: 4px solid var(--neon-magenta);
+            background: rgba(255, 0, 230, 0.05);
+            padding: 15px;
+        }
+
+        details summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 5px;
+        }
+
+        details summary:hover {
+            background: rgba(0, 242, 255, 0.1);
+        }
+
+        .tech-drawing {
+            filter: drop-shadow(0 0 5px var(--neon-cyan));
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: var(--neon-cyan); }
+    </style>
+</head>
+<body class="p-2 md:p-8">
+
+    <!-- TOP BAR -->
+    <div class="flex justify-between items-center mb-8 border-b border-cyan-500/30 pb-2 text-[10px] uppercase">
+        <div class="flex gap-4">
+            <span>CORE_TEMP: 32°C</span>
+            <span class="neon-text-green animate-pulse">SADI_UPLINK: ACTIVE</span>
+        </div>
+        <div>GONZÁLEZ_CATÁN // TERMINAL_ID: 098-N-DOCENTE</div>
+    </div>
+
+    <header class="mb-16">
+        <h1 class="glitch-header text-5xl md:text-7xl font-bold neon-text text-center mb-4">FASE 01: EL GÉNESIS</h1>
+        <p class="text-center text-cyan-400 font-bold tracking-widest uppercase">Crónica de una Estafa Energética (1887 - 1945)</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto space-y-16">
+
+        <!-- SECCIÓN 1: LOS PIONEROS Y EL CAOS LIBERAL -->
+        <section id="pioneros">
+            <div class="dossier-label">ARCHIVO_01 // LIBERALISMO_PRIMITIVO</div>
+            <h2 class="text-3xl font-bold neon-text mb-6">01. LA CHISPA EN LA OSCURIDAD</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 cyber-border p-8">
+                    <p class="mb-6 leading-relaxed">
+                        A fines del siglo XIX, la Argentina no tenía una política energética; tenía un **fetiche tecnológico**. La elite porteña quería "luz" para parecerse a París, pero le entregó los cables a cualquiera que trajera capitales.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-4 border border-white/10">
+                            <h4 class="neon-text text-sm font-bold mb-2 uppercase">Hito: 1887 - Rufino Varela</h4>
+                            <p class="text-xs">Instala una precaria usina frente a la Catedral. Florida se convierte en la primera calle con alumbrado eléctrico. Sin regulación, Varela fundó la <strong>Cía. Gral. de Electricidad de Bs. As.</strong></p>
+                        </div>
+                        <div class="bg-white/5 p-4 border border-white/10">
+                            <h4 class="neon-text text-sm font-bold mb-2 uppercase">Hito: 1890 - Capitales Británicos</h4>
+                            <p class="text-xs">Aparecen la <strong>Cía. Primitiva de Gas</strong> y la <strong>River Plate Electric Light</strong>. Cada una con su propio estándar. Una ensalada técnica total.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cyber-border p-6 flex flex-col items-center justify-center text-center">
+                    <i class="fas fa-plug text-6xl neon-text mb-4"></i>
+                    <h3 class="text-xl font-bold">ESTADO DE RED</h3>
+                    <p class="text-xs mt-2 opacity-60">Voltaje variable // Frecuencia inestable // Cero redundancia.</p>
+                    <div class="mt-4 w-full h-1 bg-cyan-900">
+                        <div class="h-full bg-cyan-400" style="width: 15%"></div>
+                    </div>
+                    <span class="text-[10px] mt-1">COBERTURA: 15% CABA</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: EL IMPERIO ALEMÁN (CATE) -->
+        <section id="cate">
+            <div class="dossier-label">ARCHIVO_02 // HEGEMONÍA_TEUTONA</div>
+            <h2 class="text-3xl font-bold neon-text-magenta mb-6">02. EL ASCENSO DE LA CATE (1898)</h2>
+            
+            <div class="cyber-border p-8">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="flex-1">
+                        <p class="mb-4">
+                            En 1898 entra en juego la <strong>CATE (Compañía Transatlántica de Electricidad)</strong>, con capitales de la alemana AEG. Su estrategia fue agresiva: comprar usinas chicas y consolidar un monopolio de hierro.
+                        </p>
+                        <h4 class="text-yellow-500 font-bold mb-2 uppercase text-sm">El "Puenteado" a Jorge Newbery (1904):</h4>
+                        <p class="text-xs mb-4">
+                            Newbery, jefe de alumbrado y genio técnico, propuso crear usinas municipales para competir. Los alemanes usaron su "maña" de lobby para que la comisión municipal (vecinos de alta alcurnia) cajoneara el plan.
+                        </p>
+                        <div class="warning-box text-xs">
+                            <strong>DATO CRÍTICO:</strong> En 1907, la municipalidad le regaló a la CATE una concesión por **50 años**. El Estado se ató las manos voluntariamente.
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <table class="w-full data-table">
+                            <thead>
+                                <tr>
+                                    <th>INDICADOR</th>
+                                    <th>VALOR (1900)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Capacidad Instalada</td>
+                                    <td>1.500 HP</td>
+                                </tr>
+                                <tr>
+                                    <td>Tarifa Promedio</td>
+                                    <td>0.25 Oro/kWh</td>
+                                </tr>
+                                <tr>
+                                    <td>Accionistas</td>
+                                    <td>AEG / Deutsche Bank</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: LA MENTIRA SUIZA (CIAE) -->
+        <section id="ciae">
+            <div class="dossier-label">ARCHIVO_03 // DUOPOLIO_SIMULADO</div>
+            <h2 class="text-3xl font-bold neon-text mb-6">03. LA ÍTALO: SUIZOS CON DISFRAZ (1912)</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="cyber-border p-6 border-yellow-500/50">
+                    <h3 class="neon-text-magenta text-xl font-bold mb-4">ESTRATEGIA DE "NAMING"</h3>
+                    <p class="text-sm mb-4">
+                        Para contrarrestar el odio a los alemanes, aparece la <strong>CIAE (Cía. Italo Argentina de Electricidad)</strong>. Se llamó así para que los inmigrantes italianos se sintieran identificados.
+                    </p>
+                    <ul class="space-y-2 text-xs">
+                        <li><i class="fas fa-check-circle text-magenta-500"></i> Capitales Reales: <strong>Motor-Columbus (SUIZA)</strong>.</li>
+                        <li><i class="fas fa-check-circle text-magenta-500"></i> Arquitectura: Usinas con estilo veneciano para "decorar" la ciudad (puro marketing).</li>
+                        <li><i class="fas fa-check-circle text-magenta-500"></i> Realidad: Acordaron con la CATE no competir en las mismas zonas. Se repartieron la torta.</li>
+                    </ul>
+                </div>
+                <div class="cyber-border p-6">
+                    <h3 class="neon-text text-xl font-bold mb-4">EL GRAN REPARTO</h3>
+                    <div class="flex items-center justify-center p-4">
+                        <svg viewBox="0 0 200 100" class="w-full tech-drawing">
+                            <circle cx="60" cy="50" r="40" fill="none" stroke="#00f2ff" stroke-dasharray="5,5" />
+                            <circle cx="140" cy="50" r="40" fill="none" stroke="#ff00e6" stroke-dasharray="5,5" />
+                            <text x="45" y="55" fill="#00f2ff" font-size="8">CATE (NORTE)</text>
+                            <text x="125" y="55" fill="#ff00e6" font-size="8">CIAE (SUR)</text>
+                            <path d="M100 0 L100 100" stroke="rgba(255,255,255,0.1)" />
+                        </svg>
+                    </div>
+                    <p class="text-[10px] text-center opacity-50 italic uppercase">Diagrama de coexistencia mafiosa (circa 1920)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: ESCÁNDALO CHADE (EL PICO DE CORRUPCIÓN) -->
+        <section id="chade">
+            <div class="dossier-label">ARCHIVO_04 // CORRUPTION_OVERLOAD</div>
+            <h2 class="text-3xl font-bold neon-text-magenta mb-6">04. LA CHADE Y EL SOBORNO TOTAL (1936)</h2>
+            
+            <div class="cyber-border p-8 border-red-500/50">
+                <p class="mb-6">
+                    La CATE se convierte en <strong>CHADE (Hispano-Americana)</strong>. En los años 30, el contrato estaba por vencer. Lo que sigue es una de las páginas más oscuras de nuestra historia:
+                </p>
+                
+                <div class="space-y-4">
+                    <details class="bg-red-900/10">
+                        <summary class="neon-text-magenta font-bold uppercase">EXPEDIENTE_COIMAS_1936</summary>
+                        <div class="p-4 text-xs">
+                            <p>Bajo la intendencia de De Vedia y Mitre (en la "Década Infame"), la CHADE pagó sobornos masivos a concejales del Partido Socialista Independiente y la UCR para aprobar la prórroga de la concesión.</p>
+                            <p class="mt-2"><strong>Resultado:</strong> Concesión extendida hasta 1972/77 con cláusulas que impedían al Estado controlar las tarifas. El "reparador" político cobró su comisión y dejó al pueblo sin protección.</p>
+                        </div>
+                    </details>
+
+                    <details class="bg-red-900/10">
+                        <summary class="neon-text-magenta font-bold uppercase">GERMINAL RODRÍGUEZ: EL CORTOCIRCUITO ÉTICO</summary>
+                        <div class="p-4 text-xs">
+                            <p>Era el concejal que más denunciaba a las eléctricas. Tenía todas las pruebas. Misteriosamente, su bloque votó a favor de las empresas. El silencio tuvo un precio que pagamos con facturas impagables durante décadas.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: EL INFORME RODRÍGUEZ CONDE -->
+        <section id="diagnostico">
+            <div class="dossier-label">ARCHIVO_05 // AUTOPSIA_DEL_SISTEMA</div>
+            <h2 class="text-3xl font-bold neon-text mb-6">05. EL DIAGNÓSTICO FINAL (1943-1945)</h2>
+            
+            <div class="cyber-border p-8">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="lg:w-2/3">
+                        <p class="mb-4">
+                            En 1943, el Coronel Matías Rodríguez Conde encabeza una comisión investigadora. Su informe fue la "radiografía" del cáncer eléctrico:
+                        </p>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <li class="p-3 bg-white/5 border-l-2 border-cyan-500">
+                                <i class="fas fa-microchip mr-2 neon-text"></i>
+                                **Obsolescencia Programada:** Las empresas no invirtieron en 20 años; solo drenaron ganancias.
+                            </li>
+                            <li class="p-3 bg-white/5 border-l-2 border-cyan-500">
+                                <i class="fas fa-file-invoice-dollar mr-2 neon-text"></i>
+                                **Fraude Contable:** Inflaban costos de producción para justificar tarifazos.
+                            </li>
+                            <li class="p-3 bg-white/5 border-l-2 border-cyan-500">
+                                <i class="fas fa-network-wired mr-2 neon-text"></i>
+                                **Desprecio por el Interior:** Solo les importaba el puerto. El Gran Buenos Aires y el interior eran "zonas muertas" para ellos.
+                            </li>
+                            <li class="p-3 bg-white/5 border-l-2 border-cyan-500">
+                                <i class="fas fa-gavel mr-2 neon-text"></i>
+                                **Recomendación:** Expropiación inmediata por causa de utilidad pública.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="lg:w-1/3 bg-magenta-900/20 p-6 flex flex-col justify-center border border-magenta-500/30">
+                        <h4 class="neon-text-magenta font-bold mb-4 uppercase">Estado de la Red 1945:</h4>
+                        <div class="space-y-2 text-[10px]">
+                            <span>DÉFICIT DE GENERACIÓN</span>
+                            <div class="w-full h-2 bg-gray-800"><div class="h-full bg-magenta-500" style="width: 85%"></div></div>
+                            <span>FUGAS POR OBSOLESCENCIA</span>
+                            <div class="w-full h-2 bg-gray-800"><div class="h-full bg-magenta-500" style="width: 60%"></div></div>
+                            <span>CONFIANZA CIUDADANA</span>
+                            <div class="w-full h-2 bg-gray-800"><div class="h-full bg-red-600" style="width: 5%"></div></div>
+                        </div>
+                        <p class="mt-4 text-[10px] italic">"El sistema está al borde del apagón total. El parche ya no aguanta."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 py-10 border-t border-cyan-500/30">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-[10px] opacity-60">
+            <div>
+                <p class="font-bold mb-2">FUENTES_DATA:</p>
+                <ul>
+                    <li>- Wikipedia: Historia del Sector Eléctrico Arg.</li>
+                    <li>- Informe Rodríguez Conde (1945)</li>
+                    <li>- Archivo Histórico de la CIAE</li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <p class="neon-text mb-2">GONZÁLEZ CATÁN // 2026</p>
+                <p>DOCENTE: NAHUEL - EL REPARADOR</p>
+            </div>
+            <div class="text-right">
+                <p class="font-bold mb-2">LOG_STATUS:</p>
+                <p>SADI_LINK_OK</p>
+                <p>HISTORIA_P1_COMPLETE</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animación sutil de entrada
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach((s, i) => {
+                s.style.opacity = '0';
+                s.style.transform = 'translateY(20px)';
+                s.style.transition = `all 0.5s ease ${i * 0.2}s`;
+                setTimeout(() => {
+                    s.style.opacity = '1';
+                    s.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
