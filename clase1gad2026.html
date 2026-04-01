@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructuras Sociales y Económicas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.3s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-100 font-sans selection:bg-pink-400 selection:text-white overflow-x-hidden min-h-screen">
+
+    <div class="fixed inset-0 pointer-events-none opacity-20" 
+         style="background-image: radial-gradient(circle at 2px 2px, black 1px, transparent 0); background-size: 24px 24px; z-index: -1;">
+    </div>
+
+    <div class="relative max-w-7xl mx-auto p-4 md:p-8">
+        
+        <header class="mb-10 text-center">
+            <div class="inline-block relative">
+                <div class="absolute inset-0 bg-black rounded-3xl transform translate-x-2 translate-y-2"></div>
+                <h1 class="relative bg-yellow-300 border-4 border-black rounded-3xl px-8 py-4 text-3xl md:text-5xl font-black text-black uppercase tracking-tighter transform -rotate-1">
+                    Estructuras <span class="text-pink-500 underline decoration-black decoration-4 underline-offset-4">Sociales</span> & Económicas
+                </h1>
+            </div>
+        </header>
+
+        <div class="bg-white rounded-[40px] border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col md:flex-row overflow-hidden min-h-[800px]">
+            
+            <!-- Sidebar Navigation -->
+            <div class="w-full md:w-72 bg-blue-400 border-b-4 md:border-b-0 md:border-r-4 border-black flex-shrink-0 flex flex-col z-10">
+                <div class="p-6 bg-black text-white font-black uppercase tracking-widest text-lg flex items-center gap-3">
+                    <span>🚀</span> Menú Principal
+                </div>
+                <nav id="sidebar-nav" class="flex flex-col p-6 gap-4 flex-grow"></nav>
+            </div>
+
+            <!-- Content Area -->
+            <div id="content-area" class="flex-1 p-6 md:p-12 overflow-y-auto bg-slate-50 relative z-0">
+                <!-- Se inyecta por JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        // --- DATA ACADÉMICA MEJORADA CON EJEMPLOS ESPECÍFICOS ---
+        const academicData = {
+            grupos: {
+                id: 'grupos',
+                title: "Grupos Sociales y de Trabajo",
+                icon: "users",
+                definition: "Desde una perspectiva sociológica y psicosocial, un grupo se define como una pluralidad de individuos que interactúan entre sí de manera sostenida, compartiendo una identidad colectiva, normas, valores y un sentido de pertenencia. En el ámbito organizacional, son conjuntos de personas con habilidades complementarias, comprometidas con un propósito común.",
+                objective: "El objetivo primordial es la consecución de sinergia humana. Buscan satisfacer necesidades de afiliación, seguridad, estatus y, a nivel instrumental, resolver problemas complejos que superan la capacidad individual.",
+                origin: "Tienen un origen dual: Espontáneo (derivado de la naturaleza humana y afinidad interpersonal) o Formal/Deliberado (diseñados por una autoridad administrativa para ejecutar tareas).",
+                ends: "Sus fines se dividen en Expresivos (enfocados en la cohesión y el soporte emocional) e Instrumentales (orientados exclusivamente a la productividad).",
+                structure: "Su estructura interna se fundamenta en roles (comportamientos esperados), normas (reglas de conducta), estatus (jerarquía), tamaño y liderazgo (emergente o asignado).",
+                types: [
+                    { 
+                        name: "Grupos Primarios", 
+                        desc: "Se caracterizan por una asociación íntima, cara a cara y cooperación profunda. Son fundamentales para la formación de la naturaleza social y los ideales del individuo. Las relaciones son un fin en sí mismas, no un medio.", 
+                        example: "👉 Ejemplo: La familia nuclear, un grupo de amigos cercanos de la infancia, o una pareja. El vínculo es irremplazable." 
+                    },
+                    { 
+                        name: "Grupos Secundarios", 
+                        desc: "Estructuras más grandes y formalizadas donde las relaciones son impersonales, utilitarias y, por lo general, están limitadas en el tiempo. Se unen para lograr un propósito específico.", 
+                        example: "👉 Ejemplo: Los estudiantes de una clase universitaria numerosa, el sindicato de un rubro laboral, o el comité vecinal." 
+                    },
+                    { 
+                        name: "De Pertenencia vs. De Referencia", 
+                        desc: "El de pertenencia es aquel al que el individuo está integrado objetivamente (factualmente). El de referencia es el grupo cuyas normas y valores el individuo adopta como propios, sirviendo de brújula moral o de estatus, incluso si no pertenece a él.", 
+                        example: "👉 Ejemplo: Un estudiante de derecho (pertenencia: facultad) que se viste y habla como los abogados socios de un gran bufete (referencia)." 
+                    },
+                    { 
+                        name: "Equipos de Alto Rendimiento", 
+                        desc: "Una evolución del grupo de trabajo clásico. Poseen habilidades altamente complementarias, un propósito apasionado en común, metas muy exigentes y una responsabilidad mutua que no requiere supervisión externa constante.", 
+                        example: "👉 Ejemplo: Un equipo quirúrgico de trasplantes en un hospital de alta complejidad, o el equipo de ingenieros de boxes en la Fórmula 1." 
+                    }
+                ],
+                examples: [
+                    { name: "Familia Nuclear", category: "Primario / Expresivo", detail: "Vínculos afectivos profundos, socialización primaria esencial." },
+                    { name: "Comité de Ética Hospitalaria", category: "Secundario / Formal", detail: "Grupo instrumental creado por una institución para tomar decisiones vitales." },
+                    { name: "Escuadrón de Bomberos", category: "Equipo de Alto Rendimiento", detail: "Alta dependencia mutua, confianza extrema para el éxito de la tarea." }
+                ]
+            },
+            organizacion: {
+                id: 'organizacion',
+                title: "Organizaciones",
+                icon: "building-2",
+                definition: "Sistemas sociales complejos e intencionalmente construidos, compuestos por individuos y grupos que interactúan mediante una estructura de roles y recursos (físicos, tecnológicos y financieros) para alcanzar objetivos específicos dentro de un entorno dinámico.",
+                objective: "Su objetivo intrínseco es la eficiencia y eficacia en la transformación de insumos (inputs) en resultados (outputs), generando un valor agregado continuo que justifique su existencia en la sociedad.",
+                origin: "Se originan por la necesidad ineludible de superar las limitaciones individuales (biológicas, cognitivas y físicas) mediante el esfuerzo cooperativo coordinado.",
+                ends: "Sus fines pueden ser lucrativos (maximización de riqueza), sociales (mejora de la calidad de vida), gubernamentales (administración pública) o coercitivos (prisiones).",
+                structure: "Poseen una estructura formal que define la jerarquía (quién manda a quién), la departamentalización (cómo se agrupan las tareas) y la formalización (reglas escritas).",
+                types: [
+                    { 
+                        name: "Organizaciones Formales", 
+                        desc: "Sistemas estructurados de roles intencionales. Poseen organigramas definidos, manuales de procedimientos y una división del trabajo explícita y documentada.", 
+                        example: "👉 Ejemplo: El Ministerio de Educación de la Nación, una sucursal del Banco Santander." 
+                    },
+                    { 
+                        name: "Organizaciones Informales", 
+                        desc: "Redes invisibles de relaciones interpersonales y sociales que surgen espontáneamente cuando los miembros de una organización formal interactúan entre sí, trascendiendo el organigrama oficial.", 
+                        example: "👉 Ejemplo: El 'grupo de los viernes' que se junta a jugar al fútbol en la empresa, o la red de rumores y amistades de la oficina." 
+                    },
+                    { 
+                        name: "Estructuras Mecanicistas", 
+                        desc: "Altamente centralizadas, con una cadena de mando rígida, tareas muy especializadas y rutinarias, y comunicaciones estrictamente verticales. Son eficientes en entornos estables y predecibles.", 
+                        example: "👉 Ejemplo: Una planta ensambladora tradicional de automóviles o una gran cadena de comida rápida (procesos hiper estandarizados)." 
+                    },
+                    { 
+                        name: "Estructuras Orgánicas", 
+                        desc: "Descentralizadas, flexibles y adaptables. Predominan los equipos interfuncionales, la comunicación horizontal y una baja formalización de reglas. Ideales para entornos cambiantes.", 
+                        example: "👉 Ejemplo: Una agencia de publicidad innovadora, o una startup tecnológica de Inteligencia Artificial." 
+                    }
+                ],
+                examples: [
+                    { name: "Ministerio de Salud", category: "Gubernamental / Mecanicista", detail: "Alta formalización, orientada al servicio público y financiada por impuestos." },
+                    { name: "Médicos sin Fronteras", category: "ONG Internacional", detail: "Fines humanitarios globales, con alta capacidad de respuesta rápida (orgánica en el terreno)." },
+                    { name: "Universidad Nacional", category: "Educativa / Compleja", detail: "Generación y transmisión de conocimiento, estructura burocrática-profesional." }
+                ]
+            },
+            asociaciones: {
+                id: 'asociaciones',
+                title: "Asociaciones",
+                icon: "landmark",
+                definition: "Desde la perspectiva civil y jurídica, una asociación es una entidad formada por un conjunto de personas (físicas o jurídicas) que se unen de manera voluntaria, duradera y democrática para perseguir un fin común de naturaleza NO lucrativa, gozando de personalidad jurídica.",
+                objective: "Su objetivo es promover, proteger o desarrollar intereses culturales, sociales, deportivos o filantrópicos compartidos, canalizando esfuerzos colectivos sin buscar el reparto de utilidades económicas.",
+                origin: "Nacen del derecho constitucional a la libre asociación de los ciudadanos, requiriendo la redacción de estatutos y su inscripción en registros públicos.",
+                ends: "Fines estrictamente altruistas o de beneficio para sus miembros. Cualquier excedente de dinero a fin de año debe reinvertirse obligatoriamente en la misma institución.",
+                structure: "Operan democráticamente: la Asamblea de Socios toma las grandes decisiones por voto, una Comisión Directiva administra el día a día, y un Órgano Revisor controla las cuentas.",
+                types: [
+                    { 
+                        name: "Asociaciones Civiles", 
+                        desc: "Entidades privadas sin fines de lucro destinadas a desarrollar actividades culturales, deportivas, vecinales, de derechos humanos, etc., en beneficio de sus asociados o de la comunidad en general.", 
+                        example: "👉 Ejemplo: Un Club Social y Deportivo barrial, un centro de jubilados, o una Biblioteca Popular." 
+                    },
+                    { 
+                        name: "Asociaciones Mutuales", 
+                        desc: "Basadas en el principio de la solidaridad recíproca. Los miembros (mutualistas) realizan aportes periódicos para crear un fondo común destinado a brindarse servicios mutuos frente a riesgos eventuales o necesidades.", 
+                        example: "👉 Ejemplo: Una mutual de trabajadores de la salud que ofrece proveeduría a precios justos, turismo y ayuda económica a sus afiliados." 
+                    },
+                    { 
+                        name: "Asociaciones Gremiales / Sindicatos", 
+                        desc: "Estructuras creadas exclusivamente para la defensa y promoción de los intereses laborales, salariales y condiciones de trabajo de un sector de empleados.", 
+                        example: "👉 Ejemplo: El Sindicato de Empleados de Comercio (SEC), o la Asociación de Pilotos de Líneas Aéreas." 
+                    },
+                    { 
+                        name: "Cámaras Empresariales (Patronales)", 
+                        desc: "Agrupaciones que nuclean a empleadores o empresas para defender sus intereses sectoriales ante el Estado o los sindicatos, y fomentar el desarrollo de su industria.", 
+                        example: "👉 Ejemplo: La Cámara Argentina de la Construcción (CAMARCO) o la Cámara de Empresas de Software." 
+                    }
+                ],
+                examples: [
+                    { name: "Club Social y Deportivo Barrial", category: "Asociación Civil", detail: "Fomenta el deporte amateur, la contención comunitaria y la cultura local. Propiedad democrática de sus socios." },
+                    { name: "Refugio Patitas (ONG)", category: "Asociación Civil Protectora", detail: "Su fin es el rescate animal y la concientización ambiental. Financiada por donaciones." },
+                    { name: "Colegio Médico Provincial", category: "Asociación Profesional", detail: "Regula la matrícula profesional, defiende la ética y los intereses de los médicos de una región." }
+                ]
+            },
+            empresas: {
+                id: 'empresas',
+                title: "Empresas",
+                icon: "briefcase",
+                definition: "Entidades o unidades económico-sociales de producción integradas por capital, trabajo y dirección administrativa. Se dedican a extraer, fabricar, comercializar o prestar bienes y servicios para el mercado, asumiendo riesgos financieros.",
+                objective: "Su objetivo primordial es la generación de valor económico y la obtención de rentabilidad (lucro) para retribuir a sus inversores y dueños. Paralelamente, deben satisfacer las necesidades del mercado.",
+                origin: "Surgen de la iniciativa privada (emprendedurismo e inversión) o por decisión estatal, requiriendo un capital semilla o inicial para operar.",
+                ends: "Tienen un fin lucrativo (maximización de beneficios) y un fin socioeconómico inherente (generación de fuentes de trabajo, innovación y pago de impuestos).",
+                structure: "Se estructuran en áreas funcionales (Finanzas, Marketing, Producción, Recursos Humanos) y poseen una jerarquía ejecutiva (CEO, Gerentes, Supervisores).",
+                types: [
+                    { 
+                        name: "Clasificación por Tamaño", 
+                        desc: "Se dividen según su nivel de facturación y cantidad de empleados. Generalmente son Microempresas, Pequeñas y Medianas Empresas (MiPyMEs) y Grandes Corporaciones.", 
+                        example: "👉 Ejemplo: Una verdulería (Micro), una fábrica textil con 40 empleados (PyME), y una automotriz multinacional (Gran Empresa)." 
+                    },
+                    { 
+                        name: "Clasificación por Sector Económico", 
+                        desc: "Se agrupan según su actividad: Primario (extracción de recursos), Secundario (industria y manufactura), Terciario (comercio y servicios) y Cuaternario (información e I+D).", 
+                        example: "👉 Ejemplo: Una minera (Primario), una fábrica de muebles (Secundario), un banco (Terciario) y una empresa desarrolladora de software (Cuaternario)." 
+                    },
+                    { 
+                        name: "Por Propiedad del Capital", 
+                        desc: "Define quién es el dueño del patrimonio: Privadas (particulares), Públicas/Estatales (Estado) y Mixtas (capital compartido).", 
+                        example: "👉 Ejemplo: Supermercados Coto (Privada), Aerolíneas Argentinas (Pública), YPF (Mixta con mayoría estatal)." 
+                    },
+                    { 
+                        name: "Por Forma Jurídica", 
+                        desc: "Cómo se constituyen legalmente frente a la ley. Abarca desde trabajadores autónomos hasta sociedades comerciales complejas.", 
+                        example: "👉 Ejemplo: Un diseñador freelance (Unipersonal), un taller mecánico (Sociedad de Responsabilidad Limitada - SRL), o un banco (Sociedad Anónima - S.A.)." 
+                    }
+                ],
+                examples: [
+                    { name: "Mercado Libre", category: "Empresa Privada / Terciaria", detail: "Gran empresa de servicios (e-commerce y finanzas). Forma jurídica: Sociedad Anónima." },
+                    { name: "Panadería 'La Espiga'", category: "Microempresa / Industrial-Comercial", detail: "Elaboración (secundario) y venta directa (terciario) de alimentos a escala vecinal." },
+                    { name: "Empresa Provincial de Energía", category: "Empresa Pública Estatal", detail: "Provisión de un servicio esencial, donde el Estado asume la inversión de infraestructura." }
+                ]
+            },
+            conglomerados: {
+                id: 'conglomerados',
+                title: "Conglomerados",
+                icon: "network",
+                definition: "Un conglomerado es un colosal grupo corporativo multinivel, donde una empresa matriz central (Holding) controla total o parcialmente a múltiples empresas subsidiarias que operan en industrias o sectores de mercado completamente diferentes.",
+                objective: "El objetivo estratégico es la reducción máxima del riesgo mediante la diversificación profunda. Al operar en mercados distintos, una crisis en un sector (ej. turismo) se compensa con el auge en otro (ej. tecnología).",
+                origin: "Originados principalmente por estrategias agresivas de Fusiones y Adquisiciones (M&A). Surgen cuando una empresa genera tanto excedente de capital que decide comprar otras empresas en lugar de repartir dividendos.",
+                ends: "Fines corporativo-financieros: maximización del retorno sobre la inversión (ROI), optimización de los pagos de impuestos globales y creación de 'mercados de capital interno' más eficientes que los bancos.",
+                structure: "La empresa Matriz no produce bienes; solo administra las acciones, el flujo de caja y a los directores. Las empresas 'hijas' operan de manera totalmente independiente en el mercado.",
+                types: [
+                    { 
+                        name: "Conglomerado Puro", 
+                        desc: "Las empresas que lo componen operan en líneas de negocio que no tienen absolutamente ninguna relación comercial, tecnológica o productiva entre sí. Solo están unidas por los dueños.", 
+                        example: "👉 Ejemplo: Una matriz que es dueña de una cadena de hoteles de lujo, una fábrica de plásticos para el agro y una compañía productora de películas." 
+                    },
+                    { 
+                        name: "Conglomerado Mixto", 
+                        desc: "Operan en distintos sectores, pero existe un hilo conductor sutil que permite compartir canales de distribución, tecnologías o bases de clientes (sinergia encubierta).", 
+                        example: "👉 Ejemplo: Una empresa de telecomunicaciones que compra canales de TV abierta, radios y un club de fútbol, para tener la exclusividad de transmitir todo ese contenido." 
+                    },
+                    { 
+                        name: "Keiretsu (Japón) / Chaebol (Corea)", 
+                        desc: "Modelos asiáticos históricos. Son mega-redes de empresas entrelazadas (proveedores, distribuidores, fabricantes) lideradas habitualmente por un gran banco matriz o por familias fundadoras muy poderosas.", 
+                        example: "👉 Ejemplo: Samsung Group (Chaebol) fabrica celulares, pero también construye barcos cargueros, tiene hospitales, seguros de vida y parques de diversiones en Corea." 
+                    }
+                ],
+                examples: [
+                    { name: "Berkshire Hathaway", category: "Conglomerado Puro (Financiero)", detail: "Dirigido por Warren Buffett. Dueños de aseguradoras (GEICO), ferrocarriles (BNSF), comida rápida (Dairy Queen) y empresas de energía." },
+                    { name: "Alphabet Inc.", category: "Holding Mixto / Tecnológico", detail: "Es la 'madre' de Google, pero también posee Waymo (coches autónomos), Calico (medicina genética) y DeepMind (Inteligencia Artificial)." },
+                    { name: "Mitsubishi Group", category: "Keiretsu Japonés", detail: "Conforman bancos poderosos, la marca automotriz, empresas de minería y producción de productos químicos bajo la misma red corporativa." }
+                ]
+            },
+            monopolios: {
+                id: 'monopolios',
+                title: "Monopolios",
+                icon: "shield-alert",
+                definition: "Falla de mercado o estructura económica caracterizada por la existencia de una única empresa que domina el 100% (o casi) de la oferta de un bien o servicio determinado, para el cual los consumidores no encuentran sustitutos aceptables.",
+                objective: "Maximizar sus beneficios extraordinarios a costa del bienestar del consumidor. Al no tener competencia, el monopolista tiene el poder absoluto para fijar el precio o la cantidad ofrecida ('Price Maker').",
+                origin: "Aparecen por la existencia de infranqueables 'Barreras de Entrada', que evitan que otros competidores entren al mercado. Pueden ser barreras de costo, legales, tecnológicas o por control de materias primas.",
+                ends: "Apropiación del excedente del consumidor mediante la creación de escasez artificial (producir menos de lo que la sociedad necesita para venderlo mucho más caro).",
+                structure: "La empresa individual absorbe y es sinónimo de toda la industria. Su curva de demanda particular es, directamente, la curva de demanda de todo el país o región.",
+                types: [
+                    { 
+                        name: "Monopolio Puro", 
+                        desc: "Caso extremo y poco común en la realidad moderna no regulada. Existe una sola empresa, cero alternativas para el cliente, e imposibilidad absoluta de que otra empresa compita.", 
+                        example: "👉 Ejemplo: Si una sola corporación a nivel mundial fuera dueña exclusiva de la única mina del mineral necesario para hacer baterías cuánticas." 
+                    },
+                    { 
+                        name: "Monopolio Natural", 
+                        desc: "Surge por la naturaleza física del servicio: requiere inversiones en infraestructura tan inmensas que es más barato (y eficiente) que una sola empresa provea a todos, en lugar de tener a dos rompiendo las calles al mismo tiempo.", 
+                        example: "👉 Ejemplo: La red de cañerías de agua potable de una ciudad, o el cableado del tendido eléctrico de alta tensión. El Estado suele regular sus tarifas." 
+                    },
+                    { 
+                        name: "Monopolio Legal / Artificial", 
+                        desc: "Son aquellos monopolios creados, blindados y sostenidos por las leyes de un Estado. Nadie más puede competir porque sería ilegal hacerlo.", 
+                        example: "👉 Ejemplo: Una empresa farmacéutica a la que el gobierno le otorga una 'patente' de 20 años por inventar un remedio nuevo. O la Casa de la Moneda, única autorizada a imprimir billetes." 
+                    },
+                    { 
+                        name: "Monopsonio (Monopolio de Demanda)", 
+                        desc: "La estructura se invierte: hay muchos vendedores compitiendo, pero existe un ÚNICO y poderoso comprador, que obliga a los proveedores a bajar sus precios a niveles mínimos.", 
+                        example: "👉 Ejemplo: El Ejército Nacional (único comprador legal de armas de guerra pesado) frente a las empresas armamentísticas. O una única gran planta láctea ('La Serenísima') en un pueblo rural lleno de pequeños productores de leche." 
+                    }
+                ],
+                examples: [
+                    { name: "Distribuidora de Red de Gas / Edenor / Edesur", category: "Monopolio Natural", detail: "Económicamente inviable que dos empresas construyan redes de caños/cables paralelas en la misma cuadra." },
+                    { name: "Laboratorios Pfizer / Moderna (Patentes)", category: "Monopolio Legal Temporal", detail: "Protección legal que les otorga el monopolio exclusivo de fabricación de su innovación por X cantidad de años." },
+                    { name: "De Beers (Siglo XX)", category: "Monopolio por Control de Recursos", detail: "Logró comprar y controlar casi la totalidad de las minas de diamantes del mundo, controlando artificialmente el precio." }
+                ]
+            }
+        };
+
+        const comparativeData = [
+            { entidad: "Grupos", naturaleza: "Psicosocial", fines: "Expresivos e Instrumentales", estructura: "Roles, Normas y Estatus", origen: "Espontáneo o Deliberado" },
+            { entidad: "Organizaciones", naturaleza: "Sociotécnica", fines: "Múltiples (Lucrativos, Sociales, Públicos)", estructura: "Jerarquía y Departamentalización", origen: "Necesidad de superar limitaciones" },
+            { entidad: "Asociaciones", naturaleza: "Civil / Jurídica", fines: "Estrictamente No Lucrativos / Altruistas", estructura: "Asamblea, Directiva y Fiscalización", origen: "Derecho a libre asociación" },
+            { entidad: "Empresas", naturaleza: "Económica / Comercial", fines: "Lucrativos / Generación de Valor", estructura: "Directorios y Áreas Funcionales", origen: "Iniciativa Privada/Pública y Capital" },
+            { entidad: "Conglomerados", naturaleza: "Financiera / Corporativa", fines: "Diversificación de Riesgo y ROI", estructura: "Holding (Matriz) y Filiales", origen: "Fusiones y Adquisiciones (M&A)" },
+            { entidad: "Monopolios", naturaleza: "Estructura de Mercado", fines: "Rentas Monopólicas / Control", estructura: "Fusión Empresa-Industria completa", origen: "Barreras de entrada infranqueables" }
+        ];
+
+        // --- ESTADO GLOBAL ---
+        let activeTab = 'grupos';
+        let openAccordionIndex = null;
+        const accordionColors = ['bg-pink-200', 'bg-cyan-200', 'bg-emerald-200', 'bg-purple-200'];
+
+        // --- FUNCIONES DE RENDERIZADO ---
+
+        function setActiveTab(tabId) {
+            activeTab = tabId;
+            openAccordionIndex = null; 
+            renderSidebar();
+            renderContent();
+        }
+
+        function toggleAccordion(index) {
+            openAccordionIndex = openAccordionIndex === index ? null : index;
+            renderContent(); 
+        }
+
+        function renderSidebar() {
+            const sidebarHtml = Object.values(academicData).map(item => `
+                <button
+                    onclick="setActiveTab('${item.id}')"
+                    class="flex items-center gap-4 px-4 py-3 rounded-2xl text-left border-4 border-black font-black uppercase text-sm transition-all duration-200 
+                    ${activeTab === item.id 
+                        ? 'bg-yellow-300 text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] translate-x-1' 
+                        : 'bg-white text-black hover:bg-pink-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]'
+                    }"
+                >
+                    <span class="p-1 rounded-full border-2 border-black ${activeTab === item.id ? 'bg-white' : 'bg-transparent'}">
+                        <i data-lucide="${item.icon}" class="w-5 h-5"></i>
+                    </span>
+                    ${item.title}
+                </button>
+            `).join('');
+
+            const comparativoBtnHtml = `
+                <div class="mt-4 pt-4 border-t-4 border-black border-dashed">
+                    <button
+                        onclick="setActiveTab('comparativo')"
+                        class="w-full flex items-center gap-4 px-4 py-4 rounded-2xl text-left border-4 border-black font-black uppercase text-sm transition-all duration-200
+                        ${activeTab === 'comparativo' 
+                            ? 'bg-purple-400 text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] translate-x-1' 
+                            : 'bg-white text-black hover:bg-purple-300 hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]'
+                        }"
+                    >
+                        <span class="p-1 rounded-full border-2 border-black ${activeTab === 'comparativo' ? 'bg-white text-purple-600' : 'bg-transparent'}">
+                            <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                        </span>
+                        Ver Resumen
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('sidebar-nav').innerHTML = sidebarHtml + comparativoBtnHtml;
+        }
+
+        function renderContent() {
+            const contentArea = document.getElementById('content-area');
+
+            if (activeTab === 'comparativo') {
+                contentArea.innerHTML = `
+                    <div class="space-y-8 animate-fade-in">
+                        <div class="flex flex-col md:flex-row items-center gap-4 mb-8 pb-8 border-b-4 border-black">
+                            <div class="p-4 bg-yellow-300 text-black rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform -rotate-6">
+                                <i data-lucide="layout-grid" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl md:text-4xl font-black text-black uppercase tracking-tight">El Gran Cuadro Comparativo</h2>
+                                <p class="text-black font-bold mt-2 bg-pink-200 inline-block px-3 py-1 border-2 border-black rounded-full text-sm md:text-base">¡Todo el módulo en un solo vistazo!</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-3xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y-4 divide-black">
+                                    <thead class="bg-purple-400">
+                                        <tr>
+                                            <th class="px-6 py-5 text-left text-sm font-black text-white uppercase tracking-wider border-r-4 border-black">Entidad</th>
+                                            <th class="px-6 py-5 text-left text-sm font-black text-white uppercase tracking-wider border-r-4 border-black">Naturaleza Base</th>
+                                            <th class="px-6 py-5 text-left text-sm font-black text-white uppercase tracking-wider border-r-4 border-black">Fines Principales</th>
+                                            <th class="px-6 py-5 text-left text-sm font-black text-white uppercase tracking-wider border-r-4 border-black">Diseño / Estructura</th>
+                                            <th class="px-6 py-5 text-left text-sm font-black text-white uppercase tracking-wider">Origen Clave</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y-2 divide-black/20">
+                                        ${comparativeData.map((row) => `
+                                            <tr class="hover:bg-purple-50">
+                                                <td class="px-6 py-5 text-base font-black text-black border-r-4 border-black bg-purple-100/50">${row.entidad}</td>
+                                                <td class="px-6 py-5 text-sm text-black font-bold border-r-4 border-black">
+                                                    <span class="bg-white px-3 py-1 rounded-lg border-2 border-black block text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">${row.naturaleza}</span>
+                                                </td>
+                                                <td class="px-6 py-5 text-sm text-black font-medium border-r-4 border-black">${row.fines}</td>
+                                                <td class="px-6 py-5 text-sm text-black font-medium border-r-4 border-black">${row.estructura}</td>
+                                                <td class="px-6 py-5 text-sm text-black font-bold italic bg-yellow-50">${row.origen}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-cyan-200 p-6 rounded-2xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mt-8 transform md:rotate-1">
+                            <h3 class="flex items-center gap-3 text-xl font-black text-black mb-3">
+                                <i data-lucide="info" class="w-6 h-6 text-black"></i> ¡Alerta de Cátedra!
+                            </h3>
+                            <p class="text-black font-medium text-sm md:text-base leading-relaxed">
+                                Este cuadro resume las características ideales de cada estructura ("Tipos Ideales" en términos sociológicos). En la realidad práctica, las fronteras pueden ser difusas. ¡Recuerda que una Asociación Civil puede organizarse internamente como una Empresa para ser más eficiente!
+                            </p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                const data = academicData[activeTab];
+
+                // Acordeón con ejemplos integrados de manera llamativa
+                const accordionHtml = data.types.map((type, index) => {
+                    const isOpen = openAccordionIndex === index;
+                    return `
+                        <div class="border-4 border-black rounded-2xl overflow-hidden bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 mb-4">
+                            <button
+                                onclick="toggleAccordion(${index})"
+                                class="w-full flex justify-between items-center p-4 text-left font-black text-black ${accordionColors[index % accordionColors.length]} hover:brightness-95 focus:outline-none transition-all"
+                            >
+                                <span class="flex items-center gap-3 text-sm md:text-lg">
+                                    <span class="p-1 bg-white border-2 border-black rounded-full flex-shrink-0">
+                                        <i data-lucide="book-open" class="w-4 h-4 text-black"></i>
+                                    </span>
+                                    ${type.name}
+                                </span>
+                                <i data-lucide="${isOpen ? 'chevron-up' : 'chevron-down'}" class="w-6 h-6 text-black font-bold flex-shrink-0"></i>
+                            </button>
+                            <div class="transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100 border-t-4 border-black' : 'max-h-0 opacity-0 hidden'} bg-white">
+                                <div class="p-5 text-black font-medium text-sm md:text-base leading-relaxed flex flex-col gap-3">
+                                    <p>${type.desc}</p>
+                                    <div class="bg-yellow-100 border-2 border-black rounded-xl p-3 text-sm md:text-base font-bold text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                                        ${type.example}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                const tableHtml = data.examples.map(item => `
+                    <tr class="hover:bg-green-50 transition-colors">
+                        <td class="px-6 py-4 text-sm font-bold text-black border-r-4 border-black">${item.name}</td>
+                        <td class="px-6 py-4 text-sm font-black text-blue-600 border-r-4 border-black">
+                            <span class="bg-blue-100 px-3 py-1 rounded-full border-2 border-black whitespace-nowrap">${item.category}</span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-black font-medium leading-relaxed min-w-[250px]">${item.detail}</td>
+                    </tr>
+                `).join('');
+
+                contentArea.innerHTML = `
+                    <div class="space-y-10 animate-fade-in">
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-5 mb-8 pb-8 border-b-4 border-black text-center md:text-left">
+                            <div class="p-4 bg-pink-400 text-white rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform -rotate-6 inline-block">
+                                <i data-lucide="${data.icon}" class="w-8 h-8"></i>
+                            </div>
+                            <h2 class="text-3xl md:text-5xl font-black text-black uppercase tracking-tight mt-2 md:mt-0">${data.title}</h2>
+                        </div>
+
+                        <!-- Definición y Objetivo -->
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-yellow-300 p-6 md:p-8 rounded-3xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] transition-all">
+                                <h3 class="flex items-center gap-3 text-xl font-black text-black mb-4 uppercase">
+                                    <span class="p-2 bg-white rounded-full border-2 border-black"><i data-lucide="info" class="w-5 h-5"></i></span>
+                                    Definición
+                                </h3>
+                                <p class="text-black font-medium leading-relaxed text-sm md:text-base">
+                                    ${data.definition}
+                                </p>
+                            </div>
+                            <div class="bg-cyan-300 p-6 md:p-8 rounded-3xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] transition-all">
+                                <h3 class="flex items-center gap-3 text-xl font-black text-black mb-4 uppercase">
+                                    <span class="p-2 bg-white rounded-full border-2 border-black"><i data-lucide="target" class="w-5 h-5"></i></span>
+                                    Objetivo
+                                </h3>
+                                <p class="text-black font-medium leading-relaxed text-sm md:text-base">
+                                    ${data.objective}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Origen, Fines y Estructura -->
+                        <div class="bg-purple-200 border-4 border-black rounded-3xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 md:p-8">
+                            <h3 class="flex items-center gap-3 text-2xl font-black text-black mb-8 uppercase">
+                                <span class="p-2 bg-white rounded-xl border-2 border-black transform rotate-3"><i data-lucide="git-merge" class="w-6 h-6"></i></span>
+                                ADN de la Estructura
+                            </h3>
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="bg-white p-5 rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                                    <h4 class="font-black text-xl text-black mb-2 border-b-4 border-black pb-2">1. Origen</h4>
+                                    <p class="text-sm md:text-base text-black font-medium leading-relaxed pt-2">${data.origin}</p>
+                                </div>
+                                <div class="bg-white p-5 rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                                    <h4 class="font-black text-xl text-black mb-2 border-b-4 border-black pb-2">2. Fines</h4>
+                                    <p class="text-sm md:text-base text-black font-medium leading-relaxed pt-2">${data.ends}</p>
+                                </div>
+                                <div class="bg-white p-5 rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                                    <h4 class="font-black text-xl text-black mb-2 border-b-4 border-black pb-2">3. Diseño</h4>
+                                    <p class="text-sm md:text-base text-black font-medium leading-relaxed pt-2">${data.structure}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tipologías (Acordeón) -->
+                        <div class="pt-4">
+                            <div class="inline-block bg-black text-white px-4 py-2 font-black uppercase tracking-widest rounded-t-xl ml-4">
+                                Clasificación Explicada
+                            </div>
+                            <div class="bg-white p-4 md:p-6 border-4 border-black rounded-3xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                                <p class="text-black font-bold text-sm mb-4 bg-yellow-100 inline-block px-3 py-1 border-2 border-black rounded-lg">👇 Haz clic en cada uno para ver su desarrollo y un ejemplo clave.</p>
+                                <div class="mt-2">
+                                    ${accordionHtml}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ejemplos Prácticos (Tabla) -->
+                        <div class="pt-8">
+                            <h3 class="text-2xl md:text-3xl font-black text-black mb-4 uppercase">Grandes Casos 🌎</h3>
+                            <div class="overflow-x-auto mt-4 rounded-2xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white">
+                                <table class="min-w-full divide-y-4 divide-black">
+                                    <thead class="bg-green-300">
+                                        <tr>
+                                            <th class="px-6 py-4 text-left text-xs md:text-sm font-black text-black uppercase tracking-widest border-r-4 border-black">Entidad / Organización</th>
+                                            <th class="px-6 py-4 text-left text-xs md:text-sm font-black text-black uppercase tracking-widest border-r-4 border-black">Categoría</th>
+                                            <th class="px-6 py-4 text-left text-xs md:text-sm font-black text-black uppercase tracking-widest">Análisis Detallado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y-2 divide-black/20">
+                                        ${tableHtml}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            lucide.createIcons();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSidebar();
+            renderContent();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
