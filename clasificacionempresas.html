@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasificación Integral de Empresas - Infografía Interactiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --comic-yellow: #FFD700;
+            --comic-red: #E63946;
+            --comic-blue: #1D3557;
+            --comic-border: 4px solid #000;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            background-image: radial-gradient(#ccc 1px, transparent 1px);
+            background-size: 25px 25px;
+            font-family: 'Open Sans', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .comic-panel {
+            background: white;
+            border: var(--comic-border);
+            box-shadow: 10px 10px 0px #000;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .header-hero {
+            background: var(--comic-blue);
+            color: white;
+            border-bottom: 6px solid #000;
+            padding: 60px 20px;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .speech-bubble {
+            position: relative;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px;
+            filter: drop-shadow(5px 5px 0px rgba(0,0,0,0.1));
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 40px;
+            border-width: 20px 20px 0;
+            border-style: solid;
+            border-color: #000 transparent;
+            display: block;
+            width: 0;
+        }
+
+        .onomatopoeia {
+            font-family: 'Permanent Marker', cursive;
+            color: var(--comic-red);
+            text-shadow: 3px 3px 0px var(--comic-yellow);
+            transform: rotate(-5deg);
+            display: inline-block;
+            pointer-events: none;
+        }
+
+        details summary {
+            list-style: none;
+            cursor: pointer;
+            background: var(--comic-yellow);
+            border-bottom: 3px solid #000;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        details[open] summary {
+            background: var(--comic-red);
+            color: white;
+        }
+
+        .content-inner {
+            padding: 25px;
+            background: #fff;
+        }
+
+        .data-table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 4px solid #000;
+        }
+
+        .data-table th {
+            background: var(--comic-blue);
+            color: white;
+            padding: 15px;
+            border: 2px solid #000;
+            text-align: left;
+        }
+
+        .data-table td {
+            padding: 15px;
+            border: 2px solid #000;
+            background: white;
+            vertical-align: top;
+        }
+
+        .tech-box {
+            background: #f9f9f9;
+            border-left: 8px solid var(--comic-blue);
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        .section-title {
+            background: #000;
+            color: var(--comic-yellow);
+            padding: 10px 30px;
+            display: inline-block;
+            transform: skew(-10deg);
+            margin-bottom: 30px;
+            box-shadow: 5px 5px 0px var(--comic-red);
+        }
+
+        .highlight-text {
+            color: var(--comic-red);
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        ul.comic-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.comic-list li::before {
+            content: "💥";
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="header-hero">
+        <h1 class="text-7xl mb-4">Clasificación Integral de Empresas</h1>
+        <p class="text-2xl font-bold italic tracking-widest">EXPEDIENTE ACADÉMICO PARA INGENIERÍA Y TECNICATURAS</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto py-12 px-6">
+
+        <!-- 1. INTRODUCCIÓN DEFINITIVA -->
+        <section class="mb-20">
+            <div class="comic-panel">
+                <div class="p-10">
+                    <h2 class="section-title text-4xl">1. LA GÉNESIS: CONCEPTO DE EMPRESA</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                        <div class="md:col-span-2 text-lg">
+                            <p class="mb-6 leading-relaxed">
+                                La empresa se define técnicamente como una <span class="highlight-text">unidad económica de producción</span> encargada de combinar factores productivos para generar bienes o servicios destinados al mercado. Su objetivo fundamental es satisfacer necesidades humanas bajo criterios de eficiencia y rentabilidad.
+                            </p>
+                            <div class="bg-gray-100 border-2 border-black p-6 mb-4">
+                                <h4 class="text-xl mb-3 border-b-2 border-black">Factores de Producción Coordinados:</h4>
+                                <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-bold text-center">
+                                    <li class="bg-yellow-100 p-3 border-2 border-black">💰 CAPITAL<br><span class="text-xs font-normal">Recursos financieros y físicos</span></li>
+                                    <li class="bg-blue-100 p-3 border-2 border-black">🛠️ TRABAJO<br><span class="text-xs font-normal">Esfuerzo humano y técnico</span></li>
+                                    <li class="bg-green-100 p-3 border-2 border-black">🌿 R. NATURALES<br><span class="text-xs font-normal">Materia prima y energía</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="md:col-span-1">
+                            <div class="speech-bubble font-bold italic border-4">
+                                <p class="mb-2 text-red-600 uppercase text-xl">¡Nota del Instructor!</p>
+                                <p class="text-sm">En <strong>Sistemas</strong>, esta unidad determina flujos de datos. En <strong>Electricidad</strong>, define la infraestructura de potencia y seguridad necesaria.</p>
+                            </div>
+                            <div class="text-center mt-4">
+                                <span class="onomatopoeia text-3xl">INFO-CRITICAL!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CLASIFICACIÓN POR TAMAÑO (DIMENSIÓN) -->
+        <section class="mb-20">
+            <h2 class="section-title text-4xl">2. DIMENSIÓN: EL TAMAÑO DE LA FUERZA</h2>
+            <p class="mb-8 p-4 bg-white border-l-8 border-black font-bold italic">
+                La escala operativa define la estructura jerárquica y la capacidad tecnológica. En Argentina, nos regimos por la normativa <span class="text-red-600 underline">SEPYME</span>, evaluando ventas anuales y dotación de personal.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Micro -->
+                <div class="comic-panel border-t-8 border-t-yellow-400">
+                    <div class="p-6">
+                        <div class="flex justify-between mb-4">
+                            <h3 class="text-3xl">2.1 Microemprendimientos</h3>
+                            <span class="onomatopoeia">MINI-SCALE!</span>
+                        </div>
+                        <p class="font-bold border-b-2 border-black pb-2 mb-4">Definición: Unidades productivas mínimas, usualmente de subsistencia o baja tecnología.</p>
+                        <ul class="comic-list space-y-3">
+                            <li><strong>Gestión Directa:</strong> El dueño es el operario principal y gestor administrativo.</li>
+                            <li><strong>Informalidad:</strong> Superposición entre patrimonio personal y del negocio. Los datos se llevan en "cuadernos" o planillas simples.</li>
+                            <li><strong>Escasa División:</strong> Todos los empleados (si los hay) realizan múltiples tareas sin especialización.</li>
+                        </ul>
+                        <div class="tech-box">
+                            <strong>📍 CASO REAL:</strong> Panadería familiar en Rafael Castillo con 2 empleados. Instalación eléctrica monofásica básica.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pequeña -->
+                <div class="comic-panel border-t-8 border-t-blue-500">
+                    <div class="p-6">
+                        <div class="flex justify-between mb-4">
+                            <h3 class="text-3xl">2.2 Pequeñas Empresas</h3>
+                            <span class="onomatopoeia">STEADY!</span>
+                        </div>
+                        <p class="font-bold border-b-2 border-black pb-2 mb-4">Definición: Organizaciones con una estructura formal mínima y objetivos de crecimiento definidos.</p>
+                        <ul class="comic-list space-y-3">
+                            <li><strong>Delegación:</strong> El dueño ya no es el único operario; empieza a delegar funciones técnicas.</li>
+                            <li><strong>Planificación:</strong> Requieren una planificación eléctrica específica para maquinaria.</li>
+                            <li><strong>Sistemas:</strong> Utilización de software de oficina y contabilidad básica.</li>
+                        </ul>
+                        <div class="tech-box">
+                            <strong>📍 CASO REAL:</strong> Taller de bobinado en San Justo con 10 empleados. Requiere instalación trifásica y tableros seccionales.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mediana -->
+                <div class="comic-panel border-t-8 border-t-orange-500">
+                    <div class="p-6">
+                        <div class="flex justify-between mb-4">
+                            <h3 class="text-3xl">2.3 Medianas Empresas</h3>
+                            <span class="onomatopoeia">EXPAND!</span>
+                        </div>
+                        <p class="font-bold border-b-2 border-black pb-2 mb-4">Definición: Empresas departamentalizadas con procesos estandarizados y gestión profesional.</p>
+                        <ul class="comic-list space-y-3">
+                            <li><strong>Estructura Orgánica:</strong> Departamentos de Compras, Ventas, RRHH y Producción claramente definidos.</li>
+                            <li><strong>Uso de ERP:</strong> Implementación obligatoria de sistemas de gestión integral para centralizar información.</li>
+                            <li><strong>Tecnología:</strong> Procesos semiautomatizados y mayor demanda energética.</li>
+                        </ul>
+                        <div class="tech-box">
+                            <strong>📍 CASO REAL:</strong> Fábrica de aberturas de aluminio en Virrey del Pino con 80 operarios. Infraestructura de datos con servidores locales.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grande -->
+                <div class="comic-panel border-t-8 border-t-red-600">
+                    <div class="p-6">
+                        <div class="flex justify-between mb-4">
+                            <h3 class="text-3xl">2.4 Grandes Empresas</h3>
+                            <span class="onomatopoeia">TITAN-LEVEL!</span>
+                        </div>
+                        <p class="font-bold border-b-2 border-black pb-2 mb-4">Definición: Corporaciones de alta envergadura con influencia nacional o global.</p>
+                        <ul class="comic-list space-y-3">
+                            <li><strong>Automatización:</strong> Alto nivel de integración tecnológica (Robótica, PLC, Redes industriales).</li>
+                            <li><strong>Infraestructura:</strong> Poseen subestaciones eléctricas propias y departamentos de IT dedicados.</li>
+                            <li><strong>Marco Legal:</strong> Suelen cotizar en bolsa y poseer sindicatos propios.</li>
+                        </ul>
+                        <div class="tech-box">
+                            <strong>📍 CASO REAL:</strong> Refres Now (Manaos) o Mercedes-Benz. Consumos industriales masivos y redes de fibra óptica propias.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SECTORES ECONÓMICOS - TABLA DETALLADA -->
+        <section class="mb-20">
+            <h2 class="section-title text-4xl">3. ÁMBITO DE ACCIÓN: LOS 4 SECTORES</h2>
+            <div class="comic-panel overflow-hidden">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th class="w-1/4">Sector</th>
+                            <th class="w-1/2">Descripción Técnica y Características</th>
+                            <th class="w-1/4">Ejemplos Locales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-bold text-green-700 bg-green-50">🌱 PRIMARIO<br><span class="text-xs text-black font-normal">Extractivo</span></td>
+                            <td>Consiste en la obtención de materias primas directamente de la naturaleza, sin procesos de transformación industrial. Incluye agricultura, ganadería, minería y pesca. Es la base de la cadena de suministro.</td>
+                            <td class="italic">Huertas orgánicas y producción de forraje en las zonas rurales de Virrey del Pino sur.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold text-red-700 bg-red-50">🏗️ SECUNDARIO<br><span class="text-xs text-black font-normal">Industrial</span></td>
+                            <td>Se encarga de la transformación física o química de las materias primas en productos elaborados o semielaborados. Es el sector con mayor consumo de energía eléctrica y complejidad en sistemas de control de procesos.</td>
+                            <td class="font-bold italic">Acindar (Tablada) - Perfiles de acero;<br>Fábricas de calzado en Laferrere.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold text-blue-700 bg-blue-50">🛒 TERCIARIO<br><span class="text-xs text-black font-normal">Servicios</span></td>
+                            <td>Comprende las actividades que no producen bienes materiales, sino servicios para satisfacer necesidades. Incluye comercio, salud, educación y transporte. Su motor principal es el flujo de clientes y transacciones.</td>
+                            <td class="italic">Shopping San Justo;<br>Clínicas privadas en Ramos Mejía.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold text-purple-700 bg-purple-50">💻 CUATERNARIO<br><span class="text-xs text-black font-normal">Conocimiento</span></td>
+                            <td>Sector basado en el capital intelectual. Incluye investigación y desarrollo (I+D), alta tecnología, consultoría estratégica y gestión de la información. Es el futuro de la ingeniería de sistemas.</td>
+                            <td class="italic">Desarrolladores de software independientes y consultoras de IT en Lomas del Mirador.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 4. ALCANCE GEOGRÁFICO -->
+        <section class="mb-20">
+            <h2 class="section-title text-4xl">4. RADIO DE ACCIÓN: ALCANCE GEOGRÁFICO</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="comic-panel p-5 text-center bg-gray-50 border-dashed">
+                    <h4 class="text-2xl border-b-4 border-black mb-3">Locales</h4>
+                    <p class="text-sm">Operan en una sola ciudad o zona. El conocimiento del cliente es directo.</p>
+                    <p class="mt-4 font-bold text-xs uppercase bg-black text-white p-1">Ej: Ferretería de barrio</p>
+                </div>
+                <div class="comic-panel p-5 text-center bg-gray-50 border-dashed">
+                    <h4 class="text-2xl border-b-4 border-black mb-3">Regionales</h4>
+                    <p class="text-sm">Su red abarca varios municipios o una provincia entera. Logística de media distancia.</p>
+                    <p class="mt-4 font-bold text-xs uppercase bg-black text-white p-1">Ej: Distribuidora de bebidas</p>
+                </div>
+                <div class="comic-panel p-5 text-center bg-gray-50 border-dashed">
+                    <h4 class="text-2xl border-b-4 border-black mb-3">Nacionales</h4>
+                    <p class="text-sm">Operan en todo el territorio del país. Requieren sistemas de red y sucursales complejas.</p>
+                    <p class="mt-4 font-bold text-xs uppercase bg-black text-white p-1">Ej: Correo Argentino</p>
+                </div>
+                <div class="comic-panel p-5 text-center bg-gray-50 border-dashed">
+                    <h4 class="text-2xl border-b-4 border-black mb-3">Globales</h4>
+                    <p class="text-sm">Multinacionales con presencia en diversos países, adaptándose a leyes locales diversas.</p>
+                    <p class="mt-4 font-bold text-xs uppercase bg-black text-white p-1">Ej: Royal Canin (V. Pino)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ORIGEN DEL CAPITAL -->
+        <section class="mb-20">
+            <div class="comic-panel bg-yellow-400 rotate-1">
+                <div class="p-10 border-4 border-black">
+                    <h2 class="text-5xl mb-8">5. ORIGEN DEL CAPITAL (EL COMBUSTIBLE)</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 border-4 border-black shadow-[8px_8px_0px_#000]">
+                            <h4 class="text-2xl text-red-600 mb-2">1. PRIVADAS</h4>
+                            <p class="text-sm">El capital proviene de individuos o empresas particulares. Su motor principal es la <strong>obtención de beneficios</strong> para sus accionistas.</p>
+                            <div class="mt-3 tech-box text-xs">Ej: Locales comerciales de Av. Arieta.</div>
+                        </div>
+                        <div class="bg-white p-6 border-4 border-black shadow-[8px_8px_0px_#000]">
+                            <h4 class="text-2xl text-blue-600 mb-2">2. PÚBLICAS</h4>
+                            <p class="text-sm">Propiedad del Estado (Nacional, Provincial o Municipal). Su meta es garantizar <strong>servicios estratégicos</strong> o el bienestar social.</p>
+                            <div class="mt-3 tech-box text-xs">Ej: Empresa de Agua y Saneamientos (AySA).</div>
+                        </div>
+                        <div class="bg-white p-6 border-4 border-black shadow-[8px_8px_0px_#000]">
+                            <h4 class="text-2xl text-green-600 mb-2">3. MIXTAS</h4>
+                            <p class="text-sm">Copropiedad entre el Estado y el sector privado. El Estado mantiene control sobre decisiones clave y el privado aporta eficiencia operativa.</p>
+                            <div class="mt-3 tech-box text-xs">Ej: Estaciones de servicio YPF.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. MARCO JURÍDICO - EXPANDIDO Y ROBUSTO -->
+        <section class="mb-20">
+            <h2 class="section-title text-4xl">6. MARCO JURÍDICO: EL CONTRATO SOCIAL (Ley 19.550)</h2>
+            <div class="space-y-4">
+                
+                <details class="comic-panel">
+                    <summary>6.1 Empresa Unipersonal <i class="fas fa-id-card"></i></summary>
+                    <div class="content-inner">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="font-bold text-red-600 underline">Definición y Características:</h4>
+                                <p>Es la forma más simple de organización. Pertenece a una sola persona física que asume todos los riesgos y beneficios.</p>
+                                <ul class="list-disc pl-5 mt-3 space-y-2">
+                                    <li><strong>Patrimonio:</strong> No existe distinción entre los bienes personales y los de la empresa.</li>
+                                    <li><strong>Responsabilidad:</strong> Es <strong>Ilimitada</strong>; ante una deuda, el dueño responde con su casa, auto y ahorros personales.</li>
+                                    <li><strong>Trámite:</strong> Sencillo, solo requiere inscripción impositiva (Monotributo/Responsable Inscripto).</li>
+                                </ul>
+                            </div>
+                            <div class="bg-yellow-50 p-4 border-2 border-black">
+                                <strong>Contexto Técnico:</strong> Común en técnicos electricistas que trabajan bajo su propio nombre en reparaciones domiciliarias e industriales menores.
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="comic-panel">
+                    <summary>6.2 Sociedad de Responsabilidad Limitada (S.R.L.) <i class="fas fa-users-cog"></i></summary>
+                    <div class="content-inner">
+                        <h4 class="font-bold text-blue-600 underline">Características Principales:</h4>
+                        <p class="mt-2">Es una sociedad de personas y capital, ideal para PyMEs familiares o grupos pequeños de profesionales.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li><strong>Capital:</strong> Se divide en "Cuotas" (no acciones). Debe suscribirse íntegramente al momento de la firma.</li>
+                                <li><strong>Socios:</strong> Mínimo 2, máximo 50.</li>
+                                <li><strong>Responsabilidad:</strong> Limitada al capital aportado. Los acreedores no pueden ir contra los bienes personales de los socios.</li>
+                                <li><strong>Administración:</strong> A cargo de uno o más "Gerentes".</li>
+                            </ul>
+                            <div class="tech-box">
+                                <strong>Ejemplo local:</strong> Una distribuidora de materiales eléctricos en San Justo constituida como "Luz Matanza S.R.L."
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="comic-panel">
+                    <summary>6.3 Sociedad Anónima (S.A.) <i class="fas fa-building"></i></summary>
+                    <div class="content-inner">
+                        <h4 class="font-bold text-red-600 underline">Estructura Corporativa:</h4>
+                        <p class="mt-2">Es una sociedad puramente de capital, donde la identidad de los socios es menos relevante que el capital que aportan.</p>
+                        <ul class="list-disc pl-5 mt-3 space-y-2">
+                            <li><strong>Capital:</strong> Representado por "Acciones" que pueden venderse o transferirse fácilmente.</li>
+                            <li><strong>Responsabilidad:</strong> Limitada estrictamente a las acciones suscritas.</li>
+                            <li><strong>Gobierno:</strong> Dirigida por un Directorio y fiscalizada por una Sindicatura.</li>
+                            <li><strong>Escalabilidad:</strong> Es la forma jurídica que permite captar grandes inversiones y salir a la bolsa de valores.</li>
+                        </ul>
+                        <div class="tech-box mt-4">
+                            <strong>Contexto:</strong> Grandes industrias y cadenas de supermercados que operan en González Catán o Isidro Casanova.
+                        </div>
+                    </div>
+                </details>
+
+                <details class="comic-panel">
+                    <summary>6.4 Sociedades en Comandita <i class="fas fa-user-friends"></i></summary>
+                    <div class="content-inner">
+                        <p class="font-bold italic mb-4">Un modelo híbrido donde existen dos tipos de responsabilidades:</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 border-2 border-black bg-red-50">
+                                <h5 class="font-bold text-red-700">1. Socios Comanditados:</h5>
+                                <p class="text-sm">Responsabilidad solidaria, ilimitada y subsidiaria. Son los que suelen administrar la firma.</p>
+                            </div>
+                            <div class="p-4 border-2 border-black bg-blue-50">
+                                <h5 class="font-bold text-blue-700">2. Socios Comanditarios:</h5>
+                                <p class="text-sm">Responsabilidad limitada al capital aportado. No pueden intervenir en la administración.</p>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm font-bold">Subtipos: Comandita Simple y Comandita por Acciones.</p>
+                    </div>
+                </details>
+
+                <details class="comic-panel">
+                    <summary>6.5 Sociedad de Capital e Industria <i class="fas fa-tools"></i></summary>
+                    <div class="content-inner">
+                        <h4 class="font-bold text-purple-600 mb-3">Sinergia entre Capital y Trabajo:</h4>
+                        <p>Es un tipo societario particular donde coexisten dos clases de socios con roles y responsabilidades muy distintas:</p>
+                        <ul class="list-disc pl-5 mt-3 space-y-3">
+                            <li><strong>Socio Capitalista:</strong> Aporta bienes o dinero. Su responsabilidad es <strong>limitada</strong>.</li>
+                            <li><strong>Socio Industrial:</strong> Aporta exclusivamente su trabajo, conocimiento técnico o "industria". No responde con bienes personales por las deudas, sino hasta la concurrencia de las ganancias no percibidas.</li>
+                        </ul>
+                        <div class="tech-box mt-4">
+                            <strong>📍 EJEMPLO TÉCNICO:</strong> Un ingeniero que aporta el diseño de un nuevo sistema de control (industria) y un inversor de Ramos Mejía que aporta el capital para la fábrica.
+                        </div>
+                    </div>
+                </details>
+
+                <details class="comic-panel">
+                    <summary>6.6 Sociedad por Acciones Simplificada (S.A.S.) <i class="fas fa-bolt"></i></summary>
+                    <div class="content-inner">
+                        <div class="flex flex-wrap items-center">
+                            <div class="w-full md:w-3/4">
+                                <h4 class="font-bold text-yellow-600 mb-2 text-xl">🚀 La Revolución Digital</h4>
+                                <p>Figura jurídica moderna diseñada para emprendedores y startups tecnológicas. Permite una constitución digital en 24 horas.</p>
+                                <ul class="list-disc pl-5 mt-3">
+                                    <li><strong>Unipersonalidad:</strong> Permite un solo socio (S.A.S.U.).</li>
+                                    <li><strong>Flexibilidad:</strong> Menos requisitos formales y libros digitales obligatorios.</li>
+                                    <li><strong>Capital Mínimo:</strong> Equivalente a dos salarios mínimos vitales y móviles.</li>
+                                </ul>
+                            </div>
+                            <div class="w-full md:w-1/4 text-center">
+                                <span class="onomatopoeia text-4xl">FAST!</span>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="comic-panel">
+                    <summary>6.7 Cooperativas <i class="fas fa-handshake"></i></summary>
+                    <div class="content-inner">
+                        <h4 class="font-bold text-green-600 mb-2">Principio de Solidaridad y Democracia:</h4>
+                        <p>A diferencia de las sociedades comerciales, su fin no es el lucro para accionistas, sino el servicio mutuo para sus miembros.</p>
+                        <ul class="list-disc pl-5 mt-3 space-y-2">
+                            <li><strong>Democracia Interna:</strong> "Un socio, un voto", sin importar cuánto capital aportó cada uno.</li>
+                            <li><strong>Excedentes:</strong> No hay "ganancias", sino excedentes que se reparten según el uso del servicio o el trabajo aportado.</li>
+                            <li><strong>Función Social:</strong> Suelen cubrir necesidades donde las empresas privadas no llegan.</li>
+                        </ul>
+                        <div class="tech-box mt-4">
+                            <strong>📍 EJEMPLO:</strong> Cooperativas de reciclado en Ciudad Evita o cooperativas eléctricas rurales que mantienen la red fuera de la zona de concesión de grandes prestadoras.
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black text-white p-12 text-center border-t-8 border-red-600">
+        <h3 class="text-4xl mb-4">FIN DE LA SESIÓN DE DATOS</h3>
+        <p class="text-gray-400 max-w-2xl mx-auto">Este material ha sido procesado siguiendo los lineamientos de la Ley de Sociedades y las tipologías de gestión para la cátedra de Análisis de Sistemas y Electricidad.</p>
+        <div class="mt-8">
+            <span class="onomatopoeia text-yellow-400">¡ESTUDIA DURO!</span>
+        </div>
+    </footer>
+
+</body>
+</html>
