@@ -27,7 +27,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 17. [Clase 01: Historia Eléctrica - El Génesis](https://profedel240.github.io/clase/orfseclase1a.html)
 18. [Clase 02: Historia Eléctrica - El Colapso](https://profedel240.github.io/clase/orfseclase1b.html)
 19. [Clase 03: Historia Eléctrica - El Mercado](https://profedel240.github.io/clase/orfseclase1c.html)
-20. [Título de la Clase 20 aquí](https://link-de-tu-infografia-20-aqui.github.io/apunte_20.html)
+20. [Título de la Clase 20 aquí](https://profedel240.github.io/clases/ciclocombinado.html)
 21. [Título de la Clase 21 aquí](https://link-de-tu-infografia-21-aqui.github.io/apunte_21.html)
 22. [Título de la Clase 22 aquí](https://link-de-tu-infografia-22-aqui.github.io/apunte_22.html)
 23. [Título de la Clase 23 aquí](https://link-de-tu-infografia-23-aqui.github.io/apunte_23.html)
