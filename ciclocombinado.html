@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recurso Didáctico: Ciclo Combinado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .technical-font { font-family: 'Fira Code', monospace; }
+        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 3000px;
+        }
+
+        .accordion-item.active .chevron { transform: rotate(180deg); }
+        
+        .step-number {
+            @apply flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold shrink-0;
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #e2e8f0; padding: 1rem; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Hero Section -->
+    <header class="gradient-bg text-white py-12 px-6 border-b-4 border-blue-500">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+                <span class="bg-blue-700 text-[10px] font-black px-2 py-1 rounded uppercase tracking-tighter">Ingeniería Eléctrica</span>
+                <span class="bg-slate-700 text-[10px] font-black px-2 py-1 rounded uppercase tracking-tighter">Termodinámica Aplicada</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Centrales Termoeléctricas de Ciclo Combinado</h1>
+            <p class="text-lg text-slate-400 max-w-4xl font-light">
+                Análisis técnico integral de la integración de los ciclos Brayton y Rankine para la optimización del rendimiento térmico y despacho de carga en el SADI.
+            </p>
+        </div>
+    </header>
+
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur shadow-sm border-b border-slate-200 py-3 px-6">
+        <div class="max-w-7xl mx-auto flex gap-6 overflow-x-auto text-sm font-bold text-slate-600 uppercase tracking-widest">
+            <a href="#explicacion" class="hover:text-blue-600 whitespace-nowrap">Funcionamiento</a>
+            <a href="#brayton" class="hover:text-blue-600 whitespace-nowrap">Ciclo Brayton</a>
+            <a href="#rankine" class="hover:text-blue-600 whitespace-nowrap">Ciclo Rankine</a>
+            <a href="#infraestructura" class="hover:text-blue-600 whitespace-nowrap">Componentes</a>
+            <a href="#comparativa" class="hover:text-blue-600 whitespace-nowrap">Comparativa</a>
+            <a href="#argentina" class="hover:text-blue-600 whitespace-nowrap">Plantas Argentina</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto py-12 px-6 space-y-16">
+
+        <!-- EXPLICACIÓN PASO A PASO DEL CICLO COMBINADO -->
+        <section id="explicacion">
+            <div class="flex items-center gap-4 mb-8">
+                <i class="fas fa-project-diagram text-blue-600 text-4xl"></i>
+                <div>
+                    <h2 class="text-3xl font-black uppercase">¿Cómo funciona el Ciclo Combinado?</h2>
+                    <p class="text-slate-500 italic">Explicación técnica del proceso de integración de energía.</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl space-y-10">
+                <p class="text-lg leading-relaxed">
+                    El secreto de la eficiencia en estas plantas reside en la <strong>recuperación de calor residual</strong>. En una central térmica común, el calor de los gases de escape se pierde en la atmósfera. Aquí, se utiliza como combustible para un segundo ciclo.
+                </p>
+
+                <div class="flex justify-center mb-8">
+                    <img src="https://fbancoff.wordpress.com/wp-content/uploads/2017/07/vbzbg.png" alt="Esquema General Ciclo Combinado" class="max-w-full h-auto rounded-xl shadow-md border border-slate-100">
+                </div>
+
+                <!-- Step-by-Step UI -->
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div class="step-number">01</div>
+                            <div>
+                                <h3 class="font-bold text-xl text-blue-800">Generación Primaria (TG)</h3>
+                                <p class="text-slate-600 text-sm">Se quema gas natural en la Turbina de Gas. La expansión de estos gases mueve un primer alternador, generando electricidad de forma inmediata.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="step-number">02</div>
+                            <div>
+                                <h3 class="font-bold text-xl text-blue-800">Recuperación de Calor</h3>
+                                <p class="text-slate-600 text-sm">Los gases de escape (que salen a unos 600 centígrados) no se ventilan, sino que pasan a través de la <strong>Caldera HRSG</strong> (Heat Recovery Steam Generator).</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="step-number">03</div>
+                            <div>
+                                <h3 class="font-bold text-xl text-blue-800">Producción de Vapor</h3>
+                                <p class="text-slate-600 text-sm">En la caldera, el calor de los gases calienta agua desmineralizada hasta convertirla en vapor a alta presión y temperatura.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="step-number">04</div>
+                            <div>
+                                <h3 class="font-bold text-xl text-blue-800">Generación Secundaria (TV)</h3>
+                                <p class="text-slate-600 text-sm">Ese vapor se dirige a la Turbina de Vapor, la cual mueve un segundo alternador. Se genera más electricidad <strong>sin consumir combustible adicional</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 rounded-2xl p-6 flex items-center justify-center border-t-8 border-blue-500 shadow-2xl">
+                        <div class="text-center">
+                            <i class="fas fa-industry text-blue-400 text-6xl mb-6"></i>
+                            <div class="text-white text-3xl font-black mb-4 tracking-tighter">RENDIMIENTO GLOBAL</div>
+                            <div class="text-7xl font-black text-emerald-400">~60%</div>
+                            <p class="text-slate-400 mt-4 italic text-sm font-light uppercase tracking-widest">Optimización Termodinámica</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CICLO DE BRAYTON -->
+        <section id="brayton" class="accordion-item active">
+            <button class="w-full flex items-center justify-between bg-white p-8 rounded-t-3xl border border-slate-200 shadow-sm" onclick="toggleAccordion(this)">
+                <div class="flex items-center gap-4">
+                    <i class="fas fa-fire-alt text-orange-600 text-3xl"></i>
+                    <h2 class="text-2xl font-black uppercase">Ciclo de Brayton (Ciclo de Gas)</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron transition-transform"></i>
+            </button>
+            <div class="accordion-content bg-white border-x border-b border-slate-200 rounded-b-3xl overflow-hidden">
+                <div class="p-8 grid md:grid-cols-2 gap-8 items-start">
+                    <div class="space-y-6">
+                        <p class="font-medium text-slate-700">Es el ciclo "abierto" que ocurre en la Turbina de Gas (TG), fundamental para el arranque rápido del sistema.</p>
+                        <div class="bg-orange-50 p-6 rounded-xl border-l-4 border-orange-500">
+                            <h4 class="font-bold text-orange-900 mb-2 underline">Etapas Técnicas:</h4>
+                            <ul class="space-y-3">
+                                <li><i class="fas fa-arrow-right text-orange-400 mr-2"></i><strong>Compresión:</strong> Aspiración y presurización del aire atmosférico.</li>
+                                <li><i class="fas fa-arrow-right text-orange-400 mr-2"></i><strong>Combustión:</strong> Inyección de Gas Natural e ignición a volumen constante/presión variable.</li>
+                                <li><i class="fas fa-arrow-right text-orange-400 mr-2"></i><strong>Expansión:</strong> Los gases calientes mueven los álabes de la turbina.</li>
+                                <li><i class="fas fa-arrow-right text-orange-400 mr-2"></i><strong>Escape:</strong> Evacuación de gases hacia la caldera de recuperación.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdj2-r9fNhghL3yxBq3qF6g_CHJT48ur7oRA&s" alt="Diagrama Ciclo Brayton" class="w-full rounded-xl border border-slate-300 shadow-lg">
+                        <p class="text-xs text-slate-400 text-center italic">Fig. 1: Representación esquemática de los componentes del Ciclo Brayton</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CICLO DE RANKINE -->
+        <section id="rankine" class="accordion-item">
+            <button class="w-full flex items-center justify-between bg-white p-8 rounded-t-3xl border border-slate-200 shadow-sm" onclick="toggleAccordion(this)">
+                <div class="flex items-center gap-4">
+                    <i class="fas fa-water text-blue-600 text-3xl"></i>
+                    <h2 class="text-2xl font-black uppercase">Ciclo de Rankine (Ciclo de Vapor)</h2>
+                </div>
+                <i class="fas fa-chevron-down chevron transition-transform"></i>
+            </button>
+            <div class="accordion-content bg-white border-x border-b border-slate-200 rounded-b-3xl overflow-hidden">
+                <div class="p-8 grid md:grid-cols-2 gap-8 items-start">
+                    <div class="space-y-6">
+                        <p class="font-medium text-slate-700">Es el ciclo "cerrado" de recuperación. Aquí el vapor se expande en etapas de presión para maximizar el trabajo mecánico.</p>
+                        <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-900 mb-2 underline">Componentes Críticos:</h4>
+                            <ul class="space-y-3">
+                                <li><i class="fas fa-check text-blue-400 mr-2"></i><strong>Turbina AP, MP, BP:</strong> Expansión escalonada del vapor.</li>
+                                <li><i class="fas fa-check text-blue-400 mr-2"></i><strong>Condensador:</strong> Cambio de fase vapor-agua mediante enfriamiento.</li>
+                                <li><i class="fas fa-check text-blue-400 mr-2"></i><strong>Bombas de Alimentación:</strong> Elevan la presión para reingreso a caldera.</li>
+                                <li><i class="fas fa-check text-blue-400 mr-2"></i><strong>Tratamiento de Agua:</strong> Control de pH y desmineralización absoluta.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <img src="https://www.areatecnologia.com/mecanismos/imagenes/turbina-alta-media-baja-presion.jpg" alt="Sección Turbina Vapor" class="w-full rounded-xl border border-slate-300 shadow-lg">
+                        <p class="text-xs text-slate-400 text-center italic">Fig. 2: Corte transversal de una Turbina de Vapor con etapas AP, MP y BP</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INFRAESTRUCTURA TÉCNICA -->
+        <section id="infraestructura">
+            <div class="flex items-center gap-3 mb-8">
+                <i class="fas fa-tools text-blue-600 text-3xl"></i>
+                <h2 class="text-3xl font-black uppercase">Infraestructura y Máquinas</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-shadow border-t-8 border-orange-500">
+                    <h3 class="text-xl font-bold mb-4">Turbina de Gas (TG)</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Compuesta por álabes de materiales cerámicos o superaleaciones. Su inercia es baja, permitiendo la sincronización en pocos minutos. Es el corazón del sistema.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-shadow border-t-8 border-emerald-500">
+                    <h3 class="text-xl font-bold mb-4">Caldera HRSG</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Intercambiador masivo. Incluye <strong>Economizador</strong> (precalentamiento), <strong>Evaporador</strong> (cambio de fase) y <strong>Sobrecalentador</strong> (evita condensación en turbina).
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-shadow border-t-8 border-blue-500">
+                    <h3 class="text-xl font-bold mb-4">Alternadores y Excitación</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Máquinas sincrónicas trifásicas. Requieren una <strong>Excitatriz</strong> para inducir el campo magnético en el rotor mediante corriente continua (CC).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARATIVA TÉCNICA (TABLA) -->
+        <section id="comparativa">
+            <div class="flex items-center gap-3 mb-8">
+                <i class="fas fa-list-alt text-blue-600 text-3xl"></i>
+                <h2 class="text-3xl font-black uppercase">Tabla Comparativa de Unidades</h2>
+            </div>
+            <div class="overflow-hidden rounded-3xl border border-slate-200 shadow-lg">
+                <table class="bg-white">
+                    <thead class="bg-slate-900 text-white uppercase text-xs tracking-widest">
+                        <tr>
+                            <th class="p-6 text-left">Variable</th>
+                            <th class="p-6 text-left">Unidad de Gas (TG)</th>
+                            <th class="p-4 text-left">Unidad de Vapor (TV)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm font-medium">
+                        <tr>
+                            <td class="bg-slate-50 font-bold italic">Fluido de Trabajo</td>
+                            <td>Gases de Combustión</td>
+                            <td>Vapor Desmineralizado (H2O)</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-slate-50 font-bold italic">Velocidad de Arranque</td>
+                            <td class="text-emerald-600 font-bold">Rápida (Pocos min)</td>
+                            <td class="text-orange-600 font-bold">Lenta (Horas)</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-slate-50 font-bold italic">Temperatura de Op.</td>
+                            <td>1200 - 1500 centigrados</td>
+                            <td>500 - 600 centigrados</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-slate-50 font-bold italic">Mantenimiento</td>
+                            <td>Frecuente (Horas de vuelo)</td>
+                            <td>Basado en calidad de agua</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ARGENTINA -->
+        <section id="argentina" class="bg-slate-900 text-white p-12 rounded-[3rem] shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-12 opacity-10">
+                <i class="fas fa-globe-americas text-[200px]"></i>
+            </div>
+            <div class="relative z-10">
+                <h2 class="text-4xl font-black mb-8 uppercase tracking-tighter">Plantas en Argentina</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="border-l-2 border-blue-500 pl-4 py-2">
+                        <h4 class="font-bold text-lg">Central Puerto (CABA)</h4>
+                        <p class="text-slate-400 text-sm">Histórica y estratégica zona portuaria.</p>
+                    </div>
+                    <div class="border-l-2 border-blue-500 pl-4 py-2">
+                        <h4 class="font-bold text-lg">Central Costanera (CABA)</h4>
+                        <p class="text-slate-400 text-sm">Múltiples unidades de alta potencia.</p>
+                    </div>
+                    <div class="border-l-2 border-blue-500 pl-4 py-2">
+                        <h4 class="font-bold text-lg">Gral. Belgrano (Campana)</h4>
+                        <p class="text-slate-400 text-sm">Cercana a centros de consumo masivo.</p>
+                    </div>
+                    <div class="border-l-2 border-blue-500 pl-4 py-2">
+                        <h4 class="font-bold text-lg">San Martín (Timbúes)</h4>
+                        <p class="text-slate-400 text-sm">Nodo fundamental de energía del Litoral.</p>
+                    </div>
+                    <div class="border-l-2 border-blue-500 pl-4 py-2">
+                        <h4 class="font-bold text-lg">Ensenada Barragán (Ensenada)</h4>
+                        <p class="text-slate-400 text-sm">Reciente cierre de ciclo exitoso.</p>
+                    </div>
+                    <div class="border-l-2 border-blue-500 pl-4 py-2">
+                        <h4 class="font-bold text-lg">Genelba (Marcos Paz)</h4>
+                        <p class="text-slate-400 text-sm">Referente en eficiencia (Pampa Energía).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-slate-400 text-sm italic">
+                &copy; 2024 Recurso Didáctico Universitario - Tecnicatura en Electricidad
+            </div>
+            <div class="flex gap-4">
+                <button class="bg-slate-100 p-2 rounded-full hover:bg-blue-100 transition-colors"><i class="fab fa-linkedin text-slate-600"></i></button>
+                <button class="bg-slate-100 p-2 rounded-full hover:bg-blue-100 transition-colors"><i class="fas fa-envelope text-slate-600"></i></button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            const isActive = item.classList.contains('active');
+            if (isActive) {
+                item.classList.remove('active');
+            } else {
+                item.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
