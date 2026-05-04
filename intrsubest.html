@@ -1,498 +1,383 @@
-import React, { useState } from 'react';
-import { 
-  Zap, 
-  ShieldCheck, 
-  Activity, 
-  Cpu, 
-  Maximize, 
-  Minimize, 
-  ChevronDown, 
-  ChevronUp, 
-  Info, 
-  Settings, 
-  AlertTriangle, 
-  Box,
-  Layers,
-  ArrowRightLeft,
-  Grid
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recurso Didáctico: Subestaciones Eléctricas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .accordion-content { transition: max-height 0.3s ease-out; overflow: hidden; max-height: 0; }
+        .accordion-content.open { max-height: 5000px; transition: max-height 0.5s ease-in; }
+        .rotate-icon { transition: transform 0.3s ease; }
+        .rotate-icon.open { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 pb-20">
 
-const App = () => {
-  const [openSections, setOpenSections] = useState({
-    intro: true,
-    porticos: false,
-    pat: false,
-    medicion: false,
-    interruptores: false,
-    seccionadores: false,
-    barras: false,
-    potencia: false,
-    pararrayos: false,
-    resumen: false,
-    aisladores: false
-  });
-
-  const toggleSection = (section) => {
-    setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
-  };
-
-  const SectionHeader = ({ id, title, icon: Icon, color }) => (
-    <button 
-      onClick={() => toggleSection(id)}
-      className={`w-full flex items-center justify-between p-4 mb-2 rounded-lg transition-all duration-300 ${
-        openSections[id] ? 'bg-slate-800 text-white shadow-lg' : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
-      }`}
-    >
-      <div className="flex items-center gap-3">
-        <div className={`p-2 rounded-md ${openSections[id] ? 'bg-blue-500' : 'bg-slate-100'}`}>
-          <Icon size={24} className={openSections[id] ? 'text-white' : color} />
+    <!-- Header Principal -->
+    <header class="bg-slate-900 text-white py-12 px-6 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-10 opacity-10">
+            <i class="fas fa-bolt text-[200px]"></i>
         </div>
-        <h2 className="text-xl font-bold text-left">{title}</h2>
-      </div>
-      {openSections[id] ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-    </button>
-  );
-
-  return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-20">
-      {/* Header Principal */}
-      <header className="bg-slate-900 text-white py-12 px-6 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-10 opacity-10">
-          <Zap size={200} />
-        </div>
-        <div className="max-w-5xl mx-auto relative z-10">
-          <div className="flex items-center gap-2 mb-4 text-blue-400 font-semibold tracking-widest uppercase text-sm">
-            <Settings size={18} />
-            Recurso Didáctico Universitario
-          </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
-            Introducción a los Elementos de una <br/>
-            <span className="text-blue-500">Subestación Eléctrica</span>
-          </h1>
-          <p className="text-slate-400 text-lg max-w-3xl leading-relaxed">
-            Análisis técnico exhaustivo de los componentes críticos para la maniobra, 
-            protección y transformación en sistemas de potencia.
-          </p>
-        </div>
-      </header>
-
-      <main className="max-w-5xl mx-auto mt-10 px-6">
-        
-        {/* 1. INTRODUCCIÓN */}
-        <SectionHeader id="intro" title="1. Introducción al Sistema" icon={Info} color="text-blue-600" />
-        {openSections.intro && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8 animate-in fade-in slide-in-from-top-2">
-            <p className="text-lg leading-relaxed text-slate-700 mb-6">
-              Una <strong>Subestación Eléctrica (SE)</strong> es un conjunto de dispositivos destinados a modificar y establecer los niveles de tensión de una infraestructura eléctrica, con el fin de facilitar la transmisión y distribución de la energía.
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="flex items-center gap-2 mb-4 text-blue-400 font-semibold tracking-widest uppercase text-sm">
+                <i class="fas fa-graduation-cap"></i>
+                Recurso Didáctico Universitario
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                Elementos de una <br/>
+                <span class="text-blue-500">Subestación Eléctrica</span>
+            </h1>
+            <p class="text-slate-400 text-lg max-w-3xl leading-relaxed">
+                Guía técnica completa sobre componentes de maniobra, protección y transformación en sistemas de potencia. Basado en el programa oficial de la cátedra.
             </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-blue-50 p-5 rounded-xl border-l-4 border-blue-500">
-                <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
-                  <ArrowRightLeft size={20} /> Nodo de Control
-                </h3>
-                <p className="text-slate-700">
-                  Actúan como puntos estratégicos en el <strong>Sistema Argentino de Interconexión (SADI)</strong> o sistemas equivalentes.
-                </p>
-              </div>
-              <div className="bg-slate-50 p-5 rounded-xl border-l-4 border-slate-500">
-                <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                  <Cpu size={20} /> Capacidades Operativas
-                </h3>
-                <ul className="list-disc list-inside text-slate-700 space-y-1">
-                  <li>Maniobra de circuitos</li>
-                  <li>Protección de activos</li>
-                  <li>Transformación de potencia</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 2. PÓRTICOS */}
-        <SectionHeader id="porticos" title="2. Pórticos y Estructuras de Soporte" icon={Layers} color="text-indigo-600" />
-        {openSections.porticos && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8">
-            <div className="flex flex-col md:flex-row gap-8 mb-6">
-              <div className="flex-1">
-                <h3 className="text-lg font-bold mb-3 text-slate-800">¿Qué son?</h3>
-                <p className="text-slate-600 mb-4">
-                  Estructuras metálicas (generalmente de acero galvanizado) o de hormigón que constituyen el soporte físico para la entrada y salida de las líneas de alta y media tensión.
-                </p>
-                <div className="space-y-4">
-                  <h4 className="font-bold text-indigo-700 uppercase text-xs tracking-wider">Funciones Principales</h4>
-                  <div className="grid gap-3">
-                    {[
-                      { t: "Soporte mecánico", d: "Sostener el peso de conductores, aisladores y herrajes." },
-                      { t: "Anclaje", d: "Soportar los esfuerzos de tracción de las líneas de transmisión." },
-                      { t: "Organización", d: "Establecer la geometría necesaria para distancias de seguridad dieléctrica." }
-                    ].map((item, i) => (
-                      <div key={i} className="flex gap-3 p-3 bg-indigo-50 rounded-lg">
-                        <div className="h-6 w-6 bg-indigo-200 text-indigo-700 rounded-full flex items-center justify-center font-bold shrink-0">{i+1}</div>
-                        <div>
-                          <p className="font-bold text-slate-800">{item.t}</p>
-                          <p className="text-sm text-slate-600">{item.d}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="md:w-1/3 bg-slate-100 rounded-xl p-4 flex flex-col justify-center border-2 border-dashed border-slate-300">
-                <h4 className="font-bold text-center mb-4 text-slate-500 italic">Clasificación de Pórticos</h4>
-                <div className="space-y-3">
-                  <div className="bg-white p-3 rounded shadow-sm border-l-4 border-indigo-400">
-                    <p className="font-bold text-sm text-indigo-900">De Entrada/Salida</p>
-                    <p className="text-xs text-slate-500">Reciben la línea desde el exterior del predio.</p>
-                  </div>
-                  <div className="bg-white p-3 rounded shadow-sm border-l-4 border-indigo-400">
-                    <p className="font-bold text-sm text-indigo-900">De Barra</p>
-                    <p className="text-xs text-slate-500">Soportan las barras colectoras internas.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 3. PAT */}
-        <SectionHeader id="pat" title="3. Sistema de Puesta a Tierra (PAT)" icon={ShieldCheck} color="text-green-600" />
-        {openSections.pat && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8">
-            <div className="bg-green-50 border border-green-100 p-6 rounded-2xl mb-6">
-              <p className="text-slate-800 italic leading-relaxed">
-                "Es una red de conductores enterrados (malla de tierra) conectada a electrodos (jabalinas) que garantiza el contacto eléctrico con el suelo."
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-4">
-              {[
-                { title: "Seguridad Humana", desc: "Limitar tensiones de paso y contacto en fallas.", icon: <ShieldCheck className="text-green-600" /> },
-                { title: "Protección de Equipos", desc: "Camino de baja impedancia para corrientes de falla.", icon: <Activity className="text-green-600" /> },
-                { title: "Estabilización", desc: "Referenciar el sistema a un potencial cero (neutro).", icon: <Grid className="text-green-600" /> }
-              ].map((item, idx) => (
-                <div key={idx} className="bg-white border border-slate-200 p-5 rounded-xl hover:shadow-md transition-shadow">
-                  <div className="mb-3">{item.icon}</div>
-                  <h4 className="font-bold mb-2 text-slate-900">{item.title}</h4>
-                  <p className="text-sm text-slate-600 leading-snug">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* 4. TRANSFORMADORES MEDICIÓN */}
-        <SectionHeader id="medicion" title="4. Transformadores de Medición" icon={Activity} color="text-orange-600" />
-        {openSections.medicion && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8">
-            <p className="mb-6 text-slate-700">Reducen magnitudes de la red a valores normalizados y seguros (<strong>110V</strong> o <strong>1A/5A</strong>) para relés y medidores.</p>
-            
-            <div className="space-y-8">
-              {/* CT */}
-              <div className="relative pl-8 border-l-4 border-orange-200">
-                <div className="absolute -left-[14px] top-0 bg-orange-500 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold">A</div>
-                <h3 className="text-xl font-bold text-slate-800 mb-4">Transformadores de Corriente (CT/TI)</h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-slate-50 p-4 rounded-lg">
-                    <h4 className="font-bold text-orange-700 text-sm mb-2 uppercase tracking-wide">Clasificación por Construcción</h4>
-                    <ul className="space-y-2 text-slate-700">
-                      <li className="flex items-start gap-2 text-sm"><span className="text-orange-500 font-bold">•</span> <strong>Tipo Devanado:</strong> Con primario interno.</li>
-                      <li className="flex items-start gap-2 text-sm"><span className="text-orange-500 font-bold">•</span> <strong>Tipo Ventana/Toroidal:</strong> Conductor pasa por el centro.</li>
-                      <li className="flex items-start gap-2 text-sm"><span className="text-orange-500 font-bold">•</span> <strong>Tipo Soporte:</strong> Aislamiento de resina o aceite.</li>
-                    </ul>
-                  </div>
-                  <div className="flex items-center justify-center bg-orange-50 rounded-lg p-4 border border-orange-100">
-                    <p className="text-sm text-orange-800 font-medium">Proporcionan una corriente proporcional a la del circuito primario para protección y medida.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* PT */}
-              <div className="relative pl-8 border-l-4 border-orange-200">
-                <div className="absolute -left-[14px] top-0 bg-orange-500 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold">B</div>
-                <h3 className="text-xl font-bold text-slate-800 mb-4">Transformadores de Tensión (PT/TV)</h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 border border-slate-200 rounded-lg">
-                    <h5 className="font-bold text-slate-900 mb-2 flex items-center gap-2 text-sm">
-                      <Box size={16} className="text-orange-500" /> Inductivos
-                    </h5>
-                    <p className="text-xs text-slate-600 italic">Principio de inducción tradicional. Precisos pero voluminosos en EAT.</p>
-                  </div>
-                  <div className="p-4 border border-slate-200 rounded-lg">
-                    <h5 className="font-bold text-slate-900 mb-2 flex items-center gap-2 text-sm">
-                      <Box size={16} className="text-orange-500" /> Capacitivos (CCVT)
-                    </h5>
-                    <p className="text-xs text-slate-600 italic">Utilizan divisor capacitivo. Permiten comunicación por PLC (Power Line Carrier).</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 5. INTERRUPTORES */}
-        <SectionHeader id="interruptores" title="5. Interruptores de Potencia" icon={Zap} color="text-red-600" />
-        {openSections.interruptores && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8">
-            <div className="flex items-start gap-4 mb-6 bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-              <AlertTriangle className="text-red-600 shrink-0" size={24} />
-              <p className="text-red-900 text-sm font-medium">
-                Componentes críticos. Deben interrumpir corrientes en condiciones normales y fundamentalmente en cortocircuito.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-bold text-slate-800 mb-3 border-b pb-1">Funciones Operativas</h4>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3 bg-slate-50 p-3 rounded border border-slate-100">
-                    <div className="h-2 w-2 bg-red-500 rounded-full"></div>
-                    <span className="text-sm font-semibold">Desconexión de cargas y líneas</span>
-                  </li>
-                  <li className="flex items-center gap-3 bg-slate-50 p-3 rounded border border-slate-100">
-                    <div className="h-2 w-2 bg-red-500 rounded-full"></div>
-                    <span className="text-sm font-semibold">Interrupción automática ante fallas</span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-slate-800 mb-3 border-b pb-1">Medios de Extinción de Arco</h4>
-                <div className="space-y-2">
-                  {[
-                    { m: "Hexafluoruro de Azufre (SF6)", d: "Estándar actual por alta rigidez dieléctrica." },
-                    { m: "Al Vacío", d: "Comunes en media tensión." },
-                    { m: "En Aceite", d: "En desuso por riesgo de incendio (gran/pequeño volumen)." }
-                  ].map((item, i) => (
-                    <div key={i} className="text-sm">
-                      <span className="font-bold text-red-700">{item.m}:</span>
-                      <p className="text-slate-600 ml-4">{item.d}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 6. SECCIONADORES */}
-        <SectionHeader id="seccionadores" title="6. Seccionadores" icon={ArrowRightLeft} color="text-yellow-600" />
-        {openSections.seccionadores && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8">
-            <div className="flex gap-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl mb-6">
-              <Info className="text-yellow-600" />
-              <p className="text-sm font-bold text-yellow-800">
-                IMPORTANTE: A diferencia del interruptor, el seccionador NO tiene capacidad de ruptura. Solo debe operarse sin carga (corriente cero).
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-10">
-              <div>
-                <h4 className="text-lg font-bold mb-3 flex items-center gap-2"><Maximize size={20} className="text-yellow-600" /> Propósito</h4>
-                <p className="text-slate-600 leading-relaxed text-sm">
-                  Proporcionar una distancia de aislamiento visible y segura. Garantiza que un tramo esté "muerto" para trabajos de mantenimiento.
-                </p>
-              </div>
-              <div className="bg-slate-900 p-6 rounded-2xl text-white">
-                <h4 className="text-yellow-400 font-bold mb-4 uppercase tracking-widest text-xs">Tipos de Apertura</h4>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex justify-between border-b border-slate-700 pb-2"><span>Apertura Central</span> <span className="text-slate-400">2 columnas rotativas</span></li>
-                  <li className="flex justify-between border-b border-slate-700 pb-2"><span>Apertura Lateral</span> <span className="text-slate-400">1 columna rotativa</span></li>
-                  <li className="flex justify-between border-b border-slate-700 pb-2"><span>Pantógrafo</span> <span className="text-slate-400">Vertical (ahorro espacio)</span></li>
-                  <li className="flex justify-between"><span>De Puesta a Tierra</span> <span className="text-slate-400">Para desenergizados</span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 7. BARRAS */}
-        <SectionHeader id="barras" title="7. Barras de Maniobra" icon={Grid} color="text-purple-600" />
-        {openSections.barras && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8">
-            <p className="text-slate-700 mb-6 italic">Conductores rígidos (aluminio) o flexibles que actúan como un nodo común donde se conectan todos los circuitos.</p>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { name: "Barra Simple", p: "Económica", c: "Baja confiabilidad", icon: <div className="h-1 w-full bg-slate-300 rounded"></div> },
-                { name: "Doble Barra", p: "Flexibilidad", c: "Ideal para mantenimiento", icon: <div className="space-y-1"><div className="h-1 w-full bg-slate-300 rounded"></div><div className="h-1 w-full bg-slate-300 rounded"></div></div> },
-                { name: "Interruptor y Medio", p: "Disponibilidad", c: "Uso en Extra Alta Tensión", icon: <div className="flex items-center gap-1"><div className="h-1 w-4 bg-slate-400 rounded"></div><div className="h-3 w-3 border-2 border-slate-400 rounded-sm"></div><div className="h-1 w-4 bg-slate-400 rounded"></div></div> }
-              ].map((item, i) => (
-                <div key={i} className="bg-purple-50 p-5 rounded-2xl border border-purple-100 flex flex-col items-center text-center">
-                  <div className="mb-4 w-12 h-8 flex flex-col justify-center">{item.icon}</div>
-                  <h4 className="font-bold text-purple-900 mb-1">{item.name}</h4>
-                  <p className="text-xs text-purple-700 font-semibold mb-2">{item.p}</p>
-                  <p className="text-xs text-slate-500 italic">{item.c}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* 8. TRANSFORMADOR POTENCIA */}
-        <SectionHeader id="potencia" title="8. Transformadores de Potencia" icon={Box} color="text-sky-600" />
-        {openSections.potencia && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8">
-            <div className="text-center mb-8">
-              <span className="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">El Corazón de la SE</span>
-            </div>
-            <div className="grid md:grid-cols-2 gap-10">
-              <div className="space-y-4">
-                <h4 className="text-lg font-bold border-b-2 border-sky-500 inline-block mb-2">Definición Técnica</h4>
-                <p className="text-slate-600 leading-relaxed text-sm">
-                  Máquina eléctrica estática que transfiere energía mediante un campo electromagnético, elevando tensión para transporte (reducir efecto Joule) o reduciéndola para distribución.
-                </p>
-                <div className="bg-slate-50 p-4 rounded-xl">
-                  <h5 className="font-bold text-xs uppercase text-slate-400 mb-3 tracking-tighter">Partes Principales</h5>
-                  <div className="flex flex-wrap gap-2">
-                    {["Núcleo", "Devanados", "Cuba", "Bushings", "Conservador", "Radiadores"].map(p => (
-                      <span key={p} className="bg-white border border-slate-200 px-2 py-1 rounded text-xs text-slate-700 font-medium">{p}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="bg-sky-600 text-white p-5 rounded-2xl shadow-lg relative overflow-hidden">
-                  <div className="absolute right-0 bottom-0 opacity-20"><Minimize size={80} /></div>
-                  <h4 className="font-bold mb-2">Clasificación por Aislamiento</h4>
-                  <ul className="text-sm space-y-2 opacity-90">
-                    <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 bg-white rounded-full"></div> Sumergidos en Aceite Mineral (Comunes)</li>
-                    <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 bg-white rounded-full"></div> Secos (Encapsulados en resina)</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 9. PARARRAYOS */}
-        <SectionHeader id="pararrayos" title="9. Pararrayos (Descargadores de Sobretensión)" icon={Zap} color="text-teal-600" />
-        {openSections.pararrayos && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8">
-            <div className="flex flex-col md:flex-row gap-6 items-center">
-              <div className="flex-1">
-                <h4 className="text-lg font-bold mb-3 text-teal-800">Mecanismo de Acción</h4>
-                <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                  Conectados entre fase y tierra, presentan alta impedancia a tensión nominal, pero se vuelven conductores ante sobretensiones (descargas atmosféricas o maniobras).
-                </p>
-                <div className="p-4 bg-teal-50 rounded-lg border-l-4 border-teal-500">
-                  <h5 className="font-bold text-teal-900 text-sm mb-1 italic">Óxido de Zinc (ZnO)</h5>
-                  <p className="text-xs text-teal-700">Modernos, sin explosores (gapless), respuesta ultrarrápida y no lineal.</p>
-                </div>
-              </div>
-              <div className="w-full md:w-64 bg-slate-900 p-6 rounded-2xl flex flex-col items-center justify-center text-center">
-                <ShieldCheck size={48} className="text-teal-400 mb-4" />
-                <h4 className="text-white font-bold mb-2">Función de Seguro</h4>
-                <p className="text-slate-400 text-xs">Protege el aislamiento de equipos caros derivando el exceso de energía a tierra.</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 10. TABLA RESUMEN */}
-        <SectionHeader id="resumen" title="10. Cuadro Resumen de Componentes" icon={Layers} color="text-slate-600" />
-        {openSections.resumen && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8 overflow-x-auto">
-            <table className="w-full min-w-[600px] text-sm text-left">
-              <thead>
-                <tr className="bg-slate-900 text-white">
-                  <th className="p-4 rounded-tl-lg font-bold uppercase tracking-wider">Elemento</th>
-                  <th className="p-4 font-bold uppercase tracking-wider">Función Principal</th>
-                  <th className="p-4 font-bold uppercase tracking-wider">Capa. Ruptura</th>
-                  <th className="p-4 rounded-tr-lg font-bold uppercase tracking-wider">¿Opera con Carga?</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200">
-                {[
-                  { e: "Pórtico", f: "Soporte mecánico", r: "N/A", c: "Siempre" },
-                  { e: "Puesta a Tierra", f: "Seguridad y referencia 0V", r: "N/A", c: "Siempre" },
-                  { e: "Transf. CT/PT", f: "Medición y protección", r: "No", c: "Sí (Secundario)" },
-                  { e: "Interruptor", f: "Protección y corte falla", r: "Alta", c: "Sí" },
-                  { e: "Seccionador", f: "Aislamiento visible", r: "No", c: "No" },
-                  { e: "Transf. Potencia", f: "Cambio nivel tensión", r: "No", c: "Sí" },
-                  { e: "Pararrayos", f: "Derivación sobretensión", r: "Alta (Descarga)", c: "Automático" }
-                ].map((row, i) => (
-                  <tr key={i} className="hover:bg-slate-50 transition-colors">
-                    <td className="p-4 font-bold text-slate-800">{row.e}</td>
-                    <td className="p-4 text-slate-600">{row.f}</td>
-                    <td className="p-4"><span className={`px-2 py-1 rounded text-xs font-bold ${row.r === 'Alta' ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-500'}`}>{row.r}</span></td>
-                    <td className="p-4 font-medium text-slate-700 italic">{row.c}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {/* 11. AISLADORES */}
-        <SectionHeader id="aisladores" title="11. Aisladores" icon={Minimize} color="text-blue-600" />
-        {openSections.aisladores && (
-          <div className="p-6 bg-white border border-slate-200 rounded-b-lg mb-8">
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                <h4 className="text-xl font-bold mb-4 flex items-center gap-2"><Settings className="text-blue-600" /> Funciones Base</h4>
-                <ul className="space-y-4">
-                  <li className="bg-white p-4 rounded-xl shadow-sm">
-                    <p className="font-bold text-blue-900 uppercase text-xs mb-1">Aislamiento Eléctrico</p>
-                    <p className="text-sm text-slate-600">Evitar el paso de corriente desde el conductor hacia la estructura de soporte.</p>
-                  </li>
-                  <li className="bg-white p-4 rounded-xl shadow-sm">
-                    <p className="font-bold text-blue-900 uppercase text-xs mb-1">Soporte Mecánico</p>
-                    <p className="text-sm text-slate-600">Sostener el peso de conductores y resistir fuerzas externas (viento, hielo).</p>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-bold mb-4 border-b-2 border-slate-800 inline-block">Materiales de Construcción</h4>
-                <div className="space-y-3">
-                  {[
-                    { m: "Porcelana", d: "Tradicional. Alta resistencia mecánica, pero frágil a impactos." },
-                    { m: "Vidrio Templado", d: "Cadenas de suspensión. Si falla, rotura visible fácil de detectar." },
-                    { m: "Poliméricos", d: "Núcleo fibra de vidrio + silicona. Livianos, antivandalismo, ideales para contaminación." }
-                  ].map((mat, i) => (
-                    <div key={i} className="flex gap-4 items-center">
-                      <div className="h-10 w-10 shrink-0 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold">{i+1}</div>
-                      <div>
-                        <p className="font-bold text-slate-800 text-sm">{mat.m}</p>
-                        <p className="text-xs text-slate-500 leading-tight">{mat.d}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <h4 className="text-lg font-bold mb-6 text-center text-slate-800 uppercase tracking-widest bg-slate-100 py-2 rounded-lg">Clasificación por Forma y Uso</h4>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {[
-                { name: "Suspensión", desc: "Platos en cadena para colgar conductores de pórticos." },
-                { name: "Soporte (Poste)", desc: "Estructuras rígidas que sostienen barras desde abajo." },
-                { name: "Pasatapas (Bushings)", desc: "Permiten atravesar superficies conectadas a tierra (tanques)." },
-                { name: "De Disco", desc: "Elemento modular para cadenas de alta tensión." },
-                { name: "De Grillete/Carrete", desc: "Usos específicos en baja y media tensión." },
-                { name: "De Tensión", desc: "Resisten los esfuerzos de anclaje de la línea." }
-              ].map((tipo, idx) => (
-                <div key={idx} className="p-4 border border-slate-200 rounded-xl hover:bg-blue-50 transition-colors group">
-                  <p className="font-bold text-sm text-blue-900 group-hover:text-blue-600 mb-1">{tipo.name}</p>
-                  <p className="text-[11px] text-slate-500 leading-tight">{tipo.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-      </main>
-
-      {/* Footer Educativo */}
-      <footer className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-slate-200 py-3 px-6 z-50">
-        <div className="max-w-5xl mx-auto flex justify-between items-center text-xs font-semibold text-slate-500">
-          <div className="flex items-center gap-2">
-            <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
-            SISTEMA INTERACTIVO DE ENSEÑANZA TÉCNICA
-          </div>
-          <div className="flex gap-4">
-            <span>CÁTEDRA: SISTEMAS DE POTENCIA</span>
-            <span className="hidden md:inline">2024 © ARGENTINA - SADI</span>
-          </div>
         </div>
-      </footer>
-    </div>
-  );
-};
+    </header>
 
-export default App;
+    <main class="max-w-5xl mx-auto mt-10 px-6">
+
+        <!-- 1. INTRODUCCIÓN -->
+        <div class="mb-4">
+            <button onclick="toggleAccordion('intro')" class="w-full flex items-center justify-between p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 transition-all">
+                <div class="flex items-center gap-3 text-blue-600">
+                    <div class="p-2 bg-blue-100 rounded-md"><i class="fas fa-info-circle fa-lg"></i></div>
+                    <h2 class="text-xl font-bold text-slate-800">1. Introducción al Sistema</h2>
+                </div>
+                <i id="icon-intro" class="fas fa-chevron-down text-slate-400 rotate-icon"></i>
+            </button>
+            <div id="content-intro" class="accordion-content bg-white border-x border-b border-slate-200 rounded-b-lg">
+                <div class="p-6">
+                    <p class="text-lg leading-relaxed text-slate-700 mb-6">
+                        Una <strong>Subestación Eléctrica (SE)</strong> es un conjunto de dispositivos destinados a modificar y establecer los niveles de tensión de una infraestructura eléctrica, con el fin de facilitar la transmisión y distribución de la energía.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-5 rounded-xl border-l-4 border-blue-500">
+                            <h3 class="font-bold text-blue-900 mb-2 flex items-center gap-2">
+                                <i class="fas fa-network-wired"></i> Nodo de Control
+                            </h3>
+                            <p class="text-slate-700 text-sm">
+                                Actúan como puntos estratégicos en el <strong>Sistema Argentino de Interconexión (SADI)</strong> o sistemas equivalentes.
+                            </p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-xl border-l-4 border-slate-500">
+                            <h3 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                <i class="fas fa-microchip"></i> Capacidades Operativas
+                            </h3>
+                            <ul class="list-disc list-inside text-slate-700 text-sm space-y-1">
+                                <li>Maniobra de circuitos</li>
+                                <li>Protección de activos</li>
+                                <li>Transformación de potencia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. PÓRTICOS -->
+        <div class="mb-4">
+            <button onclick="toggleAccordion('porticos')" class="w-full flex items-center justify-between p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 transition-all">
+                <div class="flex items-center gap-3 text-indigo-600">
+                    <div class="p-2 bg-indigo-100 rounded-md"><i class="fas fa-archway fa-lg"></i></div>
+                    <h2 class="text-xl font-bold text-slate-800">2. Pórticos y Estructuras</h2>
+                </div>
+                <i id="icon-porticos" class="fas fa-chevron-down text-slate-400 rotate-icon"></i>
+            </button>
+            <div id="content-porticos" class="accordion-content bg-white border-x border-b border-slate-200 rounded-b-lg">
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold mb-3 text-slate-800 italic">¿Qué son?</h3>
+                            <p class="text-slate-600 mb-4 text-sm">Estructuras metálicas (acero galvanizado) u hormigón que sirven de soporte físico para la entrada/salida de líneas.</p>
+                            <div class="space-y-3">
+                                <div class="p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+                                    <p class="font-bold text-indigo-900 text-sm">Soporte mecánico</p>
+                                    <p class="text-xs text-slate-600">Sostener peso de conductores, aisladores y herrajes.</p>
+                                </div>
+                                <div class="p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+                                    <p class="font-bold text-indigo-900 text-sm">Anclaje</p>
+                                    <p class="text-xs text-slate-600">Soportar esfuerzos de tracción de las líneas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-slate-800 text-sm mb-3 underline">Clasificación</h4>
+                            <ul class="space-y-2 text-xs">
+                                <li><i class="fas fa-check text-indigo-500 mr-2"></i> <strong>De Entrada/Salida:</strong> Reciben la línea externa.</li>
+                                <li><i class="fas fa-check text-indigo-500 mr-2"></i> <strong>De Barra:</strong> Soportan las barras internas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. PAT -->
+        <div class="mb-4">
+            <button onclick="toggleAccordion('pat')" class="w-full flex items-center justify-between p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 transition-all">
+                <div class="flex items-center gap-3 text-green-600">
+                    <div class="p-2 bg-green-100 rounded-md"><i class="fas fa-socks fa-lg"></i></div>
+                    <h2 class="text-xl font-bold text-slate-800">3. Sistema de Puesta a Tierra (PAT)</h2>
+                </div>
+                <i id="icon-pat" class="fas fa-chevron-down text-slate-400 rotate-icon"></i>
+            </button>
+            <div id="content-pat" class="accordion-content bg-white border-x border-b border-slate-200 rounded-b-lg">
+                <div class="p-6">
+                    <div class="bg-green-50 border border-green-100 p-4 rounded-xl mb-6 italic text-slate-800">
+                        "Es una red de conductores enterrados (malla de tierra) conectada a electrodos (jabalinas) que garantiza el contacto eléctrico con el suelo."
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="p-4 border border-slate-200 rounded-lg text-center">
+                            <i class="fas fa-user-shield text-green-500 mb-2"></i>
+                            <p class="font-bold text-sm">Seguridad Humana</p>
+                            <p class="text-xs text-slate-500 leading-tight mt-1">Limitar tensiones de paso y contacto.</p>
+                        </div>
+                        <div class="p-4 border border-slate-200 rounded-lg text-center">
+                            <i class="fas fa-tools text-green-500 mb-2"></i>
+                            <p class="font-bold text-sm">Protección de Equipos</p>
+                            <p class="text-xs text-slate-500 leading-tight mt-1">Camino de baja impedancia para fallas.</p>
+                        </div>
+                        <div class="p-4 border border-slate-200 rounded-lg text-center">
+                            <i class="fas fa-balance-scale text-green-500 mb-2"></i>
+                            <p class="font-bold text-sm">Estabilización</p>
+                            <p class="text-xs text-slate-500 leading-tight mt-1">Referencia a potencial cero.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. TRANSFORMADORES MEDICIÓN -->
+        <div class="mb-4">
+            <button onclick="toggleAccordion('medicion')" class="w-full flex items-center justify-between p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 transition-all">
+                <div class="flex items-center gap-3 text-orange-600">
+                    <div class="p-2 bg-orange-100 rounded-md"><i class="fas fa-chart-line fa-lg"></i></div>
+                    <h2 class="text-xl font-bold text-slate-800">4. Transformadores de Medición</h2>
+                </div>
+                <i id="icon-medicion" class="fas fa-chevron-down text-slate-400 rotate-icon"></i>
+            </button>
+            <div id="content-medicion" class="accordion-content bg-white border-x border-b border-slate-200 rounded-b-lg">
+                <div class="p-6">
+                    <p class="text-sm text-slate-600 mb-6">Reducen magnitudes a valores seguros (<strong>110V</strong> o <strong>1A/5A</strong>) para protección y medida.</p>
+                    <div class="space-y-6">
+                        <div class="bg-orange-50 p-4 rounded-xl">
+                            <h4 class="font-bold text-orange-800 mb-2 underline">CT / TI (Corriente)</h4>
+                            <p class="text-xs text-slate-700 mb-2">Construcción: Devanado, Ventana/Toroidal o Soporte.</p>
+                            <p class="text-xs italic text-slate-500">Mantiene la relación de transformación exacta para relés.</p>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-xl">
+                            <h4 class="font-bold text-orange-800 mb-2 underline">PT / TV (Tensión)</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white p-2 rounded shadow-sm text-xs">
+                                    <strong>Inductivos:</strong> Por inducción electromagnética tradicional.
+                                </div>
+                                <div class="bg-white p-2 rounded shadow-sm text-xs">
+                                    <strong>Capacitivos (CCVT):</strong> Divisor de tensión, permite PLC.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. INTERRUPTORES -->
+        <div class="mb-4">
+            <button onclick="toggleAccordion('interruptores')" class="w-full flex items-center justify-between p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 transition-all">
+                <div class="flex items-center gap-3 text-red-600">
+                    <div class="p-2 bg-red-100 rounded-md"><i class="fas fa-toggle-off fa-lg"></i></div>
+                    <h2 class="text-xl font-bold text-slate-800">5. Interruptores de Potencia</h2>
+                </div>
+                <i id="icon-interruptores" class="fas fa-chevron-down text-slate-400 rotate-icon"></i>
+            </button>
+            <div id="content-interruptores" class="accordion-content bg-white border-x border-b border-slate-200 rounded-b-lg">
+                <div class="p-6">
+                    <div class="flex items-start gap-3 bg-red-50 p-4 rounded-lg mb-6 text-sm text-red-800">
+                        <i class="fas fa-exclamation-triangle mt-1"></i>
+                        <p><strong>Capa de Ruptura:</strong> Es el único equipo capaz de extinguir arcos eléctricos bajo corrientes de cortocircuito severas.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="border border-slate-200 p-4 rounded-lg">
+                            <h4 class="font-bold text-slate-800 mb-2 text-sm uppercase">Funciones</h4>
+                            <ul class="text-xs space-y-2 text-slate-600">
+                                <li>• Desconexión de líneas en servicio.</li>
+                                <li>• Apertura automática por falla (relevamiento).</li>
+                            </ul>
+                        </div>
+                        <div class="border border-slate-200 p-4 rounded-lg">
+                            <h4 class="font-bold text-slate-800 mb-2 text-sm uppercase">Medios de Extinción</h4>
+                            <ul class="text-xs space-y-2 text-slate-600">
+                                <li>• <strong>SF6:</strong> Hexafluoruro de Azufre (Estándar).</li>
+                                <li>• <strong>Vacío:</strong> Media Tensión.</li>
+                                <li>• <strong>Aceite:</strong> (En desuso).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. SECCIONADORES -->
+        <div class="mb-4">
+            <button onclick="toggleAccordion('seccionadores')" class="w-full flex items-center justify-between p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 transition-all">
+                <div class="flex items-center gap-3 text-yellow-600">
+                    <div class="p-2 bg-yellow-100 rounded-md"><i class="fas fa-arrows-alt-v fa-lg"></i></div>
+                    <h2 class="text-xl font-bold text-slate-800">6. Seccionadores</h2>
+                </div>
+                <i id="icon-seccionadores" class="fas fa-chevron-down text-slate-400 rotate-icon"></i>
+            </button>
+            <div id="content-seccionadores" class="accordion-content bg-white border-x border-b border-slate-200 rounded-b-lg">
+                <div class="p-6">
+                    <div class="bg-yellow-900 text-white p-5 rounded-2xl mb-6">
+                        <p class="font-bold text-yellow-400 uppercase text-xs tracking-widest mb-2">Diferencia Crítica</p>
+                        <p class="text-sm">NO tienen capacidad de ruptura. Se operan <strong>únicamente</strong> sin carga para garantizar aislamiento visible.</p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-slate-50 p-3 rounded border text-center text-xs font-bold">Apertura Central</div>
+                        <div class="bg-slate-50 p-3 rounded border text-center text-xs font-bold">Apertura Lateral</div>
+                        <div class="bg-slate-50 p-3 rounded border text-center text-xs font-bold">Pantógrafo</div>
+                        <div class="bg-slate-50 p-3 rounded border text-center text-xs font-bold">De Tierra</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. TRANSFORMADORES DE POTENCIA -->
+        <div class="mb-4">
+            <button onclick="toggleAccordion('trafo')" class="w-full flex items-center justify-between p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 transition-all">
+                <div class="flex items-center gap-3 text-sky-600">
+                    <div class="p-2 bg-sky-100 rounded-md"><i class="fas fa-box-open fa-lg"></i></div>
+                    <h2 class="text-xl font-bold text-slate-800">7. Transformadores de Potencia</h2>
+                </div>
+                <i id="icon-trafo" class="fas fa-chevron-down text-slate-400 rotate-icon"></i>
+            </button>
+            <div id="content-trafo" class="accordion-content bg-white border-x border-b border-slate-200 rounded-b-lg">
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-sky-800 mb-2">Propósito</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">Máquina estática que transfiere energía mediante campos electromagnéticos para elevar o reducir la tensión según la etapa del SADI.</p>
+                            <div class="mt-4 p-4 bg-sky-50 rounded-lg border border-sky-100">
+                                <h5 class="text-xs font-bold mb-2">Partes Críticas:</h5>
+                                <div class="flex flex-wrap gap-2 text-[10px]">
+                                    <span class="px-2 py-1 bg-white rounded border">Núcleo</span>
+                                    <span class="px-2 py-1 bg-white rounded border">Cuba</span>
+                                    <span class="px-2 py-1 bg-white rounded border">Bushings</span>
+                                    <span class="px-2 py-1 bg-white rounded border">Conservador</span>
+                                    <span class="px-2 py-1 bg-white rounded border">Radiadores</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900 text-white p-5 rounded-xl">
+                            <h4 class="text-sky-400 font-bold mb-3 text-xs uppercase underline">Aislamiento</h4>
+                            <ul class="text-xs space-y-3">
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <i class="fas fa-oil-can"></i> Aceite Mineral (Refrigeración y aislamiento).
+                                </li>
+                                <li class="flex items-center gap-2 text-slate-300">
+                                    <i class="fas fa-wind"></i> Secos (Resina epóxica).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. AISLADORES -->
+        <div class="mb-4">
+            <button onclick="toggleAccordion('aisladores')" class="w-full flex items-center justify-between p-4 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 transition-all">
+                <div class="flex items-center gap-3 text-cyan-600">
+                    <div class="p-2 bg-cyan-100 rounded-md"><i class="fas fa-layer-group fa-lg"></i></div>
+                    <h2 class="text-xl font-bold text-slate-800">8. Aisladores</h2>
+                </div>
+                <i id="icon-aisladores" class="fas fa-chevron-down text-slate-400 rotate-icon"></i>
+            </button>
+            <div id="content-aisladores" class="accordion-content bg-white border-x border-b border-slate-200 rounded-b-lg">
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 gap-8 mb-6">
+                        <div class="bg-slate-50 p-4 rounded-xl">
+                            <h4 class="font-bold text-slate-800 text-sm mb-3">Materiales</h4>
+                            <ul class="space-y-2 text-xs">
+                                <li><strong>Porcelana:</strong> Resistencia mecánica tradicional.</li>
+                                <li><strong>Vidrio Templado:</strong> Rotura visible ante falla.</li>
+                                <li><strong>Poliméricos:</strong> Livianos, para zonas contaminadas.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl">
+                            <h4 class="font-bold text-slate-800 text-sm mb-3">Formas / Usos</h4>
+                            <div class="grid grid-cols-2 gap-2 text-[10px]">
+                                <span class="p-2 bg-white rounded shadow-sm border border-slate-200">Suspensión</span>
+                                <span class="p-2 bg-white rounded shadow-sm border border-slate-200">Poste / Soporte</span>
+                                <span class="p-2 bg-white rounded shadow-sm border border-slate-200">Bushings</span>
+                                <span class="p-2 bg-white rounded shadow-sm border border-slate-200">Tensión</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. TABLA TÉCNICA -->
+        <div class="mt-12 bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden">
+            <div class="bg-slate-900 p-5 text-white">
+                <h3 class="text-xl font-bold"><i class="fas fa-table mr-3"></i>Cuadro Comparativo de Equipos</h3>
+                <p class="text-slate-400 text-xs">Resumen de capacidades operativas y de seguridad.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200">
+                            <th class="p-4 font-bold text-slate-700">Equipo</th>
+                            <th class="p-4 font-bold text-slate-700">Función</th>
+                            <th class="p-4 font-bold text-slate-700 text-center">Corte de Falla</th>
+                            <th class="p-4 font-bold text-slate-700 text-center">Apertura con Carga</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr><td class="p-4 font-bold">Interruptor</td><td class="p-4 text-xs">Protección de red</td><td class="p-4 text-center"><i class="fas fa-check text-green-500"></i></td><td class="p-4 text-center"><i class="fas fa-check text-green-500"></i></td></tr>
+                        <tr><td class="p-4 font-bold">Seccionador</td><td class="p-4 text-xs">Aislamiento visible</td><td class="p-4 text-center"><i class="fas fa-times text-red-500"></i></td><td class="p-4 text-center"><i class="fas fa-times text-red-500"></i></td></tr>
+                        <tr><td class="p-4 font-bold">Trafo Potencia</td><td class="p-4 text-xs">Cambio de tensión</td><td class="p-4 text-center"><i class="fas fa-times text-red-500"></i></td><td class="p-4 text-center"><i class="fas fa-check text-green-500"></i></td></tr>
+                        <tr><td class="p-4 font-bold">Pararrayos</td><td class="p-4 text-xs">Descarga atmosférica</td><td class="p-4 text-center"><i class="fas fa-bolt text-yellow-500"></i></td><td class="p-4 text-center">Auto</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer de Referencia -->
+    <footer class="bg-white border-t border-slate-200 mt-20 py-8 px-6 text-center">
+        <p class="text-slate-500 font-bold text-sm mb-2 uppercase">Plataforma Académica de Ingeniería Eléctrica</p>
+        <p class="text-slate-400 text-xs italic">Material basado en bibliografía de sistemas de transmisión y distribución de energía.</p>
+        <div class="mt-6 flex justify-center gap-6 text-slate-400 text-lg">
+            <i class="fas fa-university"></i>
+            <i class="fas fa-atom"></i>
+            <i class="fas fa-plug"></i>
+        </div>
+    </footer>
+
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById('content-' + id);
+            const icon = document.getElementById('icon-' + id);
+            
+            // Cerrar otros (opcional, si quieres que solo uno esté abierto a la vez)
+            // document.querySelectorAll('.accordion-content').forEach(el => {
+            //     if (el.id !== 'content-' + id) el.classList.remove('open');
+            // });
+
+            content.classList.toggle('open');
+            icon.classList.toggle('open');
+        }
+
+        // Abrir la primera por defecto
+        window.onload = () => {
+            toggleAccordion('intro');
+        };
+    </script>
+</body>
+</html>
