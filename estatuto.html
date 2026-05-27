@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Académico: Conformación del Estatuto Social</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a; /* Azul corporativo oscuro */
+            --secondary-color: #2563eb; /* Azul vibrante */
+            --accent-color: #f59e0b; /* Naranja/Ámbar para alertas */
+            --bg-light: #f8fafc;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #e2e8f0;
+        }
+
+        .document-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            padding-bottom: 40px;
+        }
+
+        /* Cabecera / Portada */
+        .header-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: #ffffff;
+            padding: 50px 40px;
+            border-bottom: 5px solid var(--accent-color);
+        }
+
+        .header-banner h1 {
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .header-banner p {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #e0f2fe;
+            font-weight: 300;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Contenido Principal */
+        .content {
+            padding: 40px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.25rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Cajas de Alerta y Destacados */
+        .alert-box {
+            background-color: #fffbeb;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 0 6px 6px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .alert-box.info {
+            background-color: #eff6ff;
+            border-left-color: var(--secondary-color);
+        }
+
+        .alert-box.warning {
+            background-color: #fef2f2;
+            border-left-color: #ef4444;
+        }
+
+        .alert-box strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.05rem;
+        }
+
+        /* Tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background-color: var(--bg-light);
+        }
+
+        .icon {
+            font-size: 1.2em;
+        }
+
+        /* Distribución Matemática */
+        .math-dist {
+            background: var(--bg-light);
+            border: 1px dashed var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 25px 0;
+            font-size: 1.1rem;
+        }
+        
+        .math-dist ul {
+            text-align: left;
+            display: inline-block;
+            margin: 15px auto 0;
+            font-weight: 500;
+        }
+
+        .math-dist li span {
+            color: var(--secondary-color);
+            font-weight: 800;
+            display: inline-block;
+            width: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .document-container {
+                margin: 0;
+                border-radius: 0;
+            }
+            .content {
+                padding: 20px;
+            }
+            .meta-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="document-container">
+    
+    <!-- Portada del Documento -->
+    <div class="header-banner">
+        <p>Material de Cátedra — Módulo Legal y Normativo</p>
+        <h1>Conformación y Análisis del Estatuto Social</h1>
+        <div class="meta-info">
+            <div><strong>Sector:</strong> Ingeniería Eléctrica y Electromecánica</div>
+            <div><strong>Especialidad:</strong> Construcción y Montaje de Subestaciones</div>
+        </div>
+    </div>
+
+    <!-- Contenido -->
+    <div class="content">
+
+        <h2><span class="icon">📌</span> 1. Introducción: Naturaleza Jurídica del Estatuto</h2>
+        <p>En el marco del cooperativismo de trabajo (Ley N° 20.337), el <strong>Estatuto Social</strong> no es un mero trámite burocrático; es el contrato fundacional y la "carta magna" que rige la vida institucional, económica y operativa de la entidad. Para los profesionales técnicos que deciden asociarse, el estatuto define las reglas de juego, los límites de responsabilidad civil y las normativas internas de convivencia.</p>
+        
+        <p>El Instituto Nacional de Asociativismo y Economía Social (INAES) proporciona modelos preaprobados (Estatutos Tipo). Sin embargo, en carreras como la Tecnicatura en Electricidad o la Ingeniería, el alumno debe comprender que <strong>copiar y pegar un modelo estándar es un error estratégico</strong>. Un estatuto genérico no contempla las exigencias de seguridad, las normativas de la Asociación Electrotécnica Argentina (AEA) ni los requerimientos de los pliegos de licitación para obras de media y alta tensión.</p>
+
+        <div class="alert-box info">
+            <strong style="color: var(--secondary-color);">💡 Nota para la práctica profesional</strong>
+            A continuación, desglosaremos los Títulos y Capítulos fundamentales del estatuto, analizando cómo deben ser redactados y personalizados para una empresa cooperativa del sector eléctrico, protegiendo tanto el patrimonio como la seguridad de los asociados.
+        </div>
+
+        <h2><span class="icon">🏛️</span> 2. Título I: Denominación, Domicilio y Objeto Social</h2>
+        <p>Este primer apartado establece la identidad corporativa y los límites de acción de la cooperativa.</p>
+
+        <h3>2.1. Denominación y Domicilio</h3>
+        <p>La ley exige que la razón social incluya los términos "Cooperativa de Trabajo" y "Limitada". La palabra "Limitada" indica que los asociados responden por las deudas sociales <strong>sólo hasta el monto de las cuotas sociales que hayan suscrito</strong>, protegiendo así su patrimonio personal frente a eventuales juicios o quiebras empresariales.</p>
+
+        <h3>2.2. El Objeto Social: El Núcleo Operativo</h3>
+        <p>El Objeto Social es la cláusula más importante del documento. Define taxativamente qué actividades puede realizar la cooperativa. Si la entidad realiza una obra que no está contemplada en su objeto social, el acto es nulo, los seguros (ART, Seguros Técnicos) no cubrirán accidentes, y el Consejo de Administración será responsable civil y penalmente.</p>
+        
+        <p>Para la construcción de subestaciones eléctricas, la redacción debe ser exhaustiva y eminentemente técnica:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Enfoque</th>
+                    <th style="width: 45%;">Ejemplo de Redacción</th>
+                    <th style="width: 30%;">Evaluación Técnica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Mediocre</strong><br><span style="color: #64748b; font-size: 0.9em;">(Genérico/Copiado)</span></td>
+                    <td><em>"La cooperativa tiene por objeto realizar trabajos de electricidad, obras civiles y mantenimiento general."</em></td>
+                    <td><span style="color: #ef4444;">❌ Deficiente.</span> Impide clasificar en licitaciones de envergadura. No especifica niveles de tensión ni tipos de instalaciones.</td>
+                </tr>
+                <tr>
+                    <td><strong>Profesional</strong><br><span style="color: #64748b; font-size: 0.9em;">(Específico)</span></td>
+                    <td><em>"Asumir por propia cuenta el diseño, cálculo, dirección, ejecución y mantenimiento de obras electromecánicas; construcción y montaje de Subestaciones Transformadoras (SET), celdas de media tensión, tendido de líneas aéreas y subterráneas, y ensayos termográficos, operando bajo normativas AEA."</em></td>
+                    <td><span style="color: #10b981;">✅ Óptimo.</span> Cubre todo el espectro de la obra eléctrica, habilitando el trabajo con grandes distribuidoras y mitigando riesgos legales.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2><span class="icon">💰</span> 3. Título II: Patrimonio y Capital Social</h2>
+        <p>El capital de una cooperativa es variable e ilimitado. A diferencia de las Sociedades Anónimas (donde el capital se divide en acciones), en las cooperativas se divide en <strong>Cuotas Sociales</strong> de igual valor, indivisibles y nominativas.</p>
+
+        <h3>3.1. Suscripción vs. Integración</h3>
+        <p>Para asimilar la conformación económica, es vital separar dos conceptos legales en la redacción estatutaria:</p>
+        <ul>
+            <li><strong>Suscripción:</strong> Es el compromiso formal de aportar un capital (Ej: <em>"Me comprometo a aportar 100 cuotas sociales"</em>).</li>
+            <li><strong>Integración:</strong> Es el pago efectivo de ese compromiso.</li>
+        </ul>
+        <p>La Ley 20.337 establece que, al momento de firmar el estatuto, cada asociado debe integrar (pagar) como mínimo el <strong>5%</strong> del capital que suscribió. El 95% restante debe integrarse en un plazo máximo fijado por el estatuto, que generalmente no excede los 5 años.</p>
+
+        <h3>3.2. Aportes en Especie (Bienes de Capital)</h3>
+        <div class="alert-box">
+            <strong style="color: var(--accent-color);">🛠️ Ejemplo Práctico en Obra:</strong>
+            En el rubro eléctrico, es muy común que los fundadores no aporten dinero en efectivo al iniciar, sino herramientas de alto valor. Un asociado puede integrar su capital aportando un Megóhmetro digital y un Telurímetro. El estatuto debe establecer que dichos bienes serán valuados por el Consejo de Administración al precio de plaza y aprobados por la Asamblea para convertirlos en Cuotas Sociales integradas.
+        </div>
+
+        <h2><span class="icon">👷‍♂️</span> 4. Título III: De los Asociados</h2>
+        <p>Este capítulo regula quién puede formar parte de la entidad y bajo qué condiciones. En una cooperativa orientada a la alta y media tensión, <strong>el ingreso indiscriminado representa un riesgo inaceptable</strong>.</p>
+
+        <h3>4.1. Requisitos de Idoneidad Técnica</h3>
+        <p>El estatuto personalizado debe establecer filtros de ingreso. Se sugiere incluir cláusulas que exijan expresamente:</p>
+        <ul>
+            <li>Título técnico habilitante (Técnico Electromecánico, Ingeniero Eléctrico o carreras afines).</li>
+            <li>Matriculación vigente en el colegio profesional respectivo.</li>
+            <li>Aprobación documentada de cursos de Riesgo Eléctrico y Reanimación Cardiopulmonar (RCP).</li>
+        </ul>
+
+        <h2><span class="icon">⚖️</span> 5. Título IV: Régimen Disciplinario y Seguridad</h2>
+        <p>El trabajo con subestaciones transformadoras implica el manejo de barras desnudas, interruptores de potencia y celdas de 13.2 kV o 33 kV. El estatuto debe tipificar las sanciones, escalonándolas según la gravedad de la falta y priorizando la seguridad:</p>
+
+        <ol>
+            <li><strong>Apercibimiento (Llamado de atención formal):</strong> Por llegadas tarde al punto de encuentro de la cuadrilla o falta de mantenimiento del herramental de mano.</li>
+            <li><strong>Suspensión (Hasta 30 días, sin goce de retornos):</strong> Por negligencia en el uso de los Equipos de Protección Personal (EPP), como presentarse a la obra sin calzado dieléctrico, o dañar instrumental por mala operación.</li>
+            <li><strong>Exclusión (Expulsión definitiva):</strong> Por la violación deliberada de las <em>Cinco Reglas de Oro</em> para el trabajo sin tensión, realizar maniobras no autorizadas bajo carga, o poner en riesgo inminente la vida de los compañeros.</li>
+        </ol>
+
+        <div class="alert-box warning">
+            <strong style="color: #ef4444;">⚠️ Garantía de Debido Proceso</strong>
+            La exclusión debe ser dictaminada por el Consejo de Administración, pero el estatuto siempre debe garantizar explícitamente el derecho del asociado a apelar la medida ante la primera Asamblea General que se celebre.
+        </div>
+
+        <h2><span class="icon">🗳️</span> 6. Título V: La Asamblea General</h2>
+        <p>La Asamblea es la reunión de todos los asociados y constituye la <strong>autoridad suprema</strong>. Rige el principio democrático inquebrantable de "un asociado, un voto", sin importar la cantidad de cuotas sociales aportadas.</p>
+        <ul>
+            <li><strong>Asamblea Ordinaria:</strong> Realizada anualmente para aprobar la Memoria, el Balance, elegir autoridades y distribuir los excedentes.</li>
+            <li><strong>Asamblea Extraordinaria:</strong> Convocada ante situaciones urgentes, reformas del propio Estatuto, fusiones o disolución de la entidad.</li>
+        </ul>
+
+        <h2><span class="icon">👔</span> 7. Título VI: Administración y Representación</h2>
+        <p>El <strong>Consejo de Administración</strong> es el órgano encargado de la gestión diaria. Ejecuta las decisiones de la Asamblea y representa a la cooperativa ante clientes, bancos y organismos públicos.</p>
+        
+        <p>Para una empresa de construcciones eléctricas, el organigrama estatutario sugerido es:</p>
+        <ul>
+            <li><strong>Presidente:</strong> Representante legal. Firma de contratos de licitación y vinculación con distribuidoras de energía.</li>
+            <li><strong>Secretario:</strong> Custodia de los Libros Rubricados (Actas, Registro de Asociados) y gestión administrativa de la obra.</li>
+            <li><strong>Tesorero:</strong> Gestión financiera y flujo de caja (pagos a proveedores de cobre, transformadores, aisladores).</li>
+            <li><strong>Vocal Titular (Opcional recomendado):</strong> En estructuras técnicas, el estatuto puede asignar a un Vocal la función específica de "Director de Obra" o "Jefe de Cuadrilla".</li>
+        </ul>
+
+        <h2><span class="icon">🔍</span> 8. Título VII: Fiscalización Privada (Sindicatura)</h2>
+        <p>El control interno está a cargo de la <strong>Sindicatura</strong> (un Síndico Titular y un Suplente). Sus funciones estatutarias incluyen auditar los libros contables, verificar que el Consejo no se exceda en sus funciones y dictaminar sobre el Balance anual. Para garantizar imparcialidad, el estatuto prohíbe que el Síndico tenga parentesco directo con los miembros del Consejo.</p>
+
+        <h2><span class="icon">📈</span> 9. Título VIII: Ejercicio Social y Excedentes</h2>
+        <p>Al finalizar el ejercicio económico (ej. cada 31 de diciembre), si los ingresos por obras superaron los costos, se genera un <strong>Excedente Repartible</strong> (no "ganancia" comercial). El estatuto debe transcribir la obligación del Art. 42 de la Ley 20.337 para la distribución de este saldo:</p>
+
+        <div class="math-dist">
+            <strong>Distribución Obligatoria del Excedente Neto Anual:</strong><br>
+            <ul>
+                <li><span>5%</span> ➔ Fondo de Reserva Legal (Capitalización de la empresa)</li>
+                <li><span>5%</span> ➔ Fondo de Acción Asistencial (Cobertura de salud / urgencias)</li>
+                <li><span>5%</span> ➔ Fondo de Educación y Capacitación (Tecnologías SCADA, Normas AEA)</li>
+                <li><span>85%</span> ➔ Retorno a los Asociados (En proporción al trabajo/horas prestadas)</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
