@@ -1,511 +1,857 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografía Dinámica: Las Cooperativas en Argentina</title>
+    <title>Guía Técnica: Constitución de Cooperativas de Trabajo</title>
+    <!-- Tailwind CSS para el diseño rápido y responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- FontAwesome para íconos técnicos y académicos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter para legibilidad y Roboto Slab para títulos académicos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Roboto Slab', 'serif'],
+                    },
+                    colors: {
+                        utnBlue: '#004A98',
+                        utnLightBlue: '#0078D7',
+                        accentOrange: '#FF6B00',
+                        techGray: '#F3F4F6',
+                        darkNavy: '#0F172A'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Estilos CSS personalizados para animaciones y componentes específicos -->
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            background-color: #f4f7f6;
-            color: #333;
-            padding: 20px;
+        /* Animaciones base */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2, h3 {
-            color: #0056b3;
-            margin-bottom: 15px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-        h2 {
-            font-size: 1.8em;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 5px;
-            margin-top: 25px;
-        }
-        h3 {
-            font-size: 1.4em;
-            margin-top: 20px;
-        }
-        .section-box {
-            background-color: #e9f5ff;
-            border: 1px solid #b3dfff;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-        .section-box:hover {
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-        }
-        .collapsible-header {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 0;
-            font-weight: bold;
-            color: #0056b3;
-        }
-        .collapsible-header i {
-            transition: transform 0.3s ease;
-        }
-        .collapsible-header.active i {
-            transform: rotate(90deg);
-        }
-        .collapsible-content {
-            display: none;
-            padding-top: 10px;
-            border-top: 1px solid #b3dfff;
-            margin-top: 10px;
-        }
-        .collapsible-content.show {
-            display: block;
-        }
-        .icon-text {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px; /* Reduced margin to fit description */
-        }
-        .icon-text i {
-            margin-right: 10px;
-            color: #007bff;
-            font-size: 1.2em;
-        }
-        .key-point-box p {
-            font-size: 0.9em; /* Smaller font for description */
-            color: #555;
-            margin-top: 5px;
-            margin-left: 26px; /* Align text with icon */
-        }
-         .collapsible-content ul li {
-            margin-bottom: 10px;
-        }
-        .collapsible-content ul li .icon-text {
-             margin-bottom: 0; /* Remove margin below icon in list */
-        }
-         .collapsible-content ul li p {
-            font-size: 0.9em; /* Smaller font for description */
-            color: #555;
-            margin-top: 5px;
-            margin-left: 26px; /* Align text with icon */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            margin-bottom: 15px;
+        /* Estilos para el acordeón (Menús desplegables) */
+        .accordion-content {
+            transition: max-height 0.4s ease-out, padding 0.4s ease;
+            max-height: 0;
+            overflow: hidden;
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
+        .accordion-button.active + .accordion-content {
+            max-height: 2000px; /* Suficiente para el contenido extenso */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
         }
-         td .icon-text {
-            margin-bottom: 0; /* Remove margin below icon in table */
-         }
-         td p {
-            font-size: 0.9em; /* Smaller font for description */
-            color: #555;
-            margin-top: 5px;
-            margin-left: 26px; /* Align text with icon */
+        .accordion-button .icon {
+            transition: transform 0.3s ease;
         }
-        th {
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
+        .accordion-button.active .icon {
+            transform: rotate(180deg);
         }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+
+        /* Estilo para el documento simulado (Actas) */
+        .legal-document {
+            background-image: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="lines" width="100" height="24" patternUnits="userSpaceOnUse"><line x1="0" y1="23" x2="100" y2="23" stroke="%23e5e7eb" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23lines)"/></svg>');
+            background-color: #fafafa;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 24px; /* Debe coincidir con la altura del patrón */
+            padding: 24px;
+            border-left: 4px solid #004A98;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
         }
-        .key-point-box {
-            background-color: #ffffff;
-            border: 1px dashed #007bff;
-            border-radius: 6px;
-            padding: 10px;
-            margin-bottom: 10px;
+
+        /* Línea de tiempo vertical */
+        .timeline-container {
+            position: relative;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 24px; /* Centro del ícono */
+            width: 4px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+        @media (min-width: 768px) {
+            .timeline-container::before {
+                left: 50%;
+                margin-left: -2px;
+            }
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
 
-    <div class="container">
-        <h1>Apuntes de Gestión: Las Cooperativas en Argentina</h1>
-
-        <div class="section-box">
-            <div class="collapsible-header">
-                Introducción al Cooperativismo Argentino
-                <i class="fas fa-chevron-right"></i>
+    <!-- Header Hero Section -->
+    <header class="bg-darkNavy text-white py-16 relative overflow-hidden shadow-xl">
+        <!-- Elementos decorativos de fondo -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <svg class="absolute w-64 h-64 -top-10 -left-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <svg class="absolute w-96 h-96 -bottom-20 -right-20 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+        </div>
+        
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="flex items-center gap-3 mb-4 text-utnLightBlue font-bold tracking-wider uppercase text-sm">
+                <i class="fas fa-university"></i>
+                <span>Guía Técnica y Académica Universitaria</span>
             </div>
-            <div class="collapsible-content">
-                <p>El modelo cooperativo es una organización económica y social basada en principios de ayuda mutua, democracia, equidad y solidaridad. En Argentina, tiene una historia rica y un rol significativo en diversas actividades.</p>
-                <div class="icon-text"><i class="fas fa-balance-scale"></i> Regulación principal: Ley Nacional N° 20.337 de Cooperativas (1973).</div>
-                <p>Establece el marco legal para la creación, funcionamiento y disolución de cooperativas en Argentina.</p>
-                <div class="icon-text"><i class="fas fa-building"></i> Organismo de control y fomento: Instituto Nacional de Asociativismo y Economía Social (INAES).</div>
-                <p>Encargado de aplicar la ley, registrar entidades y promover el desarrollo del sector cooperativo.</p>
-                <p>A diferencia de las sociedades comerciales (centradas en lucro), las cooperativas buscan satisfacer las necesidades de sus miembros (dueños y usuarios/trabajadores).</p>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
+                Constitución de <br><span class="text-accentOrange">Cooperativas de Trabajo</span>
+            </h1>
+            
+            <div class="flex flex-wrap gap-4 mt-8">
+                <div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20 flex items-center gap-2">
+                    <i class="fas fa-gavel text-accentOrange"></i>
+                    <span class="font-medium text-sm">Ley N° 20.337 / INAES</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20 flex items-center gap-2">
+                    <i class="fas fa-laptop-code text-blue-400"></i>
+                    <span class="font-medium text-sm">Análisis de Sistemas</span>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20 flex items-center gap-2">
+                    <i class="fas fa-bolt text-yellow-400"></i>
+                    <span class="font-medium text-sm">Electricidad e Industria</span>
+                </div>
             </div>
         </div>
+    </header>
 
-        <div class="section-box">
-            <div class="collapsible-header">
-                Tipos y Características de las Cooperativas en Argentina
-                <i class="fas fa-chevron-right"></i>
+    <!-- Menú de Navegación Sticky -->
+    <nav class="sticky top-0 bg-white/95 backdrop-blur shadow-md z-50 border-b border-gray-200 hidden md:block">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center space-x-8 py-4 text-sm font-semibold text-gray-600">
+                <li><a href="#fundamentos" class="hover:text-utnBlue transition-colors">1. Fundamentos</a></li>
+                <li><a href="#herramientas" class="hover:text-utnBlue transition-colors">2. Herramientas</a></li>
+                <li><a href="#matriz" class="hover:text-utnBlue transition-colors">3. Matriz Comparativa</a></li>
+                <li><a href="#paso-a-paso" class="hover:text-utnBlue transition-colors">4. Paso a Paso</a></li>
+                <li><a href="#modelos-actas" class="hover:text-utnBlue transition-colors">5. Modelos Prácticos</a></li>
+                <li><a href="#arquitectura" class="hover:text-utnBlue transition-colors">6. Arquitectura</a></li>
+                <li><a href="#flujo" class="hover:text-utnBlue transition-colors">7. Contabilidad e Impuestos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 md:px-8 py-12 space-y-24">
+
+        <!-- SECCIÓN 1: Introducción y Fundamentos -->
+        <section id="fundamentos" class="scroll-mt-24 fade-in">
+            <div class="flex items-center gap-4 mb-8 border-b-2 border-utnBlue pb-2 inline-block">
+                <div class="bg-utnBlue text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">1</div>
+                <h2 class="text-3xl font-serif font-bold text-darkNavy">Introducción y Fundamentos Jurídico-Económicos</h2>
             </div>
-            <div class="collapsible-content">
-                <h3>Principios Universales (ACI)</h3>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-handshake"></i> Adhesión Voluntaria y Abierta</div>
-                    <p>Organizaciones voluntarias, abiertas a todos sin discriminación capaces de usar sus servicios y aceptar responsabilidades.</p>
+            
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-10 border-l-4 border-utnBlue">
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    La <strong class="text-utnBlue">Cooperativa de Trabajo</strong> constituye una figura asociativa fundamental para profesionales y técnicos de la ingeniería, el análisis de sistemas y la electromecánica. A diferencia de las sociedades comerciales tradicionales (como la S.A. o la S.R.L.), donde el eje ordenador es el aporte de capital, la cooperativa es una asociación de personas basada en el esfuerzo propio y la ayuda mutua para organizar y prestar servicios.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    En el contexto de la Tecnicatura en Electricidad y el Análisis de Sistemas, este modelo permite a un grupo de profesionales asociarse para licitar obras tecnológicas, desarrollar software a gran escala, realizar montajes industriales o prestar servicios de consultoría bajo un esquema horizontal. <strong class="bg-yellow-100 px-1 rounded text-darkNavy">Los trabajadores no son empleados en relación de dependencia; son asociados</strong>, lo que significa que co-dirigen la empresa, aportan su fuerza laboral o intelectual, y distribuyen los excedentes de manera proporcional al trabajo efectivamente realizado.
+                </p>
+            </div>
+
+            <!-- Principios Cooperativos -->
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-3">
+                    <i class="fas fa-globe text-accentOrange"></i>
+                    1.1 Principios Cooperativos Aplicados a Proyectos Tecnológicos y Eléctricos
+                </h3>
+                <p class="mb-6 text-gray-600 font-medium">La operatividad de estas entidades se rige por los principios de la Alianza Cooperativa Internacional (ACI), incorporados en el artículo 2 de la Ley N° 20.337:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Tarjeta Principio 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 p-3 rounded-lg text-utnBlue"><i class="fas fa-door-open fa-fw text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-2">Asociación abierta y voluntaria</h4>
+                                <p class="text-sm text-gray-600">Sin discriminación técnica, política o social para profesionales e idóneos que deseen aportar su labor.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta Principio 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 p-3 rounded-lg text-utnBlue"><i class="fas fa-vote-yea fa-fw text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-2">Control democrático</h4>
+                                <p class="text-sm text-gray-600"><strong>Un asociado equivale a un voto</strong>, independientemente del capital aportado. Evita que grandes inversores controlen de forma unilateral las decisiones sobre arquitectura de sistemas o dirección de obras.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta Principio 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 p-3 rounded-lg text-utnBlue"><i class="fas fa-chart-pie fa-fw text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-2">Participación económica</h4>
+                                <p class="text-sm text-gray-600">El capital es de propiedad común y los excedentes se retribuyen equitativamente según el esfuerzo real prestado.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta Principio 4 -->
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 p-3 rounded-lg text-utnBlue"><i class="fas fa-shield-alt fa-fw text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-2">Autonomía e independencia</h4>
+                                <p class="text-sm text-gray-600">Autogestión garantizada frente a estructuras, corporaciones o financiamientos externos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta Principio 5 -->
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 p-3 rounded-lg text-utnBlue"><i class="fas fa-book-reader fa-fw text-xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-2">Educación, formación e información</h4>
+                                <p class="text-sm text-gray-600">Crucial para la actualización permanente en normativas de seguridad (ej: reglamentaciones AEA) o nuevos stacks tecnológicos (analistas de software).</p>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Tarjeta Principio 6 y 7 agrupados para layout -->
+                     <div class="flex flex-col gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-blue-100 p-3 rounded-lg text-utnBlue"><i class="fas fa-handshake fa-fw text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Cooperación entre cooperativas</h4>
+                                    <p class="text-sm text-gray-600">Integración vertical y horizontal a través de federaciones y confederaciones.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-blue-100 p-3 rounded-lg text-utnBlue"><i class="fas fa-seedling fa-fw text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Compromiso con la comunidad</h4>
+                                    <p class="text-sm text-gray-600">Desarrollo sostenible regional e impacto social positivo en el territorio de inserción.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-users"></i> Control Democrático de los Miembros (Un miembro, un voto)</div>
-                    <p>Controladas por sus miembros, quienes participan en políticas y decisiones. En primer grado, cada miembro tiene un voto.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-dollar-sign"></i> Participación Económica de los Miembros</div>
-                    <p>Los miembros contribuyen y controlan el capital. Los excedentes se asignan al desarrollo, beneficios para miembros o servicios sociales.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-shield-alt"></i> Autonomía e Independencia</div>
-                    <p>Organizaciones autónomas de autoayuda controladas por sus miembros, manteniendo su independencia en acuerdos externos.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-book-open"></i> Educación, Entrenamiento e Información</div>
-                    <p>Brindan formación a miembros, dirigentes y empleados, e informan al público sobre el cooperativismo.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-network-wired"></i> Cooperación entre Cooperativas</div>
-                    <p>Trabajan juntas a nivel local, nacional, regional e internacional para servir mejor a sus miembros y fortalecer el movimiento.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-heart"></i> Interés por la Comunidad</div>
-                    <p>Trabajan por el desarrollo sostenible de su comunidad a través de políticas aprobadas por sus miembros.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Herramientas Constitutivas -->
+        <section id="herramientas" class="scroll-mt-24 fade-in">
+            <div class="flex items-center gap-4 mb-8 border-b-2 border-utnBlue pb-2 inline-block">
+                <div class="bg-utnBlue text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">2</div>
+                <h2 class="text-3xl font-serif font-bold text-darkNavy">Definición Conceptual de las Herramientas Constitutivas</h2>
+            </div>
+            <p class="text-gray-600 mb-8 font-medium">Para fundar legalmente la entidad y obtener la personería jurídica, se deben ejecutar actos jurídicos medulares asentados en instrumentos específicos:</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Herramienta 1 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                    <div class="bg-gradient-to-r from-utnBlue to-utnLightBlue p-4 text-center">
+                        <i class="fas fa-users text-4xl text-white opacity-80 mb-2"></i>
+                        <h3 class="text-xl font-bold text-white">2.1 La Asamblea General Constitutiva</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Es el <strong class="text-utnBlue">acto fundacional y soberano</strong> donde los miembros fundadores (mínimo de 5 asociados según resoluciones vigentes del INAES) expresan formalmente su voluntad de crear la institución.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-sm text-gray-600">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Debate y aprueba el estatuto</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suscribe e integra capital inicial</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Elige primeras autoridades</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <h3>Características según Ley 20.337</h3>
-                <table>
+                <!-- Herramienta 2 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                    <div class="bg-gradient-to-r from-accentOrange to-orange-400 p-4 text-center">
+                        <i class="fas fa-scroll text-4xl text-white opacity-80 mb-2"></i>
+                        <h3 class="text-xl font-bold text-white">2.2 El Estatuto Social</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Es el <strong class="text-accentOrange">cuerpo normativo interno</strong> (la "carta magna" de la organización) que regirá la vida jurídica, económica y operativa de la entidad.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-sm text-gray-600">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Define taxativamente el objeto social</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Derechos y obligaciones</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Distribución de excedentes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Herramienta 3 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                    <div class="bg-gradient-to-r from-slate-700 to-slate-500 p-4 text-center">
+                        <i class="fas fa-file-signature text-4xl text-white opacity-80 mb-2"></i>
+                        <h3 class="text-xl font-bold text-white">2.3 El Acta Constitutiva</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Es el <strong class="text-slate-700">documento instrumental</strong> que da fe fehaciente de todo lo acontecido durante la Asamblea Constitutiva.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-sm text-gray-600">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Instrumento privado/público certificado</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Partida de nacimiento ante INAES</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Registro ante órganos locales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Matriz Comparativa -->
+        <section id="matriz" class="scroll-mt-24 fade-in">
+            <div class="flex items-center gap-4 mb-8 border-b-2 border-utnBlue pb-2 inline-block">
+                <div class="bg-utnBlue text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">3</div>
+                <h2 class="text-3xl font-serif font-bold text-darkNavy">Matriz de Diferenciación de Estructuras Jurídicas</h2>
+            </div>
+            <p class="text-gray-600 mb-6 font-medium">A fin de dotar al alumnado de herramientas de análisis crítico corporativo, se presenta la siguiente matriz comparativa entre el modelo cooperativo técnico y las sociedades comerciales tradicionales:</p>
+
+            <div class="overflow-x-auto rounded-xl shadow-lg border border-gray-200">
+                <table class="w-full text-left border-collapse bg-white">
                     <thead>
-                        <tr>
-                            <th>Característica</th>
-                            <th>Descripción</th>
+                        <tr class="bg-darkNavy text-white">
+                            <th class="p-4 border-b-2 border-gray-300 font-bold w-1/4"><i class="fas fa-filter mr-2 text-gray-300"></i>Criterio de Comparación</th>
+                            <th class="p-4 border-b-2 border-gray-300 font-bold bg-utnLightBlue w-1/4"><i class="fas fa-hands-helping mr-2 text-white"></i>Cooperativa de Trabajo Técnico</th>
+                            <th class="p-4 border-b-2 border-gray-300 font-bold w-1/4"><i class="fas fa-building mr-2 text-gray-300"></i>Sociedad de Resp. Ltda. (S.R.L.)</th>
+                            <th class="p-4 border-b-2 border-gray-300 font-bold w-1/4"><i class="fas fa-city mr-2 text-gray-300"></i>Sociedad Anónima (S.A.)</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="icon-text"><i class="fas fa-bullseye"></i> Objeto Social</div></td>
-                            <td><p>Debe ser lícito y determinado, orientado a satisfacer las necesidades específicas de sus miembros.</p></td>
+                    <tbody class="text-sm">
+                        <tr class="hover:bg-gray-50 border-b border-gray-200">
+                            <td class="p-4 font-semibold text-gray-700 bg-gray-50">Objetivo Principal</td>
+                            <td class="p-4 border-l-2 border-utnLightBlue bg-blue-50/30 font-medium">Prestación de trabajo y ayuda mutua de los asociados. <strong class="text-utnBlue">No hay fin de lucro.</strong></td>
+                            <td class="p-4 border-l border-gray-200">Lucro y rentabilidad comercial sobre el capital invertido por los socios.</td>
+                            <td class="p-4 border-l border-gray-200">Maximización del valor de las acciones e inversión de los accionistas.</td>
                         </tr>
-                        <tr>
-                            <td><div class="icon-text"><i class="fas fa-coins"></i> Capital Social</div></td>
-                            <td><p>Es variable e ilimitado, compuesto por cuotas de igual valor transferibles solo entre socios con aprobación del Consejo.</p></td>
+                        <tr class="hover:bg-gray-50 border-b border-gray-200">
+                            <td class="p-4 font-semibold text-gray-700 bg-gray-50">Gobernanza y Voto</td>
+                            <td class="p-4 border-l-2 border-utnLightBlue bg-blue-50/30"><strong class="text-utnBlue">Democrático: 1 asociado = 1 voto</strong>, sin importar su capital.</td>
+                            <td class="p-4 border-l border-gray-200">Proporcional a las cuotas partes de capital de cada socio.</td>
+                            <td class="p-4 border-l border-gray-200">Proporcional a la cantidad de acciones ordinarias poseídas.</td>
                         </tr>
-                        <tr>
-                            <td><div class="icon-text"><i class="fas fa-user-shield"></i> Responsabilidad Limitada</div></td>
-                            <td><p>La responsabilidad de cada socio está limitada únicamente al monto de las cuotas sociales que ha suscripto.</p></td>
+                        <tr class="hover:bg-gray-50 border-b border-gray-200">
+                            <td class="p-4 font-semibold text-gray-700 bg-gray-50">Estructura Directiva</td>
+                            <td class="p-4 border-l-2 border-utnLightBlue bg-blue-50/30"><strong class="text-utnBlue">Consejo de Administración</strong> (Mínimo 3 miembros: Pres., Sec., Tes.).</td>
+                            <td class="p-4 border-l border-gray-200">Gerencia (Uno o más gerentes, socios o terceros).</td>
+                            <td class="p-4 border-l border-gray-200">Directorio (Presidente y Directores) elegido por Asamblea de Accionistas.</td>
                         </tr>
-                        <tr>
-                            <td><div class="icon-text"><i class="fas fa-hand-holding-usd"></i> Ausencia de Ánimo de Lucro</div></td>
-                            <td><p>Su fin no es maximizar ganancias para inversores, sino prestar servicios a costo o generar trabajo digno para los socios.</p></td>
+                        <tr class="hover:bg-gray-50 border-b border-gray-200">
+                            <td class="p-4 font-semibold text-gray-700 bg-gray-50">Retribución Económica</td>
+                            <td class="p-4 border-l-2 border-utnLightBlue bg-blue-50/30"><strong class="text-utnBlue">Retorno de Excedentes</strong> (en función estricta del trabajo aportado).</td>
+                            <td class="p-4 border-l border-gray-200">Distribución de Dividendos (en función de las cuotas de capital).</td>
+                            <td class="p-4 border-l border-gray-200">Distribución de Dividendos (proporcional al paquete accionario).</td>
                         </tr>
-                        <tr>
-                            <td><div class="icon-text"><i class="fas fa-sitemap"></i> Órganos Sociales</div></td>
-                            <td><p>Estructura democrática con Asamblea (supremo), Consejo de Administración (ejecutivo) y Sindicatura (control interno).</p></td>
-                        </tr>
-                        <tr>
-                            <td><div class="icon-text"><i class="fas fa-government"></i> Fomento Estatal</div></td>
-                            <td><p>El Estado, a través del INAES, promueve su desarrollo mediante beneficios y programas de apoyo específicos.</p></td>
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-4 font-semibold text-gray-700 bg-gray-50 rounded-bl-xl">Relación Laboral</td>
+                            <td class="p-4 border-l-2 border-utnLightBlue bg-blue-50/30"><strong class="text-utnBlue">Acto Cooperativo de Trabajo</strong> (No rige la LCT Ley 20.744). Autogestión.</td>
+                            <td class="p-4 border-l border-gray-200">Relación de dependencia tradicional para los trabajadores.</td>
+                            <td class="p-4 border-l border-gray-200">Relación de dependencia tradicional para operarios y programadores.</td>
                         </tr>
                     </tbody>
                 </table>
-
-                <h3>Tipos de Cooperativas (Ejemplos)</h3>
-                <ul>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-hard-hat"></i> Cooperativas de Trabajo</div>
-                        <p>Formadas por trabajadores que se asocian para producir bienes o servicios, siendo dueños y gestores.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-shopping-cart"></i> Cooperativas de Consumo</div>
-                        <p>Organizadas por consumidores para obtener bienes y servicios en mejores condiciones de calidad y precio.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-home"></i> Cooperativas de Vivienda</div>
-                        <p>Se forman para construir, mejorar o gestionar soluciones habitacionales para sus miembros asociados.</p>
-                    </li>
-                     <li>
-                        <div class="icon-text"><i class="fas fa-credit-card"></i> Cooperativas de Crédito</div>
-                        <p>Brindan servicios financieros y de ahorro a sus socios, reguladas por normativa específica del sector.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-tractor"></i> Cooperativas Agropecuarias</div>
-                        <p>Agrupan a productores rurales para comercialización, compra de insumos, uso de maquinaria y servicios técnicos.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-truck-loading"></i> Cooperativas de Provisión</div>
-                        <p>Ofrecen bienes o servicios a un sector específico (ej. servicios públicos, insumos para transportistas).</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-faucet"></i> Cooperativas de Servicios Públicos (agua, luz, etc.)</div>
-                        <p>Gestionan y prestan servicios esenciales en localidades donde el Estado o privados no llegan o lo hacen deficientemente.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-ellipsis-h"></i> Otras Tipologías (transporte, seguros, arte, etc.)</div>
-                        <p>La ley permite la constitución para cualquier actividad lícita, adaptándose a diversas necesidades.</p>
-                    </li>
-                </ul>
             </div>
+        </section>
+
+        <!-- SECCIÓN 4: Paso a Paso -->
+        <section id="paso-a-paso" class="scroll-mt-24 fade-in">
+            <div class="flex items-center gap-4 mb-8 border-b-2 border-utnBlue pb-2 inline-block">
+                <div class="bg-utnBlue text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">4</div>
+                <h2 class="text-3xl font-serif font-bold text-darkNavy">Guía Procedimental Paso a Paso: Realización de la Asamblea</h2>
+            </div>
+            <p class="text-gray-600 mb-10 font-medium">El proceso de constitución exige el cumplimiento estricto de una secuencia cronológica e institucional para evitar observaciones legales por parte del ente regulador:</p>
+
+            <div class="timeline-container px-4">
+                
+                <!-- Paso 1 -->
+                <div class="relative z-10 flex flex-col md:flex-row items-start mb-12">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-accentOrange border-4 border-white shadow-lg flex items-center justify-center text-white font-bold text-xl z-20 md:mx-auto md:order-2 md:-ml-6 md:translate-x-1/2">
+                        1
+                    </div>
+                    <div class="mt-4 md:mt-0 ml-6 md:ml-0 md:w-1/2 md:pr-12 md:text-right md:order-1">
+                        <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-accentOrange hover:shadow-lg transition-shadow">
+                            <span class="text-xs font-bold tracking-wider text-accentOrange uppercase mb-2 block">Fase de Planificación</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Convocatoria y Reuniones Previas</h3>
+                            <p class="text-sm text-gray-600">Los iniciadores (mínimo 5 personas) definen el perfil de la cooperativa, redactan el proyecto de estatuto adecuado al objeto social técnico (Sistemas o Electricidad) y fijan fecha, hora y lugar para el acto asambleario.</p>
+                        </div>
+                    </div>
+                    <div class="hidden md:block md:w-1/2 md:pl-12 md:order-3"></div> <!-- Espaciador -->
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="relative z-10 flex flex-col md:flex-row items-start mb-12">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-utnBlue border-4 border-white shadow-lg flex items-center justify-center text-white font-bold text-xl z-20 md:mx-auto md:order-2 md:-ml-6 md:translate-x-1/2">
+                        2
+                    </div>
+                    <div class="hidden md:block md:w-1/2 md:pr-12 md:order-1"></div> <!-- Espaciador -->
+                    <div class="mt-4 md:mt-0 ml-6 md:ml-0 md:w-1/2 md:pl-12 md:order-3">
+                        <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-utnBlue hover:shadow-lg transition-shadow">
+                            <span class="text-xs font-bold tracking-wider text-utnBlue uppercase mb-2 block">Inicio Formal del Acto</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Apertura y Elección de Autoridades</h3>
+                            <p class="text-sm text-gray-600">El día fijado se constata la presencia de los fundadores mediante planilla de asistencia. Se da inicio al acto eligiendo por voto directo a un Presidente y un Secretario de Asamblea para coordinar el debate y labrar el instrumento.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="relative z-10 flex flex-col md:flex-row items-start mb-12">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-slate-700 border-4 border-white shadow-lg flex items-center justify-center text-white font-bold text-xl z-20 md:mx-auto md:order-2 md:-ml-6 md:translate-x-1/2">
+                        3
+                    </div>
+                    <div class="mt-4 md:mt-0 ml-6 md:ml-0 md:w-1/2 md:pr-12 md:text-right md:order-1">
+                        <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-slate-700 hover:shadow-lg transition-shadow">
+                            <span class="text-xs font-bold tracking-wider text-slate-700 uppercase mb-2 block">Discusión Mandatoria</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Tratamiento del Orden del Día</h3>
+                            <p class="text-sm text-gray-600">Se da lectura y tratamiento secuencial a los puntos obligatorios: Informe de los Iniciadores, Discusión y Aprobación del Estatuto Social, Suscripción e Integración de Cuotas Sociales, y Elección de Autoridades del Consejo y Sindicatura.</p>
+                        </div>
+                    </div>
+                    <div class="hidden md:block md:w-1/2 md:pl-12 md:order-3"></div>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="relative z-10 flex flex-col md:flex-row items-start mb-12">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-green-600 border-4 border-white shadow-lg flex items-center justify-center text-white font-bold text-xl z-20 md:mx-auto md:order-2 md:-ml-6 md:translate-x-1/2">
+                        4
+                    </div>
+                    <div class="hidden md:block md:w-1/2 md:pr-12 md:order-1"></div>
+                    <div class="mt-4 md:mt-0 ml-6 md:ml-0 md:w-1/2 md:pl-12 md:order-3">
+                        <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-green-600 hover:shadow-lg transition-shadow">
+                            <span class="text-xs font-bold tracking-wider text-green-600 uppercase mb-2 block">Formalización Económica</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Suscripción e Integración</h3>
+                            <p class="text-sm text-gray-600">Cada asociado manifiesta formalmente cuántas cuotas sociales va a suscribir (compromiso de pago) y cuánto integra en ese mismo acto (mínimo el 5% en efectivo o el 100% si es en bienes capitalizables).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 5 -->
+                <div class="relative z-10 flex flex-col md:flex-row items-start mb-12">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-red-600 border-4 border-white shadow-lg flex items-center justify-center text-white font-bold text-xl z-20 md:mx-auto md:order-2 md:-ml-6 md:translate-x-1/2">
+                        5
+                    </div>
+                    <div class="mt-4 md:mt-0 ml-6 md:ml-0 md:w-1/2 md:pr-12 md:text-right md:order-1">
+                        <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-red-600 hover:shadow-lg transition-shadow">
+                            <span class="text-xs font-bold tracking-wider text-red-600 uppercase mb-2 block">Formalización Documental</span>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Cierre de la Asamblea y Firmas</h3>
+                            <p class="text-sm text-gray-600">Se da por finalizada la sesión. El Presidente y el Secretario elegidos, junto con la totalidad de los asociados fundadores presentes, firman el Acta Constitutiva para garantizar la validez e integridad del documento.</p>
+                        </div>
+                    </div>
+                    <div class="hidden md:block md:w-1/2 md:pl-12 md:order-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: Modelos Prácticos de Actas Constitutivas -->
+        <section id="modelos-actas" class="scroll-mt-24 fade-in">
+            <div class="flex items-center gap-4 mb-8 border-b-2 border-utnBlue pb-2 inline-block">
+                <div class="bg-utnBlue text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">5</div>
+                <h2 class="text-3xl font-serif font-bold text-darkNavy">Modelos Prácticos de Actas Constitutivas</h2>
+            </div>
+            <p class="text-gray-600 mb-6 font-medium">A continuación se exponen los modelos analíticos y prácticos de Actas Constitutivas redactados con la terminología de cada especialidad técnica. <em>Haz clic en cada panel para leer el documento completo.</em></p>
+
+            <div class="space-y-6">
+                <!-- Acordeón Caso 1: Sistemas -->
+                <div class="border border-gray-200 rounded-xl bg-white shadow-sm overflow-hidden">
+                    <button class="accordion-button w-full px-6 py-4 flex items-center justify-between bg-gray-50 hover:bg-gray-100 transition-colors focus:outline-none" onclick="toggleAccordion(this)">
+                        <div class="flex items-center gap-4 text-left">
+                            <div class="bg-blue-100 p-2 rounded text-blue-600"><i class="fas fa-laptop-code text-xl"></i></div>
+                            <div>
+                                <span class="block text-sm font-bold text-blue-600 uppercase tracking-wide">Caso 1</span>
+                                <h3 class="text-lg font-bold text-gray-800">Cooperativa de Trabajo en Análisis de Sistemas y Desarrollo de Software</h3>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-white">
+                        <div class="legal-document rounded-md my-4 overflow-x-auto text-sm md:text-base">
+<pre class="whitespace-pre-wrap font-inherit m-0 text-gray-800"><strong>ACTA CONSTITUTIVA DE LA COOPERATIVA DE TRABAJO "TECH-SOURCE INNOVACIÓN SISTÉMICA LIMITADA"</strong>
+
+En la Ciudad Autónoma de Buenos Aires, a los 26 días del mes de mayo de 2026, siendo las 10:00 horas, en el recinto sito en la calle Av. Medrano 951, se reúnen las personas que han suscrito la lista de asistencia al reverso del presente instrumento, con el objeto de dejar constituida una cooperativa de trabajo de producción de servicios de software e ingeniería de sistemas.
+
+Abierto el acto por designación de los presentes, toma la palabra el Ingeniero Carlos Mendoza, quien expone el objeto general de las reuniones preliminares y los fundamentos de la propuesta asociativa. A continuación, se procede a designar como Presidente de la Asamblea al Lic. Carlos Mendoza y como Secretaria a la Analista Débora Juárez.
+
+Seguidamente, el Presidente propone el tratamiento del siguiente <strong>ORDEN DEL DÍA:</strong>
+1°) Informe de los iniciadores.
+2°) Discusión y aprobación del Estatuto Social.
+3°) Suscripción e integración de cuotas sociales.
+4°) Elección de los miembros del Consejo de Administración y de la Sindicatura.
+
+<strong>PUNTO 1º:</strong> El Presidente realiza una pormenorizada descripción del mercado de software actual, destacando la necesidad de consolidar una estructura cooperativa para la provisión de servicios de desarrollo ágil (Scrum), auditorías de bases de datos relacionales, despliegue de infraestructura en la nube (Cloud Computing) y desarrollo de sistemas embebidos. El informe es aprobado por unanimidad.
+
+<strong>PUNTO 2º:</strong> Se da lectura al proyecto de Estatuto Social. Luego de una detallada deliberación técnica sobre el OBJETO SOCIAL, el cual queda definido como: "La prestación de servicios de análisis de sistemas, diseño de arquitectura de software, programación, consultoría informática, ciberseguridad, testing automatizado y mantenimiento de infraestructura tecnológica", el estatuto es aprobado por unanimidad en general y en particular.
+
+<strong>PUNTO 3º:</strong> En este acto, los asociados proceden a la suscripción e integración del capital social en cuotas sociales de valor nominal Pesos Un Mil ($1.000) cada una, de acuerdo con el siguiente detalle conceptual y numérico:
+- Carlos Mendoza: Suscribe 50 cuotas ($50.000), integra en efectivo el 25% ($12.500).
+- Débora Juárez: Suscribe 50 cuotas ($50.000), integra en efectivo el 25% ($12.500).
+- Mariano Estévez: Suscribe 50 cuotas ($50.000), integra en efectivo el 25% ($12.500).
+- Lucas Spinelli: Suscribe 50 cuotas ($50.000), integra en efectivo el 25% ($12.500).
+- Sofía Gómez: Suscribe 50 cuotas ($50.000), integra en efectivo el 25% ($12.500).
+<strong>Total de Capital Suscripto: $250.000. Total Integrado en Efectivo: $62.500.</strong>
+
+<strong>PUNTO 4°:</strong> Se procede a la elección de las autoridades. Luego del escrutinio nominal, la conducción de la cooperativa queda conformada de la siguiente manera:
+<strong>CONSEJO DE ADMINISTRACIÓN:</strong>
+- Presidente: Carlos Mendoza
+- Secretario: Lucas Spinelli
+- Tesorera: Sofía Gómez
+<strong>SINDICATURA:</strong>
+- Sindico Titular: Mariano Estévez
+- Sindico Suplente: Débora Juárez
+
+Los electos aceptan sus respectivos cargos en este mismo acto, firmando de conformidad.
+No habiendo más asuntos que tratar, se levanta la sesión siendo las 13:30 horas.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acordeón Caso 2: Electricidad -->
+                <div class="border border-gray-200 rounded-xl bg-white shadow-sm overflow-hidden">
+                    <button class="accordion-button w-full px-6 py-4 flex items-center justify-between bg-gray-50 hover:bg-gray-100 transition-colors focus:outline-none" onclick="toggleAccordion(this)">
+                        <div class="flex items-center gap-4 text-left">
+                            <div class="bg-yellow-100 p-2 rounded text-yellow-600 px-3"><i class="fas fa-bolt text-xl"></i></div>
+                            <div>
+                                <span class="block text-sm font-bold text-yellow-600 uppercase tracking-wide">Caso 2</span>
+                                <h3 class="text-lg font-bold text-gray-800">Cooperativa de Trabajo en Servicios Eléctricos e Instalaciones Industriales</h3>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-white">
+                        <div class="legal-document rounded-md my-4 overflow-x-auto text-sm md:text-base">
+<pre class="whitespace-pre-wrap font-inherit m-0 text-gray-800"><strong>ACTA CONSTITUTIVA DE LA COOPERATIVA DE TRABAJO "SINERGIA ELÉCTRICA INDUSTRIAL LIMITADA"</strong>
+
+En la localidad de San Justo, Partido de La Matanza, Provincia de Buenos Aires, a los 26 dias del mes de mayo de 2026, siendo las 14:00 horas, en el inmueble ubicado en la calle Florencio Varela 1900, se reúnen los técnicos e ingenieros electricistas cuyos datos de identidad constan en el registro anexo, con el fin de constituir una cooperativa de trabajo destinada al sector electrotécnico.
+
+Toma la palabra el Técnico electromecánico Walter Roldán, expresando la necesidad de nuclearse bajo el amparo de la Ley 20.337 para responder a demandas de licitaciones públicas y privadas en baja, media y alta tensión. Se designa por voto unánime a Walter Roldán como Presidente de la Asamblea y a la Ingeniera Eléctrica Andrea Casal como Secretaria de la misma.
+
+Se somete a votación el siguiente <strong>ORDEN DEL DÍA:</strong>
+1°) Informe de la comisión organizadora.
+2°) Consideración del Estatuto Social.
+3°) Suscripción e integración de capital de inicio.
+4°) Elección de los integrantes del Consejo de Administración y órgano de Fiscalización.
+
+<strong>PUNTO 1º:</strong> El Técnico Roldán detalla el plan operativo de la cooperativa, orientado a la ejecución de obras de tendido de redes de distribución, montaje de subestaciones transformadoras, automatización industrial por PLC, estudios de factor de potencia y diseño de tableros TGBT bajo normativa AEA 90364. El informe es aprobado unánimemente.
+
+<strong>PUNTO 2º:</strong> La Secretaria procede a leer el Estatuto propuesto. Se hace especial énfasis en el ARTÍCULO DEL OBJETO SOCIAL: "La cooperativa tendrá por objeto asumir de forma asociada la ejecución de proyectos de ingeniería eléctrica, montajes electromecánicos industriales, mantenimiento preventivo y correctivo de transformadores, mediciones de puesta a tierra, termografías infrarrojas, revamping de celdas de media tensión y consultoría en eficiencia energética". Se aprueba el texto por unanimidad.
+
+<strong>PUNTO 3º:</strong> Los fundadores proceden a suscribir e integrar el capital social en cuotas de valor nominal Pesos Dos Mil ($2.000) cada una:
+- Walter Roldán: Suscribe 30 cuotas ($60.000), integra el 50% ($30.000) en herramientas específicas de medición (Analizador de redes certificado).
+- Andrea Casal: Suscribe 30 cuotas ($60.000), integra el 50% ($30.000) en efectivo.
+- Jorge Benitez: Suscribe 30 cuotas ($60.000), integra el 50% ($30.000) en efectivo.
+- Martin Palermo: Suscribe 30 cuotas ($60.000), integra el 50% ($30.000) en efectivo.
+- Roxana Toledo: Suscribe 30 cuotas ($60.000), integra el 50% ($30.000) en instrumental técnico (Telurimetro y Megóhmetro).
+<strong>Total de Capital Suscripto: $300.000. Total Integrado (efectivo + bienes capitalizables): $150.000.</strong>
+
+<strong>PUNTO 4°:</strong> Mediante votación nominal y secreta, se eligen las autoridades vigentes para el primer ejercicio financiero:
+<strong>CONSEJO DE ADMINISTRACIÓN:</strong>
+- Presidente: Walter Roldán
+- Secretario: Martin Palermo
+- Tesorera: Roxana Toledo
+<strong>SINDICATURA:</strong>
+- Sindico Titular: Andrea Casal
+- Síndico Suplente: Jorge Benítez
+
+Los designados declaran bajo juramento no poseer incompatibilidades legales ni comerciales para ejercer sus funciones y toman posesión de sus cargos firmando al pie de la presente acta. Siendo las 17:45 horas, se declara cerrado el acto constitutivo.</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: Arquitectura Organizacional -->
+        <section id="arquitectura" class="scroll-mt-24 fade-in">
+            <div class="flex items-center gap-4 mb-8 border-b-2 border-utnBlue pb-2 inline-block">
+                <div class="bg-utnBlue text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">6</div>
+                <h2 class="text-3xl font-serif font-bold text-darkNavy">Arquitectura Organizacional de una Cooperativa</h2>
+            </div>
+            <p class="text-gray-600 mb-10 font-medium">Para comprender la estructura interna y la toma de decisiones, se presenta el esquema jerárquico funcional regulado por la Ley 20.337:</p>
+
+            <!-- Diagrama Jerárquico construido con CSS/Tailwind -->
+            <div class="bg-gray-100 p-8 rounded-2xl shadow-inner mb-12">
+                <div class="flex flex-col items-center">
+                    
+                    <!-- Nivel 1 -->
+                    <div class="bg-darkNavy text-white px-8 py-4 rounded-lg shadow-md text-center w-full max-w-2xl transform hover:scale-105 transition-transform">
+                        <h4 class="font-bold text-xl uppercase tracking-wider mb-1">Asamblea de Asociados</h4>
+                        <p class="text-sm text-blue-200">(Órgano Soberano y Deliberativo Supremo)</p>
+                    </div>
+
+                    <!-- Flecha abajo -->
+                    <div class="h-8 border-l-2 border-dashed border-gray-400 my-2"></div>
+                    <i class="fas fa-arrow-down text-gray-400 mb-2"></i>
+
+                    <!-- Nivel 2: Bifurcación -->
+                    <div class="flex flex-col md:flex-row gap-6 w-full max-w-4xl justify-center items-center">
+                        <div class="bg-utnBlue text-white px-6 py-4 rounded-lg shadow-md text-center w-full md:w-1/2 transform hover:scale-105 transition-transform">
+                            <h4 class="font-bold text-lg uppercase tracking-wider mb-1">Consejo de Administración</h4>
+                            <p class="text-sm text-blue-200">(Órgano de Ejecución y Representación)</p>
+                        </div>
+                        <div class="hidden md:block w-8 border-t-2 border-dashed border-gray-400"></div>
+                        <div class="bg-slate-600 text-white px-6 py-4 rounded-lg shadow-md text-center w-full md:w-1/2 transform hover:scale-105 transition-transform">
+                            <h4 class="font-bold text-lg uppercase tracking-wider mb-1">Sindicatura</h4>
+                            <p class="text-sm text-slate-300">(Órgano de Fiscalización Interna y Control)</p>
+                        </div>
+                    </div>
+
+                    <!-- Flecha abajo central -->
+                    <div class="h-8 border-l-2 border-dashed border-gray-400 my-2"></div>
+                    <i class="fas fa-arrow-down text-gray-400 mb-2"></i>
+
+                    <!-- Nivel 3 -->
+                    <div class="bg-gray-600 text-white px-8 py-4 rounded-lg shadow-md text-center w-full max-w-2xl transform hover:scale-105 transition-transform">
+                        <h4 class="font-bold text-lg uppercase tracking-wider mb-1">Coordinación Técnica / PMO</h4>
+                        <p class="text-sm text-gray-300">(Lideres de Proyecto, Jefes de Obra)</p>
+                    </div>
+
+                    <!-- Flecha abajo -->
+                    <div class="h-8 border-l-2 border-dashed border-gray-400 my-2"></div>
+                    <i class="fas fa-arrow-down text-gray-400 mb-2"></i>
+
+                    <!-- Nivel 4 -->
+                    <div class="bg-gray-400 text-darkNavy px-8 py-4 rounded-lg shadow-md text-center w-full max-w-3xl transform hover:scale-105 transition-transform">
+                        <h4 class="font-bold text-lg uppercase tracking-wider mb-1">Equipos Operativos de Trabajo</h4>
+                        <p class="text-sm font-medium">(Asociados: Programadores, Analistas, Técnicos Electricistas)</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Desglose de Funciones -->
+            <h3 class="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-accentOrange pl-3">6.1 Desglose de Funciones de los Órganos Centrales</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Función 1 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-darkNavy text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</div>
+                        <h4 class="font-bold text-lg text-darkNavy">La Asamblea</h4>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Reunión plenaria de todos los asociados.</p>
+                    <ul class="text-sm text-gray-600 list-disc pl-5 space-y-1">
+                        <li>Resuelve aprobación de Estados Contables.</li>
+                        <li>Reformas estatutarias.</li>
+                        <li>Distribución de excedentes.</li>
+                        <li>Elección/remoción de consejeros y síndicos.</li>
+                    </ul>
+                    <p class="text-xs text-gray-500 mt-3 italic">Se reúne de forma Ordinaria (1 vez al año dentro de los 4 meses post-cierre) o Extraordinaria.</p>
+                </div>
+
+                <!-- Función 2 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-utnBlue text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</div>
+                        <h4 class="font-bold text-lg text-utnBlue">Consejo de Administración</h4>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Órgano colegiado encargado de la dirección y gestión operativa diaria.</p>
+                    <ul class="text-sm text-gray-600 list-disc pl-5 space-y-1">
+                        <li>Celebra contratos comerciales.</li>
+                        <li>Adquiere equipamiento.</li>
+                        <li>Abre cuentas bancarias.</li>
+                        <li>Representa legalmente a la entidad.</li>
+                    </ul>
+                    <p class="text-xs font-bold text-gray-700 mt-3 bg-blue-50 p-2 rounded">Integrado obligatoriamente por Pres., Sec. y Tesorero.</p>
+                </div>
+
+                <!-- Función 3 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-slate-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</div>
+                        <h4 class="font-bold text-lg text-slate-700">La Sindicatura</h4>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Es el órgano de fiscalización privada permanente.</p>
+                    <ul class="text-sm text-gray-600 list-disc pl-5 space-y-1">
+                        <li>Vigila que el Consejo actúe conforme a la ley, estatuto y asamblea.</li>
+                        <li>Documenta gestión mediante informes formales anuales.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 7: Contabilidad, Impuestos y Resumen -->
+        <section id="flujo" class="scroll-mt-24 fade-in">
+            <div class="flex items-center gap-4 mb-8 border-b-2 border-utnBlue pb-2 inline-block">
+                <div class="bg-utnBlue text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">7</div>
+                <h2 class="text-3xl font-serif font-bold text-darkNavy">Flujo Contable, Impositivo y Distribución de Excedentes</h2>
+            </div>
+            
+            <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-xl mb-8">
+                <h4 class="text-red-700 font-bold mb-2 flex items-center gap-2">
+                    <i class="fas fa-exclamation-triangle"></i> Error Conceptual Frecuente
+                </h4>
+                <p class="text-gray-700">Un error conceptual recurrente en las aulas de ingeniería y tecnicatura es confundir el concepto de <strong>Excedente</strong> con el de <strong>Ganancia o Utilidad</strong> mercantil.</p>
+                <div class="mt-4 bg-white p-4 rounded border border-red-100 shadow-sm">
+                    <strong class="text-darkNavy block mb-1">Principio de No Lucro:</strong> 
+                    <p class="text-sm text-gray-600">Las cooperativas no generan "ganancias" porque no comercializan servicios para enriquecer a un capital externo. Generan un <strong class="text-utnLightBlue">Excedente Repartible</strong>, que es el saldo positivo entre los ingresos obtenidos por las obras/desarrollos y la sumatoria de costos de insumos, amortizaciones y gastos operativos.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Distribución Legal -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">7.1 Distribución Legal del Excedente Neto</h3>
+                    <p class="text-sm text-gray-600 mb-4">Según el Art. 42 (Ley 20.337), no pueden repartirse discrecionalmente. Deducen reservas técnicas obligatorias:</p>
+                    
+                    <div class="bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
+                        <div class="bg-slate-100 p-4 font-bold text-center border-b">Excedente Neto Total (100%)</div>
+                        <div class="divide-y divide-gray-100">
+                            <div class="flex items-center p-3 hover:bg-gray-50">
+                                <div class="w-16 text-center font-bold text-red-500">5%</div>
+                                <div class="text-sm text-gray-700">Fondo de Reserva Legal</div>
+                            </div>
+                            <div class="flex items-center p-3 hover:bg-gray-50">
+                                <div class="w-16 text-center font-bold text-red-500">5%</div>
+                                <div class="text-sm text-gray-700">Fondo de Acción Asistencial y Laboral</div>
+                            </div>
+                            <div class="flex items-center p-3 hover:bg-gray-50">
+                                <div class="w-16 text-center font-bold text-red-500">5%</div>
+                                <div class="text-sm text-gray-700">Fondo de Educación y Capacitación Cooperativa</div>
+                            </div>
+                            <div class="flex items-center p-4 bg-green-50 border-l-4 border-green-500">
+                                <div class="w-16 text-center font-bold text-green-700 text-lg">85%</div>
+                                <div class="text-sm font-bold text-green-800">Retorno a los Asociados <br><span class="font-normal text-xs">(Proporcional al trabajo efectivo)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aspectos Impositivos -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">7.2 Aspectos Impositivos Clave en Argentina</h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                            <div class="text-green-500 mt-1"><i class="fas fa-file-invoice-dollar text-2xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Impuesto a las Ganancias</h4>
+                                <p class="text-sm text-gray-600"><strong class="text-green-600">Exentas por ley</strong> (carácter no lucrativo). Tramitar certificado anual AFIP.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                            <div class="text-blue-500 mt-1"><i class="fas fa-receipt text-2xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Impuesto al Valor Agregado (IVA)</h4>
+                                <p class="text-sm text-gray-600">Régimen general. Factura desarrollos o instalaciones al <strong class="text-blue-600">21% o 10.5%</strong>.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                            <div class="text-orange-500 mt-1"><i class="fas fa-user-tie text-2xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Monotributo / Autónomos</h4>
+                                <p class="text-sm text-gray-600">Los asociados, individualmente, deben estar inscriptos para percibir anticipos legalmente facturados a la cooperativa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen Final -->
+            <div class="mt-16 bg-gradient-to-br from-darkNavy to-utnBlue text-white rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                <i class="fas fa-graduation-cap absolute -right-10 -bottom-10 text-9xl text-white opacity-10"></i>
+                <h3 class="text-3xl font-serif font-bold mb-6">8. Resumen Conceptual Didáctico para el Estudiante</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                    <div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-accentOrange mt-1"></i>
+                                <div>
+                                    <strong class="block text-lg">Naturaleza Jurídica</strong>
+                                    <span class="text-sm text-blue-100">Empresa de propiedad conjunta y gestión democrática. Inexistencia de relación de dependencia laboral tradicional (No aplica LCT 20.744).</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-users text-accentOrange mt-1"></i>
+                                <div>
+                                    <strong class="block text-lg">Número de Miembros</strong>
+                                    <span class="text-sm text-blue-100">Mínimo de 5 asociados según regulaciones de simplificación administrativa (INAES).</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-balance-scale text-accentOrange mt-1"></i>
+                                <div>
+                                    <strong class="block text-lg">Igualdad Política</strong>
+                                    <span class="text-sm text-blue-100">Estrictamente horizontal. El voto de un Ingeniero Senior equivale lo mismo que el de un Programador Trainee o Ayudante recién asociado.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-chart-line text-accentOrange mt-1"></i>
+                                <div>
+                                    <strong class="block text-lg">Sustentabilidad y Capitalización</strong>
+                                    <span class="text-sm text-blue-100">El 15% de los retornos netos anuales se destina al blindaje financiero, salud y capacitación tecnológica continua.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm border-t-4 border-accentOrange mt-12">
+        <div class="container mx-auto px-4">
+            <p>Material Didáctico - Basado en Ley N° 20.337 / Resoluciones INAES</p>
+            <p class="mt-2">Áreas: Análisis de Sistemas / Electricidad e Industria</p>
         </div>
+    </footer>
 
-        <div class="section-box">
-            <div class="collapsible-header">
-                La Asamblea Constitutiva: Proceso Fundacional
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="collapsible-content">
-                <p>Acto jurídico fundamental y punto de partida formal para la creación de una cooperativa. Es la reunión de los futuros socios.</p>
-                <h3>Puntos Clave</h3>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-calendar-alt"></i> Convocatoria</div>
-                    <p>Informar a todos los fundadores sobre la reunión para asegurar su participación.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-users"></i> Número Mínimo de Fundadores</div>
-                    <p>Se requieren al menos 10 asociados fundadores, con algunas excepciones autorizadas por INAES.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-clipboard-check"></i> Presencia y Acreditación</div>
-                    <p>Deben estar presentes los fundadores y se recomienda un listado con sus datos y firmas.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-user-tie"></i> Elección de Autoridades de la Asamblea</div>
-                    <p>Se elige un Presidente y un Secretario para conducir la reunión y labrar el acta.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-comment-dots"></i> Manifestación Expresa de Voluntad de Constituir</div>
-                    <p>Los asistentes deben declarar claramente su decisión de formar la cooperativa.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-file-alt"></i> Aprobación del Estatuto Social</div>
-                    <p>Se lee, discute y vota el proyecto de Estatuto, el cual debe ajustarse a la ley y normativas de INAES.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-money-check-alt"></i> Suscripción e Integración de Cuotas Sociales Iniciales</div>
-                    <p>Los fundadores deben suscribir e integrar una parte del capital social inicial (usualmente no menos del 5% en efectivo).</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-vote-yea"></i> Elección de los Primeros Órganos Sociales</div>
-                    <p>Se eligen los miembros del primer Consejo de Administración y del Síndico (o Sindicatura Plural).</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-file-signature"></i> Lectura y Aprobación del Acta</div>
-                    <p>Se redacta un acta de la asamblea, se lee y se aprueba por los presentes o una comisión designada.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-signature"></i> Firma del Acta</div>
-                    <p>El acta debe ser firmada por las autoridades de la asamblea y quienes aprueban el acta.</p>
-                </div>
-                <div class="key-point-box">
-                    <div class="icon-text"><i class="fas fa-balance-scale"></i> Cumplimiento de Normativas de INAES</div>
-                    <p>La asamblea debe seguir los requisitos y modelos sugeridos por INAES para facilitar la inscripción.</p>
-                </div>
-                <p class="text-sm text-gray-600 mt-3">Su correcta realización es esencial para obtener la matrícula de INAES.</p>
-            </div>
-        </div>
-
-        <div class="section-box">
-            <div class="collapsible-header">
-                El Acta Constitutiva: Documento Fundacional
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="collapsible-content">
-                <p>Documento escrito que da fe de lo actuado en la Asamblea Constitutiva. Formaliza legalmente la decisión de crear la cooperativa.</p>
-                <h3>Puntos Clave a Incluir</h3>
-                <ul>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-heading"></i> Título: "Acta Constitutiva"</div>
-                        <p>Debe indicar claramente el nombre del documento fundacional.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-calendar-check"></i> Lugar, Fecha y Hora</div>
-                        <p>Especificar con precisión dónde, cuándo y a qué hora se realizó la asamblea.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-address-card"></i> Identificación de los Fundadores</div>
-                        <p>Listar a todos los asistentes fundadores con sus datos personales completos.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-comment-alt"></i> Manifestación de Voluntad de Constituir</div>
-                        <p>Dejar constancia expresa de la decisión unánime de crear la cooperativa.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-file-signature"></i> Denominación de la Cooperativa</div>
-                        <p>Consignar el nombre elegido para la entidad, incluyendo la palabra "Cooperativa" y su objeto.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-tasks"></i> Objeto Social</div>
-                        <p>Describir de forma clara y precisa las actividades lícitas a las que se dedicará la cooperativa.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-map-marker-alt"></i> Domicilio Social</div>
-                        <p>Establecer la sede legal de la cooperativa dentro de su jurisdicción de operación.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-file-contract"></i> Aprobación del Estatuto Social</div>
-                        <p>Dejar constancia de que se leyó, discutió y aprobó el texto del Estatuto Social.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-money-bill-wave"></i> Capital Social Inicial</div>
-                        <p>Indicar el monto total suscripto, el valor de la cuota y el porcentaje integrado por cada socio.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-users-cog"></i> Elección de Autoridades</div>
-                        <p>Consignar nombres y cargos de los miembros electos para el Consejo de Administración y Sindicatura.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-user-check"></i> Designación de Comisión para Firma del Acta (Opcional)</div>
-                        <p>Nombrar a un grupo de socios para firmar el acta en representación de todos los presentes.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-user-tie"></i> Designación de Gestores de la Matrícula</div>
-                        <p>Nombrar a las personas encargadas de realizar los trámites ante INAES y otros organismos.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-info-circle"></i> Manifestaciones Adicionales</div>
-                        <p>Incluir cualquier otro acuerdo o punto relevante tratado durante la asamblea.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-pencil-alt"></i> Cierre y Firmas</div>
-                        <p>Registrar la hora de finalización y asegurar las firmas requeridas en el documento.</p>
-                    </li>
-                </ul>
-                <p class="text-sm text-gray-600 mt-3">Esencial para presentar ante INAES y obtener la matrícula.</p>
-            </div>
-        </div>
-
-        <div class="section-box">
-            <div class="collapsible-header">
-                Introducción a la Creación del Estatuto Social
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="collapsible-content">
-                <p>Es el "contrato social" de la cooperativa. Establece las reglas internas de funcionamiento, derechos/obligaciones de socios, estructura de gobierno, etc.</p>
-                <h3>Importancia y Rol</h3>
-                <ul>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-id-card"></i> Define la Identidad</div>
-                        <p>Establece el nombre, objeto, domicilio y ámbito de operación de la cooperativa.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-user-plus"></i> Regula la Membresía</div>
-                        <p>Fija las condiciones para ser socio, sus derechos (voto, información) y obligaciones (integración de cuotas).</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-building"></i> Estructura el Gobierno</div>
-                        <p>Detalla la conformación, facultades y funcionamiento de la Asamblea, Consejo y Sindicatura.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-chart-line"></i> Establece el Régimen Económico</div>
-                        <p>Determina el valor de cuotas, integración de capital, destino de excedentes y manejo de pérdidas.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-tools"></i> Provee el Marco de Operación</div>
-                        <p>Establece las pautas para la realización de operaciones con socios y, si aplica, con terceros.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-exclamation-triangle"></i> Prevé Contingencias</div>
-                        <p>Incluye normas para la modificación del estatuto, fusión, escisión y disolución/liquidación de la entidad.</p>
-                    </li>
-                </ul>
-                <h3>Puntos Clave a Considerar</h3>
-                <ul>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-signature"></i> Nombre, Domicilio y Objeto</div>
-                        <p>Deben estar claramente definidos y el objeto detallado para cubrir todas las actividades planificadas.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-user-friends"></i> Condiciones de Ingreso y Egreso de Socios</div>
-                        <p>Requisitos de admisión, procedimientos de baja voluntaria y exclusión, y derechos sobre cuotas al desvincularse.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-list-ul"></i> Derechos y Obligaciones de los Socios</div>
-                        <p>Especificar los derechos (servicios, capacitación) y obligaciones (cuotas, reglamentos) de los miembros.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-coins"></i> Capital Social</div>
-                        <p>Definir el valor de la cuota, forma y plazos de integración, y el régimen de reembolso al egreso.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-users"></i> Asambleas</div>
-                        <p>Tipos, convocatoria, quórum, régimen de votación (generalmente un socio, un voto) y competencias.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-user-tie"></i> Consejo de Administración</div>
-                        <p>Número de miembros, duración del mandato, requisitos, cargos, facultades y funcionamiento.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-eye"></i> Sindicatura</div>
-                        <p>Número de síndicos, duración del mandato, requisitos y facultades de control interno.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-chart-bar"></i> Régimen Económico</div>
-                        <p>Determinación de costos, imputación de resultados (excedentes/pérdidas) y destino de los excedentes.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-times-circle"></i> Disolución y Liquidación</div>
-                        <p>Causales de disolución y el procedimiento para liquidar el patrimonio social.</p>
-                    </li>
-                    <li>
-                        <div class="icon-text"><i class="fas fa-cogs"></i> Disposiciones Generales y Transitorias</div>
-                        <p>Otras normas internas y cláusulas para la puesta en marcha de la cooperativa.</p>
-                    </li>
-                </ul>
-                <p class="text-sm text-gray-600 mt-3">Debe ser un proceso participativo y ajustarse a la Ley 20.337 y normativas de INAES.</p>
-            </div>
-        </div>
-
-    </div>
-
+    <!-- Scripts para Interacciones -->
     <script>
-        // JavaScript para controlar los elementos colapsables
-        document.addEventListener('DOMContentLoaded', function() {
-            const headers = document.querySelectorAll('.collapsible-header');
+        // Función para los menús desplegables (Acordeones) de las actas
+        function toggleAccordion(button) {
+            // Cierra todos los otros acordeones (Opcional, si quieres que solo uno esté abierto)
+            /*
+            const allButtons = document.querySelectorAll('.accordion-button');
+            allButtons.forEach(btn => {
+                if (btn !== button && btn.classList.contains('active')) {
+                    btn.classList.remove('active');
+                }
+            });
+            */
+            
+            // Alterna la clase active en el botón clickeado
+            button.classList.toggle('active');
+        }
 
-            headers.forEach(header => {
-                header.addEventListener('click', function() {
-                    // Alterna la clase 'active' en el header
-                    this.classList.toggle('active');
-
-                    // Encuentra el contenido colapsable asociado
-                    const content = this.nextElementSibling;
-
-                    // Alterna la visibilidad del contenido
-                    if (content.classList.contains('show')) {
-                        content.classList.remove('show');
-                        content.style.display = 'none'; // Asegura que se oculte
-                    } else {
-                        content.classList.add('show');
-                        content.style.display = 'block'; // Asegura que se muestre
+        // Animación sencilla al hacer scroll (Fade In)
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                        observer.unobserve(entry.target);
                     }
                 });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                // Estado inicial para la animación por scroll (solo para pantallas que no soportan la animación CSS inicial)
+                if(!section.style.animationName) {
+                     section.style.opacity = "0";
+                     section.style.transform = "translateY(20px)";
+                     section.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
+                }
+                observer.observe(section);
             });
         });
     </script>
-
 </body>
 </html>
