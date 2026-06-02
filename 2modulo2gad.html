@@ -9,11 +9,10 @@
     <!-- Google Fonts para una tipografía limpia -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome para los íconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7T+3K3lq3A6C4d3r/vE/8H/3y9J+qA4u+z5w5g5B5t5q1sF/g0V5s0g5B5t5q1sF/g0V5s0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Estilos personalizados para complementar Tailwind */
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
@@ -32,6 +31,7 @@
         .arrow-down {
             transition: transform 0.2s ease-in-out;
         }
+        
         /* Estilos para el modal de la imagen */
         .modal {
             display: none; /* Oculto por defecto */
@@ -76,6 +76,19 @@
         .clickable-img:hover {
             opacity: 0.7;
         }
+
+        /* Estilos específicos para las Tabs de Sistemas de Gestión */
+        .sig-tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .sig-tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -87,63 +100,87 @@
                 <a href="#">ISFT Módulo 2</a>
             </div>
             <div class="hidden md:flex space-x-6 items-center">
-                <a href="#seguridad" class="text-gray-600 hover:text-blue-700">Seguridad</a>
-                <a href="#higiene" class="text-gray-600 hover:text-blue-700">Higiene</a>
-                <a href="#causas" class="text-gray-600 hover:text-blue-700">Causas de Accidentes</a>
-                <a href="#sig" class="text-gray-600 hover:text-blue-700">Sistemas de Gestión</a>
+                <a href="#seguridad" class="text-gray-600 hover:text-blue-700 font-medium transition-colors">Seguridad</a>
+                <a href="#higiene" class="text-gray-600 hover:text-blue-700 font-medium transition-colors">Higiene</a>
+                <a href="#causas" class="text-gray-600 hover:text-blue-700 font-medium transition-colors">Causas de Accidentes</a>
+                <a href="#sig" class="text-gray-600 hover:text-blue-700 font-medium transition-colors">Sistemas de Gestión</a>
             </div>
             <div class="md:hidden">
-                <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                <button id="menu-btn" class="text-gray-700 focus:outline-none hover:text-blue-600 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
         <!-- Menú Móvil -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white">
-            <a href="#seguridad" class="block py-2 px-4 text-sm hover:bg-gray-100">Seguridad en el Trabajo</a>
-            <a href="#higiene" class="block py-2 px-4 text-sm hover:bg-gray-100">Higiene Industrial</a>
-            <a href="#causas" class="block py-2 px-4 text-sm hover:bg-gray-100">Causas de Accidentes</a>
-            <a href="#sig" class="block py-2 px-4 text-sm hover:bg-gray-100">Sistemas de Gestión</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-inner">
+            <a href="#seguridad" class="block py-3 px-6 text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition-colors">Seguridad en el Trabajo</a>
+            <a href="#higiene" class="block py-3 px-6 text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition-colors">Higiene Industrial</a>
+            <a href="#causas" class="block py-3 px-6 text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition-colors">Causas de Accidentes</a>
+            <a href="#sig" class="block py-3 px-6 text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition-colors">Sistemas de Gestión</a>
         </div>
     </header>
 
     <!-- Contenido Principal -->
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-6 py-12 max-w-7xl">
         <!-- Título Principal -->
         <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Gestión de los Ámbitos de Desempeño</h1>
-            <p class="text-xl text-gray-600">Módulo Teórico 2: Seguridad, Higiene y Sistemas de Gestión</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">Gestión de los Ámbitos de Desempeño</h1>
+            <p class="text-xl text-gray-600 font-light">Módulo Teórico 2: Seguridad, Higiene y Sistemas de Gestión</p>
         </div>
 
         <!-- SECCIÓN 1: SEGURIDAD EN EL TRABAJO -->
-        <section id="seguridad" class="mb-20">
-            <h2 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4 flex items-center">
+        <section id="seguridad" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4 flex items-center text-gray-900">
                 <i class="fas fa-shield-alt mr-3 text-blue-600"></i>
                 Seguridad en el Trabajo
             </h2>
-            <p class="mb-8 text-lg text-gray-600">Conjunto de normas y técnicas aplicadas a la identificación del peligro, evaluación y control del riesgo en los procesos de trabajo, con el fin de preservar la salud física y mental del trabajador.</p>
+            <p class="mb-8 text-lg text-gray-700 leading-relaxed">Conjunto de normas y técnicas aplicadas a la identificación del peligro, evaluación y control del riesgo en los procesos de trabajo, con el fin de preservar la salud física y mental del trabajador.</p>
+
+            <!-- NUEVO COMPONENTE: Diferencia entre Peligro y Riesgo -->
+            <div class="bg-[#f2f9fd] border border-[#d0e5f2] rounded-xl p-6 md:p-8 mb-10 shadow-sm">
+                <h3 class="text-[#0a5282] font-bold text-xl md:text-2xl mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-scale-balanced text-[#0a5282]"></i> Diferencia entre Peligro y Riesgo
+                </h3>
+                <div class="grid md:grid-cols-2 gap-8 relative">
+                    <!-- Divisor visual para pantallas grandes -->
+                    <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-[#d0e5f2] transform -translate-x-1/2"></div>
+                    
+                    <div class="md:pr-6">
+                        <h4 class="text-[#0a5282] font-bold text-lg mb-2">Peligro</h4>
+                        <p class="text-gray-700 leading-relaxed">
+                            Es la fuente, situación o acto con potencial de causar daño (ej: un cable pelado, una máquina en movimiento, el ruido).
+                        </p>
+                    </div>
+                    <div class="md:pl-6">
+                        <h4 class="text-[#0a5282] font-bold text-lg mb-2">Riesgo</h4>
+                        <p class="text-gray-700 leading-relaxed">
+                            Es la probabilidad de que ese peligro se materialice en un daño específico y la severidad de dicho daño.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Metodología y AST -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
                     <details class="group">
                         <summary class="flex justify-between items-center font-bold text-xl text-gray-800">
                             Análisis de Seguridad en el Trabajo (AST)
-                            <svg class="w-5 h-5 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-5 h-5 arrow-down text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
                         <div class="mt-4 text-gray-600">
-                            <p>El AST consiste en estudiar y documentar minuciosamente paso a paso la actividad de un trabajo para identificar riesgos y desarrollar acciones que permitan controlarlos, reducirlos o eliminarlos.</p>
-                            <div class="mt-4 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                                <h5 class="font-bold">Ejemplo Práctico de AST:</h5>
-                                <p class="text-sm mt-2"><strong>Tarea:</strong> Cambiar una bombilla en un techo alto.</p>
-                                <ul class="list-disc list-inside text-sm mt-1">
+                            <p class="leading-relaxed">El AST consiste en estudiar y documentar minuciosamente paso a paso la actividad de un trabajo para identificar riesgos y desarrollar acciones que permitan controlarlos, reducirlos o eliminarlos.</p>
+                            <div class="mt-5 bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500">
+                                <h5 class="font-bold text-blue-900">Ejemplo Práctico de AST:</h5>
+                                <p class="text-sm mt-2 text-gray-700"><strong>Tarea:</strong> Cambiar una bombilla en un techo alto.</p>
+                                <ul class="list-disc list-inside text-sm mt-2 space-y-1 text-gray-700">
                                     <li><strong>Paso 1:</strong> Seleccionar escalera. <strong>Riesgo:</strong> Usar una escalera corta o inestable.</li>
                                     <li><strong>Paso 2:</strong> Subir la escalera. <strong>Riesgo:</strong> Caída por mal apoyo o resbalón.</li>
                                     <li><strong>Paso 3:</strong> Quitar bombilla usada. <strong>Riesgo:</strong> Quemaduras (si está caliente), corte (si se rompe).</li>
                                 </ul>
                             </div>
-                            <p class="mt-4 font-semibold">Para un trabajo eficiente, es necesario:</p>
-                            <ul class="list-disc list-inside mt-2 space-y-1">
+                            <p class="mt-5 font-semibold text-gray-800">Para un trabajo eficiente, es necesario:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-sm text-gray-700">
                                 <li>Tener conocimientos técnicos.</li>
                                 <li>Haber desarrollado habilidades manuales.</li>
                                 <li>Conocer los peligros inherentes de cada etapa.</li>
@@ -152,18 +189,18 @@
                     </details>
                 </div>
                 <!-- PTS -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
                      <details class="group">
                         <summary class="flex justify-between items-center font-bold text-xl text-gray-800">
                             Procedimiento de Trabajo Seguro (PTS)
-                            <svg class="w-5 h-5 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <svg class="w-5 h-5 arrow-down text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </summary>
                         <div class="mt-4 text-gray-600">
-                            <p>Son normas, instrucciones o pautas correctas para desarrollar una tarea de forma segura. Se elaboran cuando se detectan actividades con riesgos graves o muy graves, como trabajos en altura o con tensión eléctrica.</p>
-                            <div class="mt-4 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                                <h5 class="font-bold">Ejemplo de un PTS (extracto):</h5>
-                                <p class="text-sm mt-2"><strong>Tarea:</strong> Cambio de bombilla en altura.</p>
-                                <ul class="list-disc list-inside text-sm mt-1">
+                            <p class="leading-relaxed">Son normas, instrucciones o pautas correctas para desarrollar una tarea de forma segura. Se elaboran cuando se detectan actividades con riesgos graves o muy graves, como trabajos en altura o con tensión eléctrica.</p>
+                            <div class="mt-5 bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500">
+                                <h5 class="font-bold text-blue-900">Ejemplo de un PTS (extracto):</h5>
+                                <p class="text-sm mt-2 text-gray-700"><strong>Tarea:</strong> Cambio de bombilla en altura.</p>
+                                <ul class="list-disc list-inside text-sm mt-2 space-y-1 text-gray-700">
                                     <li><strong>Antes:</strong> Verificar el buen estado de la escalera y usar calzado antideslizante. Cortar la energía eléctrica desde el tablero.</li>
                                     <li><strong>Durante:</strong> Subir y bajar de frente a la escalera, usando tres puntos de apoyo. Nunca estirarse demasiado hacia los lados.</li>
                                     <li><strong>Después:</strong> Retirar la escalera y restablecer la energía.</li>
@@ -175,156 +212,168 @@
             </div>
 
             <!-- Incidentes vs Accidentes -->
-            <div class="mt-12 bg-white p-8 rounded-lg shadow-xl">
-                 <h3 class="text-2xl font-bold mb-6 text-center">Incidentes vs. Accidentes</h3>
-                 <div class="overflow-x-auto">
+            <div class="mt-12 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                 <h3 class="text-2xl font-bold mb-6 text-center text-gray-800">Incidentes vs. Accidentes</h3>
+                 <div class="overflow-x-auto rounded-lg border border-gray-200">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr>
-                                <th class="border-b-2 border-gray-200 p-4 bg-gray-100 font-bold">Concepto</th>
-                                <th class="border-b-2 border-gray-200 p-4 bg-gray-100 font-bold">Definición</th>
+                            <tr class="bg-gray-50">
+                                <th class="border-b-2 border-gray-200 p-4 font-bold text-gray-700">Concepto</th>
+                                <th class="border-b-2 border-gray-200 p-4 font-bold text-gray-700">Definición</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="border-b border-gray-200 p-4"><strong class="text-yellow-600">Incidente</strong></td>
-                                <td class="border-b border-gray-200 p-4">Evento que tuvo el potencial para llegar a ser un accidente. No ocurren muertes, lesiones o enfermedades, pero puede producir daños.</td>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="border-b border-gray-200 p-4 align-top"><strong class="text-yellow-600 bg-yellow-50 px-2 py-1 rounded">Incidente</strong></td>
+                                <td class="border-b border-gray-200 p-4 text-gray-700">Evento que tuvo el potencial para llegar a ser un accidente. No ocurren muertes, lesiones o enfermedades, pero puede producir daños.</td>
                             </tr>
-                            <tr>
-                                <td class="border-b border-gray-200 p-4"><strong class="text-red-600">Accidente de Trabajo</strong></td>
-                                <td class="border-b border-gray-200 p-4">Acontecimiento súbito y violento ocurrido por el hecho o en ocasión del trabajo (Ley 24.557). Es inesperado e interrumpe el proceso de trabajo.</td>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="border-b border-gray-200 p-4 align-top"><strong class="text-red-600 bg-red-50 px-2 py-1 rounded">Accidente de Trabajo</strong></td>
+                                <td class="border-b border-gray-200 p-4 text-gray-700">Acontecimiento súbito y violento ocurrido por el hecho o en ocasión del trabajo (Ley 24.557). Es inesperado e interrumpe el proceso de trabajo.</td>
                             </tr>
-                             <tr>
-                                <td class="p-4"><strong class="text-blue-600">Accidente in itinere</strong></td>
-                                <td class="p-4">Acontecimiento súbito y violento ocurrido en el trayecto entre el domicilio del trabajador y el lugar de trabajo.</td>
+                             <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="p-4 align-top"><strong class="text-blue-600 bg-blue-50 px-2 py-1 rounded">Accidente in itinere</strong></td>
+                                <td class="p-4 text-gray-700">Acontecimiento súbito y violento ocurrido en el trayecto entre el domicilio del trabajador y el lugar de trabajo.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
-                    <div class="bg-yellow-50 p-4 rounded-lg">
-                        <strong class="text-yellow-700">Ejemplo de Incidente:</strong>
-                        <p class="mt-1">Un charco de aceite es detectado en el pasillo de un taller y se limpia antes de que alguien lo pise y se caiga.</p>
+                
+                <div class="mt-8 grid md:grid-cols-3 gap-6 text-sm">
+                    <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-100">
+                        <strong class="text-yellow-800 block mb-2"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Ejemplo de Incidente:</strong>
+                        <p class="text-gray-700 leading-relaxed">Un charco de aceite es detectado en el pasillo de un taller y se limpia antes de que alguien lo pise y se caiga.</p>
                     </div>
-                    <div class="bg-red-50 p-4 rounded-lg">
-                        <strong class="text-red-700">Ejemplo de Accidente de Trabajo:</strong>
-                        <p class="mt-1">Un trabajador resbala en un charco de aceite no señalizado, cae y sufre una fractura de muñeca.</p>
+                    <div class="bg-red-50 p-5 rounded-lg border border-red-100">
+                        <strong class="text-red-800 block mb-2"><i class="fa-solid fa-burst mr-1"></i> Ejemplo de Accidente de Trabajo:</strong>
+                        <p class="text-gray-700 leading-relaxed">Un trabajador resbala en un charco de aceite no señalizado, cae y sufre una fractura de muñeca.</p>
                     </div>
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <strong class="text-blue-700">Ejemplo de Accidente in itinere:</strong>
-                        <p class="mt-1">Un empleado sufre una colisión con su automóvil mientras se dirigía desde su casa hacia la oficina.</p>
+                    <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
+                        <strong class="text-blue-800 block mb-2"><i class="fa-solid fa-car-side mr-1"></i> Ejemplo de Accidente in itinere:</strong>
+                        <p class="text-gray-700 leading-relaxed">Un empleado sufre una colisión con su automóvil mientras se dirigía desde su casa hacia la oficina.</p>
                     </div>
                 </div>
             </div>
             
             <!-- Causas de Accidentes -->
-            <div class="mt-12">
-                <h3 class="text-2xl font-bold mb-6 text-center">Causas de los Accidentes</h3>
-                <div class="flex justify-center items-center mb-8">
-                     <div class="text-center p-4 bg-blue-100 rounded-lg">Acto Inseguro</div>
-                     <div class="text-5xl mx-4 text-gray-400">+</div>
-                     <div class="text-center p-4 bg-yellow-100 rounded-lg">Condición Insegura</div>
-                     <div class="text-5xl mx-4 text-gray-400">=</div>
-                     <div class="text-center p-4 bg-red-200 rounded-lg font-bold">ACCIDENTE</div>
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-8 text-center text-gray-800">Causas de los Accidentes</h3>
+                <div class="flex flex-col md:flex-row justify-center items-center mb-10 gap-4">
+                     <div class="text-center p-4 bg-blue-50 border border-blue-200 rounded-lg shadow-sm font-semibold text-blue-900 w-full md:w-auto">Acto Inseguro</div>
+                     <div class="text-4xl text-gray-300 font-light">+</div>
+                     <div class="text-center p-4 bg-yellow-50 border border-yellow-200 rounded-lg shadow-sm font-semibold text-yellow-900 w-full md:w-auto">Condición Insegura</div>
+                     <div class="text-4xl text-gray-300 font-light">=</div>
+                     <div class="text-center p-4 bg-red-100 border border-red-300 rounded-lg shadow-md font-bold text-red-900 w-full md:w-auto"><i class="fa-solid fa-triangle-exclamation mr-1"></i> ACCIDENTE</div>
                 </div>
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                        <h4 class="font-bold text-xl mb-3">Ejemplos de Actos Inseguros</h4>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                            <li>Operar sin autorización.</li>
-                            <li>Anular los dispositivos de seguridad.</li>
-                            <li>No usar los Elementos de Protección.</li>
-                            <li>Usar equipos defectuosos.</li>
-                            <li>Levantamiento incorrecto de cargas.</li>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <h4 class="font-bold text-xl mb-4 text-blue-800 border-b pb-2"><i class="fa-solid fa-person-walking-arrow-right mr-2"></i> Ejemplos de Actos Inseguros</h4>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><i class="fa-solid fa-xmark text-red-500 mt-1 mr-2"></i> <span>Operar sin autorización.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-xmark text-red-500 mt-1 mr-2"></i> <span>Anular los dispositivos de seguridad.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-xmark text-red-500 mt-1 mr-2"></i> <span>No usar los Elementos de Protección.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-xmark text-red-500 mt-1 mr-2"></i> <span>Usar equipos defectuosos.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-xmark text-red-500 mt-1 mr-2"></i> <span>Levantamiento incorrecto de cargas.</span></li>
                         </ul>
                     </div>
-                     <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
-                        <h4 class="font-bold text-xl mb-3">Ejemplos de Condiciones Inseguras</h4>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                            <li>Resguardos y protección inadecuados.</li>
-                            <li>Acceso al puesto de trabajo con obstáculos.</li>
-                            <li>Señalización incorrecta.</li>
-                            <li>Orden y limpieza ineficientes.</li>
-                            <li>Iluminación o carga térmica inadecuada.</li>
+                     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <h4 class="font-bold text-xl mb-4 text-yellow-800 border-b pb-2"><i class="fa-solid fa-building-circle-exclamation mr-2"></i> Ejemplos de Condiciones Inseguras</h4>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><i class="fa-solid fa-triangle-exclamation text-yellow-500 mt-1 mr-2"></i> <span>Resguardos y protección inadecuados.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-triangle-exclamation text-yellow-500 mt-1 mr-2"></i> <span>Acceso al puesto de trabajo con obstáculos.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-triangle-exclamation text-yellow-500 mt-1 mr-2"></i> <span>Señalización incorrecta.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-triangle-exclamation text-yellow-500 mt-1 mr-2"></i> <span>Orden y limpieza ineficientes.</span></li>
+                            <li class="flex items-start"><i class="fa-solid fa-triangle-exclamation text-yellow-500 mt-1 mr-2"></i> <span>Iluminación o carga térmica inadecuada.</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <!-- Pirámide de los Accidentes -->
-             <div class="mt-12">
-                <h3 class="text-2xl font-bold mb-6 text-center">La Pirámide de los Accidentes</h3>
+             <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-8 text-center text-gray-800">La Pirámide de los Accidentes</h3>
                 <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h4 class="font-bold text-xl mb-3">Pirámide de Henrich (1950)</h4>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDFlAimXzM5APzCx8-NfCCgI1h7-jRlAEgBw&s" alt="Pirámide de Henrich" class="w-48 h-auto mx-auto object-contain rounded-lg clickable-img">
-                        <p class="mt-2">1 grave / 29 leves / 300 sin lesión</p>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:-translate-y-1 transition-transform">
+                        <h4 class="font-bold text-lg mb-3 text-gray-800">Pirámide de Henrich (1950)</h4>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDFlAimXzM5APzCx8-NfCCgI1h7-jRlAEgBw&s" alt="Pirámide de Henrich" class="w-48 h-auto mx-auto object-contain rounded-lg clickable-img shadow-sm mb-4">
+                        <p class="text-sm font-medium text-gray-600 bg-gray-50 py-2 rounded">1 grave / 29 leves / 300 sin lesión</p>
                     </div>
-                     <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h4 class="font-bold text-xl mb-3">Pirámide de Bird (1969)</h4>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_RrlDYxE5ZRCKpLtAUOgaCJPUdS0N6QvKdw&s" alt="Pirámide de Bird" class="w-48 h-auto mx-auto object-contain rounded-lg clickable-img">
-                        <p class="mt-2">1 grave / 10 leves / 30 con daño material / 600 incidentes</p>
+                     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:-translate-y-1 transition-transform">
+                        <h4 class="font-bold text-lg mb-3 text-gray-800">Pirámide de Bird (1969)</h4>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_RrlDYxE5ZRCKpLtAUOgaCJPUdS0N6QvKdw&s" alt="Pirámide de Bird" class="w-48 h-auto mx-auto object-contain rounded-lg clickable-img shadow-sm mb-4">
+                        <p class="text-sm font-medium text-gray-600 bg-gray-50 py-2 rounded">1 grave / 10 leves / 30 con daño mat / 600 incidentes</p>
                     </div>
-                     <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h4 class="font-bold text-xl mb-3">Pirámide de Tye/Pearson (1975)</h4>
-                        <img src="https://images.jifo.co/31657505_1536379055168.png" alt="Pirámide de Tye/Pearson" class="w-48 h-auto mx-auto object-contain rounded-lg clickable-img">
-                         <p class="mt-2 text-sm">1 grave / 3 leves con baja / 50 leves sin baja / 80 con daño / 400 incidentes</p>
+                     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:-translate-y-1 transition-transform">
+                        <h4 class="font-bold text-lg mb-3 text-gray-800">Pirámide de Tye/Pearson (1975)</h4>
+                        <img src="https://images.jifo.co/31657505_1536379055168.png" alt="Pirámide de Tye/Pearson" class="w-48 h-auto mx-auto object-contain rounded-lg clickable-img shadow-sm mb-4">
+                         <p class="text-xs font-medium text-gray-600 bg-gray-50 py-2 px-1 rounded">1 grave / 3 leves con baja / 50 leves sin baja / 80 daño / 400 incidentes</p>
                     </div>
                 </div>
-                <div class="mt-8 bg-amber-100 p-6 rounded-lg border-l-4 border-amber-500">
-                    <p><strong>Error Conceptual:</strong> Reducir solo los incidentes leves (la base de la pirámide) no garantiza la reducción de los accidentes graves. Se debe aprender de todos los incidentes para prevenir los eventos más serios.</p>
+                <div class="mt-10 bg-amber-50 p-6 rounded-xl border-l-4 border-amber-500 shadow-sm flex items-start gap-4">
+                    <i class="fa-solid fa-lightbulb text-amber-500 text-2xl mt-1"></i>
+                    <div>
+                        <strong class="text-amber-900 block mb-1 text-lg">Error Conceptual:</strong>
+                        <p class="text-gray-700 leading-relaxed">Reducir solo los incidentes leves (la base de la pirámide) no garantiza la reducción de los accidentes graves. Se debe aprender de todos los incidentes para prevenir los eventos más serios.</p>
+                    </div>
                 </div>
             </div>
 
         </section>
 
         <!-- SECCIÓN 2: CAUSAS DE LA ACCIDENTABILIDAD -->
-        <section id="causas" class="mb-20">
-            <h2 class="text-3xl font-bold mb-8 border-l-4 border-red-600 pl-4 flex items-center">
+        <section id="causas" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-8 border-l-4 border-red-600 pl-4 flex items-center text-gray-900">
                 <i class="fas fa-exclamation-triangle mr-3 text-red-600"></i>
                 Teorías de la Causalidad de Accidentes
             </h2>
-            <p class="mb-8 text-lg text-gray-600">A lo largo de la historia, se han desarrollado diferentes teorías para explicar por qué ocurren los accidentes y cómo prevenirlos. Comprender estas teorías nos permite ir más allá de la simple identificación de actos y condiciones inseguras.</p>
+            <p class="mb-8 text-lg text-gray-700 leading-relaxed">A lo largo de la historia, se han desarrollado diferentes teorías para explicar por qué ocurren los accidentes y cómo prevenirlos. Comprender estas teorías nos permite ir más allá de la simple identificación de actos y condiciones inseguras.</p>
 
-            <div class="space-y-8">
-                <details class="bg-white p-6 rounded-lg shadow-lg group">
+            <div class="space-y-6">
+                <details class="bg-white p-6 rounded-xl shadow-md border border-gray-100 group">
                     <summary class="flex justify-between items-center font-bold text-xl text-gray-800">
-                        Teoría del Dominó de Henrich
-                        <svg class="w-5 h-5 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-cubes-stacked text-gray-400"></i> Teoría del Dominó de Henrich</span>
+                        <svg class="w-5 h-5 arrow-down text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </summary>
-                    <div class="mt-4 text-gray-600">
-                        <p>Henrich, en su obra "Industrial Accident Prevention" (1931), propuso que los accidentes son el resultado de una secuencia de cinco eventos en un orden predeterminado, similar a las fichas de dominó cayendo en fila.</p>
-                        <ol class="list-decimal list-inside mt-4 space-y-2">
+                    <div class="mt-5 text-gray-600 border-t pt-4">
+                        <p class="leading-relaxed">Henrich, en su obra "Industrial Accident Prevention" (1931), propuso que los accidentes son el resultado de una secuencia de cinco eventos en un orden predeterminado, similar a las fichas de dominó cayendo en fila.</p>
+                        <ol class="list-decimal list-inside mt-5 space-y-3 bg-gray-50 p-5 rounded-lg text-gray-800">
                             <li><strong>Antecedentes y factores sociales:</strong> El sistema social influye en el comportamiento de las personas.</li>
                             <li><strong>Falla humana:</strong> Actos inseguros y fallas en la gestión que llevan a la pérdida de control.</li>
                             <li><strong>Actos y condiciones inseguras:</strong> Causas inmediatas de los accidentes.</li>
                             <li><strong>El accidente:</strong> El evento inesperado en sí mismo (ej. caída, golpe).</li>
                             <li><strong>Lesión:</strong> El resultado final, el daño al trabajador.</li>
                         </ol>
-                        <p class="mt-4 font-semibold">Crítica:</p>
-                        <p class="text-sm mt-2">Esta teoría es lineal y simple. Se centra en el factor humano, ignorando la complejidad de los sistemas de gestión y la organización del trabajo, que pueden ser las verdaderas causas raíz.</p>
+                        <div class="mt-6 bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                            <p class="font-bold text-red-800 mb-1">Crítica al modelo:</p>
+                            <p class="text-sm text-gray-700 leading-relaxed">Esta teoría es lineal y simple. Se centra en el factor humano, ignorando la complejidad de los sistemas de gestión y la organización del trabajo, que pueden ser las verdaderas causas raíz.</p>
+                        </div>
                     </div>
                 </details>
 
-                <details class="bg-white p-6 rounded-lg shadow-lg group">
+                <details class="bg-white p-6 rounded-xl shadow-md border border-gray-100 group">
                     <summary class="flex justify-between items-center font-bold text-xl text-gray-800">
-                        Diagrama de Ishikawa o Espina de Pescado
-                        <svg class="w-5 h-5 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-fish-fins text-gray-400"></i> Diagrama de Ishikawa o Espina de Pescado</span>
+                        <svg class="w-5 h-5 arrow-down text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </summary>
-                    <div class="mt-4 text-gray-600">
-                        <p>Creado por Kaoru Ishikawa, este diagrama es una herramienta gráfica que se utiliza para identificar las causas raíz de un problema (el "efecto"), en este caso, un accidente. Las causas se agrupan en categorías principales (las "espinas" grandes), que a su vez tienen sub-causas (las espinas más pequeñas).</p>
-                        <p class="mt-4 font-semibold">Categorías Comunes (las 6 M's):</p>
-                        <ul class="list-disc list-inside mt-2 space-y-1">
-                            <li><strong>Mano de obra (Manpower):</strong> Factores humanos (falta de capacitación, fatiga).</li>
-                            <li><strong>Medio ambiente (Environment):</strong> Entorno de trabajo (iluminación, ruido, temperatura).</li>
-                            <li><strong>Métodos de trabajo (Methods):</strong> Procedimientos incorrectos o inexistentes.</li>
-                            <li><strong>Máquinas (Machinery):</strong> Equipo defectuoso o mal mantenido.</li>
-                            <li><strong>Materiales (Materials):</strong> Insumos de mala calidad.</li>
-                            <li><strong>Medición (Measurement):</strong> Falta de controles y monitoreo.</li>
-                        </ul>
-                        <div class="mt-4 bg-gray-200 p-4 rounded-lg flex flex-col items-center">
-                            <h4 class="font-bold text-lg mb-2">Representación Visual del Diagrama de Ishikawa</h4>
-                            <img src="https://blog.hubspot.es/hs-fs/hubfs/media/10-1.png?width=600&height=450&name=10-1.png" alt="Diagrama de Ishikawa" class="max-w-xs md:max-w-md mx-auto clickable-img rounded-lg">
+                    <div class="mt-5 text-gray-600 border-t pt-4">
+                        <p class="leading-relaxed">Creado por Kaoru Ishikawa, este diagrama es una herramienta gráfica que se utiliza para identificar las causas raíz de un problema (el "efecto"), en este caso, un accidente. Las causas se agrupan en categorías principales (las "espinas" grandes), que a su vez tienen sub-causas (las espinas más pequeñas).</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-8 mt-6">
+                            <div>
+                                <h4 class="font-bold text-lg mb-3 text-gray-800">Categorías Comunes (las 6 M's):</h4>
+                                <ul class="space-y-3 text-sm text-gray-700">
+                                    <li class="bg-gray-50 p-2 rounded border border-gray-100"><strong class="text-gray-900">Mano de obra (Manpower):</strong> Factores humanos (falta de capacitación, fatiga).</li>
+                                    <li class="bg-gray-50 p-2 rounded border border-gray-100"><strong class="text-gray-900">Medio ambiente (Environment):</strong> Entorno de trabajo (iluminación, ruido, temperatura).</li>
+                                    <li class="bg-gray-50 p-2 rounded border border-gray-100"><strong class="text-gray-900">Métodos de trabajo (Methods):</strong> Procedimientos incorrectos o inexistentes.</li>
+                                    <li class="bg-gray-50 p-2 rounded border border-gray-100"><strong class="text-gray-900">Máquinas (Machinery):</strong> Equipo defectuoso o mal mantenido.</li>
+                                    <li class="bg-gray-50 p-2 rounded border border-gray-100"><strong class="text-gray-900">Materiales (Materials):</strong> Insumos de mala calidad.</li>
+                                    <li class="bg-gray-50 p-2 rounded border border-gray-100"><strong class="text-gray-900">Medición (Measurement):</strong> Falta de controles y monitoreo.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-xl flex flex-col justify-center items-center border border-blue-100 shadow-inner">
+                                <h4 class="font-bold text-blue-900 mb-4 text-center">Representación Visual</h4>
+                                <img src="https://blog.hubspot.es/hs-fs/hubfs/media/10-1.png?width=600&height=450&name=10-1.png" alt="Diagrama de Ishikawa" class="max-w-full h-auto mx-auto clickable-img rounded-lg shadow-md hover:shadow-lg transition-shadow bg-white p-2">
+                            </div>
                         </div>
                     </div>
                 </details>
@@ -333,70 +382,100 @@
         </section>
 
         <!-- SECCIÓN 3: HIGIENE INDUSTRIAL -->
-        <section id="higiene" class="mb-20">
-            <h2 class="text-3xl font-bold mb-8 border-l-4 border-green-600 pl-4 flex items-center">
+        <section id="higiene" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-8 border-l-4 border-green-600 pl-4 flex items-center text-gray-900">
                  <i class="fas fa-hand-sparkles mr-3 text-green-600"></i>
                  Higiene Industrial
             </h2>
-            <p class="mb-8 text-lg text-gray-600">Ciencia y arte dedicados al reconocimiento, evaluación y control de factores ambientales o tensiones que pueden ocasionar enfermedades o malestar en los trabajadores.</p>
+            <p class="mb-8 text-lg text-gray-700 leading-relaxed">Ciencia y arte dedicados al reconocimiento, evaluación y control de factores ambientales o tensiones que pueden ocasionar enfermedades o malestar en los trabajadores.</p>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                 <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <h4 class="font-bold text-lg mb-2">Higiene Teórica</h4>
-                    <p class="text-gray-600 text-sm">Estudia los contaminantes y su relación con el hombre para establecer estándares.</p>
-                    <p class="text-xs text-blue-600 mt-2"><strong>Ej:</strong> Investigar los efectos a largo plazo de la inhalación de polvo de sílice en mineros.</p>
+                 <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-green-400 hover:-translate-y-1 transition-transform">
+                    <h4 class="font-bold text-lg mb-3 text-gray-800 text-center"><i class="fa-solid fa-book-open text-green-500 block text-2xl mb-2"></i> Higiene Teórica</h4>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Estudia los contaminantes y su relación con el hombre para establecer estándares.</p>
+                    <div class="bg-green-50 p-3 rounded text-xs text-green-800 border border-green-100">
+                        <strong>Ej:</strong> Investigar los efectos a largo plazo de la inhalación de polvo de sílice en mineros.
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <h4 class="font-bold text-lg mb-2">Higiene de Campo</h4>
-                    <p class="text-gray-600 text-sm">Realiza el estudio de la situación higiénica en el ambiente de trabajo.</p>
-                    <p class="text-xs text-blue-600 mt-2"><strong>Ej:</strong> Medir con un sonómetro los niveles de decibelios en una planta metalúrgica.</p>
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-green-500 hover:-translate-y-1 transition-transform">
+                    <h4 class="font-bold text-lg mb-3 text-gray-800 text-center"><i class="fa-solid fa-map-location-dot text-green-600 block text-2xl mb-2"></i> Higiene de Campo</h4>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Realiza el estudio de la situación higiénica en el ambiente de trabajo.</p>
+                    <div class="bg-green-50 p-3 rounded text-xs text-green-800 border border-green-100">
+                        <strong>Ej:</strong> Medir con un sonómetro los niveles de decibelios en una planta metalúrgica.
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <h4 class="font-bold text-lg mb-2">Higiene Analítica</h4>
-                    <p class="text-gray-600 text-sm">Investiga y determina cualitativa y cuantitativamente los contaminantes.</p>
-                    <p class="text-xs text-blue-600 mt-2"><strong>Ej:</strong> Analizar en laboratorio una muestra de aire para identificar vapores químicos.</p>
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-green-600 hover:-translate-y-1 transition-transform">
+                    <h4 class="font-bold text-lg mb-3 text-gray-800 text-center"><i class="fa-solid fa-flask text-green-700 block text-2xl mb-2"></i> Higiene Analítica</h4>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Investiga y determina cualitativa y cuantitativamente los contaminantes.</p>
+                    <div class="bg-green-50 p-3 rounded text-xs text-green-800 border border-green-100">
+                        <strong>Ej:</strong> Analizar en laboratorio una muestra de aire para identificar vapores químicos.
+                    </div>
                 </div>
-                 <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <h4 class="font-bold text-lg mb-2">Higiene Operativa</h4>
-                    <p class="text-gray-600 text-sm">Elige y recomienda métodos de control para reducir la concentración de contaminantes.</p>
-                    <p class="text-xs text-blue-600 mt-2"><strong>Ej:</strong> Instalar un sistema de ventilación para extraer humos de soldadura en un taller.</p>
+                 <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-green-700 hover:-translate-y-1 transition-transform">
+                    <h4 class="font-bold text-lg mb-3 text-gray-800 text-center"><i class="fa-solid fa-gears text-green-800 block text-2xl mb-2"></i> Higiene Operativa</h4>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Elige y recomienda métodos de control para reducir la concentración de contaminantes.</p>
+                    <div class="bg-green-50 p-3 rounded text-xs text-green-800 border border-green-100">
+                        <strong>Ej:</strong> Instalar un sistema de ventilación para extraer humos de soldadura en un taller.
+                    </div>
                 </div>
             </div>
 
             <!-- Detalles sobre Enfermedades y Agentes -->
-            <div class="mt-12 space-y-4">
-                <details class="bg-white p-6 rounded-lg shadow-lg group">
-                    <summary class="flex justify-between items-center font-bold text-xl text-green-600">
-                        Enfermedad Profesional
-                        <svg class="w-5 h-5 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div class="mt-12 space-y-6">
+                <details class="bg-white p-6 rounded-xl shadow-md border border-gray-100 group">
+                    <summary class="flex justify-between items-center font-bold text-xl text-green-700">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-virus"></i> Enfermedad Profesional</span>
+                        <svg class="w-5 h-5 arrow-down text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </summary>
-                    <div class="mt-4 text-gray-600">
-                        <p>Las enfermedades profesionales son aquellas contraídas como consecuencia del trabajo, por cuenta ajena o propia. Existe un Listado de Enfermedades Profesionales en el cual se identifican cuadros clínicos, exposición y actividades en las que suelen producirse estas enfermedades y también agentes de riesgo (factores presentes en los lugares de trabajo y que pueden afectar al ser humano, como por ejemplo las condiciones de temperatura, humedad, iluminación, ventilación, la presencia de ruidos, sustancias químicas, la carga de trabajo, entre otros).</p>
-                        <p class="mt-4">Es una dolencia que aparece de forma paulatina y se van agravando por diversos motivos como:</p>
-                        <ul class="list-disc list-inside mt-2 space-y-1">
-                            <li>La continua exposición al riesgo que la produce.</li>
-                            <li>La forma en que se presenta el agente nocivo.</li>
-                            <li>Las características físicas, biológicas y sociales del individuo.</li>
-                        </ul>
-                        <div class="mt-4 bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
-                            <strong class="text-green-800">Ejemplo:</strong>
-                            <p class="mt-1">Un trabajador de la construcción que, tras años de exposición a ruidos de maquinaria pesada sin la protección auditiva adecuada, desarrolla hipoacusia (sordera) inducida por ruido.</p>
+                    <div class="mt-5 text-gray-700 border-t pt-4">
+                        <p class="leading-relaxed mb-4">Las enfermedades profesionales son aquellas contraídas como consecuencia del trabajo, por cuenta ajena o propia. Existe un <strong>Listado de Enfermedades Profesionales</strong> en el cual se identifican cuadros clínicos, exposición y actividades en las que suelen producirse estas enfermedades y también agentes de riesgo (factores presentes en los lugares de trabajo y que pueden afectar al ser humano, como por ejemplo las condiciones de temperatura, humedad, iluminación, ventilación, la presencia de ruidos, sustancias químicas, la carga de trabajo, entre otros).</p>
+                        
+                        <div class="bg-gray-50 p-5 rounded-lg mb-4">
+                            <p class="font-medium text-gray-900 mb-2">Es una dolencia que aparece de forma paulatina y se van agravando por diversos motivos como:</p>
+                            <ul class="list-disc list-inside space-y-2 text-sm text-gray-700">
+                                <li>La continua exposición al riesgo que la produce.</li>
+                                <li>La forma en que se presenta el agente nocivo.</li>
+                                <li>Las características físicas, biológicas y sociales del individuo.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 p-5 rounded-lg border-l-4 border-green-500 shadow-sm flex gap-4 items-start">
+                            <i class="fa-solid fa-info-circle text-green-600 text-xl mt-1"></i>
+                            <div>
+                                <strong class="text-green-900 block mb-1">Ejemplo:</strong>
+                                <p class="text-sm text-gray-700 leading-relaxed">Un trabajador de la construcción que, tras años de exposición a ruidos de maquinaria pesada sin la protección auditiva adecuada, desarrolla hipoacusia (sordera) inducida por ruido.</p>
+                            </div>
                         </div>
                     </div>
                 </details>
 
-                <details class="bg-white p-6 rounded-lg shadow-lg group">
-                    <summary class="flex justify-between items-center font-bold text-xl text-green-600">
-                        Clasificación de Agentes de Riesgo
-                        <svg class="w-5 h-5 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <details class="bg-white p-6 rounded-xl shadow-md border border-gray-100 group">
+                    <summary class="flex justify-between items-center font-bold text-xl text-green-700">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-biohazard"></i> Clasificación de Agentes de Riesgo</span>
+                        <svg class="w-5 h-5 arrow-down text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </summary>
-                    <div class="mt-4 text-gray-600">
-                        <p>Los agentes de riesgo se clasifican según su naturaleza y el tipo de daño que pueden provocar:</p>
-                        <ul class="list-disc list-inside mt-4 space-y-2">
-                            <li><strong>Agentes Químicos:</strong> Vapores, gases, polvos, humos, nieblas. <span class="font-semibold text-sm">(Ej: Sílice, amianto)</span></li>
-                            <li><strong>Agentes Físicos:</strong> Ruido, vibraciones, radiaciones, temperaturas extremas, iluminación. <span class="font-semibold text-sm">(Ej: Ruidos de maquinarias, rayos X)</span></li>
-                            <li><strong>Agentes Biológicos:</strong> Bacterias, virus, hongos, parásitos. <span class="font-semibold text-sm">(Ej: Exposición a patógenos en laboratorios)</span></li>
-                        </ul>
+                    <div class="mt-5 text-gray-600 border-t pt-4">
+                        <p class="mb-5 leading-relaxed">Los agentes de riesgo se clasifican según su naturaleza y el tipo de daño que pueden provocar:</p>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-purple-50 p-5 rounded-lg border border-purple-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-purple-900 mb-3 text-lg border-b border-purple-200 pb-2"><i class="fa-solid fa-flask text-purple-600 mr-2"></i> Químicos</h5>
+                                <p class="text-sm text-gray-700 mb-3">Vapores, gases, polvos, humos, nieblas.</p>
+                                <span class="bg-white px-2 py-1 rounded text-xs text-purple-800 font-semibold shadow-sm border border-purple-100">Ej: Sílice, amianto</span>
+                            </div>
+                            
+                            <div class="bg-orange-50 p-5 rounded-lg border border-orange-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-orange-900 mb-3 text-lg border-b border-orange-200 pb-2"><i class="fa-solid fa-temperature-arrow-up text-orange-600 mr-2"></i> Físicos</h5>
+                                <p class="text-sm text-gray-700 mb-3">Ruido, vibraciones, radiaciones, temperaturas extremas, iluminación.</p>
+                                <span class="bg-white px-2 py-1 rounded text-xs text-orange-800 font-semibold shadow-sm border border-orange-100">Ej: Ruidos de maquinarias, rayos X</span>
+                            </div>
+                            
+                            <div class="bg-emerald-50 p-5 rounded-lg border border-emerald-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-emerald-900 mb-3 text-lg border-b border-emerald-200 pb-2"><i class="fa-solid fa-bugs text-emerald-600 mr-2"></i> Biológicos</h5>
+                                <p class="text-sm text-gray-700 mb-3">Bacterias, virus, hongos, parásitos.</p>
+                                <span class="bg-white px-2 py-1 rounded text-xs text-emerald-800 font-semibold shadow-sm border border-emerald-100">Ej: Exposición a patógenos</span>
+                            </div>
+                        </div>
                     </div>
                 </details>
 
@@ -404,110 +483,281 @@
         </section>
 
         <!-- SECCIÓN 4: SISTEMAS INTEGRADOS DE GESTIÓN (SIG) -->
-        <section id="sig" class="mb-20">
-            <h2 class="text-3xl font-bold mb-8 border-l-4 border-purple-600 pl-4 flex items-center">
+        <section id="sig" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-8 border-l-4 border-purple-600 pl-4 flex items-center text-gray-900">
                 <i class="fas fa-sitemap mr-3 text-purple-600"></i>
                 Sistemas Integrados de Gestión (Trinorma)
             </h2>
-            <p class="mb-8 text-lg text-gray-600">Plataforma que permite unificar los sistemas de gestión de calidad, medio ambiente y seguridad industrial para reducir costos y maximizar resultados, promoviendo la mejora continua.</p>
+            <p class="mb-8 text-lg text-gray-700 leading-relaxed">Plataforma que permite unificar los sistemas de gestión de calidad, medio ambiente y seguridad industrial para reducir costos y maximizar resultados, promoviendo la mejora continua.</p>
 
-            <div class="overflow-x-auto bg-white p-6 rounded-lg shadow-lg">
-                <table class="w-full text-left">
+            <!-- Tabla Original Conservada -->
+            <div class="overflow-x-auto bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-10">
+                <table class="w-full text-left border-collapse">
                      <thead>
-                        <tr class="bg-gray-100">
-                            <th class="p-4 font-bold">Tipo de Gestión</th>
-                            <th class="p-4 font-bold">Alcance</th>
-                            <th class="p-4 font-bold">Norma de Referencia</th>
+                        <tr class="bg-gray-50 border-b border-gray-200">
+                            <th class="p-4 font-bold text-gray-700">Tipo de Gestión</th>
+                            <th class="p-4 font-bold text-gray-700">Alcance</th>
+                            <th class="p-4 font-bold text-gray-700">Norma de Referencia</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-t">
-                            <td class="p-4">Gestión de Calidad</td>
-                            <td class="p-4">Asegurar la satisfacción del cliente y la calidad en la producción de bienes o servicios.</td>
-                            <td class="p-4 font-semibold text-blue-600">ISO 9001</td>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="p-4 text-gray-800 font-medium">Gestión de Calidad</td>
+                            <td class="p-4 text-gray-600 text-sm">Asegurar la satisfacción del cliente y la calidad en la producción de bienes o servicios.</td>
+                            <td class="p-4 font-bold text-blue-600 bg-blue-50 rounded">ISO 9001</td>
                         </tr>
-                         <tr class="border-t">
-                            <td class="p-4">Gestión Ambiental</td>
-                            <td class="p-4">Preservar el medio ambiente a través del control de los aspectos ambientales de las operaciones.</td>
-                            <td class="p-4 font-semibold text-green-600">ISO 14001</td>
+                         <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="p-4 text-gray-800 font-medium">Gestión Ambiental</td>
+                            <td class="p-4 text-gray-600 text-sm">Preservar el medio ambiente a través del control de los aspectos ambientales de las operaciones.</td>
+                            <td class="p-4 font-bold text-green-600 bg-green-50 rounded">ISO 14001</td>
                         </tr>
-                        <tr class="border-t">
-                            <td class="p-4">Gestión de Seguridad y Salud Ocupacional</td>
-                            <td class="p-4">Preservar la salud de los trabajadores.</td>
-                            <td class="p-4 font-semibold text-red-600">OHSAS 18001</td>
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="p-4 text-gray-800 font-medium">Gestión de Seguridad y Salud Ocupacional</td>
+                            <td class="p-4 text-gray-600 text-sm">Preservar la salud de los trabajadores.</td>
+                            <td class="p-4 font-bold text-orange-600 bg-orange-50 rounded">OHSAS 18001</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Detalles de cada norma -->
-            <div class="mt-8 space-y-4">
-                <details class="bg-white p-6 rounded-lg shadow-lg group">
-                    <summary class="flex justify-between items-center font-bold text-xl text-blue-600">
-                        ISO 9001: Gestión de Calidad
-                        <svg class="w-5 h-5 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </summary>
-                    <div class="mt-4 text-gray-600">
-                        <p>Busca conseguir el cumplimiento de los requisitos estipulados y gestionar los procesos para garantizar la confianza en los productos. Adopta una filosofía para mejorar el rendimiento y aproximarse a la excelencia.</p>
-                        <div class="mt-4 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                            <strong class="text-blue-800">Ejemplo de aplicación:</strong>
-                            <p class="mt-1">Una empresa de software implementa ISO 9001 para reducir errores. Crea un proceso formal de testing y recolección de feedback de usuarios, lo que resulta en un producto más estable y una mayor satisfacción del cliente.</p>
-                        </div>
-                        <div class="mt-4 flex flex-col items-center">
-                            <img src="https://www.normas-iso.com/wp-content/uploads/2012/02/SGC1-1024x565.png" alt="SGC 1" class="max-w-xs md:max-w-md mx-auto clickable-img rounded-lg">
-                        </div>
-                    </div>
-                </details>
+            <!-- NUEVO COMPONENTE: Interfaz de Pestañas (Tabs) unificando contenido antiguo y nuevo -->
+            <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                
+                <!-- Botones Nav -->
+                <div class="flex flex-wrap border-b border-gray-200 bg-gray-50 pt-2 px-2" role="tablist">
+                    <button id="btn-iso9001" onclick="openSigTab(event, 'tab-iso9001')" class="sig-tab-btn active px-4 py-3 sm:px-6 sm:py-4 text-sm sm:text-base font-bold text-[#2563eb] border-b-[3px] border-[#2563eb] flex items-center gap-2 transition-all bg-white rounded-t-lg mx-1" role="tab" aria-selected="true">
+                        <i class="fa-solid fa-medal"></i> ISO 9001
+                    </button>
+                    <button id="btn-iso14001" onclick="openSigTab(event, 'tab-iso14001')" class="sig-tab-btn px-4 py-3 sm:px-6 sm:py-4 text-sm sm:text-base font-bold text-gray-500 border-b-[3px] border-transparent flex items-center gap-2 transition-all hover:bg-gray-100 rounded-t-lg mx-1" role="tab" aria-selected="false">
+                        <i class="fa-solid fa-leaf"></i> ISO 14001
+                    </button>
+                    <button id="btn-ohsas" onclick="openSigTab(event, 'tab-ohsas')" class="sig-tab-btn px-4 py-3 sm:px-6 sm:py-4 text-sm sm:text-base font-bold text-gray-500 border-b-[3px] border-transparent flex items-center gap-2 transition-all hover:bg-gray-100 rounded-t-lg mx-1" role="tab" aria-selected="false">
+                        <i class="fa-solid fa-helmet-safety"></i> OHSAS 18001 / ISO 45001
+                    </button>
+                    <button id="btn-integracion" onclick="openSigTab(event, 'tab-integracion')" class="sig-tab-btn px-4 py-3 sm:px-6 sm:py-4 text-sm sm:text-base font-bold text-gray-500 border-b-[3px] border-transparent flex items-center gap-2 transition-all hover:bg-gray-100 rounded-t-lg mx-1 ml-auto" role="tab" aria-selected="false">
+                        <i class="fa-solid fa-network-wired"></i> Integración
+                    </button>
+                </div>
 
-                 <details class="bg-white p-6 rounded-lg shadow-lg group">
-                    <summary class="flex justify-between items-center font-bold text-xl text-green-600">
-                        ISO 14001: Gestión Ambiental
-                        <svg class="w-5 h-5 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </summary>
-                    <div class="mt-4 text-gray-600">
-                       <p>Regula las acciones que puedan provocar un efecto negativo en el ambiente. Tiene como finalidad proporcionar un SGA eficaz que se integre con otros requisitos de gestión. Utiliza el método Deming (PHVA: Planificar-Hacer-Verificar-Actuar).</p>
-                        <div class="mt-4 bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
-                            <strong class="text-green-800">Ejemplo de aplicación:</strong>
-                            <p class="mt-1">Una fábrica textil implementa ISO 14001 para gestionar sus aguas residuales. Instala una planta de tratamiento para depurar el agua antes de devolverla al río cercano, cumpliendo la normativa ambiental y reduciendo su impacto ecológico.</p>
+                <!-- Contenido Tabs -->
+                <div class="p-6 md:p-8">
+                    
+                    <!-- Tab 1: ISO 9001 -->
+                    <div id="tab-iso9001" class="sig-tab-content active" role="tabpanel">
+                        <h3 class="text-2xl font-bold text-blue-700 mb-4">Gestión de Calidad (ISO 9001)</h3>
+                        
+                        <!-- Texto base antiguo y nuevo combinados sin pérdida -->
+                        <p class="mb-5 text-gray-700 leading-relaxed">
+                            Busca conseguir el cumplimiento de los requisitos estipulados y gestionar los procesos para garantizar la confianza en los productos. Adopta una filosofía para mejorar el rendimiento y aproximarse a la excelencia. 
+                            El objetivo principal es asegurar la satisfacción y cumplimiento de los requisitos del cliente, preservando el <em>saber hacer (know-how)</em> de la organización mediante la estandarización de procesos.
+                        </p>
+                        
+                        <!-- Caja Características Clave -->
+                        <div class="bg-[#f4f8fb] rounded-xl p-6 mb-6 border border-blue-100 shadow-sm">
+                            <h4 class="font-bold text-[#0a5282] mb-3 text-lg">Características Clave:</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li>Conjunto de actividades coordinadas para dirigir y controlar una organización.</li>
+                                <li>Busca aproximarse a la excelencia y aumentar los beneficios de las partes interesadas.</li>
+                                <li>Requiere comunicar políticas a todo el personal.</li>
+                                <li>Promueve el <strong>enfoque basado en procesos</strong>.</li>
+                            </ul>
                         </div>
-                        <div class="mt-4 flex flex-col items-center">
-                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJvKWffFb5D5WIWZy9LJb-7J1p7VjHEA5STI-XMToh0J-QIjiNrXNT36o92d1a50QuNyzXfzZc4gUvXMryLGYcX4H_6UaYxhjflhrhM8AixddrcqrwDocf5oaasaSM5bq77dp1oTLbb9Q/s1600/PHVA_ISO9001_2015.png" alt="Ciclo PHVA para ISO 14001" class="max-w-xs md:max-w-md mx-auto clickable-img rounded-lg">
+                        
+                        <!-- Caja Importancia Estratégica -->
+                        <div class="border-l-4 border-blue-500 pl-5 py-2 mt-6 bg-white">
+                            <h4 class="font-bold text-gray-800 flex items-center gap-2 text-lg mb-2">
+                                <i class="fa-solid fa-bullseye text-blue-500"></i> Importancia Estratégica
+                            </h4>
+                            <p class="text-gray-700 leading-relaxed text-sm">
+                                La adopción de ISO 9001 es frecuentemente un <strong>requisito excluyente para participar en licitaciones públicas y exportar a mercados internacionales</strong>. Objetivamente, permite a las empresas reducir los "costos de no calidad" (reprocesos, desperdicios, devoluciones) y fomenta una cultura organizativa basada en datos comprobables, impactando directamente en la rentabilidad y la confianza del mercado.
+                            </p>
                         </div>
-                    </div>
-                </details>
 
-                <details class="bg-white p-6 rounded-lg shadow-lg group">
-                    <summary class="flex justify-between items-center font-bold text-xl text-red-600">
-                        OHSAS 18001: Seguridad y Salud Ocupacional
-                        <svg class="w-5 h-5 arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </summary>
-                    <div class="mt-4 text-gray-600">
-                        <p>Proporciona a las organizaciones los elementos de un Sistema de Gestión efectivo que pueda ser integrado con otros requisitos. Mantiene una estrecha relación con la ISO 14001, puesto que llevan la misma metodología (PHVA).</p>
-                        <div class="mt-4 bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-                            <strong class="text-red-800">Ejemplo de aplicación:</strong>
-                            <p class="mt-1">Una empresa constructora adopta OHSAS 18001. Establece como obligatorio el uso de arneses para trabajos en altura y realiza capacitaciones periódicas sobre su correcto uso, lo que disminuye drásticamente el índice de accidentes por caídas.</p>
-                        </div>
-                         <div class="mt-4 flex flex-col items-center">
-                            <img src="https://static.docsity.com/documents_first_pages/2023/11/07/a0dcf80d4ba428c29f229b913ad339fd.png" alt="Diagrama del ciclo OHSAS 18001" class="max-w-xs md:max-w-md mx-auto clickable-img rounded-lg">
+                        <!-- Ejemplo antiguo preservado -->
+                        <div class="mt-8 bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                            <strong class="text-blue-800 block mb-2 text-lg">Ejemplo de aplicación (Material Base):</strong>
+                            <p class="text-gray-700 leading-relaxed">Una empresa de software implementa ISO 9001 para reducir errores. Crea un proceso formal de testing y recolección de feedback de usuarios, lo que resulta en un producto más estable y una mayor satisfacción del cliente.</p>
+                            <div class="mt-6 flex flex-col items-center bg-white p-4 rounded-lg shadow-inner">
+                                <img src="https://www.normas-iso.com/wp-content/uploads/2012/02/SGC1-1024x565.png" alt="SGC 1" class="max-w-full md:max-w-md mx-auto clickable-img rounded-lg">
+                                <span class="text-xs text-gray-500 mt-2">Diagrama SGC ISO 9001 (Material Base)</span>
+                            </div>
                         </div>
                     </div>
-                </details>
+
+                    <!-- Tab 2: ISO 14001 -->
+                    <div id="tab-iso14001" class="sig-tab-content" role="tabpanel">
+                        <h3 class="text-2xl font-bold text-green-700 mb-4">Gestión Ambiental (ISO 14001)</h3>
+                        
+                        <!-- Texto base antiguo y nuevo combinados -->
+                        <p class="mb-6 text-gray-700 leading-relaxed">
+                            Regula las acciones que puedan provocar efectos negativos en el medio ambiente, permitiendo un control de residuos y aspectos ambientales de las operaciones. Tiene como finalidad proporcionar un SGA eficaz que se integre con otros requisitos de gestión.
+                        </p>
+                        
+                        <!-- Caja PHVA Interactiva y Visual -->
+                        <div class="bg-[#f0fdf4] rounded-xl p-6 md:p-8 mb-6 border border-green-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div class="flex-1">
+                                <h4 class="font-bold text-green-900 mb-4 text-lg">Método Deming (Ciclo PHVA)</h4>
+                                <p class="text-sm text-gray-600 mb-3 font-medium">El corazón del sistema para la mejora continua:</p>
+                                <ul class="space-y-3 text-sm text-gray-700">
+                                    <li class="bg-white p-2 rounded shadow-sm border border-green-50"><strong class="text-green-800">Planificar (P):</strong> Objetivos, metas, políticas ambientales.</li>
+                                    <li class="bg-white p-2 rounded shadow-sm border border-green-50"><strong class="text-green-800">Hacer (H):</strong> Implementación, capacitación, control operacional.</li>
+                                    <li class="bg-white p-2 rounded shadow-sm border border-green-50"><strong class="text-green-800">Verificar (V):</strong> Seguimiento, medición, evaluación de cumplimiento.</li>
+                                    <li class="bg-white p-2 rounded shadow-sm border border-green-50"><strong class="text-green-800">Actuar (A):</strong> Revisión por la dirección, mejora continua.</li>
+                                </ul>
+                            </div>
+                            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-[6px] border-green-500 flex items-center justify-center text-green-700 font-extrabold text-2xl md:text-3xl bg-white shadow-xl flex-shrink-0">
+                                PHVA
+                            </div>
+                        </div>
+
+                        <!-- Caja Importancia Estratégica -->
+                        <div class="border-l-4 border-green-500 pl-5 py-2 mt-6 bg-white">
+                            <h4 class="font-bold text-gray-800 flex items-center gap-2 text-lg mb-2">
+                                <i class="fa-solid fa-bullseye text-green-500"></i> Importancia Estratégica
+                            </h4>
+                            <p class="text-gray-700 leading-relaxed text-sm">
+                                Más allá del compromiso ético, es una herramienta clave de <strong>gestión de riesgos legales y financieros</strong>. Previene multas millonarias y clausuras por incumplimiento normativo, optimiza el consumo de recursos (energía, agua, materias primas) bajando los costos operativos, y fortalece enormemente la Responsabilidad Social Empresarial (RSE), atrayendo a inversores y consumidores con conciencia ecológica.
+                            </p>
+                        </div>
+
+                        <!-- Ejemplo antiguo preservado -->
+                        <div class="mt-8 bg-green-50 p-5 rounded-lg border-l-4 border-green-500 shadow-sm">
+                            <strong class="text-green-800 block mb-2 text-lg">Ejemplo de aplicación (Material Base):</strong>
+                            <p class="text-gray-700 leading-relaxed">Una fábrica textil implementa ISO 14001 para gestionar sus aguas residuales. Instala una planta de tratamiento para depurar el agua antes de devolverla al río cercano, cumpliendo la normativa ambiental y reduciendo su impacto ecológico.</p>
+                            <div class="mt-6 flex flex-col items-center bg-white p-4 rounded-lg shadow-inner">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJvKWffFb5D5WIWZy9LJb-7J1p7VjHEA5STI-XMToh0J-QIjiNrXNT36o92d1a50QuNyzXfzZc4gUvXMryLGYcX4H_6UaYxhjflhrhM8AixddrcqrwDocf5oaasaSM5bq77dp1oTLbb9Q/s1600/PHVA_ISO9001_2015.png" alt="Ciclo PHVA para ISO 14001" class="max-w-full md:max-w-md mx-auto clickable-img rounded-lg">
+                                <span class="text-xs text-gray-500 mt-2">Diagrama Deming (Material Base)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: OHSAS 18001 / ISO 45001 -->
+                    <div id="tab-ohsas" class="sig-tab-content" role="tabpanel">
+                        <h3 class="text-2xl font-bold text-[#c2410c] mb-4">Seguridad y Salud Ocupacional (OHSAS 18001 / ISO 45001)</h3>
+                        
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            Desarrollada para brindar una estructura a la acción y control de riesgos para preservar la salud física y psicológica de los trabajadores. Proporciona a las organizaciones los elementos de un Sistema de Gestión efectivo que pueda ser integrado con otros requisitos.
+                        </p>
+                        
+                        <div class="bg-[#ffedd5] text-[#9a3412] text-xs px-3 py-2 rounded-md inline-block font-medium mb-6 border border-orange-200 shadow-sm">
+                            <i class="fa-solid fa-circle-info mr-1"></i> Nota de actualización: La norma británica OHSAS 18001 ha sido paulatinamente reemplazada por la norma internacional ISO 45001.
+                        </div>
+                        
+                        <!-- Caja Aspectos Normativos -->
+                        <div class="bg-[#fff7ed] rounded-xl p-6 mb-6 border border-orange-100 shadow-sm">
+                            <h4 class="font-bold text-[#9a3412] mb-3 text-lg">Aspectos Normativos:</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li>Mantiene estrecha relación metodológica con ISO 14001 (utiliza el mismo ciclo PHVA).</li>
+                                <li>Su base de planificación requiere: Identificación de Peligros y Evaluación de Riesgos.</li>
+                                <li>Asegura la respuesta ante emergencias y el control de la documentación específica de SySO.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Caja Importancia Estratégica -->
+                        <div class="border-l-4 border-orange-500 pl-5 py-2 mt-6 bg-white">
+                            <h4 class="font-bold text-gray-800 flex items-center gap-2 text-lg mb-2">
+                                <i class="fa-solid fa-bullseye text-orange-500"></i> Importancia Estratégica
+                            </h4>
+                            <p class="text-gray-700 leading-relaxed text-sm">
+                                Tiene un impacto financiero y operativo directo al reducir los índices de siniestralidad. Esto se traduce objetivamente en una <strong>disminución drástica del ausentismo, menores primas de seguros (riesgos del trabajo) y menos lucro cesante por paradas de producción</strong> originadas por accidentes. Asimismo, garantizar un entorno seguro mejora la moral del trabajador, facilitando la retención del talento humano vital para la empresa.
+                            </p>
+                        </div>
+
+                        <!-- Ejemplo antiguo preservado -->
+                        <div class="mt-8 bg-orange-50 p-5 rounded-lg border-l-4 border-orange-500 shadow-sm">
+                            <strong class="text-orange-900 block mb-2 text-lg">Ejemplo de aplicación (Material Base):</strong>
+                            <p class="text-gray-700 leading-relaxed">Una empresa constructora adopta OHSAS 18001. Establece como obligatorio el uso de arneses para trabajos en altura y realiza capacitaciones periódicas sobre su correcto uso, lo que disminuye drásticamente el índice de accidentes por caídas.</p>
+                            <div class="mt-6 flex flex-col items-center bg-white p-4 rounded-lg shadow-inner">
+                                <img src="https://static.docsity.com/documents_first_pages/2023/11/07/a0dcf80d4ba428c29f229b913ad339fd.png" alt="Diagrama del ciclo OHSAS 18001" class="max-w-full md:max-w-md mx-auto clickable-img rounded-lg">
+                                <span class="text-xs text-gray-500 mt-2">Ciclo OHSAS (Material Base)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Integración -->
+                    <div id="tab-integracion" class="sig-tab-content" role="tabpanel">
+                        <h3 class="text-2xl font-bold text-purple-700 mb-4">Principios de la Mejora Continua Integrada</h3>
+                        <p class="mb-8 text-gray-700 leading-relaxed">
+                            Las normas no están integradas por defecto; es la organización quien las fusiona en un único Sistema de Gestión (SGI). Esto genera una reducción de costos y una potente ventaja competitiva.
+                        </p>
+                        
+                        <!-- Grid de 4 Cajas -->
+                        <div class="grid md:grid-cols-2 gap-4 mb-8">
+                            <div class="border border-purple-100 rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition-shadow">
+                                <h4 class="font-bold text-purple-900 mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-file-contract text-purple-600"></i> Políticas Comunes
+                                </h4>
+                                <p class="text-sm text-gray-600 leading-relaxed">Creación y comunicación de políticas unificadas orientadas a Calidad, Ambiente y Seguridad, alineadas a la estrategia de negocios.</p>
+                            </div>
+                            
+                            <div class="border border-purple-100 rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition-shadow">
+                                <h4 class="font-bold text-purple-900 mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-users text-purple-600"></i> Partes Interesadas
+                                </h4>
+                                <p class="text-sm text-gray-600 leading-relaxed">Identificación unificada de necesidades, transformándolas en obligaciones de cumplimiento documentadas.</p>
+                            </div>
+                            
+                            <div class="border border-purple-100 rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition-shadow">
+                                <h4 class="font-bold text-purple-900 mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-shield-halved text-purple-600"></i> Riesgos y Oportunidades
+                                </h4>
+                                <p class="text-sm text-gray-600 leading-relaxed">Actitud preventiva y proactiva transversal; una sola evaluación aborda riesgos para los tres ejes (Calidad, M.A., SySO).</p>
+                            </div>
+                            
+                            <div class="border border-purple-100 rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition-shadow">
+                                <h4 class="font-bold text-purple-900 mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-user-tie text-purple-600"></i> Liderazgo Directivo
+                                </h4>
+                                <p class="text-sm text-gray-600 leading-relaxed">El compromiso de la Alta Dirección es fundamental, dictando políticas, asignando recursos y definiendo objetivos viables.</p>
+                            </div>
+                        </div>
+
+                        <!-- Caja de Valor Estratégico -->
+                        <div class="bg-[#f5f3ff] rounded-xl p-6 md:p-8 border border-purple-200 shadow-inner">
+                            <h4 class="text-lg md:text-xl font-bold text-purple-900 mb-4 flex items-center gap-2 border-b border-purple-200 pb-3">
+                                <i class="fa-solid fa-chart-line text-purple-600"></i> El Valor Estratégico de la Tri-Norma Integrada
+                            </h4>
+                            <p class="text-sm text-gray-700 mb-6 leading-relaxed">
+                                Integrar estos tres sistemas transforma la burocracia documental en un verdadero <strong>sistema nervioso corporativo</strong>. Su importancia global radica en:
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3 text-sm text-gray-700 leading-relaxed bg-white p-3 rounded-lg shadow-sm border border-purple-50">
+                                    <i class="fa-solid fa-circle-check text-purple-500 mt-1 flex-shrink-0 text-lg"></i> 
+                                    <span><strong>Eficiencia en Auditorías:</strong> Se auditan los tres sistemas simultáneamente, reduciendo drásticamente el tiempo de horas-hombre invertidas y los costos de certificadoras externas.</span>
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-gray-700 leading-relaxed bg-white p-3 rounded-lg shadow-sm border border-purple-50">
+                                    <i class="fa-solid fa-circle-check text-purple-500 mt-1 flex-shrink-0 text-lg"></i> 
+                                    <span><strong>Visión Holística del Riesgo:</strong> Cualquier modificación en la producción se evalúa de forma cruzada (¿afecta la calidad? ¿contamina? ¿es seguro para el operario?), previniendo crear un problema al intentar solucionar otro.</span>
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-gray-700 leading-relaxed bg-white p-3 rounded-lg shadow-sm border border-purple-50">
+                                    <i class="fa-solid fa-circle-check text-purple-500 mt-1 flex-shrink-0 text-lg"></i> 
+                                    <span><strong>Posicionamiento World Class:</strong> Las empresas Tri-Norma se posicionan en el más alto nivel de proveedores globales (World Class Manufacturing), facilitando joint ventures, fusiones y acceso a créditos corporativos preferenciales.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
         </section>
 
     </main>
 
     <!-- Modal para ver imagen en grande -->
-    <div id="imageModal" class="modal">
+    <div id="imageModal" class="modal backdrop-blur-sm">
         <span class="close-modal">&times;</span>
-        <img class="modal-content" id="modalImage">
+        <img class="modal-content rounded-lg shadow-2xl" id="modalImage">
     </div>
 
     <!-- Pie de Página -->
-    <footer class="bg-gray-800 text-white mt-12">
-        <div class="container mx-auto px-6 py-4 text-center">
-            <p>&copy; 2024 Instituto Superior de Formación Técnica. Todos los derechos reservados.</p>
-            <p class="text-sm text-gray-400">Material didáctico para uso exclusivo de alumnos.</p>
+    <footer class="bg-gray-900 text-white mt-12 border-t-4 border-blue-600">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h5 class="font-bold text-lg mb-2">Instituto Superior de Formación Técnica</h5>
+            <p class="text-gray-400 mb-4">&copy; 2024 - 2026. Todos los derechos reservados.</p>
+            <div class="inline-block bg-gray-800 text-xs text-gray-400 px-4 py-2 rounded-full border border-gray-700">
+                <i class="fa-solid fa-lock mr-1"></i> Material didáctico para uso exclusivo de alumnos.
+            </div>
         </div>
     </footer>
 
@@ -549,6 +799,41 @@
             // Cierra el modal si se hace clic fuera de la imagen
             if (event.target == modal) {
                 modal.style.display = "none";
+            }
+        }
+
+        // Lógica para el sistema de Pestañas (Tabs) de SIG
+        function openSigTab(evt, tabId) {
+            // 1. Ocultar todos los contenidos de las pestañas
+            document.querySelectorAll('.sig-tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // 2. Limpiar estilos activos de todos los botones
+            document.querySelectorAll('.sig-tab-btn').forEach(el => {
+                el.classList.remove('active', 'border-[#2563eb]', 'text-[#2563eb]', 'border-[#16a34a]', 'text-[#16a34a]', 'border-[#ea580c]', 'text-[#ea580c]', 'border-[#9333ea]', 'text-[#9333ea]', 'bg-white');
+                el.classList.add('text-gray-500', 'border-transparent', 'hover:bg-gray-100');
+                el.setAttribute('aria-selected', 'false');
+            });
+
+            // 3. Mostrar el contenido de la pestaña seleccionada
+            document.getElementById(tabId).classList.add('active');
+
+            // 4. Aplicar estilos activos al botón clickeado según su temática
+            const btn = evt.currentTarget;
+            btn.classList.remove('text-gray-500', 'border-transparent', 'hover:bg-gray-100');
+            btn.classList.add('active', 'bg-white');
+            btn.setAttribute('aria-selected', 'true');
+
+            // Colores por defecto dependiendo de la norma (para igualar el diseño)
+            if (tabId === 'tab-iso9001') {
+                btn.classList.add('border-[#2563eb]', 'text-[#2563eb]');
+            } else if (tabId === 'tab-iso14001') {
+                btn.classList.add('border-[#16a34a]', 'text-[#16a34a]');
+            } else if (tabId === 'tab-ohsas') {
+                btn.classList.add('border-[#ea580c]', 'text-[#ea580c]');
+            } else if (tabId === 'tab-integracion') {
+                btn.classList.add('border-[#9333ea]', 'text-[#9333ea]');
             }
         }
     </script>
