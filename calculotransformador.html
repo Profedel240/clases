@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensionamiento de Transformadores de Potencia para Subestaciones Eléctricas</title>
+    <!-- Tailwind CSS para diseño visual instruccional -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para iconos de visualización de datos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- KaTeX para renderizar ecuaciones matemáticas rigurosas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <!-- Script de configuración de KaTeX para auto-renderizado robusto -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                            electric: '#00D2FF'
+                        },
+                        neutral: {
+                            850: '#1f2937',
+                            950: '#0b0f19'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 3px;
+        }
+        .interactive-node:hover {
+            stroke: #00D2FF;
+            fill: rgba(0, 210, 255, 0.2);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-neutral-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+
+    <!-- Header / Navbar Principal -->
+    <header class="bg-neutral-900 border-b border-slate-800 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2.5 bg-brand-600/20 text-brand-600 rounded-lg border border-brand-600/30">
+                    <i class="fa-solid fa-bolt-lightning text-xl animate-pulse"></i>
+                </div>
+                <div>
+                    <span class="text-xs uppercase tracking-wider text-brand-600 font-semibold block">Módulo de Ingeniería Eléctrica</span>
+                    <h1 class="text-sm sm:text-base font-bold text-white tracking-tight">Cálculo de Transformadores de Potencia (EdTech-Lab)</h1>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="hidden md:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-400/10 text-emerald-400 border border-emerald-400/20">
+                    <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-1.5 animate-ping"></span> Entorno Académico Activo
+                </span>
+                <button onclick="resetInputs()" class="text-xs font-semibold px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded border border-slate-700 transition">
+                    <i class="fa-solid fa-arrow-rotate-left mr-1"></i> Reiniciar
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal (Arquitectura de la Información: 2 Columnas) -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- COLUMNA IZQUIERDA: Parametrización y Laboratorio de Simulación (5 Columnas) -->
+        <section class="lg:col-span-5 flex flex-col space-y-6">
+            <!-- Panel de Entrada de Parámetros Técnicos -->
+            <div class="bg-neutral-900 border border-slate-800 rounded-xl p-5 shadow-md">
+                <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-sliders text-brand-600"></i>
+                        <h2 class="text-base font-bold text-white">Parámetros del Barrio Privado</h2>
+                    </div>
+                    <span class="text-xs text-slate-400">Datos de Diseño Inicial</span>
+                </div>
+
+                <!-- Input: Número de parcelas (N) -->
+                <div class="mb-4">
+                    <div class="flex justify-between mb-1.5">
+                        <label for="num_parcelas" class="text-xs font-medium text-slate-300">Número de Parcelas (Lotes) <span class="font-mono text-brand-600">($N$)</span></label>
+                        <span id="val_num_parcelas" class="text-xs font-bold text-brand-600 font-mono">120 lotes</span>
+                    </div>
+                    <input type="range" id="num_parcelas" min="10" max="500" step="10" value="120"
+                           class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-600"
+                           oninput="updateCalculations()">
+                    <p class="text-[10px] text-slate-400 mt-1">Suma total de residencias unifamiliares proyectadas en el máster plan. Define el factor de simultaneidad.</p>
+                </div>
+
+                <!-- Input: Consumo coincidente por vivienda (P_viv) -->
+                <div class="mb-4">
+                    <div class="flex justify-between mb-1.5">
+                        <label for="consumo_viv" class="text-xs font-medium text-slate-300">Consumo coincidente por vivienda <span class="font-mono text-brand-600">($P_{viv}$)</span></label>
+                        <span id="val_consumo_viv" class="text-xs font-bold text-brand-600 font-mono">6.0 kW</span>
+                    </div>
+                    <input type="range" id="consumo_viv" min="3.0" max="100.0" step="0.5" value="6.0"
+                           class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-600"
+                           oninput="updateCalculations()">
+                    <p class="text-[10px] text-slate-400 mt-1">Carga máxima simultánea estimada para cada unidad funcional (vivienda), considerando la coincidencia de cargas residenciales típicas (según AEA/IEC).</p>
+                </div>
+
+                <!-- Input: Servicios comunes y alumbrado -->
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <!-- P_comunes -->
+                    <div>
+                        <label for="potencia_comunes" class="block text-xs font-medium text-slate-300 mb-1">Cargas Comunes (Club House, Bombas) <span class="font-mono text-brand-600">($P_{comunes}$)</span></label>
+                        <div class="relative">
+                            <input type="number" id="potencia_comunes" value="45" min="0" class="w-full bg-slate-800/80 border border-slate-700 text-white rounded px-2 py-1.5 text-xs font-mono focus:ring-1 focus:ring-brand-600 focus:outline-none" oninput="updateCalculations()">
+                            <span class="absolute right-2 top-2 text-[10px] text-slate-400">kW</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mt-1">Carga de servicios comunes del barrio (Club House, piscinas, bombas de agua, etc.).</p>
+                    </div>
+                    <!-- P_alumbrado -->
+                    <div>
+                        <label for="alumbrado_publico" class="block text-xs font-medium text-slate-300 mb-1">Alumbrado Público y Seguridad <span class="font-mono text-brand-600">($P_{alumbrado}$)</span></label>
+                        <div class="relative">
+                            <input type="number" id="alumbrado_publico" value="25" min="0" class="w-full bg-slate-800/80 border border-slate-700 text-white rounded px-2 py-1.5 text-xs font-mono focus:ring-1 focus:ring-brand-600 focus:outline-none" oninput="updateCalculations()">
+                            <span class="absolute right-2 top-2 text-[10px] text-slate-400">kW</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mt-1">Carga del alumbrado público y sistemas de seguridad. Carga constante nocturna.</p>
+                    </div>
+                </div>
+
+                <!-- Input: Factores de diseño eléctrico -->
+                <div class="mb-4 grid grid-cols-2 gap-4">
+                    <!-- cos(phi) -->
+                    <div>
+                        <label for="factor_potencia" class="block text-xs font-medium text-slate-300 mb-1 font-mono">Coseno de Phi ($\cos\phi$)</label>
+                        <input type="number" id="factor_potencia" value="0.90" min="0.70" max="1.0" step="0.01" class="w-full bg-slate-800/80 border border-slate-700 text-white rounded px-2 py-1.5 text-xs font-mono focus:ring-1 focus:ring-brand-600 focus:outline-none" oninput="updateCalculations()">
+                        <p class="text-[10px] text-slate-400 mt-1">Factor de potencia. Relación entre potencia activa (kW) y aparente (kVA).</p>
+                    </div>
+                    <!-- Factor de reserva -->
+                    <div>
+                        <label for="factor_seguridad" class="block text-xs font-medium text-slate-300 mb-1">Factor de Expansión Futura <span class="font-mono text-brand-600">($F_{reserva}$)</span></label>
+                        <select id="factor_seguridad" class="w-full bg-slate-800/80 border border-slate-700 text-white rounded px-2 py-1.5 text-xs focus:ring-1 focus:ring-brand-600 focus:outline-none" onchange="updateCalculations()">
+                            <option value="1.10">10% Reserva</option>
+                            <option value="1.20" selected>20% Reserva (Recomendado)</option>
+                            <option value="1.30">30% Reserva</option>
+                        </select>
+                        <p class="text-[10px] text-slate-400 mt-1">Coeficiente para dimensionar con capacidad adicional para futuros aumentos de carga.</p>
+                    </div>
+                </div>
+
+                <!-- Input: Parámetros de Red de Distribución -->
+                <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-800">
+                    <!-- U1 -->
+                    <div>
+                        <label for="tension_primario" class="block text-xs font-medium text-slate-300 mb-1 font-mono">Tensión Nominal MT ($U_1$)</label>
+                        <select id="tension_primario" class="w-full bg-slate-800/80 border border-slate-700 text-white rounded px-2 py-1.5 text-xs focus:ring-1 focus:ring-brand-600 focus:outline-none" onchange="updateCalculations()">
+                            <option value="13.2" selected>13.2 kV</option>
+                            <option value="33.0">33.0 kV</option>
+                        </select>
+                        <p class="text-[10px] text-slate-400 mt-1">Tensión Nominal de la Red de Media Tensión (lado primario).</p>
+                    </div>
+                    <!-- U2 -->
+                    <div>
+                        <label for="tension_secundario" class="block text-xs font-medium text-slate-300 mb-1 font-mono">Tensión Nominal BT ($U_2$)</label>
+                        <select id="tension_secundario" class="w-full bg-slate-800/80 border border-slate-700 text-white rounded px-2 py-1.5 text-xs focus:ring-1 focus:ring-brand-600 focus:outline-none" onchange="updateCalculations()">
+                            <option value="0.400" selected>400 V / 230 V</option>
+                            <option value="0.380">380 V / 220 V</option>
+                        </select>
+                        <p class="text-[10px] text-slate-400 mt-1">Tensión Nominal de la Red de Baja Tensión (bornes secundarios, fase-fase).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Resultados del Sizing (en tiempo real) -->
+            <div class="bg-neutral-900 border border-slate-800 rounded-xl p-5 shadow-md relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-brand-600/10 rounded-full filter blur-xl"></div>
+                
+                <div class="flex items-center space-x-2 pb-3 mb-4 border-b border-slate-800">
+                    <i class="fa-solid fa-square-poll-vertical text-brand-600"></i>
+                    <h2 class="text-base font-bold text-white">Resultados de Dimensionamiento</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Potencia de Diseño Calculada (S_dis) -->
+                    <div class="flex justify-between items-center bg-slate-800/30 p-3 rounded-lg border border-slate-800/50">
+                        <div>
+                            <span class="text-xs font-medium text-slate-400 block font-mono">Potencia Aparente de Diseño ($S_{dis}$):</span>
+                            <span class="text-[10px] text-slate-500">Incluye factor de simultaneidad, reserva de carga y factor de potencia.</span>
+                        </div>
+                        <div class="text-right">
+                            <span id="potencia_diseno" class="text-lg font-extrabold text-brand-600 font-mono">324.5 kVA</span>
+                        </div>
+                    </div>
+
+                    <!-- RECOMENDACIÓN DE MÁQUINA NORMALIZADA -->
+                    <div class="bg-gradient-to-r from-brand-900/30 to-brand-600/10 p-4 rounded-lg border border-brand-600/30">
+                        <span class="text-xs font-bold text-slate-300 block uppercase tracking-wider mb-2"><i class="fa-solid fa-microchip mr-1.5 text-brand-600"></i>Transformador Sugerido (IEC 60076)</span>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <span id="potencia_normalizada" class="text-2xl font-black text-white font-mono">400 kVA</span>
+                                <span class="text-xs text-slate-400 block mt-1">Tecnología: <strong id="tipo_aislamiento" class="text-slate-300">Aceite Mineral / ONAN</strong></span>
+                                <span class="text-[10px] text-slate-500 mt-1 block">Potencia comercial normalizada según IEC 60076 inmediatamente superior a la potencia de diseño.</span>
+                            </div>
+                            <div class="text-right">
+                                <span id="cargabilidad_porc" class="text-xs font-bold bg-brand-600/25 text-brand-600 px-2 py-1 rounded border border-brand-600/30 block font-mono">81.1% Carga</span>
+                                <span class="text-[10px] text-slate-500 mt-1 block">Porcentaje de potencia nominal utilizada.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parámetros Operativos Estimados (Cuadro de Texto Destacado: Tabla Técnica) -->
+                    <div class="grid grid-cols-2 gap-3 pt-2 text-xs font-mono">
+                        <!-- I1 -->
+                        <div class="bg-slate-800/20 p-2.5 rounded border border-slate-800">
+                            <span class="text-slate-400 block mb-0.5 font-mono">Corriente Primaria ($I_1$):</span>
+                            <strong id="corriente_i1" class="text-white text-sm">17.5 A</strong>
+                            <p class="text-[10px] text-slate-500 mt-1">Corriente nominal de diseño en lado MT.</p>
+                        </div>
+                        <!-- I2 -->
+                        <div class="bg-slate-800/20 p-2.5 rounded border border-slate-800">
+                            <span class="text-slate-400 block mb-0.5 font-mono">Corriente Secundaria ($I_2$):</span>
+                            <strong id="corriente_i2" class="text-white text-sm">577.4 A</strong>
+                            <p class="text-[10px] text-slate-500 mt-1">Corriente nominal de diseño en lado BT.</p>
+                        </div>
+                        <!-- Pérdidas Totales -->
+                        <div class="bg-slate-800/20 p-2.5 rounded border border-slate-800">
+                            <span class="text-slate-400 block mb-0.5">Pérdidas Totales Estimadas:</span>
+                            <strong id="perdidas_estimadas" class="text-white text-sm">5.20 kW</strong>
+                            <p class="text-[10px] text-slate-500 mt-1">Suma de pérdidas en hierro ($P_{Fe}$) y cobre ($P_{Cu}$) operativas.</p>
+                        </div>
+                        <!-- Icc2 -->
+                        <div class="bg-slate-800/20 p-2.5 rounded border border-slate-800">
+                            <span class="text-slate-400 block mb-0.5 font-mono">Corriente Cortocircuito ($I_{cc2}$):</span>
+                            <strong id="corriente_icc" class="text-amber-400 text-sm">14.44 kA</strong>
+                            <p class="text-[10px] text-slate-500 mt-1">Corriente de cortocircuito trifásica simétrica máxima estimada en bornes secundarios.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COLUMNA DERECHA: Marco Académico, Esquemas y Ecuaciones (7 Columnas) -->
+        <section class="lg:col-span-7 flex flex-col space-y-6">
+            
+            <!-- Pestañas de Navegación del Panel de Control Académico -->
+            <div class="bg-neutral-900 border border-slate-800 rounded-xl p-5 shadow-md flex-grow flex flex-col">
+                <div class="flex border-b border-slate-800 pb-3 mb-4 space-x-4">
+                    <button id="tab-btn-calculo" onclick="switchTab('calculo')" class="text-xs font-bold px-3 py-1.5 rounded transition text-white border-b-2 border-brand-600">
+                        <i class="fa-solid fa-calculator mr-1"></i> Secuencia Teórica de Cálculo
+                    </button>
+                    <button id="tab-btn-esquema" onclick="switchTab('esquema')" class="text-xs font-bold px-3 py-1.5 rounded transition text-slate-400 hover:text-white border-b-2 border-transparent">
+                        <i class="fa-solid fa-project-diagram mr-1"></i> Esquema Unifilar Interactivo
+                    </button>
+                    <button id="tab-btn-perdidas" onclick="switchTab('perdidas')" class="text-xs font-bold px-3 py-1.5 rounded transition text-slate-400 hover:text-white border-b-2 border-transparent">
+                        <i class="fa-solid fa-chart-line mr-1"></i> Análisis de Pérdidas
+                    </button>
+                </div>
+
+                <!-- CONTENIDO PESTAÑA: Secuencia Teórica de Cálculo (Cuadros de Texto Destacados: Ecuaciones) -->
+                <div id="tab-content-calculo" class="space-y-4 flex-grow block">
+                    <div class="bg-slate-800/30 p-4 rounded-lg border border-slate-800">
+                        <h3 class="text-sm font-bold text-white mb-2 flex items-center">
+                            <span class="w-5 h-5 bg-brand-600 text-white rounded-full inline-flex items-center justify-center text-xs mr-2 font-mono">1</span>
+                            Establecimiento del Factor de Simultaneidad <span class="font-mono text-brand-600">($F_s$)</span>
+                        </h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                            En urbanizaciones residenciales unifamiliares, los consumos domésticos no alcanzan sus máximos de forma coincidente en el tiempo. Se aplica una curva decreciente no lineal en función del número de usuarios ($N$).
+                        </p>
+                        <div class="bg-neutral-950 p-3 rounded border border-slate-800 flex flex-col md:flex-row items-center justify-between font-mono">
+                            <div class="text-xs text-brand-600">
+                                $$F_s = 0.2 + \frac{0.8}{\sqrt{N}}$$
+                            </div>
+                            <div class="mt-2 md:mt-0 text-right">
+                                <span class="text-[10px] text-slate-400 block">Factor de Simultaneidad <span class="text-brand-600">($F_s$)</span> para su Red:</span>
+                                <strong id="val_factor_simultaneidad" class="text-sm text-white font-mono">0.273</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/30 p-4 rounded-lg border border-slate-800">
+                        <h3 class="text-sm font-bold text-white mb-2 flex items-center">
+                            <span class="w-5 h-5 bg-brand-600 text-white rounded-full inline-flex items-center justify-center text-xs mr-2 font-mono">2</span>
+                            Cálculo de la Potencia de Diseño Real <span class="font-mono text-brand-600">($S_{dis}$)</span>
+                        </h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                            Aislamos y sumamos las demandas residenciales coincidentes junto con los servicios auxiliares, escalando luego la potencia activa resultante mediante el factor de potencia y la reserva para contingencias.
+                        </p>
+                        <div class="bg-neutral-950 p-3 rounded border border-slate-800 space-y-2 font-mono">
+                            <div class="text-xs text-brand-600">
+                                $$P_{max} = (N \cdot P_{viv} \cdot F_s) + P_{comunes} + P_{alumbrado}$$
+                                $$S_{dis} = \frac{P_{max}}{\cos\phi} \cdot F_{reserva}$$
+                            </div>
+                            <div class="border-t border-slate-800 pt-2 grid grid-cols-2 gap-2 text-[10px] text-slate-400 font-mono">
+                                <div>Demanda Residencial: <span id="math_p_res" class="text-slate-200">196.5 kW</span></div>
+                                <div>Demanda Servicios: <span id="math_p_serv" class="text-slate-200">70.0 kW</span></div>
+                                <div>Potencia de Diseño: <span id="math_s_dis" class="text-slate-200">324.5 kVA</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/30 p-4 rounded-lg border border-slate-800">
+                        <h3 class="text-sm font-bold text-white mb-2 flex items-center">
+                            <span class="w-5 h-5 bg-brand-600 text-white rounded-full inline-flex items-center justify-center text-xs mr-2 font-mono">3</span>
+                            Normativa de Selección de Capacidad Nominal
+                        </h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            De acuerdo con la norma <strong>IEC 60076</strong>, los transformadores de potencia se fabrican en potencias estándar normalizadas en una progresión geométrica aproximada de Renard. Seleccionamos el escalón superior inmediato para evitar sobrecargas que reduzcan la vida útil de los aislamientos debido al estrés térmico.
+                        </p>
+                        <div class="mt-2 text-xs flex justify-between items-center text-slate-400 font-mono">
+                            <span>Siguiente Escala IEC (kVA): <strong class="text-brand-600 font-mono">... - 250 - 315 - 400 - 500 - 630 - 800 - 1000 - ...</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTENIDO PESTAÑA: Esquema Unifilar Interactivo (Diagramas Interactivos) -->
+                <div id="tab-content-esquema" class="space-y-4 flex-grow hidden">
+                    <p class="text-xs text-slate-300">
+                        Esquema simplificado de la Subestación Eléctrica del Barrio. <strong>Haz clic en cualquier bloque iluminado</strong> para inspeccionar sus características técnicas, funciones de protección y normativas asociadas.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                        <!-- SVG del Esquema Unifilar -->
+                        <div class="md:col-span-8 bg-neutral-950 p-4 rounded-lg border border-slate-800 flex justify-center">
+                            <svg width="260" height="340" viewBox="0 0 260 340" class="select-none">
+                                <!-- Red de Media Tensión Entrante (Grid) -->
+                                <line x1="130" y1="20" x2="130" y2="60" stroke="#4b5563" stroke-width="3" stroke-dasharray="4" />
+                                <text x="130" y="15" fill="#94a3b8" font-size="10" text-anchor="middle" font-family="monospace">LÍNEA DE MT (13.2 kV)</text>
+                                
+                                <!-- Seccionador de MT / Protección fusibles -->
+                                <g class="interactive-node" onclick="showNodeInfo('seccionador')">
+                                    <rect x="110" y="60" width="40" height="30" rx="3" fill="#1e2937" stroke="#374151" stroke-width="2" />
+                                    <path d="M120 75 L130 75 M130 75 L140 70" stroke="#ef4444" stroke-width="2" />
+                                    <text x="130" y="105" fill="#94a3b8" font-size="9" text-anchor="middle">Celda de MT</text>
+                                </g>
+
+                                <line x1="130" y1="90" x2="130" y2="130" stroke="#4b5563" stroke-width="3" />
+
+                                <!-- Transformador de Potencia (Símbolo de doble bobinado acoplado) -->
+                                <g class="interactive-node" onclick="showNodeInfo('transformador')">
+                                    <circle cx="130" cy="145" r="20" fill="none" stroke="#2563eb" stroke-width="3" />
+                                    <circle cx="130" cy="165" r="20" fill="none" stroke="#ef4444" stroke-width="3" />
+                                    <!-- Núcleo magnético -->
+                                    <line x1="105" y1="155" x2="155" y2="155" stroke="#94a3b8" stroke-width="2" />
+                                    <text x="75" y="160" fill="#2563eb" font-size="10" font-weight="bold">MT</text>
+                                    <text x="175" y="160" fill="#ef4444" font-size="10" font-weight="bold">BT</text>
+                                    <text x="130" y="200" fill="#ffffff" font-size="9" text-anchor="middle" font-weight="bold">TRAFO (Dyn11)</text>
+                                </g>
+
+                                <line x1="130" y1="185" x2="130" y2="240" stroke="#4b5563" stroke-width="3" />
+
+                                <!-- Interruptor General de Baja Tensión (ACB / Protecciones) -->
+                                <g class="interactive-node" onclick="showNodeInfo('interruptor')">
+                                    <rect x="110" y="240" width="40" height="30" rx="3" fill="#1e2937" stroke="#374151" stroke-width="2" />
+                                    <path d="M125 255 L135 255" stroke="#10b981" stroke-width="3" />
+                                    <text x="130" y="285" fill="#94a3b8" font-size="9" text-anchor="middle">ACB General BT</text>
+                                </g>
+
+                                <line x1="130" y1="270" x2="130" y2="300" stroke="#4b5563" stroke-width="3" />
+                                
+                                <!-- Barra Distribuidora BT para el Barrio -->
+                                <line x1="50" y1="300" x2="210" y2="300" stroke="#ffffff" stroke-width="4" />
+                                <text x="130" y="315" fill="#94a3b8" font-size="9" text-anchor="middle">Barra de BT (Alimentadores)</text>
+                            </svg>
+                        </div>
+                        
+                        <!-- Panel de Detalle del Nodo Seleccionado -->
+                        <div class="md:col-span-4 bg-slate-800/30 p-4 rounded-lg border border-slate-800 h-full flex flex-col justify-between">
+                            <div id="node-info-panel">
+                                <span class="text-[10px] text-brand-600 font-extrabold uppercase tracking-widest block mb-1">Componente de Subestación</span>
+                                <h4 id="node-title" class="text-sm font-bold text-white mb-2">Transformador de Potencia</h4>
+                                <p id="node-desc" class="text-xs text-slate-300 leading-relaxed">
+                                    Unidad acoplada magnéticamente encargada de la reducción de tensión de 13.2 kV a niveles de consumo residencial normalizado de baja tensión.
+                                </p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-slate-800 text-[10px] text-slate-400">
+                                <strong>Tip del Ingeniero:</strong> Haz clic en otros bloques en el gráfico de la izquierda para ver su especificación técnica completa.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTENIDO PESTAÑA: Análisis de Pérdidas (Visualización de Datos: Gráfico de Barras) -->
+                <div id="tab-content-perdidas" class="space-y-4 flex-grow hidden">
+                    <p class="text-xs text-slate-300">
+                        La eficiencia de un transformador depende directamente de la carga conectada. Las pérdidas se dividen en pérdidas constantes en el hierro ($P_{Fe}$) debido a histéresis y corrientes de Foucault, y pérdidas variables en el cobre de las bobinas ($P_{Cu}$) asociadas al efecto Joule.
+                    </p>
+                    <div class="bg-neutral-950 p-4 rounded-lg border border-slate-800 space-y-4">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-slate-400">Eficiencia Energética Estimada:</span>
+                            <strong id="eficiencia_porc" class="text-emerald-400 text-sm">98.52%</strong>
+                        </div>
+                        
+                        <!-- Gráfico de distribución de pérdidas simulado por barras -->
+                        <div class="space-y-3 font-mono">
+                            <div>
+                                <div class="flex justify-between text-[11px] mb-1 font-mono">
+                                    <span class="text-slate-300">Pérdidas en el Hierro ($P_{Fe}$ - Continuas):</span>
+                                    <span id="p_hierro_val" class="font-bold text-slate-100">0.85 kW</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-2">
+                                    <div id="p_hierro_bar" class="bg-indigo-500 h-2 rounded-full" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[11px] mb-1 font-mono">
+                                    <span class="text-slate-300">Pérdidas en el Cobre ($P_{Cu}$ - Dependientes de Carga):</span>
+                                    <span id="p_cobre_val" class="font-bold text-slate-100">4.35 kW</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-2">
+                                    <div id="p_cobre_bar" class="bg-brand-600 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] text-slate-500 leading-relaxed font-mono">
+                            Fórmula general de pérdidas operativas en transformadores en función de la fracción de carga ($\beta = S_{operativa} / S_{nominal}$):
+                            $$P_{totales} = P_{Fe} + \beta^2 \cdot P_{Cu\_nominal}$$
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marco de Referencias Técnicas (Menús Desplegables: Accordions) -->
+            <div class="bg-neutral-900 border border-slate-800 rounded-xl p-5 shadow-md">
+                <h3 class="text-sm font-bold text-white mb-4 flex items-center">
+                    <i class="fa-solid fa-graduation-cap text-brand-600 mr-2"></i> Marco Teórico Desplegable
+                </h3>
+                <div class="space-y-2">
+                    
+                    <!-- Accordion 1 -->
+                    <div class="border border-slate-800 rounded">
+                        <button onclick="toggleAccordion('acc1')" class="w-full flex justify-between items-center px-4 py-2.5 bg-slate-800/30 text-left text-xs font-semibold text-white hover:bg-slate-800/50 transition">
+                            <span>1. Norma de Ensayos y Rigidez Dieléctrica (IEC 60076-1 / IEEE C57)</span>
+                            <i id="icon-acc1" class="fa-solid fa-chevron-down text-slate-400"></i>
+                        </button>
+                        <div id="content-acc1" class="hidden px-4 py-3 border-t border-slate-800 text-xs text-slate-300 space-y-2 leading-relaxed">
+                            <p>
+                                Los transformadores que abastecen urbanizaciones deben resistir ensayos de sobretensiones transitorias provocadas por descargas atmosféricas (rayos) y maniobras en la red de media tensión.
+                            </p>
+                            <ul class="list-disc list-inside space-y-1 text-slate-400">
+                                <li><strong>Nivel Básico de Aislamiento al Impulso (BIL):</strong> Usualmente de 95 kV para líneas de media tensión de 13.2 kV.</li>
+                                <li><strong>Tensión de Ensayo a Frecuencia Industrial:</strong> 28 kV durante 1 minuto.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Accordion 2 -->
+                    <div class="border border-slate-800 rounded">
+                        <button onclick="toggleAccordion('acc2')" class="w-full flex justify-between items-center px-4 py-2.5 bg-slate-800/30 text-left text-xs font-semibold text-white hover:bg-slate-800/50 transition">
+                            <span>2. Selección del Grupo de Conexión (Dyn11)</span>
+                            <i id="icon-acc2" class="fa-solid fa-chevron-down text-slate-400"></i>
+                        </button>
+                        <div id="content-acc2" class="hidden px-4 py-3 border-t border-slate-800 text-xs text-slate-300 space-y-2 leading-relaxed">
+                            <p>
+                                Para distribución secundaria residencial se utiliza prioritariamente la conexión <strong>Delta-Estrella con Neutro accesible (Dyn11)</strong>. 
+                            </p>
+                            <p class="font-semibold text-white">¿Por qué es ideal para el barrio?</p>
+                            <ul class="list-disc list-inside space-y-1 text-slate-400">
+                                <li><strong>Mitigación de Armónicos:</strong> El arrollamiento primario en triángulo (D) proporciona un camino cerrado para las corrientes de triple armónico (3er, 9no armónicos, etc.) inducidas por cargas no lineales domésticas.</li>
+                                <li><strong>Desequilibrio de Carga:</strong> El neutro del secundario permite alimentar cargas monofásicas independientes sin desequilibrar excesivamente el flujo magnético en el primario.</li>
+                                <li><strong>Ángulo de Desfase:</strong> El secundario está desfasado 30° en retraso con respecto al primario (índice horario 11).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Accordion 3 -->
+                    <div class="border border-slate-800 rounded">
+                        <button onclick="toggleAccordion('acc3')" class="w-full flex justify-between items-center px-4 py-2.5 bg-slate-800/30 text-left text-xs font-semibold text-white hover:bg-slate-800/50 transition">
+                            <span>3. Corriente de Cortocircuito y Coordinación de Protecciones</span>
+                            <i id="icon-acc3" class="fa-solid fa-chevron-down text-slate-400"></i>
+                        </button>
+                        <div id="content-acc3" class="hidden px-4 py-3 border-t border-slate-800 text-xs text-slate-300 space-y-2 leading-relaxed">
+                            <p>
+                                La corriente de cortocircuito trifásica en bornes del secundario del transformador está limitada casi en su totalidad por la impedancia de cortocircuito porcentual ($u_{cc}\%$ o $Z_{cc}\%$) de la propia máquina.
+                            </p>
+                            <div class="bg-neutral-950 p-2 rounded text-center font-mono text-brand-600">
+                                $$I_{cc2} = \frac{I_{n2} \cdot 100}{u_{cc}\%}$$
+                            </div>
+                            <p class="text-[10px] text-slate-400 mt-1">
+                                Para potencias residenciales comunes (entre 100 kVA y 1000 kVA), el valor normalizado de $u_{cc}\%$ suele ser de un <strong>4% a un 6%</strong>. Este parámetro define directamente el poder de corte requerido de los interruptores de baja tensión en el tablero principal.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Académico -->
+    <footer class="bg-neutral-900 border-t border-slate-800 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400 space-y-4 md:space-y-0">
+            <div class="flex items-center space-x-2 leading-relaxed">
+                <i class="fa-solid fa-university text-brand-600"></i>
+                <span>Cátedra de Redes de Distribución Eléctrica — Versión Educativa 2024.06</span>
+            </div>
+            <div class="flex space-x-6 leading-relaxed">
+                <a href="#" class="hover:text-white transition">Normas IEC 60076</a>
+                <a href="#" class="hover:text-white transition">Ingeniería de Software Educativa</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica de Simulación y Cálculos en Javascript -->
+    <script>
+        // Listado de Potencias Normalizadas IEC 60076 en kVA ampliado para grandes potencias de distribución
+        const POTENCIAS_NORMALIZADAS = [63, 100, 160, 250, 315, 400, 500, 630, 800, 1000, 1250, 1600, 2000, 2500, 3150, 4000, 5000, 6300, 8000, 10000];
+
+        // Definiciones técnicas rigurosas para la interacción con el esquema unifilar
+        const NODE_DATA = {
+            seccionador: {
+                title: "Celda de Protección y Maniobra en MT",
+                desc: "Aloja las funciones básicas de protección de acometida para subestaciones del tipo aérea o a nivel de piso. Cuenta con un seccionador de maniobra bajo carga de 24 kV y fusibles de potencia de alta capacidad de ruptura. Garantiza la interrupción oportuna del circuito primario en caso de cortocircuitos severos internos en el devanado del transformador."
+            },
+            transformador: {
+                title: "Transformador de Distribución Dyn11",
+                desc: "Es el componente principal de la subestación. Su función física consiste en bajar la tensión del sistema de alimentación de media tensión (13.2 kV o 33.0 kV) a baja tensión (380/220V o 400/230V), acoplando magnéticamente de manera galvánica los dos lados con el grupo de conexión especificado."
+            },
+            interruptor: {
+                title: "Interruptor Automático General de Baja Tensión",
+                desc: "Dispositivo de desconexión termomagnético y electrónico general del tablero de baja tensión (ACB - Air Circuit Breaker). Diseñado para soportar corrientes nominales elevadas y poseer una capacidad de interrupción coordinada que supere con holgura la corriente de cortocircuito máxima simétrica calculada ($I_{cc2}$)."
+            }
+        };
+
+        // Función de inicialización
+        window.onload = function() {
+            updateCalculations();
+        };
+
+        // Función que calcula y actualiza toda la interfaz
+        function updateCalculations() {
+            // Lectura de inputs del simulador
+            const N = parseInt(document.getElementById('num_parcelas').value);
+            const P_viv = parseFloat(document.getElementById('consumo_viv').value);
+            const P_comunes = parseFloat(document.getElementById('potencia_comunes').value) || 0;
+            const P_alumbrado = parseFloat(document.getElementById('alumbrado_publico').value) || 0;
+            const FP = parseFloat(document.getElementById('factor_potencia').value) || 0.9;
+            const factorSeguridad = parseFloat(document.getElementById('factor_seguridad').value);
+            const tensionV1 = parseFloat(document.getElementById('tension_primario').value); // en kV
+            const tensionV2 = parseFloat(document.getElementById('tension_secundario').value); // en kV (L-L)
+
+            // Actualizar etiquetas deslizantes en la vista
+            document.getElementById('val_num_parcelas').innerText = N + " lotes";
+            document.getElementById('val_consumo_viv').innerText = P_viv.toFixed(1) + " kW";
+
+            // 1. Cálculo de Factor de Simultaneidad (Fs) - Fórmula para redes de distribución
+            // Basada en curvas normalizadas internacionales (Fs decrece asintóticamente a 0.2)
+            const Fs = 0.2 + (0.8 / Math.sqrt(N));
+            document.getElementById('val_factor_simultaneidad').innerText = Fs.toFixed(3);
+
+            // 2. Cálculo de Potencias Activas de Diseño
+            const P_residencial_simultanea = N * P_viv * Fs;
+            const P_activa_total = P_residencial_simultanea + P_comunes + P_alumbrado;
+
+            // 3. Cálculo de Potencia Aparente Requerida con Factor de Seguridad (Crecimiento Futuro)
+            const S_aparente_requerida = (P_activa_total / FP) * factorSeguridad;
+
+            // Mostrar Potencia Calculada
+            document.getElementById('potencia_diseno').innerText = S_aparente_requerida.toFixed(1) + " kVA";
+
+            // 4. Selección del Transformador Normalizado IEC 60076 (Inmediato Superior)
+            let S_normalizada = POTENCIAS_NORMALIZADAS[POTENCIAS_NORMALIZADAS.length - 1]; // Fallback por defecto superior
+            for (let i = 0; i < POTENCIAS_NORMALIZADAS.length; i++) {
+                if (POTENCIAS_NORMALIZADAS[i] >= S_aparente_requerida) {
+                    S_normalizada = POTENCIAS_NORMALIZADAS[i];
+                    break;
+                }
+            }
+
+            // Actualizar vista del transformador sugerido
+            document.getElementById('potencia_normalizada').innerText = S_normalizada + " kVA";
+
+            // Tipo de aislamiento recomendado según potencia nominal
+            let tipoAislamiento = "Aceite Mineral / ONAN";
+            let u_cc = 4.0; // Impedancia de cortocircuito porcentual por defecto para potencias pequeñas
+            if (S_normalizada >= 630) {
+                u_cc = 5.0; // Mayor potencia requiere mayor impedancia para limitar corrientes de cortocircuito
+            }
+            if (S_normalizada > 1000) {
+                tipoAislamiento = "Aceite o Seco encapsulado / KNAN";
+                u_cc = 6.0;
+            }
+            if (S_normalizada > 3150) {
+                tipoAislamiento = "Subestación de Potencia - Aceite / ONAN/ONAF";
+                u_cc = 7.0; // Coeficiente elevado para mitigar la elevada potencia de cortocircuito en bornes de BT
+            }
+            document.getElementById('tipo_aislamiento').innerText = tipoAislamiento;
+
+            // 5. Porcentaje de Cargabilidad
+            const cargabilidad = (S_aparente_requerida / S_normalizada) * 100;
+            document.getElementById('cargabilidad_porc').innerText = cargabilidad.toFixed(1) + "% Carga";
+            if (cargabilidad > 90) {
+                document.getElementById('cargabilidad_porc').className = "text-xs font-bold bg-rose-500/25 text-rose-400 px-2 py-1 rounded border border-rose-500/30 block font-mono";
+            } else if (cargabilidad < 60) {
+                document.getElementById('cargabilidad_porc').className = "text-xs font-bold bg-amber-500/25 text-amber-400 px-2 py-1 rounded border border-amber-500/30 block font-mono";
+            } else {
+                document.getElementById('cargabilidad_porc').className = "text-xs font-bold bg-emerald-500/25 text-emerald-400 px-2 py-1 rounded border border-emerald-500/30 block font-mono";
+            }
+
+            // 6. Cálculo de Corrientes Eléctricas Operativas
+            // I = S / (sqrt(3) * V)
+            const I_primaria = S_normalizada / (Math.sqrt(3) * tensionV1);
+            const I_secundaria = S_normalizada / (Math.sqrt(3) * tensionV2);
+
+            document.getElementById('corriente_i1').innerText = I_primaria.toFixed(1) + " A";
+            document.getElementById('corriente_i2').innerText = I_secundaria.toFixed(1) + " A";
+
+            // 7. Estimación de Pérdidas y Eficiencia
+            // Estimamos pérdidas típicas base IEC
+            const P_Fe_nominal = S_normalizada * 0.0022; // Estimado pérdidas constantes (0.22% de la potencia nominal)
+            const P_Cu_nominal = S_normalizada * 0.011;  // Estimado pérdidas variables a carga completa (1.1%)
+            const beta = S_aparente_requerida / S_normalizada; // Factor de carga actual
+            const P_cobre_operativas = Math.pow(beta, 2) * P_Cu_nominal;
+            const Perdidas_totales = P_Fe_nominal + P_cobre_operativas;
+
+            const eficiencia = (1 - (Perdidas_totales / (S_aparente_requerida * FP + Perdidas_totales))) * 100;
+
+            document.getElementById('perdidas_estimadas').innerText = Perdidas_totales.toFixed(2) + " kW";
+            document.getElementById('p_hierro_val').innerText = P_Fe_nominal.toFixed(2) + " kW";
+            document.getElementById('p_cobre_val').innerText = P_cobre_operativas.toFixed(2) + " kW";
+            document.getElementById('eficiencia_porc').innerText = eficiencia.toFixed(2) + "%";
+
+            // Ajustar tamaño visual de las barras de pérdidas
+            const totalWidth = P_Fe_nominal + P_cobre_operativas;
+            const feWidth = (P_Fe_nominal / totalWidth) * 100;
+            const cuWidth = (P_cobre_operativas / totalWidth) * 100;
+            document.getElementById('p_hierro_bar').style.width = feWidth + "%";
+            document.getElementById('p_cobre_bar').style.width = cuWidth + "%";
+
+            // 8. Corriente de Cortocircuito Trifásica en bornes del Secundario
+            const I_cc_secundario = (I_secundaria * 100) / u_cc;
+            document.getElementById('corriente_icc').innerText = (I_cc_secundario / 1000).toFixed(2) + " kA";
+
+            // Actualizar datos del paso 2 del panel de matemáticas
+            document.getElementById('math_p_res').innerText = P_residencial_simultanea.toFixed(1) + " kW";
+            document.getElementById('math_p_serv').innerText = (P_comunes + P_alumbrado).toFixed(1) + " kW";
+            document.getElementById('math_s_dis').innerText = S_aparente_requerida.toFixed(1) + " kVA";
+
+            // Forzar renderizado de KaTeX para nuevas fórmulas dinámicas
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body);
+            }
+        }
+
+        // Navegación entre pestañas de detalle técnico
+        function switchTab(tabName) {
+            const tabs = ['calculo', 'esquema', 'perdidas'];
+            tabs.forEach(tab => {
+                const btn = document.getElementById(`tab-btn-${tab}`);
+                const content = document.getElementById(`tab-content-${tab}`);
+                if (tab === tabName) {
+                    btn.className = "text-xs font-bold px-3 py-1.5 rounded transition text-white border-b-2 border-brand-600";
+                    content.classList.remove('hidden');
+                    content.classList.add('block');
+                } else {
+                    btn.className = "text-xs font-bold px-3 py-1.5 rounded transition text-slate-400 hover:text-white border-b-2 border-transparent";
+                    content.classList.remove('block');
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        // Accordions para el Marco Teórico
+        function toggleAccordion(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+
+        // Mostrar información de los nodos de la subestación interactiva (SVG)
+        function showNodeInfo(nodeKey) {
+            const data = NODE_DATA[nodeKey];
+            if (data) {
+                document.getElementById('node-title').innerText = data.title;
+                document.getElementById('node-desc').innerText = data.desc;
+            }
+        }
+
+        // Restaurar estado inicial de la simulación
+        function resetInputs() {
+            document.getElementById('num_parcelas').value = 120;
+            document.getElementById('consumo_viv').value = 6.0;
+            document.getElementById('potencia_comunes').value = 45;
+            document.getElementById('alumbrado_publico').value = 25;
+            document.getElementById('factor_potencia').value = 0.90;
+            document.getElementById('factor_seguridad').value = "1.20";
+            document.getElementById('tension_primario').value = "13.2";
+            document.getElementById('tension_secundario').value = "0.400";
+            updateCalculations();
+        }
+    </script>
+</body>
+</html>
