@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Eléctrico Mayorista y Marco Regulatorio de la Prov. de Buenos Aires</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for LaTeX Rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Custom Accordion styling */
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .chevron-icon {
+            transform: rotate(180deg);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 leading-relaxed custom-scrollbar">
+
+    <!-- HEADER DE LA MATERIA -->
+    <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-900 text-white border-b border-indigo-800 sticky top-0 z-50 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-blue-500/20 text-blue-300 text-xs font-semibold px-2.5 py-0.5 rounded border border-blue-400/30">ISFT - Nivel Técnico Superior</span>
+                        <span class="text-slate-400 text-xs">Módulo Teórico 3</span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white mt-1">
+                        Organización, Regulación y Funcionamiento del Subsector Eléctrico
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-300">
+                        Mercado Eléctrico Mayorista (MEM), Despacho Económico, Marco Regulatorio de PBA y Calidad de Servicio
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="expandAll()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg border border-slate-700 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-angles-down text-blue-400"></i> Expandir Todo
+                    </button>
+                    <button onclick="collapseAll()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg border border-slate-700 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-angles-up text-blue-400"></i> Colapsar Todo
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- NAVEGACIÓN SECUNDARIA -->
+        <nav class="bg-slate-950/80 backdrop-blur-md border-t border-slate-800/80 text-xs font-medium text-slate-300 overflow-x-auto custom-scrollbar">
+            <div class="max-w-7xl mx-auto px-4 flex space-x-6 py-2.5 whitespace-nowrap">
+                <a href="#sec-tipos-mercado" class="hover:text-blue-400 transition flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-blue-400"></i> 1. Tipos de Mercado MEM</a>
+                <a href="#sec-precios" class="hover:text-blue-400 transition flex items-center gap-1.5"><i class="fa-solid fa-coins text-amber-400"></i> 2. Precios Mayoristas y Costos</a>
+                <a href="#sec-despacho" class="hover:text-blue-400 transition flex items-center gap-1.5"><i class="fa-solid fa-bolt text-yellow-400"></i> 3. Despacho Económico y CMg</a>
+                <a href="#sec-pba" class="hover:text-blue-400 transition flex items-center gap-1.5"><i class="fa-solid fa-map-location-dot text-emerald-400"></i> 4. Organización PBA & Concesiones</a>
+                <a href="#sec-mapa" class="hover:text-blue-400 transition flex items-center gap-1.5"><i class="fa-solid fa-map text-teal-400"></i> Mapa Distribución PBA</a>
+                <a href="#sec-oceba" class="hover:text-blue-400 transition flex items-center gap-1.5"><i class="fa-solid fa-building-columns text-cyan-400"></i> 5. Autoridad & OCEBA</a>
+                <a href="#sec-calidad" class="hover:text-blue-400 transition flex items-center gap-1.5"><i class="fa-solid fa-wave-square text-purple-400"></i> 6. Calidad (SAIFI / SAIDI)</a>
+                <a href="#sec-glosario" class="hover:text-blue-400 transition flex items-center gap-1.5"><i class="fa-solid fa-book text-amber-400"></i> 7. Glosario de Siglas</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+        <!-- RESUMEN DE OBJETIVOS PEDAGÓGICOS Y HOJA DE RUTA -->
+        <section class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2.5">
+                        <i class="fa-solid fa-graduation-cap text-indigo-600 text-2xl"></i> 
+                        Hoja de Ruta Pedagógica & Núcleos Conceptuales
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                        Marco de competencias y estructuración curricular para la comprensión integral de la arquitectura eléctrica nacional y provincial.
+                    </p>
+                </div>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold border border-indigo-200 shrink-0">
+                    <i class="fa-solid fa-compass"></i> Guía Curricular Teórico-Práctica
+                </span>
+            </div>
+
+            <!-- Pilares Pedagógicos Extendidos -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Pilar 1 -->
+                <div class="p-5 rounded-xl bg-slate-50 border border-slate-200/90 hover:border-indigo-400 hover:shadow-md transition duration-200 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-100/70 px-2.5 py-0.5 rounded">Eje Regulatorio</span>
+                        <i class="fa-solid fa-scale-balanced text-indigo-600 text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-indigo-950 text-base">1. Mercado & Precios Mayoristas (Ley 24.065)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Descomposición analítica del Mercado Eléctrico Mayorista (MEM). Comprensión de los 3 segmentos comerciales (Spot, A Término y Estacional), las modalidades de remuneración de potencia y energía, y la diferencia crítica entre <strong>Costos Variables de Corto Plazo</strong> y <strong>Costos Fijos de Largo Plazo</strong>.
+                    </p>
+                    <div class="pt-2 border-t border-slate-200 text-[11px] text-slate-500 font-medium flex items-center justify-between">
+                        <span>• Ley 24.065 / Res. SE</span>
+                        <span class="text-indigo-700 font-semibold">Competencia N°1</span>
+                    </div>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="p-5 rounded-xl bg-slate-50 border border-slate-200/90 hover:border-amber-400 hover:shadow-md transition duration-200 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100/70 px-2.5 py-0.5 rounded">Eje Operativo</span>
+                        <i class="fa-solid fa-microchip text-amber-600 text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-amber-950 text-base">2. Despacho Hidrotérmico & CMg</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Operación técnica a cargo de CAMMESA como Organismo Encargado del Despacho (OED). Criterios económicos de ordenamiento por costo incremental directo ($\text{CVP} + \text{CVT} + \text{ENS}$), despacho referenciado al Nodo de Carga Ezeiza, y cálculo dinámico del <strong>Costo Marginal ($CMg$)</strong> por la unidad marginante en la punta.
+                    </p>
+                    <div class="pt-2 border-t border-slate-200 text-[11px] text-slate-500 font-medium flex items-center justify-between">
+                        <span>• CAMMESA / OED</span>
+                        <span class="text-amber-700 font-semibold">Competencia N°2</span>
+                    </div>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="p-5 rounded-xl bg-slate-50 border border-slate-200/90 hover:border-emerald-400 hover:shadow-md transition duration-200 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100/70 px-2.5 py-0.5 rounded">Eje Subsectorial PBA</span>
+                        <i class="fa-solid fa-landmark text-emerald-600 text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-emerald-950 text-base">3. Regulación PBA, OCEBA & Calidad</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Marco Regulatorio Provincial (Ley 11.769), distribución por zonas (EDEA, EDEN, EDES, EDELAP y Cooperativas), rol del Organismo de Control de Energía Eléctrica de la Provincia de Buenos Aires (OCEBA) y métricas internacionales IEEE Standard 1366 (SAIFI, SAIDI, CAIDI, ASAI).
+                    </p>
+                    <div class="pt-2 border-t border-slate-200 text-[11px] text-slate-500 font-medium flex items-center justify-between">
+                        <span>• Ley 11.769 / IEEE 1366</span>
+                        <span class="text-emerald-700 font-semibold">Competencia N°3</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 1: TIPOS DE MERCADO EN EL MEM -->
+        <section id="sec-tipos-mercado" class="space-y-6">
+            <div class="border-l-4 border-indigo-600 pl-4 py-1">
+                <h2 class="text-2xl font-bold text-slate-900">1. Tipos de Mercados en el Mercado Eléctrico Mayorista (MEM)</h2>
+                <p class="text-sm text-slate-600">
+                    Estructura regulada conforme a la Ley N° 24.065 para la transacción comercial de energía, potencia y servicios de red a nivel federal.
+                </p>
+            </div>
+
+            <!-- Desglose Profundo de los 3 Mercados -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Mercado Spot -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 border border-indigo-200 px-2.5 py-1 rounded-md">
+                                Corto Plazo / Horario
+                            </span>
+                            <i class="fa-solid fa-bolt-lightning text-indigo-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Mercado Spot (Instantáneo)</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            Es el ámbito de despacho horario coordinado en tiempo real por la <strong>Compañía Administradora del Mercado Mayorista Eléctrico S.A. (CAMMESA)</strong> donde se saldan todas las inyecciones y retiros de energía no comprometidas contractualmente.
+                        </p>
+                        
+                        <div class="space-y-2 text-xs border-t border-slate-100 pt-3">
+                            <div class="font-bold text-slate-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-dot text-indigo-500 text-[10px]"></i> Mecanismo de Precios:
+                            </div>
+                            <p class="text-slate-600 pl-3">
+                                Se liquida en función del <strong>Costo Marginal Nodal de Energía ($CMg$)</strong> de la hora, determinado por la máquina más costosa requerida para satisfacer el último megavatio de la demanda.
+                            </p>
+
+                            <div class="font-bold text-slate-800 flex items-center gap-1.5 pt-2">
+                                <i class="fa-solid fa-circle-dot text-indigo-500 text-[10px]"></i> Dinámica Operativa:
+                            </div>
+                            <ul class="text-slate-600 pl-3 list-disc space-y-1">
+                                <li>Precios horarios highly variables según disponibilidad hídrica, combustible diésel/gas y demanda climática.</li>
+                                <li>Referenciado obligatoriamente al <strong>Nodo de Carga Ezeiza 500 kV</strong> mediante Factores de Nodo ($FN$).</li>
+                                <li>Funciona como mercado de despeje (clearing) instantáneo para desbalances.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50/60 p-3 text-[11px] text-indigo-900 border-t border-indigo-100 font-semibold text-center">
+                        Riesgo: Alta volatilidad de precios por factores coyunturales
+                    </div>
+                </div>
+
+                <!-- Mercado a Término -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-md">
+                                Contratos Bilaterales (MAT / MATER)
+                            </span>
+                            <i class="fa-solid fa-file-contract text-emerald-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Mercado a Término (MAT)</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            Acuerdos de libre negociación directa entre agentes generadores y Grandes Usuarios (GUMA/GUME) o comercializadores, fijando volumen, precio y plazo a mediano y largo plazo.
+                        </p>
+
+                        <div class="space-y-2 text-xs border-t border-slate-100 pt-3">
+                            <div class="font-bold text-slate-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-dot text-emerald-500 text-[10px]"></i> Submercado MATER (Energías Renovables):
+                            </div>
+                            <p class="text-slate-600 pl-3">
+                                Creado bajo la Ley 27.191 para permitir que Grandes Usuarios compren energía limpia directamente a parques eólicos o solares para cumplir con las metas individuales de descarbonización.
+                            </p>
+
+                            <div class="font-bold text-slate-800 flex items-center gap-1.5 pt-2">
+                                <i class="fa-solid fa-circle-dot text-emerald-500 text-[10px]"></i> Tipología Contratación:
+                            </div>
+                            <ul class="text-slate-600 pl-3 list-disc space-y-1">
+                                <li>Contratos de Cobertura Financiera o Abastecimiento Físico.</li>
+                                <li>Cláusulas Take-or-Pay o Pay-as-Produced.</li>
+                                <li>Requieren prioridad de asignación de capacidad de transporte otorgada por CAMMESA.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-50/60 p-3 text-[11px] text-emerald-900 border-t border-emerald-100 font-semibold text-center">
+                        Cobertura: Mitiga la incertidumbre tarifaria para la industria
+                    </div>
+                </div>
+
+                <!-- Mercado Estacional -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-md">
+                                Precio Estabilizado / Cautivo
+                            </span>
+                            <i class="fa-solid fa-calendar-days text-amber-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Mercado Estacional (PEST)</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            Esquema regulado mediante el cual la Secretaría de Energía (SSEE) establece precios previsibles de la energía y potencia para los Distribuidores que atienden la demanda no regulada (usuarios residenciales y PyMEs).
+                        </p>
+
+                        <div class="space-y-2 text-xs border-t border-slate-100 pt-3">
+                            <div class="font-bold text-slate-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-dot text-amber-500 text-[10px]"></i> Programaciones Semestrales:
+                            </div>
+                            <p class="text-slate-600 pl-3">
+                                Se fijan en la Reprogramación Estacional de Verano (1 de noviembre al 30 de abril) y de Invierno (1 de mayo al 31 de octubre), con ajustes trimestrales.
+                            </p>
+
+                            <div class="font-bold text-slate-800 flex items-center gap-1.5 pt-2">
+                                <i class="fa-solid fa-circle-dot text-amber-500 text-[10px]"></i> Fondo Estabilizador del MEM:
+                            </div>
+                            <ul class="text-slate-600 pl-3 list-disc space-y-1">
+                                <li>Administrado por CAMMESA para absorber descalces entre el $CMg$ spot real y el Precio Estacional sancionado.</li>
+                                <li>Evita trasladar picos estacionales extremos a las facturas del consumidor final.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50/60 p-3 text-[11px] text-amber-900 border-t border-amber-100 font-semibold text-center">
+                        Estabilidad: Protege a los consumidores cautivos de variaciones abruptas
+                    </div>
+                </div>
+            </div>
+
+            <!-- CUADRO COMPARATIVO SISTÉMICO DE LOS MERCADOS -->
+            <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-4">
+                <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-table-list text-indigo-600"></i> Matriz Comparativa Sintética de los Tres Mercados del MEM
+                </h3>
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900 text-white font-semibold">
+                                <th class="p-3 rounded-tl-lg">Parámetro / Característica</th>
+                                <th class="p-3">Mercado Spot</th>
+                                <th class="p-3">Mercado a Término (MAT / MATER)</th>
+                                <th class="p-3 rounded-tr-lg">Mercado Estacional (PEST)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-slate-900">Horizonte Temporal</td>
+                                <td class="p-3">Horario (en tiempo real, $24 \text{ hs}$)</td>
+                                <td class="p-3">Mediano / Largo plazo ($1$ a $15$ años)</td>
+                                <td class="p-3">Semestral (Ajustes trimestrales)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-slate-900">Determinación de Precio</td>
+                                <td class="p-3 text-indigo-700 font-medium">Costo Marginal ($CMg$) de la máquina en punta</td>
+                                <td class="p-3 text-emerald-700 font-medium">Libre acuerdo bilateral vendedor-comprador</td>
+                                <td class="p-3 text-amber-700 font-medium">Sanción administrativa (Secretaría de Energía)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-slate-900">Compradores Principales</td>
+                                <td class="p-3">Desbalanceros del sistema / Agentes Spot</td>
+                                <td class="p-3">Grandes Usuarios ($>300 \text{ kW}$, GUMA/GUME)</td>
+                                <td class="p-3">Distribuidores Eléctricos (EDEA, EDEN, EDES, EDELAP, Cooperativas)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-slate-900">Destino de la Energía</td>
+                                <td class="p-3">Ajuste de faltantes / excedentes instantáneos</td>
+                                <td class="p-3">Suministro de Grandes Clientes Industriales</td>
+                                <td class="p-3">Demanda cautiva residencial, comercial y PyME</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-slate-900">Ente Administrador / Regulador</td>
+                                <td class="p-3">CAMMESA (OED)</td>
+                                <td class="p-3">CAMMESA (Registro) / ENRE - SSEE</td>
+                                <td class="p-3">Secretaría de Energía / OCEBA (en PBA)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: FORMACIÓN DE PRECIOS MAYORISTAS -->
+        <section id="sec-precios" class="space-y-4">
+            <div class="border-l-4 border-amber-500 pl-4 py-1">
+                <h2 class="text-2xl font-bold text-slate-900">2. Formación de los Precios Mayoristas en el MEM (Ley N° 24.065)</h2>
+                <p class="text-sm text-slate-600">Criterios de regulación fijados por el Poder Ejecutivo Nacional (PEN) mediante la Secretaría de Energía (SSEE).</p>
+            </div>
+
+            <!-- ACORDEÓN: REMUNERACIÓN DEL MEM -->
+            <details class="group bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden" open>
+                <summary class="flex items-center justify-between p-5 cursor-pointer bg-slate-50 hover:bg-slate-100/80 transition select-none">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-600 flex items-center justify-center font-bold text-sm">A</div>
+                        <h3 class="text-base font-bold text-slate-800">Conceptos Remunerados en el Mercado Eléctrico Mayorista</h3>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-slate-400 chevron-icon transition-transform duration-200"></i>
+                </summary>
+                <div class="p-6 border-t border-slate-200 space-y-4 text-xs sm:text-sm text-slate-700">
+                    <p class="leading-relaxed">
+                        De acuerdo con la reglamentación de la <strong>Ley N° 24.065</strong>, la remuneración a los agentes generadores y prestadores de servicios del sistema se desglosa strictly en cuatro ejes fundamentales:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
+                        <div class="p-4 rounded-xl bg-amber-50/50 border border-amber-200/60">
+                            <div class="font-bold text-amber-900 mb-1 flex items-center gap-2"><i class="fa-solid fa-clock"></i> 1. Energía por Períodos Horarios</div>
+                            <p class="text-slate-600 text-xs">Remuneración por MWh producido discriminado en 3 bloques horarios:</p>
+                            <ul class="mt-2 space-y-1 text-xs text-slate-700">
+                                <li>• <strong>Punta:</strong> Horas de máximo requerimiento.</li>
+                                <li>• <strong>Valle:</strong> Horas nocturnas de menor consumo.</li>
+                                <li>• <strong>Resto:</strong> Horas intermedias diurnas.</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-xl bg-blue-50/50 border border-blue-200/60">
+                            <div class="font-bold text-blue-900 mb-1 flex items-center gap-2"><i class="fa-solid fa-plug text-blue-600"></i> 2. Potencia / Capacidad</div>
+                            <p class="text-slate-600 text-xs">Pago por disponibilidad y capacidad de producción puesta a disposición de la demanda, garantizando el margen de reserva operativa del sistema.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-emerald-50/50 border border-emerald-200/60">
+                            <div class="font-bold text-emerald-900 mb-1 flex items-center gap-2"><i class="fa-solid fa-gears text-emerald-600"></i> 3. Servicios Complementarios (SADI)</div>
+                            <p class="text-slate-600 text-xs">Servicios técnicos indispensables para la estabilidad del Sistema Argentino de Interconexión (SADI):</p>
+                            <ul class="mt-2 space-y-1 text-xs text-slate-700">
+                                <li>• Regulación primaria y secundaria de frecuencia.</li>
+                                <li>• Regulación de tensión (energía reactiva).</li>
+                                <li>• Reserva rápida y arranque en negro (black-start).</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-xl bg-purple-50/50 border border-purple-200/60">
+                            <div class="font-bold text-purple-900 mb-1 flex items-center gap-2"><i class="fa-solid fa-network-wired text-purple-600"></i> 4. Servicios de Transporte</div>
+                            <p class="text-slate-600 text-xs">Remuneración a transportistas por:</p>
+                            <ul class="mt-2 space-y-1 text-xs text-slate-700">
+                                <li>• Capacidad de transformación y transporte en líneas.</li>
+                                <li>• Costos de conexión.</li>
+                                <li>• Pérdidas de transmisión y cánones por ampliación.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACORDEÓN: COSTOS DE CORTO Y LARGO PLAZO -->
+            <details class="group bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mt-3" open>
+                <summary class="flex items-center justify-between p-5 cursor-pointer bg-slate-50 hover:bg-slate-100/80 transition select-none">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-600 flex items-center justify-center font-bold text-sm">B</div>
+                        <h3 class="text-base font-bold text-slate-800">Estructura Económica: Costos a Corto Plazo vs. Largo Plazo</h3>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-slate-400 chevron-icon transition-transform duration-200"></i>
+                </summary>
+                <div class="p-6 border-t border-slate-200 space-y-6 text-xs sm:text-sm text-slate-700">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Corto Plazo -->
+                        <div class="p-5 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                            <div class="flex items-center gap-2 text-indigo-900 font-bold text-base">
+                                <i class="fa-solid fa-stopwatch text-indigo-600"></i> Costos de Corto Plazo (Costos Variables)
+                            </div>
+                            <p class="text-slate-600 leading-relaxed">
+                                Son los costos directamente asociados con el <strong>uso eficiente de los recursos disponibles</strong> para abastecer la demanda en el tiempo presente. Responden a alteraciones coyunturales de la demanda sin modificar la capacidad instalada.
+                            </p>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-2 text-xs">
+                                <span class="font-semibold text-slate-800 block">Componentes Específicos:</span>
+                                <ul class="list-disc pl-4 space-y-1 text-slate-600">
+                                    <li>Costo de producción de energía por período horario (combustible, fletes, insumos directos).</li>
+                                    <li>Operación y Mantenimiento Variable (OyM Variable).</li>
+                                    <li><strong>Factores de Nodo ($FN$):</strong> Penalizaciones o bonificaciones según las pérdidas de transmisión en la red eléctrica hasta el nodo de referencia.</li>
+                                    <li>Cargos variables por Función Técnica de Transporte Efectuada por Agentes No Transportistas (FTT).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Largo Plazo -->
+                        <div class="p-5 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                            <div class="flex items-center gap-2 text-amber-900 font-bold text-base">
+                                <i class="fa-solid fa-chart-line text-amber-600"></i> Costos de Largo Plazo (Costos Fijos)
+                            </div>
+                            <p class="text-slate-600 leading-relaxed">
+                                Son los costos relacionados con la <strong>expansión de la capacidad de generación y transmisión</strong> para abastecer la demanda futura de potencia y acotar los costos de falla (mantenimiento de la adaptación del sistema).
+                            </p>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-2 text-xs">
+                                <span class="font-semibold text-slate-800 block">Componentes Específicos:</span>
+                                <ul class="list-disc pl-4 space-y-1 text-slate-600">
+                                    <li>Costo de la capacidad de generación puesta a disposición ($\text{\$/MW-mes}$).</li>
+                                    <li>Gravámenes remunerativos de los servicios asociados con la potencia.</li>
+                                    <li><strong>Factores de Adaptación Nodal</strong> del sistema de transporte.</li>
+                                    <li>Cargos por uso de capacidad de transmisión: <em>Cargo por Conexión</em>, <em>Cargo por Transformación</em>, <em>Cargo por Capacidad de Transporte</em> y <em>Cargo Complementario</em>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </section>
+
+        <!-- SECCIÓN 3: DESPACHO ECONÓMICO Y COSTO MARGINAL -->
+        <section id="sec-despacho" class="space-y-4">
+            <div class="border-l-4 border-yellow-500 pl-4 py-1">
+                <h2 class="text-2xl font-bold text-slate-900">3. Despacho Económico de Generación y Costo Marginal (CMg)</h2>
+                <p class="text-sm text-slate-600">Metodología de minimización de costos operativos ejecutada por el Organismo Encargado del Despacho (CAMMESA / OED).</p>
+            </div>
+
+            <!-- TEORÍA DEL COSTO MARGINAL -->
+            <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-4">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-calculator text-yellow-600"></i> Teoría del Costo Marginal de Energía Eléctrica
+                </h3>
+                <div class="p-4 rounded-xl bg-yellow-50/60 border border-yellow-200 text-slate-800 text-xs sm:text-sm">
+                    <strong>Definición Teórica:</strong> El Costo Marginal ($CMg$) representa el costo económico de suministrar un megavatio-hora ($\text{MWh}$) adicional al sistema eléctrico en un instante determinado.
+                    <p class="mt-2 text-slate-600">
+                        Como CAMMESA realiza el despacho de las centrales en un <strong>orden creciente de costos</strong>, en la práctica el $CMg$ resulta ser igual al <strong>costo de producción de la unidad generadora más cara (unidad que margina)</strong> que se encuentra operando en el sistema en ese instante específico.
+                    </p>
+                </div>
+
+                <!-- Factores que Afectan al CMg en Argentina -->
+                <div class="mt-4">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Variables determinantes del CMg en la matriz argentina</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs">
+                            <div class="font-bold text-slate-800 mb-1"><i class="fa-solid fa-cloud-showers-water text-blue-500"></i> Año Hidrológico</div>
+                            <p class="text-slate-600">En períodos de sequía disminuye el aporte hidráulico de bajo costo y se incrementa el despacho térmico caro, elevando el CMg.</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs">
+                            <div class="font-bold text-slate-800 mb-1"><i class="fa-solid fa-oil-well text-amber-600"></i> Combustibles Líquidos</div>
+                            <p class="text-slate-600">El precio y consumo de Fuel Oil y Gas Oil para unidades diésel o turbinas de gas en horas pico condicionan la punta.</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs">
+                            <div class="font-bold text-slate-800 mb-1"><i class="fa-solid fa-fire text-orange-500"></i> Gas Natural</div>
+                            <p class="text-slate-600">Disponibilidad del recurso gasífero y precios de importación (GNL/Gasoductos) frente a prioridades residenciales.</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs">
+                            <div class="font-bold text-slate-800 mb-1"><i class="fa-solid fa-wrench text-slate-600"></i> Costos de OyM</div>
+                            <p class="text-slate-600">Costos variables de operación y mantenimiento específicos asociados a la producción real de cada tecnología.</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs">
+                            <div class="font-bold text-slate-800 mb-1"><i class="fa-solid fa-temperature-high text-red-500"></i> Clima y Temperatura</div>
+                            <p class="text-slate-600">Temperaturas extremas en verano e invierno disparan la demanda pico, requiriendo máquinas de empuntamiento cara.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROGRAMACIÓN DEL DESPACHO DE CAMMESA -->
+            <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-4">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-diagram-project text-indigo-600"></i> Programación del Despacho Hidrotérmico por el OED (CAMMESA)
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    El OED efectúa la programación en tres horizontes temporales para satisfacer la demanda bajo criterios de calidad, seguridad y mínimo costo, propendiendo a que los precios en el Mercado Spot surjan del costo marginal de producción y transporte referidos al <strong>Centro de Carga del Sistema (Nodo Ezeiza)</strong>.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 rounded-xl border border-indigo-200 bg-indigo-50/40">
+                        <span class="font-bold text-indigo-900 block text-sm mb-1">1. Programación Estacional</span>
+                        <p class="text-slate-600">Modelo de largo plazo (semestral/trimestral). Determina las metas de reserva de agua en embalses y la previsión de abastecimiento de combustibles.</p>
+                    </div>
+                    <div class="p-4 rounded-xl border border-indigo-200 bg-indigo-50/40">
+                        <span class="font-bold text-indigo-900 block text-sm mb-1">2. Programación Semanal</span>
+                        <p class="text-slate-600">Basada en la estacional. Incorpora el <strong>Valor del Agua ($VA$)</strong> declarado por las centrales hidráulicas optimizables con capacidad de acumulación estacional.</p>
+                    </div>
+                    <div class="p-4 rounded-xl border border-indigo-200 bg-indigo-50/40">
+                        <span class="font-bold text-indigo-900 block text-sm mb-1">3. Programación Diaria</span>
+                        <p class="text-slate-600">Modelo hidrotérmico detallado. Su función objetivo es <strong>minimizar el costo operativo total ($COT$)</strong> referenciado al Nodo Ezeiza.</p>
+                    </div>
+                </div>
+
+                <!-- Ecuación de Minimización del Costo Operativo -->
+                <div class="p-4 rounded-xl bg-slate-900 text-slate-100 code-font text-xs sm:text-sm space-y-2">
+                    <span class="text-amber-400 font-bold block">// Función Objetivo de Minimización del Despacho Diario (Referido a Nodo Ezeiza)</span>
+                    <p class="text-center py-2 text-base text-yellow-300 font-mono">
+                        $$\min \text{Costo Operativo} = \sum \text{CVP} + \sum \text{CVT} + \text{ENS}$$
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
+                        <div><strong class="text-indigo-300">CVP:</strong> Costo Variable de Producción (Combustible + Fletes + OyM variable).</div>
+                        <div><strong class="text-indigo-300">CVT:</strong> Costo Variable de Transporte (Pérdidas de transmisión).</div>
+                        <div><strong class="text-indigo-300">ENS:</strong> Valorización de la Energía No Suministrada (Falla de corte).</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EJEMPLO DEMOSTRATIVO DE ORDEN DE DESPACHO HORARIO -->
+            <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                    <h4 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> Ejemplo Práctico: Despacho por Orden Creciente de Costos Marginales ($CM_i$)
+                    </h4>
+                    <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md font-mono">Criterio: CM1 < CM2 < ... < CMn</span>
+                </div>
+
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    A continuación se muestra el esquema analítico de despeje de máquinas para dos intervalos horarios consecutivos (7-8 hs y 8-9 hs), ilustrando cómo la unidad con mayor costo marginal requerida para cubrir la demanda pasa a ser la unidad que <strong>"margina"</strong> el precio spot del sistema.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Intervalo 7 a 8 hs -->
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-slate-800 text-xs sm:text-sm">Intervalo Horario: 07:00 hs - 08:00 hs</span>
+                            <span class="text-xs bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded">Unidad Marginante: Pg6</span>
+                        </div>
+
+                        <div class="space-y-1.5 code-font text-xs">
+                            <div class="p-2 bg-red-100 border border-red-300 rounded text-red-900 font-bold flex justify-between">
+                                <span>Bloque Pg6 (UNIDAD QUE MARGINA)</span>
+                                <span>CM6 [$/MWh]</span>
+                            </div>
+                            <div class="p-1.5 bg-white border border-slate-200 rounded flex justify-between text-slate-700">
+                                <span>Bloque Pg5</span>
+                                <span>CM5 [$/MWh]</span>
+                            </div>
+                            <div class="p-1.5 bg-white border border-slate-200 rounded flex justify-between text-slate-700">
+                                <span>Bloque Pg4</span>
+                                <span>CM4 [$/MWh]</span>
+                            </div>
+                            <div class="p-1.5 bg-white border border-slate-200 rounded flex justify-between text-slate-700">
+                                <span>Bloque Pg9</span>
+                                <span>CM9 [$/MWh]</span>
+                            </div>
+                            <div class="p-1.5 bg-white border border-slate-200 rounded flex justify-between text-slate-700">
+                                <span>Bloque Pg3</span>
+                                <span>CM3 [$/MWh]</span>
+                            </div>
+                            <div class="p-1.5 bg-white border border-slate-200 rounded flex justify-between text-slate-700">
+                                <span>Bloque Pg7 (Base de menor costo)</span>
+                                <span>CM7 [$/MWh]</span>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-600 italic">
+                            Relación de Costos: $CM_7 < CM_3 < CM_9 < CM_4 < CM_5 < CM_6$. La máquina en la punta de abastecimiento es la N°6.
+                        </p>
+                    </div>
+
+                    <!-- Intervalo 8 a 9 hs -->
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-slate-800 text-xs sm:text-sm">Intervalo Horario: 08:00 hs - 09:00 hs</span>
+                            <span class="text-xs bg-red-100 text-red-800 font-bold px-2 py-0.5 rounded">Unidad Marginante: Pg12</span>
+                        </div>
+
+                        <div class="space-y-1.5 code-font text-xs">
+                            <div class="p-2 bg-red-200 border border-red-400 rounded text-red-950 font-bold flex justify-between">
+                                <span>Bloque Pg12 (NUEVA UNIDAD MARGINANTE)</span>
+                                <span>CM12 [$/MWh]</span>
+                            </div>
+                            <div class="p-1.5 bg-white border border-slate-200 rounded flex justify-between text-slate-700">
+                                <span>Bloque Pg6</span>
+                                <span>CM6 [$/MWh]</span>
+                            </div>
+                            <div class="p-1.5 bg-white border border-slate-200 rounded flex justify-between text-slate-700">
+                                <span>Bloque Pg5</span>
+                                <span>CM5 [$/MWh]</span>
+                            </div>
+                            <div class="p-1.5 bg-white border border-slate-200 rounded flex justify-between text-slate-700">
+                                <span>Bloque Pg9</span>
+                                <span>CM9 [$/MWh]</span>
+                            </div>
+                            <div class="p-1.5 bg-white border border-slate-200 rounded flex justify-between text-slate-700">
+                                <span>Bloque Pg3</span>
+                                <span>CM3 [$/MWh]</span>
+                            </div>
+                            <div class="p-1.5 bg-white border border-slate-200 rounded flex justify-between text-slate-700">
+                                <span>Bloque Pg7</span>
+                                <span>CM7 [$/MWh]</span>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-600 italic">
+                            Relación de Costos: $CM_7 < CM_3 < CM_9 < CM_5 < CM_6 < CM_{12}$. Al incrementarse la demanda a las 8hs, entra en servicio $Pg_{12}$, encareciendo la hora spot.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-amber-50 rounded-lg border border-amber-200 text-amber-900 text-xs">
+                    <i class="fa-solid fa-lightbulb text-amber-600 mr-1"></i> <strong>Conclusión Académica:</strong> Las unidades con menor costo marginal operan en la base continua del sistema. Las unidades de costo alto solo ingresan en las horas pico (punta), elevando el costo marginal horario del sistema.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: ORGANIZACIÓN EN PROVINCIA DE BUENOS AIRES -->
+        <section id="sec-pba" class="space-y-6">
+            <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                <h2 class="text-2xl font-bold text-slate-900">4. Organización del Sector Eléctrico en la Provincia de Buenos Aires (PBA)</h2>
+                <p class="text-sm text-slate-600">
+                    Marco de organización territorial y concesiones de distribución instituido por la Ley Provincial N° 11.769.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Distribuidores Privados Concesionados -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-building-user text-emerald-600"></i> Empresas Distribuidoras Concesionadas
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        En PBA, el servicio público de distribución técnica y comercial se encuentra dividido en cuatro grandes áreas geográficas de concesión exclusiva:
+                    </p>
+
+                    <div class="space-y-2 text-xs">
+                        <div class="p-3 rounded-lg bg-emerald-50/60 border border-emerald-200">
+                            <span class="font-bold text-emerald-950 block">EDEA S.A. (Empresa Distribuidora de Energía Atlántica)</span>
+                            <p class="text-slate-600 mt-0.5">Cubre Mar del Plata, Miramar, Necochea, Tandil, Dolores y la costa atlántica central/sur.</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-emerald-50/60 border border-emerald-200">
+                            <span class="font-bold text-emerald-950 block">EDEN S.A. (Empresa Distribuidora de Energía del Norte)</span>
+                            <p class="text-slate-600 mt-0.5">Atiende el norte y noroeste provincial (San Nicolás, Junín, Pergamino, Campana, Chivilcoy).</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-emerald-50/60 border border-emerald-200">
+                            <span class="font-bold text-emerald-950 block">EDES S.A. (Empresa Distribuidora de Energía del Sur)</span>
+                            <p class="text-slate-600 mt-0.5">Suministra al sudoeste bonaerense con centro de carga principal en Bahía Blanca.</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-emerald-50/60 border border-emerald-200">
+                            <span class="font-bold text-emerald-950 block">EDELAP S.A. (Empresa Distribuidora La Plata)</span>
+                            <p class="text-slate-600 mt-0.5">Comprende la capital provincial (La Plata, Berisso, Ensenada, Brandsen, Magdalena y Punta Indio).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cooperativas Eléctricas y Concesiones Municipales -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-users-gear text-cyan-600"></i> Cooperativas Eléctricas y Ámbito Municipal
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Además de las cuatro grandes licenciatarias, coexisten más de <strong>200 Cooperativas Eléctricas de Servicios Públicos</strong> bajo concesiones otorgadas por municipios o el Estado provincial.
+                    </p>
+
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                            <span class="font-bold text-slate-900 block">Concesiones Municipales:</span>
+                            <p class="text-slate-600 mt-1">
+                                Otorgadas por los Concejos Deliberantes locales para abastecer cascos urbanos y zonas rurales específicas no cubiertas por las concesionarias zonales.
+                            </p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                            <span class="font-bold text-slate-900 block">Subsector Cooperativo:</span>
+                            <p class="text-slate-600 mt-1">
+                                Entidades de capital asociativo integradas en federaciones (como FEDECOBA, APEBA, FICE, CREBA) que compran energía al MEM o a las distribuidoras regionales para prestar servicio a sus asociados.
+                            </p>
+                        </div>
+                        <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+                            <i class="fa-solid fa-circle-info text-amber-600 mr-1"></i> Todas las distribuidoras y cooperativas en PBA están sujetas a la Ley N° 11.769 y al control del OCEBA.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE MAPA DE DISTRIBUCIÓN ELÉCTRICA EN PBA -->
+        <section id="sec-mapa" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-0.5 rounded border border-teal-200">
+                            Representación Cartográfica
+                        </span>
+                        <span class="text-slate-500 text-xs font-medium">Fuente Oficial: OCEBA / ResearchGate</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mt-1 flex items-center gap-2">
+                        <i class="fa-solid fa-map-location text-teal-600"></i>
+                        Mapa de Distribución de la Energía Eléctrica en la Provincia de Buenos Aires
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+                        Delimitación geográfica de las áreas de concesión de EDEA, EDEN, EDES, EDELAP y el sector de Cooperativas Eléctricas.
+                    </p>
+                </div>
+                <a href="https://www.researchgate.net/figure/Figura-2-Distribucion-de-la-energia-electrica-en-la-provincia-de-Buenos-Aires-Fuente_fig1_333058685" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-2 text-xs font-semibold bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 px-3.5 py-2 rounded-lg transition shrink-0">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Fuente Original en ResearchGate
+                </a>
+            </div>
+
+            <!-- Contenedor Visual de la Imagen -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <!-- Marco de la imagen con visualizador -->
+                <div class="lg:col-span-7 bg-slate-900/5 rounded-xl p-3 border border-slate-200 text-center flex flex-col items-center justify-center min-h-[320px]">
+                    <img src="https://www.researchgate.net/profile/Luciana-Clementi/publication/333058685/figure/fig1/AS:758129757691905@1557764724214/Figura-2-Distribucion-de-la-energia-electrica-en-la-provincia-de-Buenos-Aires-Fuente.png" 
+                         alt="Mapa de Distribución de Energía Eléctrica en la Provincia de Buenos Aires (OCEBA / ResearchGate)" 
+                         class="max-h-[520px] w-auto h-auto object-contain rounded-lg shadow-md hover:scale-[1.01] transition duration-300"
+                         onerror="this.onerror=null; this.src='https://www.researchgate.net/figure/Figura-2-Distribucion-de-la-energia-electrica-en-la-provincia-de-Buenos-Aires-Fuente_fig1_333058685';">
+                    
+                    <p class="text-[11px] text-slate-500 italic mt-3">
+                        <i class="fa-solid fa-circle-info mr-1"></i> Figura 2: Distribución territorial de las áreas de concesión reguladas por OCEBA (Ley 11.769).
+                    </p>
+                </div>
+
+                <!-- Panel Explicativo e Interactivo -->
+                <div class="lg:col-span-5 space-y-4 text-xs sm:text-sm text-slate-700">
+                    <div class="bg-teal-50/60 rounded-xl p-4 border border-teal-200/80 space-y-2">
+                        <span class="font-bold text-teal-950 flex items-center gap-1.5 text-sm">
+                            <i class="fa-solid fa-layer-group text-teal-700"></i> Zonas de Concesión Territorial
+                        </span>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            El mapa confeccionado por OCEBA ilustra la división jurisdiccional de la Provincia de Buenos Aires para la prestación del servicio de distribución eléctrica:
+                        </p>
+                    </div>
+
+                    <div class="space-y-2.5 text-xs">
+                        <div class="flex items-start gap-2.5 p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="w-3 h-3 rounded-full bg-blue-500 shrink-0 mt-0.5"></span>
+                            <div>
+                                <strong class="text-slate-900 block">Área EDEN S.A. (Zona Norte)</strong>
+                                <span class="text-slate-600">San Nicolás, Pergamino, Junín, Campana y corredor norte.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-2.5 p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0 mt-0.5"></span>
+                            <div>
+                                <strong class="text-slate-900 block">Área EDEA S.A. (Zona Atlántica)</strong>
+                                <span class="text-slate-600">Mar del Plata, Necochea, Tandil, Dolores y costa atlántica.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-2.5 p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="w-3 h-3 rounded-full bg-amber-500 shrink-0 mt-0.5"></span>
+                            <div>
+                                <strong class="text-slate-900 block">Área EDES S.A. (Zona Sur)</strong>
+                                <span class="text-slate-600">Bahía Blanca, Coronel Rosales y partidos del sudoeste.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-2.5 p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="w-3 h-3 rounded-full bg-purple-500 shrink-0 mt-0.5"></span>
+                            <div>
+                                <strong class="text-slate-900 block">Área EDELAP S.A. (Capital Provincial)</strong>
+                                <span class="text-slate-600">La Plata, Berisso, Ensenada, Brandsen y Magdalena.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-2.5 p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="w-3 h-3 rounded-full bg-cyan-500 shrink-0 mt-0.5"></span>
+                            <div>
+                                <strong class="text-slate-900 block">Zonas Cooperativas & Municipales</strong>
+                                <span class="text-slate-600">Más de 200 entidades cooperativas abasteciendo zonas urbanas y rurales.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-slate-100 rounded-lg border border-slate-200 text-slate-600 text-xs">
+                        <strong>Referencia Bibliográfica:</strong> Jacinto, G. P., Clementi, L. V., Carrizo, S. C., & Nogar, L. (2014). <em>Vientos para el cambio. Territorios, energía eólica y cooperativas de electricidad en el sur bonaerense</em>. Revista Transporte y Territorio.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: AUTORIDAD DE APLICACIÓN Y OCEBA -->
+        <section id="sec-oceba" class="space-y-6">
+            <div class="border-l-4 border-cyan-600 pl-4 py-1">
+                <h2 class="text-2xl font-bold text-slate-900">5. Autoridad de Aplicación y Organismo de Control (OCEBA)</h2>
+                <p class="text-sm text-slate-600">
+                    Estructura institucional de gobernanza eléctrica en la Jurisdicción de la Provincia de Buenos Aires.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Subsecretaría de Energía PBA -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">Subsecretaría de Energía de PBA</h3>
+                            <span class="text-xs text-slate-500 font-semibold">Poder Concedente y Autoridad Político-Regulatoria</span>
+                        </div>
+                    </div>
+                    <ul class="text-xs text-slate-600 space-y-2 pl-4 list-disc pt-2">
+                        <li>Formulación de la política energética provincial y planificación de infraestructura de red.</li>
+                        <li>Fijación del Cuadro Tarifario de Referencia Provincial para Distribuidores y Cooperativas.</li>
+                        <li>Otorgamiento y caducidad de los Contratos de Concesión de Servicio Público.</li>
+                        <li>Administración de Fondos Especiales de Desarrollo Eléctrico y Obras Públicas.</li>
+                    </ul>
+                </div>
+
+                <!-- OCEBA -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">OCEBA</h3>
+                            <span class="text-xs text-slate-500 font-semibold">Organismo de Control de Energía Eléctrica de PBA</span>
+                        </div>
+                    </div>
+                    <ul class="text-xs text-slate-600 space-y-2 pl-4 list-disc pt-2">
+                        <li>Ente autárquico encargado de fiscalizar el cumplimiento de los contratos de concesión.</li>
+                        <li>Atención y resolución de reclamos de usuarios finales frente a distribuidoras y cooperativas.</li>
+                        <li>Auditoría contable, tarifaria y técnica de los niveles de tensión y continuidad del suministro.</li>
+                        <li>Aplicación del régimen sancionatorio y liquidación de bonificaciones por mala calidad.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: CALIDAD DE SERVICIO E INDICADORES IEEE -->
+        <section id="sec-calidad" class="space-y-6">
+            <div class="border-l-4 border-purple-600 pl-4 py-1">
+                <h2 class="text-2xl font-bold text-slate-900">6. Indicadores de Calidad del Servicio Eléctrico (IEEE Standard 1366)</h2>
+                <p class="text-sm text-slate-600">
+                    Evaluación estandarizada del desempeño del servicio técnico de distribución mediante el estándar internacional IEEE 1366, utilizado por el OCEBA para la aplicación de penalizaciones contractuales.
+                </p>
+            </div>
+
+            <!-- CUADRO GENERAL DE LOS 4 INDICADORES FUNDAMENTALES -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- SAIFI -->
+                <div class="bg-white rounded-xl border border-purple-200 p-5 shadow-sm space-y-3 flex flex-col justify-between hover:border-purple-400 transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
+                                Frecuencia Media
+                            </span>
+                            <i class="fa-solid fa-list-check text-purple-600 text-lg"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">SAIFI</h3>
+                        <p class="text-[11px] font-semibold text-purple-900">System Average Interruption Frequency Index</p>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            Mide la <strong>frecuencia promedio de interrupciones sostenidas</strong> que experimenta un usuario del sistema durante el período de control.
+                        </p>
+                    </div>
+                    <div class="p-2.5 bg-slate-900 text-amber-300 rounded-lg text-center code-font text-xs font-bold">
+                        $$\text{SAIFI} = \frac{\sum N_i}{N_T}$$
+                        <span class="text-[10px] text-slate-400 block font-sans font-normal mt-1">[Cortes / Usuario]</span>
+                    </div>
+                </div>
+
+                <!-- SAIDI -->
+                <div class="bg-white rounded-xl border border-indigo-200 p-5 shadow-sm space-y-3 flex flex-col justify-between hover:border-indigo-400 transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
+                                Duración Media
+                            </span>
+                            <i class="fa-solid fa-hourglass-half text-indigo-600 text-lg"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">SAIDI</h3>
+                        <p class="text-[11px] font-semibold text-indigo-900">System Average Interruption Duration Index</p>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            Mide el <strong>tiempo total acumulado promedio de interrupción</strong> (duración) que sufre un usuario del sistema en el semestre.
+                        </p>
+                    </div>
+                    <div class="p-2.5 bg-slate-900 text-amber-300 rounded-lg text-center code-font text-xs font-bold">
+                        $$\text{SAIDI} = \frac{\sum (N_i \cdot r_i)}{N_T}$$
+                        <span class="text-[10px] text-slate-400 block font-sans font-normal mt-1">[Horas / Usuario]</span>
+                    </div>
+                </div>
+
+                <!-- CAIDI -->
+                <div class="bg-white rounded-xl border border-cyan-200 p-5 shadow-sm space-y-3 flex flex-col justify-between hover:border-cyan-400 transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded border border-cyan-200">
+                                Tiempo de Restablecimiento
+                            </span>
+                            <i class="fa-solid fa-clock-rotate-left text-cyan-600 text-lg"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">CAIDI</h3>
+                        <p class="text-[11px] font-semibold text-cyan-900">Customer Average Interruption Duration Index</p>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            Representa la <strong>duración promedio de cada interrupción individual</strong> para los clientes afectados. Refleja la velocidad de reparación de cuadrillas.
+                        </p>
+                    </div>
+                    <div class="p-2.5 bg-slate-900 text-amber-300 rounded-lg text-center code-font text-xs font-bold">
+                        $$\text{CAIDI} = \frac{\text{SAIDI}}{\text{SAIFI}} = \frac{\sum (N_i \cdot r_i)}{\sum N_i}$$
+                        <span class="text-[10px] text-slate-400 block font-sans font-normal mt-1">[Horas / Corte]</span>
+                    </div>
+                </div>
+
+                <!-- ASAI -->
+                <div class="bg-white rounded-xl border border-emerald-200 p-5 shadow-sm space-y-3 flex flex-col justify-between hover:border-emerald-400 transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                                Disponibilidad Relativa
+                            </span>
+                            <i class="fa-solid fa-shield-halved text-emerald-600 text-lg"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">ASAI</h3>
+                        <p class="text-[11px] font-semibold text-emerald-900">Average Service Availability Index</p>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                            Porcentaje relativo del tiempo total en que el sistema eléctrico permaneció plenamente con servicio disponible para los usuarios.
+                        </p>
+                    </div>
+                    <div class="p-2.5 bg-slate-900 text-amber-300 rounded-lg text-center code-font text-xs font-bold">
+                        $$\text{ASAI} = \frac{T_{8760} - \text{SAIDI}}{T_{8760}} \times 100$$
+                        <span class="text-[10px] text-slate-400 block font-sans font-normal mt-1">[% Disponibilidad]</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EJERCICIO PRÁCTICO RESUELTO PASO A PASO -->
+            <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-5">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                    <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-purple-600"></i> Ejercicio Práctico Integrador de Cálculo de Calidad (Caso de Estudio)
+                    </h3>
+                    <span class="text-xs bg-purple-100 text-purple-800 font-bold px-2.5 py-1 rounded">Red de Distribución MT</span>
+                </div>
+
+                <!-- Enunciado -->
+                <div class="p-4 bg-purple-50/50 border border-purple-200 rounded-xl text-xs sm:text-sm text-slate-700 space-y-2">
+                    <span class="font-bold text-purple-950 block text-sm">Enunciado del Problema:</span>
+                    <p class="leading-relaxed">
+                        Un alimentador de Media Tensión ($13,2 \text{ kV}$) atiende un total de <strong>$N_T = 10.000$ usuarios</strong> en un área de concesión. Durante un semestre de $4.380 \text{ horas}$, se registraron tres eventos de falla sostenida en la red:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-1 text-slate-700 text-xs">
+                        <li><strong>Evento A:</strong> Falla por rama en cable. Afectó a $N_1 = 2.500$ usuarios durante $r_1 = 3,0\text{ horas}$.</li>
+                        <li><strong>Evento B:</strong> Disparo de protección por sobrecarga. Afectó a $N_2 = 4.000$ usuarios durante $r_2 = 1,5\text{ horas}$.</li>
+                        <li><strong>Evento C:</strong> Falla en transformador de distribución. Afectó a $N_3 = 1.000$ usuarios durante $r_3 = 5,0\text{ horas}$.</li>
+                    </ul>
+                </div>
+
+                <!-- Resolución Matemática -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <!-- Cálculo SAIFI y SAIDI -->
+                    <div class="bg-slate-900 text-slate-100 p-4 rounded-xl space-y-3 code-font">
+                        <div class="text-amber-400 font-bold border-b border-slate-800 pb-1">// 1. Frecuencia Media (SAIFI)</div>
+                        <p class="text-slate-300">
+                            $$\text{SAIFI} = \frac{2.500 + 4.000 + 1.000}{10.000} = \frac{7.500}{10.000} = \mathbf{0,75} \frac{\text{cortes}}{\text{usuario}}$$
+                        </p>
+
+                        <div class="text-amber-400 font-bold border-b border-slate-800 pb-1 pt-2">// 2. Duración Media (SAIDI)</div>
+                        <p class="text-slate-300">
+                            $$\sum (N_i \cdot r_i) = (2500 \cdot 3) + (4000 \cdot 1,5) + (1000 \cdot 5) = 7500 + 6000 + 5000 = 18.500 \text{ hs-usr}$$
+                        </p>
+                        <p class="text-slate-300">
+                            $$\text{SAIDI} = \frac{18.500}{10.000} = \mathbf{1,85} \frac{\text{horas}}{\text{usuario}}$$
+                        </p>
+                    </div>
+
+                    <!-- Cálculo CAIDI y ASAI -->
+                    <div class="bg-slate-900 text-slate-100 p-4 rounded-xl space-y-3 code-font">
+                        <div class="text-amber-400 font-bold border-b border-slate-800 pb-1">// 3. Duración Promedio por Corte (CAIDI)</div>
+                        <p class="text-slate-300">
+                            $$\text{CAIDI} = \frac{\text{SAIDI}}{\text{SAIFI}} = \frac{1,85}{0,75} = \mathbf{2,467} \frac{\text{horas}}{\text{interrupción}}$$
+                        </p>
+
+                        <div class="text-amber-400 font-bold border-b border-slate-800 pb-1 pt-2">// 4. Índice de Disponibilidad (ASAI)</div>
+                        <p class="text-slate-300">
+                            $$\text{ASAI} = \frac{4.380 - 1,85}{4.380} \times 100 = \frac{4.378,15}{4.380} \times 100 = \mathbf{99,9578\%}$$
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-purple-50 border border-purple-200 text-purple-950 rounded-lg text-xs leading-relaxed">
+                    <i class="fa-solid fa-circle-check text-purple-600 mr-1"></i> <strong>Interpretación Regulatoria para OCEBA:</strong> El sistema ofreció una disponibilidad del $99,9578\%$. Cada usuario sufrió en promedio $0,75$ interrupciones durante el semestre con una duración acumulada de $1,85$ horas. Si los límites tolerados en el Contrato de Concesión fijaran un $\text{SAIDI}_{\text{máx}} = 1,50 \text{ hs}$, la distribuidora habría incurrido en un exceso de $0,35 \text{ hs/usuario}$, obligando al cálculo de <strong>multas económicas bonificadas en factura</strong>.
+                </div>
+            </div>
+
+            <!-- REGIMEN DE CONTROL Y FISCALIZACIÓN DEL OCEBA -->
+            <div class="bg-slate-900 text-white rounded-xl p-6 space-y-4 shadow-md">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-gavel text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-white">Procedimiento Regulatorio de Sanciones de OCEBA</h3>
+                        <p class="text-xs text-slate-400">Aplicación del Régimen de Penalizaciones por Incumplimiento de Metas Semestrales de Calidad</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs pt-2">
+                    <div class="p-3 bg-slate-800/80 rounded-lg border border-slate-700 space-y-1">
+                        <span class="text-purple-300 font-bold block">1. Auditoría Semestral</span>
+                        <p class="text-slate-300">Las distribuidoras presentan obligatoriamente las bases de datos de interrupciones con georreferenciación de reclamos técnicos.</p>
+                    </div>
+                    <div class="p-3 bg-slate-800/80 rounded-lg border border-slate-700 space-y-1">
+                        <span class="text-purple-300 font-bold block">2. Determinación de Excesos</span>
+                        <p class="text-slate-300">Se evalúa la brecha entre el valor registrado ($\text{SAIFI}_{\text{real}}$, $\text{SAIDI}_{\text{real}}$) y la tolerancia máxima del subárea ($T$).</p>
+                    </div>
+                    <div class="p-3 bg-slate-800/80 rounded-lg border border-slate-700 space-y-1">
+                        <span class="text-purple-300 font-bold block">3. Bonificación en Factura</span>
+                        <p class="text-slate-300">El importe de la penalización calculada se acredita directamente como saldo a favor en la liquidación del usuario individual perjudicado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 7: GLOSARIO TÉCNICO DE SIGLAS Y ACRÓNIMOS -->
+        <section id="sec-glosario" class="space-y-6">
+            <div class="border-l-4 border-amber-500 pl-4 py-1">
+                <h2 class="text-2xl font-bold text-slate-900">7. Glosario Completo de Siglas y Acrónimos del Subsector Eléctrico</h2>
+                <p class="text-sm text-slate-600">
+                    Compendio enciclopédico de las abreviaturas normativas, institucionales y técnicas utilizadas en el Mercado Eléctrico Mayorista y la regulación bonaerense.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- MEM -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">MEM</span>
+                        <span class="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-bold border border-indigo-200">Ámbito Comercial</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Mercado Eléctrico Mayorista</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Sistema comercial e institucional creado por la Ley 24.065 donde se integran los agentes de generación, transporte, distribución y grandes usuarios para la compraventa de potencia y energía eléctrica a nivel nacional.
+                    </p>
+                </div>
+
+                <!-- CAMMESA -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">CAMMESA</span>
+                        <span class="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-bold border border-indigo-200">Ente Operador</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Compañía Administradora del Mercado Mayorista Eléctrico Sociedad Anónima</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Empresa de gestión mixta encargada de la administración comercial del MEM y de la operación técnica en tiempo real del sistema a través de su función como OED.
+                    </p>
+                </div>
+
+                <!-- OED -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">OED</span>
+                        <span class="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-bold border border-amber-200">Función Técnica</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Organismo Encargado del Despacho</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Rol técnico que ejerce CAMMESA para coordinar la operación en tiempo real de centrales de generación y redes de transmisión, minimizando el costo operativo del sistema.
+                    </p>
+                </div>
+
+                <!-- OCEBA -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">OCEBA</span>
+                        <span class="text-[10px] bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-bold border border-cyan-200">Regulador PBA</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Organismo de Control de Energía Eléctrica de la Provincia de Buenos Aires</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Ente autárquico bonaerense que fiscaliza la prestación del servicio público de distribución eléctrica, la aplicación de cuadros tarifarios y el cumplimiento de metas de calidad por las empresas y cooperativas.
+                    </p>
+                </div>
+
+                <!-- ENRE -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">ENRE</span>
+                        <span class="text-[10px] bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-bold border border-cyan-200">Regulador Nacional</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Ente Nacional Regulador de la Electricidad</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Organismo descentralizado de la Nación que regula y fiscaliza las actividades de transporte en alta tensión (TRANSENER) y la distribución concesionada por la Nación (EDENOR y EDESUR).
+                    </p>
+                </div>
+
+                <!-- SSEE / SE -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">SSEE / SE</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-bold border border-slate-200">Autoridad Política</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Secretaría de Energía de la Nación</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Órgano del Poder Ejecutivo Nacional responsable de dictar la normativa técnico-económica del subsector eléctrico, fijar precios estacionales y definir la política energética nacional.
+                    </p>
+                </div>
+
+                <!-- SADI -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">SADI</span>
+                        <span class="text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-bold border border-blue-200">Infraestructura</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Sistema Argentino de Interconexión</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Red nacional en alta y extra alta tensión ($500 \text{ kV}, 220 \text{ kV}, 132 \text{ kV}$) que vincula físicamente las centrales generadoras de energía con los centros de consumo de todo el país.
+                    </p>
+                </div>
+
+                <!-- MAT / MATER -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">MAT / MATER</span>
+                        <span class="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold border border-emerald-200">Contratos Bilaterales</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Mercado a Término / Mercado a Término de Energías Renovables</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Mecanismo contractual de abastecimiento privado directo entre generadores y grandes demandas. El MATER se rige por la Ley 27.191 para el cumplimiento de metas de energía renovable.
+                    </p>
+                </div>
+
+                <!-- PEST -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">PEST</span>
+                        <span class="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-bold border border-amber-200">Tarifario</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Precio Estacional de la Energía Eléctrica</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Valor mayorista estabilizado fijado periódicamente por la SSEE que pagan los Distribuidores para trasladar en sus tarifas a los usuarios no regulados (residenciales y PyMEs).
+                    </p>
+                </div>
+
+                <!-- GUMA / GUME / GUDI -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">GUMA / GUME</span>
+                        <span class="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-bold border border-indigo-200">Demanda Industrial</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Grandes Usuarios Mayor / Menor / Demanda Individual</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Categorización de industrias y comercios según su potencia contratada ($>300 \text{ kW}$) que adquieren energía directamente en el MEM o en el MAT/MATER como Agentes del Mercado.
+                    </p>
+                </div>
+
+                <!-- CMg -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">CMg</span>
+                        <span class="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-bold border border-amber-200">Cálculo de Despacho</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Costo Marginal de Energía</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Costo incremental directo de producir el último megavatio-hora requerido para satisfacer la demanda del instante, determinado por el costo variable de la máquina marginante en la punta.
+                    </p>
+                </div>
+
+                <!-- CVP / CVT / ENS -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">CVP / CVT / ENS</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-bold border border-slate-200">Costos Variables</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Costo Var. Producción / Transporte / Energía No Suministrada</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Componentes de la función de minimización del despacho diario. $CVP$ abarca combustibles y OyM; $CVT$ representa pérdidas de red; $ENS$ valoriza el costo social del corte de suministro.
+                    </p>
+                </div>
+
+                <!-- IEEE -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">IEEE</span>
+                        <span class="text-[10px] bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-bold border border-purple-200">Normativa Técnica</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Institute of Electrical and Electronics Engineers</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Organización técnica profesional internacional emisora del Estándar IEEE 1366, norma internacional de referencia para la medición global de la fiabilidad y calidad de servicio en redes eléctricas.
+                    </p>
+                </div>
+
+                <!-- SAIFI / SAIDI -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">SAIFI / SAIDI</span>
+                        <span class="text-[10px] bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-bold border border-purple-200">Calidad de Servicio</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Índices de Frecuencia y Duración Media de Interrupción del Sistema</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Indicadores acumulativos globales. SAIFI mide la cantidad media de cortes sufridos por usuario ($\text{cortes/usuario}$), mientras que SAIDI contabiliza el tiempo total de corte en el período ($\text{horas/usuario}$).
+                    </p>
+                </div>
+
+                <!-- CAIDI / ASAI -->
+                <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm space-y-1.5 hover:border-indigo-400 transition">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">CAIDI / ASAI</span>
+                        <span class="text-[10px] bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-bold border border-purple-200">Fiabilidad de Servicio</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Índice de Duración por Interrupción / Índice de Disponibilidad del Servicio</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        CAIDI representa el tiempo medio de restitución de cada falla individual ($\text{horas/corte}$); ASAI mide el porcentaje de disponibilidad continua del servicio ($\%$ de tiempo disponible).
+                    </p>
+                </div>
+
+                <!-- EDEA / EDEN / EDES / EDELAP -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1.5 hover:border-indigo-400 transition col-span-1 md:col-span-2 lg:col-span-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-base font-extrabold text-indigo-900">EDEA / EDEN / EDES / EDELAP</span>
+                        <span class="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold border border-emerald-200">Concesionarias PBA</span>
+                    </div>
+                    <h3 class="text-xs font-bold text-slate-800">Empresas Distribuidoras de Energía de PBA (Atlántica, Norte, Sur y La Plata)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Las cuatro empresas privadas titulares de los Contratos de Concesión de distribución eléctrica en la Provincia de Buenos Aires conforme a las zonas delimitadas por la Ley Provincial N° 11.769.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 py-8 text-xs">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="font-semibold text-slate-300">Recurso Didáctico Universitario - Subsector Eléctrico Argentino y Bonaerense</p>
+            <p>Elaborado a partir del Módulo Teórico N° 3 y Leyes N° 24.065 y N° 11.769 (Prov. de Buenos Aires)</p>
+            <p class="text-slate-500 pt-2">© ISFT - Cátedra de Organización, Regulación y Funcionamiento del Subsector Eléctrico</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVIDAD JS -->
+    <script>
+        function expandAll() {
+            document.querySelectorAll('details').forEach(detail => detail.open = true);
+        }
+
+        function collapseAll() {
+            document.querySelectorAll('details').forEach(detail => detail.open = false);
+        }
+    </script>
+</body>
+</html>
