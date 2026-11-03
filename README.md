@@ -54,7 +54,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 7.  [cooperativas](https://profedel240.github.io/clases/cooperativas.html)
 8.  [cooperativas 2](https://profedel240.github.io/clases/cooperativas2.html)
 9.  [Estatuto coop](https://profedel240.github.io/clases/cooperativas.html)
-10. [Título de la Clase 10 aquí](https://link-de-tu-infografia-10-aqui.github.io/clase_gestion_10.html)
+10. [Resumen de cooperativas](https://profedel240.github.io/clases/resumencoop.html)
 11. [Título de la Clase 11 aquí](https://link-de-tu-infografia-11-aqui.github.io/clase_gestion_11.html)
 12. [Título de la Clase 12 aquí](https://link-de-tu-infografia-12-aqui.github.io/clase_gestion_12.html)
 13. [Título de la Clase 13 aquí](https://link-de-tu-infografia-13-aqui.github.io/clase_gestion_13.html)
