@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulación Eléctrica, Cuadros Tarifarios y Peajes | Material Académico</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- MathJax for rendering LaTeX formulas dynamically -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0a3651',
+                        },
+                        amberAccent: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-active {
+            border-bottom: 3px solid #0284c7;
+            color: #0284c7;
+            font-weight: 700;
+        }
+        .dark .tab-active {
+            border-bottom: 3px solid #38bdf8;
+            color: #38bdf8;
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200">
+
+    <!-- Navbar Header -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur border-b border-slate-200 dark:border-slate-700 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                        <i class="fa-solid font-bolt text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold leading-tight text-slate-900 dark:text-white">Cátedra de Tarifas & Peajes Eléctricos</h1>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Jurisdicciones ENRE - OCEBA - Sistema MEM (AMBA & PBA)</p>
+                    </div>
+                </div>
+
+                <!-- Dark Mode & Actions -->
+                <div class="flex items-center space-x-3">
+                    <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition" title="Cambiar tema">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:inline"></i>
+                    </button>
+                    <span class="hidden md:inline-block px-3 py-1 bg-brand-50 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 text-xs font-semibold rounded-full border border-brand-200 dark:border-brand-700">
+                        Nivel Terciario / Técnico
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- Banner Intro -->
+        <div class="bg-gradient-to-r from-brand-900 via-brand-800 to-slate-900 rounded-2xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 pointer-events-none flex items-center justify-center">
+                <i class="fa-solid fa-tower-observation text-9xl"></i>
+            </div>
+            <div class="relative z-10 max-w-3xl">
+                <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-300 text-xs font-bold rounded-full mb-3 border border-amber-500/30">
+                    <i class="fa-solid fa-graduation-cap mr-1"></i> Módulo Didáctico de Cátedra
+                </span>
+                <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Estructura Tarifaria de Distribución Eléctrica y Sistema de Peajes</h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                    Guía técnica interactiva para el análisis regulatorio del sector eléctrico en la provincia de Buenos Aires y el AMBA. Incluye segmentación ENRE, regulación provincial OCEBA, particularidades rurales, régimen de grandes usuarios (GUMA/GUME) y cálculo de peajes del MEM.
+                </p>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="border-b border-slate-200 dark:border-slate-700 overflow-x-auto scrollbar-none">
+            <nav class="flex space-x-6 min-w-max text-sm font-semibold">
+                <button onclick="switchTab('teoria')" id="tab-teoria" class="tab-button tab-active py-3 px-1 transition flex items-center gap-2">
+                    <i class="fa-solid fa-diagram-project"></i> 1. Formación del Precio & VAD
+                </button>
+                <button onclick="switchTab('enre')" id="tab-enre" class="tab-button py-3 px-1 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-city"></i> 2. Cuadro ENRE (AMBA)
+                </button>
+                <button onclick="switchTab('oceba')" id="tab-oceba" class="tab-button py-3 px-1 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-map-location-dot"></i> 3. Cuadro OCEBA (PBA)
+                </button>
+                <button onclick="switchTab('rural')" id="tab-rural" class="tab-button py-3 px-1 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-tractor"></i> 4. Tarifa Rural & Pérdidas
+                </button>
+                <button onclick="switchTab('especiales')" id="tab-especiales" class="tab-button py-3 px-1 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-heart-pulse"></i> 5. Tarifas Especiales
+                </button>
+                <button onclick="switchTab('peajes')" id="tab-peajes" class="tab-button py-3 px-1 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-industry"></i> 6. GUMA / GUME & Peajes
+                </button>
+            </nav>
+        </div>
+
+        <!-- SEARCH BAR FOR ALL CATEGORIES -->
+        <div class="relative bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-magnifying-glass text-slate-400 text-lg"></i>
+                <input type="text" id="searchInput" onkeyup="filterCategories()" placeholder="Buscar categoría o concepto (ej: T1R3, GUME, TR-3, Pérdidas en Hierro, RUGER, VAD, Peaje)..." class="w-full bg-transparent focus:outline-none text-slate-800 dark:text-slate-100 text-sm">
+                <span id="searchCount" class="text-xs text-slate-400 whitespace-nowrap hidden">0 resultados</span>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT SECTIONS -->
+
+        <!-- SECTION 1: TEORIA GENERAL & VAD -->
+        <section id="sec-teoria" class="tab-content space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Card Formula Base -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-brand-500"></i> La Ecuación Tarifaria Global
+                    </h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                        La tarifa eléctrica final no es fijada arbitrariamente por las empresas distribuidoras. Es el resultado de la suma reglamentada de tres componentes técnicos de la cadena de valor más el componente impositivo:
+                    </p>
+
+                    <div class="bg-slate-100 dark:bg-slate-900 p-4 rounded-lg text-center font-mono text-xs sm:text-sm text-brand-600 dark:text-brand-300 font-bold mb-4 border border-slate-200 dark:border-slate-700">
+                        Tarifa Final = PEE + Transporte + VAD + Impuestos
+                    </div>
+
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded font-bold text-xs mt-0.5">PEE</span>
+                            <div>
+                                <strong class="text-slate-800 dark:text-slate-200">Precio Estabilizado de la Energía:</strong> Costo mayorista de generación (CAMMESA). Sujeto a política de subsidios nacionales (RASE).
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="px-2 py-0.5 bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 rounded font-bold text-xs mt-0.5">STEE</span>
+                            <div>
+                                <strong class="text-slate-800 dark:text-slate-200">Transporte Mayorista:</strong> Canon de traslado de alta tensión (Transener / TRANSBA) para mover la potencia a las cabeceras regionales.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="px-2 py-0.5 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 rounded font-bold text-xs mt-0.5">VAD</span>
+                            <div>
+                                <strong class="text-slate-800 dark:text-slate-200">Valor Agregado de Distribución:</strong> El ingreso propio de la distribuidora local (Edenor, Edesur, EDELAP, Cooperativa). Cubre operación, mantenimiento y rentabilidad regulada.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card Marco Jurisdiccional -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-sitemap text-brand-500"></i> Desdoblamiento Jurisdiccional en Buenos Aires
+                    </h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                        El territorio bonaerense se divide en dos marcos regulatorios independientes que dictan las normas tarifarias:
+                    </p>
+
+                    <div class="space-y-4 text-sm">
+                        <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700">
+                            <div class="font-bold text-brand-600 dark:text-brand-400 flex items-center justify-between">
+                                <span>Jurisdicción Federal / ENRE</span>
+                                <span class="text-xs font-normal px-2 py-0.5 bg-brand-100 dark:bg-brand-900 text-brand-700 dark:text-brand-300 rounded">AMBA</span>
+                            </div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                                Regula a <strong>Edenor S.A.</strong> y <strong>Edesur S.A.</strong> (CABA + 33 partidos del Conurbano). Responde al Ente Nacional Regulador de la Electricidad.
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700">
+                            <div class="font-bold text-amber-600 dark:text-amber-400 flex items-center justify-between">
+                                <span>Jurisdicción Provincial / OCEBA</span>
+                                <span class="text-xs font-normal px-2 py-0.5 bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 rounded">Interior PBA + La Plata</span>
+                            </div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                                Regula a <strong>EDELAP, EDEN, EDEA, EDES</strong> y a más de <strong>200 Cooperativas Eléctricas Rurales y Urbanas</strong>. Incorpora el Fondo Provincial de Compensación Tarifaria (FPCT).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desglose Factura Comercial vs Residencial -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                    <i class="fa-solid fa-file-invoice-dollar text-brand-500 mr-1"></i> Anatomía Billing: Cargo Fijo vs. Cargo Variable
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6 text-sm">
+                    <div>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-200 mb-2">A. Cargo Fijo ($/mes)</h4>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-xs sm:text-sm">
+                            Remunera el costo administrativo permanente: lectura del medidor, emisión de factura, atención al cliente, mantener la red energizada en el punto de suministro. No depende de si consumiste 0 kWh o 1.000 kWh en el periodo. Se escala por subcategorías de consumo.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-200 mb-2">B. Cargo Variable ($/kWh)</h4>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-xs sm:text-sm">
+                            Es el precio por cada Kilowatt-hora efectivo consumido. Incluye el traslado directo del PEE (generación CAMMESA), el peaje de transporte y la porción del VAD asociada al uso intensivo de las redes de distribución.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ENRE (AMBA) -->
+        <section id="sec-enre" class="tab-content hidden space-y-6">
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Cuadro Tarifario ENRE (Edenor / Edesur)</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Jurisdicción Federal - Aplicable al Area Metropolitana de Buenos Aires (AMBA)</p>
+                    </div>
+                    <span class="px-3 py-1 bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 rounded-full text-xs font-semibold">
+                        Umbral T2/T3: 50 kW
+                    </span>
+                </div>
+
+                <!-- Table ENRE -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700">
+                                <th class="p-3 font-bold">Categoría</th>
+                                <th class="p-3 font-bold">Subcategoría</th>
+                                <th class="p-3 font-bold">Rango de Consumo / Potencia</th>
+                                <th class="p-3 font-bold">Estructura de Cobro y Especificaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                            <tr class="searchable-row">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white" rowspan="3">
+                                    T1 - Pequeñas Demandas<br>
+                                    <span class="text-xs text-slate-500 font-normal">(&lt; 10 kW)</span>
+                                </td>
+                                <td class="p-3 font-mono font-semibold text-brand-600 dark:text-brand-400">T1-R1</td>
+                                <td class="p-3">0 a 150 kWh/mes</td>
+                                <td class="p-3">Cargo Fijo bajo + Cargo Variable por kWh. Segmentado por RASE (N1, N2, N3).</td>
+                            </tr>
+                            <tr class="searchable-row">
+                                <td class="p-3 font-mono font-semibold text-brand-600 dark:text-brand-400">T1-R2</td>
+                                <td class="p-3">151 a 400 kWh/mes</td>
+                                <td class="p-3">Escala el Cargo Fijo. En N3, subsidio hasta cupo de consumo; excedente a valor tarifa plana N1.</td>
+                            </tr>
+                            <tr class="searchable-row">
+                                <td class="p-3 font-mono font-semibold text-brand-600 dark:text-brand-400">T1-R3</td>
+                                <td class="p-3">&gt; 400 kWh/mes</td>
+                                <td class="p-3">Cargo Fijo significativamente más alto (desagregado internamente en peldaños R3a, R3b, etc.).</td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">T1 - Comercial</td>
+                                <td class="p-3 font-mono font-semibold text-brand-600 dark:text-brand-400">T1-G (General)</td>
+                                <td class="p-3">Comercios (&lt; 10 kW)</td>
+                                <td class="p-3">Cargo Fijo según escalón de consumo + Cargo Variable pleno sin subsidios RASE.</td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">T1 - Alumbrado</td>
+                                <td class="p-3 font-mono font-semibold text-brand-600 dark:text-brand-400">T1-AP</td>
+                                <td class="p-3">Alumbrado Público</td>
+                                <td class="p-3">Facturación a municipios por potencia instalada o curva de horas lectivas de nocturnidad.</td>
+                            </tr>
+                            <tr class="searchable-row">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">T2 - Medianas Demandas</td>
+                                <td class="p-3 font-mono font-semibold text-brand-600 dark:text-brand-400">T2</td>
+                                <td class="p-3">10 kW ≤ P &lt; 50 kW</td>
+                                <td class="p-3">
+                                    <strong>Cargo Fijo + Potencia Contratada ($/kW-mes) + Energía ($/kWh).</strong><br>
+                                    Penalización por bajo factor de potencia (Cos φ &lt; 0,95).
+                                </td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white" rowspan="3">
+                                    T3 - Grandes Demandas<br>
+                                    <span class="text-xs font-normal text-slate-500">(≥ 50 kW)</span>
+                                </td>
+                                <td class="p-3 font-mono font-semibold text-brand-600 dark:text-brand-400">T3-BT</td>
+                                <td class="p-3">≥ 50 kW en Baja Tensión (220/380V)</td>
+                                <td class="p-3" rowspan="3">
+                                    <strong>Medición Horaria Trihoraria:</strong><br>
+                                    • Potencia en Pico / Fuera de Pico ($/kW-mes).<br>
+                                    • Energía diferenciada en: <strong>Pico</strong> (18-23 hs), <strong>Resto</strong> (05-18 hs) y <strong>Valle</strong> (23-05 hs).<br>
+                                    • Descuento por nivel de tensión alto (menores pérdidas de transformación para la distribuidora).
+                                </td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-mono font-semibold text-brand-600 dark:text-brand-400">T3-MT</td>
+                                <td class="p-3">≥ 50 kW en Media Tensión (13,2 / 33 kV)</td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-mono font-semibold text-brand-600 dark:text-brand-400">T3-AT</td>
+                                <td class="p-3">≥ 50 kW en Alta Tensión (132 kV)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: OCEBA (PBA) -->
+        <section id="sec-oceba" class="tab-content hidden space-y-6">
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Cuadro Tarifario OCEBA (Provincia de Buenos Aires)</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Jurisdicción Provincial - EDELAP, EDEN, EDEA, EDES y Cooperativas Eléctricas</p>
+                    </div>
+                    <span class="px-3 py-1 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 rounded-full text-xs font-semibold">
+                        Umbral T2/T3: 300 kW
+                    </span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700">
+                                <th class="p-3 font-bold">Categoría</th>
+                                <th class="p-3 font-bold">Subcategoría</th>
+                                <th class="p-3 font-bold">Rango de Consumo / Potencia</th>
+                                <th class="p-3 font-bold">Estructura de Cobro y Especificaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                            <tr class="searchable-row">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">T1 - Pequeña Demanda</td>
+                                <td class="p-3 font-mono font-semibold text-amber-600 dark:text-amber-400">T1R (R1 a R7)</td>
+                                <td class="p-3">0 a &gt; 600 kWh/mes (7 peldaños)</td>
+                                <td class="p-3">Desagregado en hasta 7 subcategorías residenciales para atenuar el VAD. Aplica RASE + Fondo Provincial de Compensación Tarifaria (FPCT).</td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">T1 - Comercial</td>
+                                <td class="p-3 font-mono font-semibold text-amber-600 dark:text-amber-400">T1G (General)</td>
+                                <td class="p-3">Comercios/Talleres (&lt; 10 kW)</td>
+                                <td class="p-3">Cargo Fijo por escalón + Cargo Variable pleno.</td>
+                            </tr>
+                            <tr class="searchable-row">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">T2 - Mediana Demanda</td>
+                                <td class="p-3 font-mono font-semibold text-amber-600 dark:text-amber-400">T2 PBA</td>
+                                <td class="p-3">10 kW ≤ P &lt; 300 kW</td>
+                                <td class="p-3">
+                                    <strong>Diferencia clave con ENRE:</strong> En PBA, T2 se extiende hasta 300 kW (en lugar de 50 kW). Cobro de Cargo Fijo + Potencia Adquirida/Registrada + Energía.
+                                </td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white" rowspan="3">
+                                    T3 - Gran Demanda<br>
+                                    <span class="text-xs font-normal text-slate-500">(≥ 300 kW)</span>
+                                </td>
+                                <td class="p-3 font-mono font-semibold text-amber-600 dark:text-amber-400">T3-BT PBA</td>
+                                <td class="p-3">≥ 300 kW en Baja Tensión</td>
+                                <td class="p-3" rowspan="3">
+                                    Medición inteligente trihoraria (Pico: 18-23h, Resto: 05-18h, Valle: 23-05h). Penalizaciones severas por exceso de demanda máxima y energía reactiva.
+                                </td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-mono font-semibold text-amber-600 dark:text-amber-400">T3-MT PBA</td>
+                                <td class="p-3">≥ 300 kW en Media Tensión (13,2/33 kV)</td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-mono font-semibold text-amber-600 dark:text-amber-400">T3-AT PBA</td>
+                                <td class="p-3">≥ 300 kW en Alta Tensión (132 kV)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: TARIFA RURAL & PERDIDAS EN TRANSFORMADORES -->
+        <section id="sec-rural" class="tab-content hidden space-y-6">
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="p-3 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-300">
+                        <i class="fa-solid fa-wheat-awn text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Cuadro Tarifario Rural (OCEBA / Cooperativas)</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Especificidades para explotaciones agropecuarias y puestos alejados</p>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700">
+                                <th class="p-3 font-bold">Categoría</th>
+                                <th class="p-3 font-bold">Denominación</th>
+                                <th class="p-3 font-bold">Rango Potencia</th>
+                                <th class="p-3 font-bold">Estructura de Cobro & Aplicación Técnica</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                            <tr class="searchable-row">
+                                <td class="p-3 font-mono font-semibold text-amber-600">TR-1</td>
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">Residencial Rural</td>
+                                <td class="p-3">&lt; 10 kW</td>
+                                <td class="p-3">Viviendas de personal rural y puesteros. Aplica segmentación RASE (N1, N2, N3).</td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-mono font-semibold text-amber-600">TR-2</td>
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">General Rural</td>
+                                <td class="p-3">&lt; 10 kW</td>
+                                <td class="p-3">Usos productivos pequeños (bombas de agua, iluminación de galpones, talleres de campo).</td>
+                            </tr>
+                            <tr class="searchable-row">
+                                <td class="p-3 font-mono font-semibold text-amber-600">TR-3</td>
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">Mediana Demanda Rural</td>
+                                <td class="p-3">10 kW ≤ P &lt; 300 kW</td>
+                                <td class="p-3">Tambos, criaderos, silado, riego. Cargo Fijo + Potencia + Energía + <strong>Cargo por Capacidad de Transformación (kVA)</strong>.</td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-mono font-semibold text-amber-600">TR-4</td>
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">Gran Demanda Rural BT</td>
+                                <td class="p-3">≥ 300 kW (Baja Tensión)</td>
+                                <td class="p-3" rowspan="2">Facturación Trihoraria (Pico, Resto, Valle) para plantas de acopio, molinos y agroindustrias de campo. Medición en BT o MT (7.62 a 33 kV).</td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-mono font-semibold text-amber-600">TR-5</td>
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">Gran Demanda Rural MT</td>
+                                <td class="p-3">≥ 300 kW (Media Tensión)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Particularidades Técnicas del Campo -->
+                <div class="grid md:grid-cols-2 gap-6 bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-amber-500"></i> Pérdidas por Capacidad de Transformación (kVA)
+                        </h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            A diferencia del cliente urbano, en el campo el usuario posee un transformador dedicado. OCEBA autoriza a cobrar las dos pérdidas inherentes a la máquina:
+                        </p>
+                        <ul class="list-disc list-inside text-xs text-slate-600 dark:text-slate-300 mt-2 space-y-1">
+                            <li><strong>Pérdidas en el Hierro (En Vacío / Núcleo):</strong> Consumo constante por estar conectado a la red de MT, aunque no haya consumo.</li>
+                            <li><strong>Pérdidas en el Cobre (En Carga):</strong> Pérdidas por efecto Joule variables según la corriente que demandan las máquinas.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-coins text-amber-500"></i> Fondo Provincial de Compensación Tarifaria (FPCT)
+                        </h4>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Dado que en el campo hay <em>pocos usuarios por kilómetro de red</em> (baja densidad), el costo real por usuario sería impagable. El FPCT compensa a las cooperativas rurales transfiriendo recursos recaudados en zonas urbanas densas como La Plata o Mar del Plata.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: TARIFAS ESPECIALES -->
+        <section id="sec-especiales" class="tab-content hidden space-y-6">
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Tarifas Especiales y Regímenes Específicos (ENRE & OCEBA)</h3>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Card TED -->
+                    <div class="searchable-card p-4 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50">
+                        <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold mb-2">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <span>Electrodependientes (TED)</span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                            Personas que requieren equipamiento médico conectado en forma permanente para preservar la vida (Ley Nac. 27.351 / PBA 14.989).
+                        </p>
+                        <div class="text-xs font-semibold text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900/40 p-2 rounded">
+                            • Bonificación del 100% de cargos fijos y kWh.<br>
+                            • Provisión obligatoria de UPS / Grupo electrógeno.
+                        </div>
+                    </div>
+
+                    <!-- Card RUGER -->
+                    <div class="searchable-card p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/50">
+                        <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold mb-2">
+                            <i class="fa-solid fa-solar-panel"></i>
+                            <span>Usuario-Generador (RUGER)</span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                            Usuarios con paneles solares/renovables e inyección a la red con medidor bidireccional (Ley Nac. 27.424 / PBA 15.325).
+                        </p>
+                        <div class="text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/40 p-2 rounded">
+                            • Esquema Net Billing.<br>
+                            • Descuento de inyecciones a tarifa PEE mayorista en la misma factura.
+                        </div>
+                    </div>
+
+                    <!-- Card Tarifa Social -->
+                    <div class="searchable-card p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/50">
+                        <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold mb-2">
+                            <i class="fa-solid fa-hand-holding-hand"></i>
+                            <span>Tarifa Social Provincial (TS)</span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                            Hogares vulnerables socioeconómicamente (jubilados haber mínimo, AUH, electrodependientes de hecho).
+                        </p>
+                        <div class="text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/40 p-2 rounded">
+                            • Bonificación sobre bloques base (150-300 kWh/mes).<br>
+                            • Excedentes pagan tarifa plena.
+                        </div>
+                    </div>
+
+                    <!-- Card Entidades de Bien Público -->
+                    <div class="searchable-card p-4 rounded-xl bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-900/50">
+                        <div class="flex items-center gap-2 text-purple-600 dark:text-purple-400 font-bold mb-2">
+                            <i class="fa-solid fa-people-roof"></i>
+                            <span>Entidades Bien Público (EBP)</span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                            Clubes de barrio, comedores, bibliotecas populares, bomberos voluntarios sin fines de lucro (Ley 27.218).
+                        </p>
+                        <div class="text-xs font-semibold text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-900/40 p-2 rounded">
+                            • Encuadramiento tarifario equivalente a Residencial (T1R) evitando tarifa comercial.
+                        </div>
+                    </div>
+
+                    <!-- Card Suministro Provisorio -->
+                    <div class="searchable-card p-4 rounded-xl bg-slate-100 dark:bg-slate-700/40 border border-slate-300 dark:border-slate-600">
+                        <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300 font-bold mb-2">
+                            <i class="fa-solid fa-person-digging"></i>
+                            <span>Suministro Provisorio</span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                            Obras en construcción, circos, eventos temporales y ferias itinerantes.
+                        </p>
+                        <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 bg-slate-200 dark:bg-slate-600/50 p-2 rounded">
+                            • Cargo fijo diferenciado + potencia provisoria contratada sin subsidios con depósito previo.
+                        </div>
+                    </div>
+
+                    <!-- Card Peajeros Locales -->
+                    <div class="searchable-card p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50">
+                        <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold mb-2">
+                            <i class="fa-solid fa-truck-ramp-box"></i>
+                            <span>Peajeros Locales (GDI)</span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                            Grandes industrias conectadas a la red local que compran energía directamente en el MEM a terceros.
+                        </p>
+                        <div class="text-xs font-semibold text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/40 p-2 rounded">
+                            • La distribuidora solo liquida el Peaje VAD (uso de cables y transformadores).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: GUMA, GUME Y PEAJES MEM -->
+        <section id="sec-peajes" class="tab-content hidden space-y-6">
+            
+            <!-- MARCO TEORICO: ¿QUÉ ES EL PEAJE ELÉCTRICO? -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="p-3 rounded-lg bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-300 text-xl font-bold">
+                        <i class="fa-solid fa-road-bridge"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">¿Qué es el Peaje Eléctrico y Cómo Funciona?</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Fundamento técnico-económico de la transmisión y distribución en el libre mercado</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <div class="space-y-3">
+                        <p>
+                            En el Mercado Eléctrico Mayorista (MEM), un <strong>Gran Usuario (GUMA/GUME)</strong> compra su energía eléctrica pactando un precio libremente con un generador (parque eólico, central térmica o hidroeléctrica). Sin embargo, el generador no posee redes de transmisión propias para llevar la energía hasta la fábrica.
+                        </p>
+                        <p>
+                            Por lo tanto, la energía debe inyectarse en la <strong>red pública de transmisión nacional (Transener/TRANSBA)</strong> y atravesar las <strong>redes de distribución local (Edenor, Edesur, EDELAP o Cooperativas)</strong>.
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 space-y-2">
+                        <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider text-brand-600 dark:text-brand-400">Concepto Clave de Peaje:</h4>
+                        <p class="text-xs">
+                            <strong>El Peaje Eléctrico es el canon o tarifa de uso que paga un agente para circular por la infraestructura de transporte y distribución.</strong>
+                        </p>
+                        <ul class="list-disc list-inside text-xs space-y-1 text-slate-500 dark:text-slate-400 mt-2">
+                            <li><strong>No remunera la energía:</strong> Solo remunera la capacidad del cable y del transformador.</li>
+                            <li><strong>Garantía de libre acceso:</strong> Regulado por ley (Ley 24.065) para evitar monopolios.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categorización MEM -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Grandes Usuarios del Mercado Mayorista (MEM)</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Empresas con capacidad de compra libre de energía y contratación de peajes</p>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <!-- Target Card GUMA (High Contrast) -->
+                    <div class="searchable-card p-5 rounded-xl bg-slate-100 dark:bg-slate-900 border-2 border-brand-500 dark:border-brand-500 shadow-sm">
+                        <div class="text-xs font-bold text-brand-700 dark:text-brand-400 uppercase tracking-wider">Gran Usuario Mayor</div>
+                        <div class="text-2xl font-black text-slate-900 dark:text-white font-mono my-1">GUMA</div>
+                        <div class="text-xs font-bold text-brand-800 dark:text-brand-300 mb-3 bg-brand-100 dark:bg-brand-950/80 px-2 py-1 rounded inline-block">
+                            Potencia ≥ 1 MW (1.000 kW)
+                        </div>
+                        <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                            Agente directo del MEM. Compra energía por contratos bilaterales (MATER/MEM). Mide en tiempo real vía SIME CAMMESA y gestiona sus propios desbalances.
+                        </p>
+                    </div>
+
+                    <!-- Target Card GUME (High Contrast) -->
+                    <div class="searchable-card p-5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-emerald-500 dark:border-emerald-500 shadow-sm">
+                        <div class="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">Gran Usuario Menor</div>
+                        <div class="text-2xl font-black text-slate-900 dark:text-white font-mono my-1">GUME</div>
+                        <div class="text-xs font-bold text-emerald-800 dark:text-emerald-300 mb-3 bg-emerald-100 dark:bg-emerald-950/80 px-2 py-1 rounded inline-block">
+                            300 kW ≤ P &lt; 1 MW
+                        </div>
+                        <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                            Agente del MEM representado por comercializador o generador. Compra energía en mercado libre pero mantiene relación técnica con la distribuidora local.
+                        </p>
+                    </div>
+
+                    <!-- Target Card GUDI (High Contrast) -->
+                    <div class="searchable-card p-5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 shadow-sm">
+                        <div class="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Gran Usuario Distribuidora</div>
+                        <div class="text-2xl font-black text-slate-900 dark:text-white font-mono my-1">GUDI</div>
+                        <div class="text-xs font-bold text-slate-800 dark:text-slate-300 mb-3 bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded inline-block">
+                            Potencia ≥ 300 kW (en T3)
+                        </div>
+                        <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                            No es agente directo del MEM. Le sigue comprando la energía a la distribuidora local pero a tarifa plena sin subsidio nacional.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Desglose de Peajes de Transporte y Distribución -->
+                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-route text-brand-500"></i> Desglose del Canon de Peaje Eléctrico
+                </h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700">
+                                <th class="p-3 font-bold">Tramo de Peaje</th>
+                                <th class="p-3 font-bold">Entidad Cobradora</th>
+                                <th class="p-3 font-bold">Componentes Técnicos Facturados</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-700 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                            <tr class="searchable-row">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">
+                                    Peaje de Transporte<br>
+                                    <span class="text-xs font-normal text-slate-500">(Alta & Extra Alta Tensión)</span>
+                                </td>
+                                <td class="p-3 font-semibold text-brand-600 dark:text-brand-400">
+                                    Transener (500 kV)<br>
+                                    TRANSBA (132/220 kV)<br>
+                                    <span class="text-xs text-slate-400 font-normal">vía liquidación CAMMESA</span>
+                                </td>
+                                <td class="p-3 space-y-1">
+                                    <div><strong>• Canon por Capacidad de Transporte:</strong> Remuneración fija por disponer líneas y transformadores ($/MW-mes).</div>
+                                    <div><strong>• Factor de Nodo (HN):</strong> Factor de ajuste variable que penaliza o bonifica según las pérdidas marginales por distancia física a centrales de generación.</div>
+                                </td>
+                            </tr>
+                            <tr class="searchable-row bg-slate-50/50 dark:bg-slate-900/30">
+                                <td class="p-3 font-semibold text-slate-900 dark:text-white">
+                                    Peaje de Distribución<br>
+                                    <span class="text-xs font-normal text-slate-500">(Uso de Red Local VAD)</span>
+                                </td>
+                                <td class="p-3 font-semibold text-amber-600 dark:text-amber-400">
+                                    Distribuidora Local<br>
+                                    <span class="text-xs text-slate-400 font-normal">(Edenor, Edesur, EDELAP, Cooperativa)</span>
+                                </td>
+                                <td class="p-3 space-y-1">
+                                    <div><strong>• Cargo Fijo Administrativo:</strong> Liquidación y lectura de telemetría.</div>
+                                    <div><strong>• Potencia Reservada / Uso de Red ($/kW-mes):</strong> Canon por capacidad puesta a disposición en Media (MT) o Baja Tensión (BT).</div>
+                                    <div><strong>• Recargo por Energía Reactiva:</strong> Penalización por bajo factor de potencia (Cos φ &lt; 0,95).</div>
+                                    <div class="text-emerald-600 dark:text-emerald-400 font-semibold">• Sin cargo variable por kWh (la energía se la paga directamente al generador).</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-12 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>Material de Cátedra Didáctico - Regulación del Servicio Eléctrico de Distribución y Transporte.</p>
+            <p class="mt-1">Fuentes: Procedimientos CAMMESA, Marcos Regulatorios Ley 24.065, Resoluciones ENRE y Resoluciones OCEBA / MIySP PBA.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Dark Mode Toggle
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize Theme from localStorage
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Tab Navigation
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Remove active style from all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('tab-active'));
+            
+            // Show selected section
+            const activeSec = document.getElementById('sec-' + tabId);
+            if (activeSec) activeSec.classList.remove('hidden');
+
+            // Set active button style
+            const activeBtn = document.getElementById('tab-' + tabId);
+            if (activeBtn) activeBtn.classList.add('tab-active');
+        }
+
+        // Global Search & Filter Categories
+        function filterCategories() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const rows = document.querySelectorAll('.searchable-row');
+            const cards = document.querySelectorAll('.searchable-card');
+            let count = 0;
+
+            if (query === '') {
+                rows.forEach(r => r.style.display = '');
+                cards.forEach(c => c.style.display = '');
+                document.getElementById('searchCount').classList.add('hidden');
+                return;
+            }
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    row.style.display = '';
+                    count++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = '';
+                    count++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const countEl = document.getElementById('searchCount');
+            countEl.textContent = `${count} coincidencias`;
+            countEl.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
