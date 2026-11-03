@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-900 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constitución de Cooperativas (INAES) - Guía Didáctica Interactive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col font-sans bg-slate-950 text-slate-100 overflow-x-hidden selection:bg-brand-500 selection:text-white">
+
+    <!-- Header / Navbar Top -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 lg:px-8 py-3 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
+                <i class="fa-solid font-bold text-white text-lg fa-hands-holding-circle"></i>
+            </div>
+            <div>
+                <h1 class="text-base font-bold tracking-tight text-white flex items-center gap-2">
+                    Cátedra de Economía Social y Cooperativismo
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20">Marco INAES</span>
+                </h1>
+                <p class="text-xs text-slate-400 hidden sm:block">Guía Pedagógica Interactiva: Constitución de Cooperativas en Argentina</p>
+            </div>
+        </div>
+
+        <!-- Centered Navigation Tabs (Taller Práctico removed) -->
+        <nav class="flex bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-medium mx-auto md:mx-0">
+            <button onclick="switchTab('paso-a-paso')" id="tab-paso-a-paso" class="tab-btn active px-3 md:px-5 py-2 rounded-lg transition-all flex items-center gap-2 bg-brand-600 text-white shadow">
+                <i class="fa-solid fa-route"></i>
+                <span>1. Paso a Paso</span>
+            </button>
+            <button onclick="switchTab('acta-constitutiva')" id="tab-acta-constitutiva" class="tab-btn px-3 md:px-5 py-2 rounded-lg transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-900">
+                <i class="fa-solid fa-file-signature"></i>
+                <span>2. Acta Constitutiva</span>
+            </button>
+            <button onclick="switchTab('estatuto-reglamento')" id="tab-estatuto-reglamento" class="tab-btn px-3 md:px-5 py-2 rounded-lg transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-900">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <span>3. Estatuto vs Reglamento</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 space-y-6">
+
+        <!-- TAB 1: PASO A PASO SECUENCIAL -->
+        <section id="content-paso-a-paso" class="tab-content block space-y-8 animate-fadeIn">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-brand-950/40 border border-slate-800 p-6 md:p-10 shadow-2xl">
+                <div class="relative z-10 max-w-3xl space-y-3">
+                    <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-400 bg-brand-400/10 px-3 py-1 rounded-full border border-brand-400/20">
+                        <i class="fa-solid fa-network-wired"></i> Secuencia Administrativa Ley 20.337
+                    </span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
+                        Ruta de Formación Legal ante el INAES
+                    </h2>
+                    <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                        Procedimiento oficial estandarizado para la constitución de cooperativas de trabajo (Res. INAES 1000/21) y de servicios en la República Argentina.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Steps Interactive Flow -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Step 1 Button/Card -->
+                <div onclick="selectStep(1)" id="step-card-1" class="step-card active cursor-pointer rounded-xl border border-brand-500 bg-slate-900 p-5 transition-all hover:border-brand-400 shadow-lg shadow-brand-500/10">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 font-bold flex items-center justify-center text-sm border border-brand-500/30">01</span>
+                        <i class="fa-solid fa-users-gear text-brand-400"></i>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Fase Previa</h3>
+                    <p class="text-xs text-slate-400 mt-1">Capacitación, grupo fundador y definición del objeto social.</p>
+                </div>
+
+                <!-- Step 2 Button/Card -->
+                <div onclick="selectStep(2)" id="step-card-2" class="step-card cursor-pointer rounded-xl border border-slate-800 bg-slate-900/60 p-5 transition-all hover:border-slate-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 font-bold flex items-center justify-center text-sm">02</span>
+                        <i class="fa-solid fa-gavel text-slate-400"></i>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Asamblea Fundadora</h3>
+                    <p class="text-xs text-slate-400 mt-1">Celebración del acto constitutivo y firma del Acta N° 1.</p>
+                </div>
+
+                <!-- Step 3 Button/Card -->
+                <div onclick="selectStep(3)" id="step-card-3" class="step-card cursor-pointer rounded-xl border border-slate-800 bg-slate-900/60 p-5 transition-all hover:border-slate-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 font-bold flex items-center justify-center text-sm">03</span>
+                        <i class="fa-solid fa-laptop-code text-slate-400"></i>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Plataforma TAD</h3>
+                    <p class="text-xs text-slate-400 mt-1">Carga digital del expediente vía Trámites a Distancia.</p>
+                </div>
+
+                <!-- Step 4 Button/Card -->
+                <div onclick="selectStep(4)" id="step-card-4" class="step-card cursor-pointer rounded-xl border border-slate-800 bg-slate-900/60 p-5 transition-all hover:border-slate-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 font-bold flex items-center justify-center text-sm">04</span>
+                        <i class="fa-solid fa-certificate text-slate-400"></i>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Fiscalización y CUIT</h3>
+                    <p class="text-xs text-slate-400 mt-1">Dictamen INAES, otorgamiento de matrícula y CUIT entidad.</p>
+                </div>
+            </div>
+
+            <!-- Dynamic Detail Panel for Selected Step -->
+            <div id="step-detail-container" class="rounded-2xl border border-slate-800 bg-slate-900 p-6 md:p-8 shadow-xl">
+                <!-- Content injected via JS -->
+            </div>
+        </section>
+
+        <!-- TAB 2: ANÁLISIS DEL ACTA CONSTITUTIVA (ACTA N° 1) -->
+        <section id="content-acta-constitutiva" class="tab-content hidden space-y-8 animate-fadeIn">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white">Estructura del Acta Constitutiva (Acta N° 1)</h2>
+                    <p class="text-sm text-slate-400 mt-1">El documento matrix y fundacional que da nacimiento legal a la institución pública cooperativa.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check"></i> Formato homologado INAES
+                    </span>
+                </div>
+            </div>
+
+            <!-- Interactive Document Explorer -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Section Selector Menu -->
+                <div class="lg:col-span-4 space-y-2">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Secciones del Documento</p>
+                    
+                    <button onclick="showActaSection('encabezado')" id="acta-btn-encabezado" class="acta-btn w-full text-left p-4 rounded-xl border border-brand-500 bg-brand-950/30 text-white transition flex items-center justify-between font-medium text-sm">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-heading text-brand-400"></i>
+                            1. Encabezado e Identificación
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-brand-400"></i>
+                    </button>
+
+                    <button onclick="showActaSection('orden-del-dia')" id="acta-btn-orden-del-dia" class="acta-btn w-full text-left p-4 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800/80 transition flex items-center justify-between font-medium text-sm">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-list-check text-slate-400"></i>
+                            2. Orden del Día Formal
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
+                    </button>
+
+                    <button onclick="showActaSection('capital-social')" id="acta-btn-capital-social" class="acta-btn w-full text-left p-4 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800/80 transition flex items-center justify-between font-medium text-sm">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-coins text-slate-400"></i>
+                            3. Capital Suscripto e Integrado
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
+                    </button>
+
+                    <button onclick="showActaSection('eleccion-organos')" id="acta-btn-eleccion-organos" class="acta-btn w-full text-left p-4 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800/80 transition flex items-center justify-between font-medium text-sm">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-sitemap text-slate-400"></i>
+                            4. Elección de Consejo y Sindicatura
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
+                    </button>
+
+                    <button onclick="showActaSection('cierre-firmas')" id="acta-btn-cierre-firmas" class="acta-btn w-full text-left p-4 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800/80 transition flex items-center justify-between font-medium text-sm">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-signature text-slate-400"></i>
+                            5. Cierre y Suscripción Integral
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
+                    </button>
+                </div>
+
+                <!-- Document Interactive Viewer -->
+                <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-xl">
+                    <div id="acta-display-area" class="space-y-4">
+                        <!-- Content Injected via JS -->
+                    </div>
+
+                    <!-- Callout Alert Tip -->
+                    <div class="mt-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-start gap-3">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-400 mt-0.5"></i>
+                        <div class="text-xs text-amber-200/90 leading-relaxed">
+                            <strong>Atención Académica:</strong> Todo error de tipeo en los DNI, nombres de asociados o montos suscriptos en el Acta N° 1 detiene el expediente en el INAES requiriendo un "Acta Rectificatoria" aprobada por nueva asamblea.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: ESTATUTO VS REGLAMENTO INTERNO -->
+        <section id="content-estatuto-reglamento" class="tab-content hidden space-y-8 animate-fadeIn">
+            <div class="border-b border-slate-800 pb-6">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">Estatuto Social vs. Reglamento Interno</h2>
+                <p class="text-sm text-slate-400 mt-1">Diferenciación conceptual, principios de jerarquía e inclusión normativa para el dictado de la clase.</p>
+            </div>
+
+            <!-- Focus Card: Hierarchical Relationship & Inclusion -->
+            <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-brand-950/50 border border-brand-500/30 rounded-2xl p-6 md:p-8 space-y-4 shadow-xl">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold border border-brand-500/30">
+                        <i class="fa-solid fa-layer-group text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Jerarquía e Inclusión Normativa: ¿Cómo se articulan?</h3>
+                        <span class="text-xs text-brand-400 font-mono">El Estatuto engloba y delega; el Reglamento operacionaliza</span>
+                    </div>
+                </div>
+                <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                    Existe una relación de <strong>subordinación e inclusión piramidal</strong> entre ambos documentos. El <strong>Estatuto Social</strong> es la <em>Ley Fundamental</em> (Constitución interna) aprobada e inscripta ante el INAES. Contiene una cláusula habilitante que autoriza al Consejo de Administración y a la Asamblea a dictar <strong>Reglamentos Internos</strong> para normar aspectos específicos (régimen disciplinario, tarifas, convivencia, servicios).
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3 text-xs">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                        <span class="text-brand-400 font-bold block mb-1">1. Principio de Validez</span>
+                        <p class="text-slate-300">Ningún Reglamento Interno puede contradecir o violar lo dispuesto en el Estatuto Social ni en la Ley 20.337.</p>
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                        <span class="text-emerald-400 font-bold block mb-1">2. Delegación Facultativa</span>
+                        <p class="text-slate-300">El Estatuto sienta las bases (principios de justicia distributiva) y el Reglamento especifica los montos, turnos y pautas diarias.</p>
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                        <span class="text-amber-400 font-bold block mb-1">3. Control Operativo</span>
+                        <p class="text-slate-300">Los reglamentos deben ser aprobados por la Asamblea de Asociados y notificados al INAES para su validez legal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conceptual Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Estatuto Card -->
+                <div class="bg-slate-900 border border-brand-500/30 rounded-2xl p-6 space-y-4 relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-500/5 rounded-full blur-2xl"></div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-brand-500/20 border border-brand-500/30 text-brand-400 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Estatuto Social</h3>
+                            <span class="text-xs text-brand-400 font-mono">Constitución de la Cooperativa</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Es el instrumento legal macro. Define la estructura jurídica, el objeto social, los derechos y deberes fundamentales y las reglas de gobernanza según la Ley 20.337.
+                    </p>
+                    <div class="space-y-2 pt-2 border-t border-slate-800">
+                        <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Aspectos Rígidos / Clave</h4>
+                        <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                            <li><strong>Denominación Social:</strong> Incluye tipo y alcance.</li>
+                            <li><strong>Objeto Social:</strong> Preciso y determinado (no genérico).</li>
+                            <li><strong>Plazo de Duración:</strong> Determinado u indeterminado.</li>
+                            <li><strong>Mandatos:</strong> Duración de 1 a 3 ejercicios para autoridades.</li>
+                            <li><strong>Invariabilidad:</strong> Modificarlo exige Asamblea Extraordinaria y aprobación INAES.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Reglamento Card -->
+                <div class="bg-slate-900 border border-emerald-500/30 rounded-2xl p-6 space-y-4 relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl"></div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Reglamento Interno</h3>
+                            <span class="text-xs text-emerald-400 font-mono">Régimen Operativo y Convivencia</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Regula la cotidianidad del trabajo y la prestación de servicios. Adapta los principios estatutarios al día a día operativo sin necesidad de modificar el estatuto base.
+                    </p>
+                    <div class="space-y-2 pt-2 border-t border-slate-800">
+                        <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Aspectos Flexibles / Operativos</h4>
+                        <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                            <li><strong>Régimen de Convivencia:</strong> Turnos, horarios, puntualidad.</li>
+                            <li><strong>Tarifas Sociales / Cuotas:</strong> Criterios de subvención y cobro.</li>
+                            <li><strong>Régimen Disciplinario:</strong> Graduación de apercibimientos y suspensiones.</li>
+                            <li><strong>Comisión de Conciliación:</strong> Mapeo interno de resolución de conflictos.</li>
+                            <li><strong>Aprobación:</strong> Aprobado por Asamblea y notificado al INAES.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Dive Interactive Table -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 shadow-xl">
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-table-list text-brand-400"></i> Tabla de Cotejo Normativo para la Clase
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-950 text-slate-400 uppercase font-semibold border-b border-slate-800">
+                            <tr>
+                                <th class="p-3">Dimensión de Análisis</th>
+                                <th class="p-3">Estatuto Social</th>
+                                <th class="p-3">Reglamento Interno (o de Convivencia)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-slate-300">
+                            <tr class="hover:bg-slate-800/40">
+                                <td class="p-3 font-semibold text-white">Carácter Legal</td>
+                                <td class="p-3">Ley fundamental y marco general obligatorio.</td>
+                                <td class="p-3">Normativa de aplicación práctica y cotidiana.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/40">
+                                <td class="p-3 font-semibold text-white">Modificación</td>
+                                <td class="p-3 text-amber-400 font-medium">Compleja. Requiere Quórum Especial + INAES.</td>
+                                <td class="p-3 text-emerald-400 font-medium">Ágil. Se trata en Asamblea Ordinaria.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/40">
+                                <td class="p-3 font-semibold text-white">Contenido Típico</td>
+                                <td class="p-3">Capital, fiscalización, número de miembros del Consejo.</td>
+                                <td class="p-3">Pautas de convivencia, horario, tarifas de servicios, cuotas de mantenimiento.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/40">
+                                <td class="p-3 font-semibold text-white">Relación con Tarifas Sociales</td>
+                                <td class="p-3">Solo enuncia la prestación "al costo mínimo y equitativo".</td>
+                                <td class="p-3">Detalla categorías, cuadros tarifarios reducidos y subsidios.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 px-4 text-center text-xs text-slate-500 mt-auto">
+        <p>Material Didáctico Cátedra Economía Social - Adaptado a Reglamentaciones INAES / Ley 20.337</p>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Data Store for Steps (Paso a Paso)
+        const stepsData = {
+            1: {
+                title: "Etapa 1: Preparación, Capacitación y Viabilidad",
+                badge: "Mínimo 3 asociados para Cooperativas de Trabajo (Res. 1000/21)",
+                icon: "fa-users-gear",
+                description: "Antes de cualquier firma formal, el grupo promotor debe consolidar la base asociativa y capacitarse en los valores y normas del cooperativismo.",
+                checklist: [
+                    "Conformación del núcleo fundador (mínimo 3 asociados para trabajo, 6 para otros rubros).",
+                    "Asistencia obligatoria al curso de Capacitación Cooperativa dictado por el Órgano Local Competente (ej. DIPAC) o el INAES.",
+                    "Obtención del Certificado de Capacitación Oficial (requisito excluyente para el legajo).",
+                    "Delimitación precisa del Objeto Social (actividad económica que desarrollará la entidad)."
+                ],
+                tip: "Un error habitual es definir un objeto social comercial genérico. El INAES rebotará todo expediente cuyo objeto no guarde estricta consonancia con el tipo cooperativo elegido."
+            },
+            2: {
+                title: "Etapa 2: Celebración de la Asamblea Constitutiva",
+                badge: "Hito Fundacional Formal - Acta N° 1",
+                icon: "fa-gavel",
+                description: "Reunión formal de los asociados fundadores donde se da nacimiento legal a la cooperativa mediante la aprobación de las cláusulas normativas iniciales.",
+                checklist: [
+                    "Designación del Presidente y Secretario de la Asamblea Constitutiva.",
+                    "Lectura y aprobación unánime del Estatuto Social.",
+                    "Suscripción e integración del Capital Social (integración mínima del 5% al momento del acto).",
+                    "Elección democrática de Autoridades: Consejo de Administración y Síndico/s."
+                ],
+                tip: "Todos los asociados deben suscribir e integrar el capital mínimo. En las actas debe figurar la planilla con DNI, CUIT, aportes y firma ológrafa o digital."
+            },
+            3: {
+                title: "Etapa 3: Carga Digital del Legajo en TAD",
+                badge: "100% Digital vía Trámites a Distancia (AFIP)",
+                icon: "fa-laptop-code",
+                description: "Envío formal del expediente digitalizado para su evaluación jurídica y técnica por parte de los fiscalizadores del INAES.",
+                checklist: [
+                    "Ingreso a la plataforma TAD con CUIT y Clave Fiscal Nivel 3 del representante legal designado.",
+                    "Selección del trámite: 'Constitución de Cooperativas'.",
+                    "Carga del Acta Constitutiva N° 1 y Estatuto firmado por todos los miembros.",
+                    "Adjuntar copia de DNI de los fundadores y Certificado de Capacitación Cooperativa.",
+                    "Carga del Informe de Iniciación (Plan de Actividades Económicas proyectado)."
+                ],
+                tip: "Asegurarse de que el CUIT del apoderado en TAD coincida exactamente con el Presidente electo designado en la asamblea."
+            },
+            4: {
+                title: "Etapa 4: Matrícula Nacional y CUIT de la Entidad",
+                badge: "Concesión de Personería Jurídica",
+                icon: "fa-certificate",
+                description: "El INAES emite el dictamen final, inscribe la sociedad en el Registro Nacional y le otorga la Matrícula junto con la CUIT impositiva.",
+                checklist: [
+                    "Monitoreo de notificaciones en el buzón de TAD por posibles vistas u observaciones del INAES.",
+                    "Subsanación de errores documentales (si el INAES lo requiriese).",
+                    "Emisión de la Resolución con el Otorgamiento de la Matrícula Nacional.",
+                    "Generación automática de la CUIT de la entidad en AFIP/ARCA mediante convenio INAES-AFIP.",
+                    "Rúbrica de libros sociales/contables y apertura de cuenta bancaria corporativa."
+                ],
+                tip: "Con la Matrícula y la CUIT, la cooperativa adquiere plena capacidad operativa para facturar, contratar y operar comercialmente."
+            }
+        };
+
+        // Data Store for Acta Constitutiva Explorer
+        const actaData = {
+            'encabezado': {
+                title: "1. Encabezado e Identificación",
+                content: `<p class="text-xs text-slate-300 leading-relaxed mb-4">El acta debe abrir con los datos de tiempo y espacio indispensables para otorgar validez jurídica al acto:</p>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-300 space-y-2">
+                    <p><span class="text-brand-400">Lugar y Fecha:</span> En la Ciudad de [Localidad], Partido de [...], a los [Día] días del mes de [...] de 202...</p>
+                    <p><span class="text-brand-400">Presentes:</span> Se reúnen los Sres. [Nombre y Apellido completo], DNI N° [...], CUIT [...], de nacionalidad [...], de profesión [...], domiciliado en [...].</p>
+                    <p><span class="text-brand-400">Autoridades del Acto:</span> Se designa al Sr. [...] como Presidente de la Asamblea y al Sr. [...] como Secretario.</p>
+                </div>`
+            },
+            'orden-del-dia': {
+                title: "2. Orden del Día Formal",
+                content: `<p class="text-xs text-slate-300 leading-relaxed mb-4">Puntos taxativos que se votarán durante la asamblea. No pueden tratarse temas fuera de este listado:</p>
+                <ol class="list-decimal list-inside text-xs text-slate-300 space-y-2 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                    <li class="font-semibold text-white">Informe de los iniciadores y motivos de la constitución.</li>
+                    <li class="font-semibold text-white">Lectura, discusión y aprobación del Estatuto Social.</li>
+                    <li class="font-semibold text-white">Suscripción e integración de cuotas sociales.</li>
+                    <li class="font-semibold text-white">Elección de los miembros del Consejo de Administración y Sindicatura.</li>
+                </ol>`
+            },
+            'capital-social': {
+                title: "3. Cuadro de Suscripción e Integración de Capital",
+                content: `<p class="text-xs text-slate-300 leading-relaxed mb-3">Detalle contable del compromiso económico de cada fundador (Mínimo 5% integrado en el acto):</p>
+                <div class="overflow-x-auto bg-slate-950 rounded-xl border border-slate-800 p-2">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="text-brand-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-2">Asociado Fundador</th>
+                                <th class="p-2">Cuotas Suscriptas</th>
+                                <th class="p-2">Total Suscripto ($)</th>
+                                <th class="p-2">Integrado en Acto ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800">
+                            <tr>
+                                <td class="p-2">Juan Pérez (DNI 30.xxx.xxx)</td>
+                                <td class="p-2">100 cuotas</td>
+                                <td class="p-2">$ 10.000</td>
+                                <td class="p-2 text-emerald-400 font-bold">$ 500 (5%)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">María Gómez (DNI 32.xxx.xxx)</td>
+                                <td class="p-2">100 cuotas</td>
+                                <td class="p-2">$ 10.000</td>
+                                <td class="p-2 text-emerald-400 font-bold">$ 500 (5%)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>`
+            },
+            'eleccion-organos': {
+                title: "4. Elección de Órganos de Administración y Fiscalización",
+                content: `<p class="text-xs text-slate-300 leading-relaxed mb-3">Asignación democrática de los cargos operativos y de control institucionales:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                        <h4 class="font-bold text-brand-400">Consejo de Administración</h4>
+                        <p class="text-slate-300"><strong>Presidente:</strong> [Nombre, DNI, CUIT]</p>
+                        <p class="text-slate-300"><strong>Secretario:</strong> [Nombre, DNI, CUIT]</p>
+                        <p class="text-slate-300"><strong>Tesorero:</strong> [Nombre, DNI, CUIT]</p>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                        <h4 class="font-bold text-emerald-400">Sindicatura (Fiscalización)</h4>
+                        <p class="text-slate-300"><strong>Síndico Titular:</strong> [Nombre, DNI, CUIT]</p>
+                        <p class="text-slate-300"><strong>Síndico Suplente:</strong> [Nombre, DNI, CUIT]</p>
+                    </div>
+                </div>`
+            },
+            'cierre-firmas': {
+                title: "5. Cierre del Acto y Suscripción de Firmas",
+                content: `<p class="text-xs text-slate-300 leading-relaxed mb-3">Validación y declaración jurada final de todos los fundadores:</p>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-3">
+                    <p>No habiendo más asuntos que tratar, se da por finalizada la sesión siendo las [Hora] horas. En prueba de conformidad y previa lectura, firman todos los presentes.</p>
+                    <div class="pt-4 border-t border-slate-800 grid grid-cols-3 gap-4 text-center font-mono text-[10px] text-slate-500">
+                        <div class="border-t border-slate-700 pt-1">Firma Presidencial</div>
+                        <div class="border-t border-slate-700 pt-1">Firma Secretaría</div>
+                        <div class="border-t border-slate-700 pt-1">Firma Síndico</div>
+                    </div>
+                </div>`
+            }
+        };
+
+        // Switch Navigation Tabs
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white', 'shadow');
+                btn.classList.add('text-slate-400', 'hover:text-white');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-brand-600', 'text-white', 'shadow');
+                activeBtn.classList.remove('text-slate-400');
+            }
+
+            const activeContent = document.getElementById(`content-${tabId}`);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+            }
+        }
+
+        // Select Step Detail Flow
+        function selectStep(stepNum) {
+            document.querySelectorAll('.step-card').forEach(card => {
+                card.classList.remove('border-brand-500', 'shadow-lg', 'shadow-brand-500/10', 'bg-slate-900');
+                card.classList.add('border-slate-800', 'bg-slate-900/60');
+            });
+
+            const activeCard = document.getElementById(`step-card-${stepNum}`);
+            if (activeCard) {
+                activeCard.classList.remove('border-slate-800', 'bg-slate-900/60');
+                activeCard.classList.add('border-brand-500', 'bg-slate-900', 'shadow-lg', 'shadow-brand-500/10');
+            }
+
+            renderStepDetail(stepNum);
+        }
+
+        function renderStepDetail(stepNum) {
+            const data = stepsData[stepNum];
+            const container = document.getElementById('step-detail-container');
+            if (!container || !data) return;
+
+            let checklistHtml = data.checklist.map(item => `
+                <li class="flex items-start gap-2 text-xs text-slate-300">
+                    <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                    <span>${item}</span>
+                </li>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="space-y-4 animate-fadeIn">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid ${data.icon} text-brand-400"></i> ${data.title}
+                        </h3>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20">
+                            ${data.badge}
+                        </span>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">${data.description}</p>
+
+                    <div class="pt-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Acciones y Requisitos Exigidos</h4>
+                        <ul class="space-y-2 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                            ${checklistHtml}
+                        </ul>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-brand-950/40 border border-brand-800/50 flex items-start gap-3">
+                        <i class="fa-solid fa-lightbulb text-brand-400 mt-0.5"></i>
+                        <div class="text-xs text-brand-200/90">
+                            <strong>Tip Pedagógico para la Clase:</strong> ${data.tip}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Show Acta Section
+        function showActaSection(sectionKey) {
+            document.querySelectorAll('.acta-btn').forEach(btn => {
+                btn.classList.remove('border-brand-500', 'bg-brand-950/30', 'text-white');
+                btn.classList.add('border-slate-800', 'bg-slate-900', 'text-slate-300');
+            });
+
+            const activeBtn = document.getElementById(`acta-btn-${sectionKey}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-slate-800', 'bg-slate-900', 'text-slate-300');
+                activeBtn.classList.add('border-brand-500', 'bg-brand-950/30', 'text-white');
+            }
+
+            const section = actaData[sectionKey];
+            const display = document.getElementById('acta-display-area');
+            if (!display || !section) return;
+
+            display.innerHTML = `
+                <h3 class="text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
+                    ${section.title}
+                </h3>
+                <div>${section.content}</div>
+            `;
+        }
+
+        // Initialization
+        window.onload = function() {
+            renderStepDetail(1);
+            showActaSection('encabezado');
+        }
+    </script>
+</body>
+</html>
