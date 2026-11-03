@@ -31,7 +31,7 @@ Aquí se listarán las infografías y apuntes relacionados con esta materia.
 21. [Introd subestaciones](https://profedel240.github.io/clase/intrsubest.html)
 22. [Calculo transformador](https://profedel240.github.io/clase/calctransf.html)
 23. [Modulo 3 c](https://profedel240.github.io/clases/mod3orfsec.html)
-24. [categorias y peajes](https://profedel240.github.io/clases/categoriapejae.html)
+24. [categorias y peajes](https://profedel240.github.io/clases/categoriapeaje.html)
 25. [Título de la Clase 25 aquí](https://link-de-tu-infografia-25-aqui.github.io/apunte_25.html)
 26. [Título de la Clase 26 aquí](https://link-de-tu-infografia-26-aqui.github.io/apunte_26.html)
 27. [Título de la Clase 27 aquí](https://link-de-tu-infografia-27-aqui.github.io/apunte_27.html)
